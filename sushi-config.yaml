@@ -1,6 +1,6 @@
 # sushi-config.yaml is documented https://fshschool.org/docs/sushi/configuration/
 # ───────────────────────────────────────────────────
-id: IHE.Radiology.IMR
+id: ihe.radiology.imr
 canonical: http://profiles.ihe.net/Radiology/IMR
 version: 0.1.0
 name: IHE_Radiology_IMR
