@@ -16,7 +16,7 @@ Description:    "IHE Interactive Multimedia Report (IMR) profile on DiagnosticRp
 * basedOn contains serviceRequest 1..1
 * basedOn[serviceRequest] only Reference(IMRServiceRequest)
 
-* category 1..1
+* category 1..*
 
 // Shall reference on Patient
 * subject 1..1
@@ -60,12 +60,6 @@ Description:    "IHE Interactive Multimedia Report (IMR) profile on DiagnosticRp
 // Shall include at least one referenced study
 * imagingStudy 1..* MS
 * imagingStudy only Reference(IMRDiagnosticReportImagingStudy)
-
-// May include key images
-* media 0..* MS
-
-// Shall include one conclusion based on the result and imagingStudy
-* conclusion 1..1 MS
 
 // Shall include at least one presentedForm which is the text with embedded multimedia content. May include PDF
 * presentedForm 1..* MS

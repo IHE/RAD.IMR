@@ -5,7 +5,18 @@ Title:          "IMR Study Endpoint"
 Description:    "IHE Interactive Multimedia Report (IMR) profile on Endpoint for Study"
 
 * connectionType from IMRStudyEndpointVS (required)
-* payloadType = DICOM#113014 "Study"
+// * payloadType = DICOM#113014 "Study"
+* payloadType 1..1
+
+* payloadType ^slicing.discriminator.type = #pattern
+* payloadType ^slicing.discriminator.path = "coding"
+* payloadType ^slicing.rules = #open
+* payloadType ^slicing.description = "Slice based on the payloadType.coding"
+* payloadType ^slicing.ordered = false
+
+* payloadType contains study 1..1 MS
+* payloadType[study].coding = DICOM#113014 "Study"
+
 
 ValueSet: IMRStudyEndpointVS
 Id: imr-study-endpoint-vs

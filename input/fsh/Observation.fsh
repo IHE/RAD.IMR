@@ -19,7 +19,7 @@ Description:    "IHE Interactive Multimedia Report (IMR) profile on Observation"
 * basedOn[serviceRequest] only Reference(ServiceRequest)
 
 // Shall reference one ImagingStudy
-* partOf 1..1
+* partOf 1..*
 
 * partOf ^slicing.discriminator.type = #type
 * partOf ^slicing.discriminator.path = Observation.partOf.resolve()
@@ -30,8 +30,17 @@ Description:    "IHE Interactive Multimedia Report (IMR) profile on Observation"
 * partOf contains imagingStudy 1..1
 * partOf[imagingStudy] only Reference(ImagingStudy)
 
-* category 1..1
-* category = FHIRObservation#imaging "Imaging"
+// Specify the category to be imaging
+* category 1..*
+
+* category ^slicing.discriminator.type = #pattern
+* category ^slicing.discriminator.path = "coding"
+* category ^slicing.rules = #open
+* category ^slicing.description = "Slice based on the category.coding"
+* category ^slicing.ordered = false
+
+* category contains imaging 1..1 MS
+* category[imaging].coding = FHIRObservation#imaging "Imaging"
 
 // Shall reference on Patient
 * subject 1..1
@@ -55,8 +64,8 @@ Description:    "IHE Interactive Multimedia Report (IMR) profile on Observation"
 * value[x] 0..1 MS
 * interpretation 0..* MS
 
-// Maximum on study to be referenced in derivedFrom
-* derivedFrom 0..1 MS
+// Maximum one study to be referenced in derivedFrom
+* derivedFrom 0..* MS
 
 * derivedFrom ^slicing.discriminator.type = #type
 * derivedFrom ^slicing.discriminator.path = Observation.derivedFrom.resolve()
@@ -66,8 +75,6 @@ Description:    "IHE Interactive Multimedia Report (IMR) profile on Observation"
 
 * derivedFrom contains imagingStudy 0..1
 * derivedFrom[imagingStudy] only Reference(IMRObservationImagingStudy)
-
-* specimen 0..0
 
 
 Invariant:   IMRObservationInvariant
