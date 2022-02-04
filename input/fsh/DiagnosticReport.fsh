@@ -50,9 +50,6 @@ Description:    "IHE Interactive Multimedia Report (IMR) profile on DiagnosticRp
 * resultsInterpreter contains practitioner 1..1 and other 0..*
 * resultsInterpreter[practitioner] only Reference(Practitioner)
 
-// Shall not include specimen
-* specimen 0..0
-
 // May include result which captured measurements
 * result 0..* MS
 * result only Reference(IMRObservation)
