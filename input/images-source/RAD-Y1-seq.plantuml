@@ -1,0 +1,15 @@
+@startuml
+
+hide footbox
+
+participant "Report Creator" as Creator
+participant "Report Repository" as Repo
+
+activate Creator
+activate Repo
+Creator->Repo: Provide Multimedia Report Bundle
+Repo-->Creator: Multimedia Report Bundle Response
+deactivate Repo
+deactivate Creator
+
+@enduml

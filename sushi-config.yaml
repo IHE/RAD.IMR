@@ -55,8 +55,11 @@ pages:
   volume-1.md:
     title: 1:XX. Profile Volume 1
     generation: markdown
-  domain-YY.md:
-    title: 2:3.YY Transaction one [Domain-YY]
+  RAD-Y1.md:
+    title: 2:3.Y1 Store Multimedia Report [RAD-Y1]
+    generation: markdown
+  RAD-Y2.md:
+    title: 2:3.Y2 Display Multimedia Report [RAD-Y2]
     generation: markdown
   testplan.md:
     title: "Test Plan"
@@ -76,6 +79,7 @@ menu:
     Security Considerations: volume-1.html#security-considerations
     Cross-Profile Considerations: volume-1.html#grouping
   Volume 2:
-    "Transaction one [Domain-YY]": domain-YY.html
+    "Store Multimedia Report [RAD-Y1]": RAD-Y1.html
+    "Display Multimedia Report [RAD-Y2]": RAD-Y2.html
   Test Plan: testplan.html
   Artifacts: artifacts.html

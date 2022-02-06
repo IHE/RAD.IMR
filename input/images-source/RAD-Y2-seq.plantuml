@@ -1,0 +1,16 @@
+@startuml
+
+hide footbox
+
+participant "Report Reader" as Reader
+participant "//'User'//" as User
+
+activate Reader
+activate User
+Reader->User: Display Multimedia Report
+User->Reader: Interact with Multimedia Content
+Reader-->User: Return interactive content
+deactivate User
+deactivate Reader
+
+@enduml
