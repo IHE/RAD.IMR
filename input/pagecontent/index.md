@@ -1,7 +1,7 @@
 
 **This Implementation Guide template includes skeleton pages for each part of an IHE supplement. The instructions for how to fill out those sections can be found in the included [Supplement Template](https://github.com/IHE/supplement-template/blob/master/suppl_template.md). This supplement template should not be included in your github repo or publication. It is included here for easy reference.**
 
-**TODO: write your executive overview here. usually one paragraph explanation of what this implementation guide solves.**
+** TODO: Interactive Multimedia Report profile ... **
 
 [Open and Closed Issues](issues.html)
 
@@ -39,4 +39,4 @@ You can also download:
 * the definition resources in [json](definitions.json.zip), [xml](definitions.xml.zip), [ttl](definitions.ttl.zip), or [csv](csvs.zip) format, or
 * the example resources in [json](examples.json.zip), [xml](examples.xml.zip) or [ttl](examples.ttl.zip) format.
 
-The source code for this Implementation Guide can be found on **TODO: Put your github repo here**
+The source code for this Implementation Guide can be found on [https://github.com/IHE/RAD.IMR](https://github.com/IHE/RAD.IMR)

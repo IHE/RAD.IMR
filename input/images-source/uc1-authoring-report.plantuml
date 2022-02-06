@@ -1,0 +1,29 @@
+@startuml
+
+title "Use Case 1: Report Encoding"
+
+actor "Radiologist" as Rad
+participant "Evidence Creator" as ECreator
+participant "Report Creator" as RCreator
+participant "Report Repository" as Repo
+
+Rad->>RCreator: //Dictate study//
+Rad->>ECreator: //Navigate study//
+note over ECreator
+Radiologist may create measurements
+or flag certain images as key.
+end note
+
+loop
+ECreator->>RCreator: //Communicate multimedia content//\n//in real time//\n//(method unspecified in IMR)//
+RCreator->>RCreator: //Insert multimedia content//\n//in report//
+end
+
+Rad->>RCreator: //End dictation//
+
+group IMR Encode Report with embedded Multimedia Content
+RCreator->RCreator: Generate interactive multimedia report
+RCreator->Repo: [RAD-Y1] Store multimedia report
+end group
+
+@enduml

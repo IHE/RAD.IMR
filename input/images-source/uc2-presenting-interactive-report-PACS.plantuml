@@ -1,0 +1,43 @@
+@startuml
+
+title "Use Case 5: Radiologist interacting with Multimedia Report for Prior Study"
+
+actor Radiologist as Radiologist
+
+box Grouped Actors
+participant "Image Display /\nImaging Document Consumer" as Display
+participant "Report Reader" as Reader
+participant "Report Repository" as Repo
+end box
+
+box Grouped Actors
+participant "Imaging Document\nSource" as WADO
+participant "Image Manager/\nImage Archive" as Archive
+end box
+
+Radiologist->>Display: //View prior study with//\n//multimedia report//
+Display->>Archive: //Retrieve current and prior studies//
+Display->>Display: //Display study//
+
+group IMR Interactive Viewing of Multimedia Content in Report
+Reader->>Repo: //Retrieve multimedia report//\n//for prior studies//
+Reader->Reader: [RAD-Y2] Display Multimedia Report
+
+note over Reader
+Present report, including multimedia contents
+such as measurements and image references.
+end note
+
+Radiologist->>Reader: //Click on image references in Report//
+Reader->>Display: //View series//\n//(internal communication)//
+alt Using WADO-RS Retrieve
+Display->WADO: [RAD-107] WADO-RS Retrieve
+else Using DIMSE Retrieve
+Display->Archive: [RAD-16] Retrieve Images, [RAD-31] Retrieve Key Image Notes, [RAD-45] Retrieve Evidence Documents
+end
+
+Radiologist->>Display: //Interact with images and/or series//
+end
+
+
+@enduml

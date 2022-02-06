@@ -1,0 +1,43 @@
+@startuml
+
+title "Use Case 4: Present Multimedia Report in EMR without native support for IMR"
+
+actor Clinician as Clinician
+
+box Grouped Actors
+participant "EMR" as EMR
+participant "Image Display\nInvoker" as Invoker
+end box
+
+box Grouped Actors
+participant "Image Display" as Display
+participant "Report Reader" as Reader
+participant "Report Repository" as Repo
+end box
+
+participant "Image Manager/\nImage Archive" as Archive
+
+Clinician->>EMR: //Navigate patient's study//
+EMR->>Invoker: //Navigate study//
+
+Invoker->Display: [RAD-106] Invoke Image Display
+Display->>Archive: //Retrieve study//
+Display->>Display: //Display study//
+
+group IMR Interactive Viewing of Multimedia Content in Report
+Reader->>Repo: //Retrieve multimedia report//
+Reader->Reader: [RAD-Y2] Display Multimedia Report
+
+note over Reader
+Present report, including multimedia contents
+such as measurements and image references.
+end note
+
+Clinician->>Reader: Click on image references in Report
+Reader->>Display: //View series//\n//(internal communication)//
+Display->>Archive: //Retrieve series//
+
+Clinician->>Display: //Interact with image and/or series//
+end
+
+@enduml

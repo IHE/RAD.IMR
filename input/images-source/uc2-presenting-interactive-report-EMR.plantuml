@@ -1,0 +1,37 @@
+@startuml
+
+title "Use Case 3: Present Multimedia Report in EMR with Report Reader integrated with Image Display Invoker\n(Partial support of Interactive Multimedia Report)"
+
+actor Clinician as Clinician
+
+box Grouped Actors
+participant "Report Reader\n(EMR)" as EMR
+participant "Report Repository" as Repo
+participant "Image Display\nInvoker" as Invoker
+end box
+
+participant "Image Display" as Display
+participant "Image Manager/\nImage Archive" as Archive
+
+Clinician->>EMR: //Request multimedia report//
+group IMR Interactive Viewing of Multimedia Content in Report
+EMR->>Repo: //Retrieve multimedia report//
+EMR->EMR: [RAD-Y2] Display Multimedia Report
+note over EMR
+Present report, including multimedia contents
+such as measurements and image references.
+end note
+
+Clinician->>EMR: //Click on image references//
+EMR->>Invoker: //View series//\n//(internal communication)//
+Invoker->Display: [RAD-106] Invoke Image Display
+note over Invoker
+Launch series
+end note
+Display->>Archive: //Retrieve series//
+Display->Display: //Display series//
+
+Clinician->>Display: //Interact with images and/or series//
+end
+
+@enduml
