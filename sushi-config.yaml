@@ -69,7 +69,7 @@ pages:
     generation: markdown
 
 menu:
-  FooBar Home: index.html
+  IMR Home: index.html
   Volume 1:
     Introduction: volume-1.html
     Actors and Transactions: volume-1.html#actors-and-transactions
