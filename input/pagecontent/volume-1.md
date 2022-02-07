@@ -253,6 +253,8 @@ See ITI TF-2x: [Appendix Z.8 “Mobile Security Considerations”](https://profi
 
 General [Security and Privacy guidance](http://hl7.org/fhir/secpriv-module.html) is provided in the FHIR Specification.
 
+The rendered report bundled in the DiagnosticReport includes hyperlinks. It is recommended for any deployment to have network configurations that only allow trusted known address to be accessed, and block unknown addresses.
+
 ### XX.5.1 Security Considerations for Actors
 
 This profile strongly recommends all actors group with an ITI ATNA Secure Application or
