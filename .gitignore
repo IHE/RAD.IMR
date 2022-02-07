@@ -10,3 +10,5 @@ www
 /_gencontinuous.bat
 /_gencontinuous.sh
 /_genonce.bat
+/_updatePublisher.bat
+/_updatePublisher.sh
