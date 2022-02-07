@@ -14,7 +14,9 @@ Description:    "IHE Interactive Multimedia Report (IMR) profile on ServiceReque
 * identifier ^slicing.ordered = false
 
 * identifier contains accession 1..1 MS
+* identifier[accession].type 1..1 MS
 * identifier[accession].type.coding = HL7V2#ACSN "Accession ID"
+* identifier[accession].value 1..1 MS
 
 * intent from IMRServiceRequestIntentVS (required)
 

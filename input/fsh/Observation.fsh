@@ -16,7 +16,7 @@ Description:    "IHE Interactive Multimedia Report (IMR) profile on Observation"
 * basedOn ^slicing.ordered = false
 
 * basedOn contains serviceRequest 1..1
-* basedOn[serviceRequest] only Reference(ServiceRequest)
+* basedOn[serviceRequest] only Reference(IMRServiceRequest)
 
 // Shall reference one ImagingStudy
 * partOf 1..*
@@ -28,7 +28,7 @@ Description:    "IHE Interactive Multimedia Report (IMR) profile on Observation"
 * partOf ^slicing.ordered = false
 
 * partOf contains imagingStudy 1..1
-* partOf[imagingStudy] only Reference(ImagingStudy)
+* partOf[imagingStudy] only Reference(IMRDiagnosticReportImagingStudy)
 
 // Specify the category to be imaging
 * category 1..*
@@ -76,8 +76,16 @@ Description:    "IHE Interactive Multimedia Report (IMR) profile on Observation"
 * derivedFrom contains imagingStudy 0..1
 * derivedFrom[imagingStudy] only Reference(IMRObservationImagingStudy)
 
+* component 0..* MS
+* component.extension contains ComponentDerivedFrom named derivedFrom 0..1 MS
 
 Invariant:   IMRObservationInvariant
 Description: "Either value[x] or interpretation or both SHALL be present"
 Expression:  "value[x].exists() or interpretation.exists()"
 Severity:    #error
+
+Extension: ComponentDerivedFrom
+Title: "IMR Component derivedFrom"
+Id: imr-observation-component-derivedfrom
+Description: "Referenced images for each component. Same as derivedFrom, but at the component level."
+* value[x] only Reference(IMRObservationImagingStudy)

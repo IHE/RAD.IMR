@@ -60,3 +60,18 @@ Description:    "IHE Interactive Multimedia Report (IMR) profile on DiagnosticRp
 
 // Shall include at least one presentedForm which is the text with embedded multimedia content. May include PDF
 * presentedForm 1..* MS
+
+* presentedForm ^slicing.discriminator.type = #pattern
+* presentedForm ^slicing.discriminator.path = "presentedForm.contentType"
+* presentedForm ^slicing.rules = #open
+* presentedForm ^slicing.description = "Slice based on the presentedForm content type"
+* presentedForm ^slicing.ordered = false
+
+* presentedForm obeys IMRAttachmentInvariant
+* presentedForm.contentType 1..1 MS
+* presentedForm.size 1..1 MS
+* presentedForm.hash 1..1 MS
+* presentedForm contains html 1..* and rtf 0..* and pdf 0..*
+* presentedForm[html].contentType = MIME#text/html "HTML"
+* presentedForm[rtf].contentType = MIME#application/rtf "Rich Text Format"
+* presentedForm[pdf].contentType = MIME#applicatoin/pdf "PDF"
