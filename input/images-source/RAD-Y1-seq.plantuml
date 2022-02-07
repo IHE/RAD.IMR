@@ -2,8 +2,8 @@
 
 hide footbox
 
-participant "Report Creator" as Creator
-participant "Report Repository" as Repo
+participant "Sender" as Creator
+participant "Receiver" as Repo
 
 activate Creator
 activate Repo
