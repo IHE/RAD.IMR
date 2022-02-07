@@ -20,7 +20,7 @@ The Client [ITI-Y] transaction passes a go Request from a Client to a Server.
 ### Interactions
 
 <div>
-{%include domain-Y-seq.svg%}
+{%include RAD-Y2-seq.svg%}
 </div>
 <br clear="all">
 
