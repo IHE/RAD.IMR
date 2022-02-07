@@ -42,14 +42,29 @@ The User navigates through the multimedia content and triggers the Requester to 
 
 ##### 2:3.Y2.4.1.2 Message Semantics
 
+The Requester shall present the report with all static content.
+
+For any observations included that have associated derived images in DiagnosticReport.result.derivedFrom or DiagnosticReport.result.component.extension[derivedFrom], the corresponding observations shall be presented as hypertext as follow:
+- The observation shall be the display text in the hypertext
+- The link shall reference the instance level WADO-RS link
+
+The Requester may provide additional display behavior for the derived images (e.g. display as thumbnails).
+
+The Requester shall be able to display who, when and how the observations are made as follow:
+- Who made the observation is available in Observation.performer or DiagnosticReport.resultInterpreter
+- When the observation is made is available in Observation.effectiveDateTime or DiagnosticReport.effectiveDateTime
+- How the observation is made may be available in Observation.method and Observation.device
+
+If the Requester supports the Series/Study Navigation Option, then the Requester may adjust the link to reference the series or study level accordingly to its configuration.
+
+Note that although the DiagnosticReport resource provides a 'ready to view' HTML version of the report, the links embedded in the HTML are fixed. So it does not provide the Requester the control of how and what to retrieve.
+
 ###### 2:3.Y2.4.1.2.1 Report Reader Standalone
 If the Requester is a Report Reader that natively knows how to retrieve and present the multimedia content, then this message is a DICOM WADO-RS request. The Requester is the User Agent, and the Responder is the Origin Server.
 
 The request shall have the same semantics as RetrieveInstance or RetrieveFrames as defined in WADO-RS Retrieve [RAD-107], based on DiagnosticReport.result.derivedFrom.endpoint.address or DiagnosticReport.result.component.extension[derivedFrom].endpoint.address.
 
 If the Requester claims support of the Series/Study Navigation Option, then the request shall also support the RetrieveSeries and RetrieveStudy semantics.
-
-Note that although the DiagnosticReport resource provides a 'ready to view' HTML version of the report, the links embedded in the HTML are fixed. So it does not provide the Requester the control of how and what to retrieve.
 
 ###### 2:3.Y2.4.1.2.2 Report Reader integrated with Image Display
 If the Requester is a Report Reader integrated with Image Display, then this message is a DICOM C-Move request. The Requester is the DICOM C-Move SCU, and the Responder is the DICOM C-Move SCP.
@@ -113,11 +128,14 @@ The Requester received the requested images.
 
 ##### 2:3.Y2.4.3.2 Message Semantics
 
-The Requester shall display the received objects that enables the user to interactive with.
+The Requester shall display the received objects and enables the user to interactive with in the context of the referenced images.
 
-The Requester shall show any annotations received (e.g. key images, DICOM SR, etc.). *** TODO: Define what annotations are required and what are not ***
+The Requester shall support the following interactive behavior when showing the images:
+- Window level the images
+- Present markup and annotations received along with the images
+- Toggle the markup and annotations
 
-The Requester shall provide basic viewing tools for the user to interactive with the images. *** TODO: Define basic tools ***
+The Requester may provide basic viewing tools for the user to interactive with the images.
 
 ##### 2:3.Y2.4.3.3 Expected Actions
 
