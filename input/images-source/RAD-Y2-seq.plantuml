@@ -2,15 +2,16 @@
 
 hide footbox
 
-participant "Report Reader" as Reader
+participant "Requester" as Reader
+participant "Responder" as IM
 participant "//'User'//" as User
 
 activate Reader
-activate User
+activate IM
+Reader->IM: Retrieve Images
+IM-->Reader: Return Images
 Reader->User: Display Multimedia Report
-User->Reader: Interact with Multimedia Content
-Reader-->User: Return interactive content
-deactivate User
+deactivate IM
 deactivate Reader
 
 @enduml

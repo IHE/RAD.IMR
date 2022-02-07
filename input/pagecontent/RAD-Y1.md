@@ -19,6 +19,8 @@ Transaction text specifies behavior for each role. The behavior of specific acto
 ### 2:3.Y1.3 Referenced Standards
 
 **FHIR-R4** [HL7 FHIR Release 4.0](http://www.hl7.org/FHIR/R4)
+**HTML 5**
+**PDF/A**
 
 ### 2:3.Y1.4 Messages
 
@@ -86,6 +88,26 @@ The Sender shall populate accurate .hash and .size for the report content in pre
 
 Patient would typically only be allowed by the Receiver in PUSH interaction situations, but may be accepted for other reasons at the discretion of the Receiver actor policy.
 
+###### 2:3.Y1.4.1.2.2 Observation
+
+All clinical findings shall be encoded using [IMR Observation](StructureDefinition-imr-observation.html).
+
+The Observation.valueString or Observation.interpretation shall be used to capture unstructured contents. Structured contents shall use the best data type in Observation.value[x] to capture the content. If image references are available for the observation, then Observation.derivedFrom shall be used to capture image references in which the observation is derived from.
+
+Optionally Observation.component can be used if the finding has multiple components. In this case, Observation.component shall be used to capture each component in the finding, and optionally use the component.derivedFrom extension to include image references.
+
+Since there are many variations of finding types and IMR is designed to be general purpose rather than specific to a particular procedure type, therefore no specific encoding requirements are defined. With this said, informative examples are available at [IMR Observation Examples](StructureDefinition-imr-observation-examples.html) to demonstrate the possible encoding of different kinds of observations.
+
+###### 2:3.Y1.4.1.2.2 Report Attachment
+
+The [IMR DiagnosticReport](StructureDefinition-imr-diagnosticreport.html) resource requires at least one rendered diagnostic report in HTML format in the presentedForm attribute. The presentedForm.contentType shall be set to coded value for text/html.
+
+The HTML report shall include semantically the equivalence of all observations defined. For observations that have associated image references (i.e. either at the top level Observation.derivedFrom or at the component level Observation.component.derivedFrom extension), the Sender shall include a hyperlink using the HTML anchor element (i.e. <a>) for the corresponding observation, based on the endpoint(s) defined in the referenced [IMR Observation ImagingStudy]((StructureDefinition-imr-observation-imagingstudy.html)). The anchor elemnt shall be inserted in place where the finding is located in the report, with the finding text being set as the text between the begin and end anchor tags.
+
+For Senders that claim support of the PDF Report Option, if the PDF Report feature is enabled in the Sender, then the Sender shall also attach another semantically equivalent diagnostic report in PDF format in the presentedForm attribute. The presentedForm.contentType shall be set to coded value for application/pdf. The PDF Report shall include all text and hyperlinks as in the HTML report.
+
+For Senders that claim support of the HL7 Text Report Option, if the HL7 Text Report feature is enabled in the Sender, then the Sender shall also attach another semantically equivalent diagnostic report in Rich Text format in the presentedForm attribute. The presentedForm.contentType shall be set to coded value for application/rtf. The HL7 Text Report shall include all text as in the HTML report, without the hyperlinks.
+
 ##### 2:3.Y1.4.1.3 Expected Actions
 
 The Receiver shall accept both media types `application/fhir+json` and `application/fhir+xml`.
@@ -95,6 +117,8 @@ On receipt of the request, the Receiver shall validate the resources and respond
 The Receiver shall process the bundle atomically, analogous to the FHIR “transaction” as specified in [http://hl7.org/fhir/R4/http.html#transaction](http://hl7.org/fhir/R4/http.html#transaction). 
 
 The Receiver shall validate the bundle first against the FHIR specification. Guidance on what FHIR considers a valid Resource can be found at [http://hl7.org/fhir/R4/validation.html](http://hl7.org/fhir/R4/validation.html). 
+
+Once the bundle is validated, the Receiver shall store the report and all associated resources.
 
 A Receiver is allowed to be robust for non-compliant resources that violate the the IMR resources requirements. 
 

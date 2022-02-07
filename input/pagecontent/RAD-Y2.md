@@ -1,80 +1,136 @@
-This section corresponds to transaction [ITI-Y] of the IHE Technical Framework. Transaction [ITI-Y] is used by the Client and Server Actors. The go [ITI-Y] transaction is used to query and get back results.
+### 2:3.Y2.1 Scope
 
-### Scope
+This transaction is used to present the multimedia report content to someone, such as a radiologist or a clinicians, in such a way that the user can interactive with the embedded multimedia contents.
 
-The Client [ITI-Y] transaction passes a go Request from a Client to a Server.
+### 2:3.Y2.2 Actors Roles
 
-### Actors Roles
+The roles in this transaction are defined in the following table and may be palyed by the actors shown here:
 
 **Table: Actor Roles**
 
-|Actor | Role |
-|-------------------+--------------------------|
-| [Client](volume-1.html#client)    | Sends query to Server |
-| [Server](volume-1.html#server) | Receives the query and responds |
+| Role      | Description                                   | Actor(s)          |
+|-----------|-----------------------------------------------|-------------------|
+| Requester | Request to retrieve multimedia content referenced in the report    | Report Reader <br> Report Reader with Integrated Image Display Invoker <br> Report Reader with Integrated Image Display    |
+| Responder | Return the requested multimedia content | Imaging Document Source <br> Image Manager / Image Archive |
+{: .grid}
 
-### Referenced Standards
+Transaction text specifies behavior for each role. The behavior of specific actors may also be specified when it goes beyond that of the general role.
 
-**FHIR-R4** [HL7 FHIR Release 4.0](http://www.hl7.org/FHIR/R4)
+### 2:3.Y2.3 Referenced Standards
 
-### Interactions
+**DICOM PS3.4: C-Move**
+**DICOM PS3.18: WADO-RS**
+
+### 2:3.Y2.4 Messages
 
 <div>
 {%include RAD-Y2-seq.svg%}
 </div>
 <br clear="all">
 
-**Figure: Go Interactions**
+**Figure 2:3.Y2.4-1: Interaction Diagram**
 
 
-#### go Query Message
-This message uses the HTTP GET method on the target Server endpoint to convey the query parameters FHIR query.
+#### 2:3.Y2.4.1 Retrieve Images Message
+The Requester retrieves one or more DICOM instances from the Responder.
 
-##### Trigger Events
+Teh Requester shall support making requests to more than one Responder. The Responder shall support handling messages from more than one Requester
 
-''TODO: define the triggers''
+##### 2:3.Y2.4.1.1 Trigger Events
 
-##### Message Semantics
+The User navigates through the multimedia content and triggers the Requester to fetch the referenced images as specified in the multimedia report.
 
-''TODO: define the message -- usually with a StructureDefintion''
+##### 2:3.Y2.4.1.2 Message Semantics
 
-##### Expected Actions
+###### 2:3.Y2.4.1.2.1 Report Reader Standalone
+If the Requester is a Report Reader that natively knows how to retrieve and present the multimedia content, then this message is a DICOM WADO-RS request. The Requester is the User Agent, and the Responder is the Origin Server.
 
-''TODO: define expected actions''
+The request shall have the same semantics as RetrieveInstance or RetrieveFrames as defined in WADO-RS Retrieve [RAD-107], based on DiagnosticReport.result.derivedFrom.endpoint.address or DiagnosticReport.result.component.extension[derivedFrom].endpoint.address.
 
-#### Go Response Message
+If the Requester claims support of the Series/Study Navigation Option, then the request shall also support the RetrieveSeries and RetrieveStudy semantics.
 
-##### Trigger Events
+Note that although the DiagnosticReport resource provides a 'ready to view' HTML version of the report, the links embedded in the HTML are fixed. So it does not provide the Requester the control of how and what to retrieve.
 
-''TODO: define the triggers''
+###### 2:3.Y2.4.1.2.2 Report Reader integrated with Image Display
+If the Requester is a Report Reader integrated with Image Display, then this message is a DICOM C-Move request. The Requester is the DICOM C-Move SCU, and the Responder is the DICOM C-Move SCP.
 
-##### Message Semantics
+The request shall have the same semantics as Retrieve Images [RAD-16], Retrieve Presentation States [RAD-17], Retrieve Reports [RAD-27], Retrieve Key Image Notes [RAD-31] or Retrieve Evidence Document [RAD-45].
 
-''TODO: define the message -- usually with a StructureDefintion''
+###### 2:3.Y2.4.1.2.3 Report Reader integrated with Image Display Invoker
+If the Requester is a Report Reader integrated with Image Display Invoker, then this message is a HTTP GET request. The Requester is the User Agent, and the Responder is the Origin Server.
 
-##### Expected Actions
+The request shall have the same semantics as Retrieve Display of Series Images or Retrieve Display of Study Images in Invoke Image Display [RAD-106].
 
-''TODO: define expected actions''
+##### 2:3.Y2.4.1.3 Expected Actions
 
+The Responder shall accept and process the request.
 
-### CapabilityStatement Resource
+#### 2:3.Y2.4.2 Return Images Message
 
-Server implementing this transaction shall provide a CapabilityStatement Resource as described in ITI TF-2x: Appendix Z.3 indicating the transaction has been implemented. 
-* Requirements CapabilityStatement for [Client](CapabilityStatement-IHE.FooBar.client.html)
-* Requirements CapabilityStatement for [Server](CapabilityStatement-IHE.FooBar.server.html)
+##### 2:3.Y2.4.2.1 Trigger Events
 
-### Security Considerations
+The Responder receives the request to retrieve images or inovke an Image Display actor.
 
-See [MHD Security Considerations](volume-1.html#security-considerations)
+##### 2:3.Y2.4.2.2 Message Semantics
+
+###### 2:3.Y2.4.2.2.1 Report Reader Standalone
+
+The Responder shall provide the same expected actions as defined in WADO-RS Retrieve [RAD-107].
+
+###### 2:3.Y2.4.2.2.2 Report Reader integrated with Image Display
+
+The Responder shall provide the same expected actions as defined in Retrieve Images [RAD-16], Retrieve Presentation States [RAD-17], Retrieve Reports [RAD-27], Retrieve Key Image Notes [RAD-31] or Retrieve Evidence Document [RAD-45].
+
+###### 2:3.Y2.4.2.2.2 Report Reader integrated with Image Display
+
+The Responder shall provide the same expected actions as defined in Invoke Image Display [RAD-106].
+
+##### 2:3.Y2.4.2.3 Expected Actions
+
+###### 2:3.Y2.4.2.3.1 Report Reader Standalone
+
+The Requester receives the requested objects and display them.
+
+The Requester shall follow redirects (responses with values of 301, 302, 303 or 307. See
+https://tools.ietf.org/html/rfc7231#section-6.4 for details) unless a loop or security policy
+violation is detected.
+
+###### 2:3.Y2.4.2.3.2 Reoprt Reader integrated with Image Display
+
+The Requester receives the requested objects.
+
+The Requester shall display the received objects in the Image Display that enables the user to interact with. If the integrated Image Display was already showing a different part of the same study as the received objects, the Image Display shall change the viewport to display the received objects.
+
+###### 2:3.Y2.4.2.3.3 Report Reader integrated with Image Display Invoker
+
+The Requester receives an HTTP return status whether the Image Display is invoked successfully or not.
+
+#### 2:3.Y2.4.3 Display Multimedia Report Message
+
+##### 2:3.Y2.4.3.1 Trigger Events
+
+The Requester received the requested images.
+
+##### 2:3.Y2.4.3.2 Message Semantics
+
+The Requester shall display the received objects that enables the user to interactive with.
+
+The Requester shall show any annotations received (e.g. key images, DICOM SR, etc.). *** TODO: Define what annotations are required and what are not ***
+
+The Requester shall provide basic viewing tools for the user to interactive with the images. *** TODO: Define basic tools ***
+
+##### 2:3.Y2.4.3.3 Expected Actions
+
+The User can interact with the images in context of the triggered multimedia content.
+
+The user may choose to redo some of the measurements in order to compare the data recorded in the report, for example. Note that these actions shall not affect the existing content in the multimedia report recieved. If the user decided to save the new measurements, for example, a new report will be created as an addendum instead of updating the existing report.
+
+### 2:3.Y2.4.4 Security Considerations
+
+See [IMR Security Considerations](volume-1.html#security-considerations)
 
 #### Security Audit Considerations
 
-''TODO: The security audit criteria ''
+This transaction is associated with a Begin-Instance-Transfer ATNA Trigger Event on the Requester and Instance-Transferred on the the Responder.
 
-##### Client Audit 
-
-''TODO: the specifics''
-
-##### Server Audit 
-
-''TODO: the specifics''
+This transaction is also associted with Study Accessed ATNA Trigger Event on the Requester when the user interacts with the images.

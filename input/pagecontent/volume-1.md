@@ -76,7 +76,7 @@ Table XX.2-1: IMR - Actors and Options
 |                | HL7 Text Report Option | ??? |
 | Report Repository | No options defined | -- |
 | Report Reader | Series/Study Navigation Option | ??? |
-| Report Reader with <br> Integrated Invoke Image Display | Series/Study Navigation Option | ??? |
+| Report Reader with <br> Integrated Invoke Image Display | No options defined | ??? |
 | Report Reader with <br> Integrated Image Display | No options defined | -- |
 | Imaging Document Source | Image Manager Integration Option | ??? |
 {: .grid}
