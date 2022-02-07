@@ -74,7 +74,7 @@ The FHIR Bundle.meta.profile shall have the following value:
   - may create one or more [Practitioner](http://hl7.org/fhir/R4/practitioner.html)
   - may create one or more [IMR Observation](StructureDefinition-imr-observation.html)
   - may create one or more [IMR Observation ImagingStudy](StructureDefinition-imr-observation-imagingstudy.html)
-  - may create one or more [IMR DiagnositcReport ImagingStudy](StructureDefinition-imr-diagnostic-imagingstudy.html)
+  - may create one or more [IMR DiagnositcReport ImagingStudy](StructureDefinition-imr-diagnosticreport-imagingstudy.html)
 
 When resources are `contained`, they shall be contained using the FHIR contained method (see [http://hl7.org/fhir/R4/references.html#contained](http://hl7.org/fhir/R4/references.html#contained) ).
 
