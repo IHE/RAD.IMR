@@ -5,8 +5,8 @@ Description: "Example of encoding an impression as text"
 Usage: #example
 * meta.security = http://terminology.hl7.org/CodeSystem/v3-ActReason#HTEST
 
-* basedOn = Reference(IMRServiceRequest/ex-ServceRequest)
-* partOf = Reference(IMRDiagnosticReportImagingStudy/ex-DiagnosticReportImagingStudy)
+* basedOn = Reference(ServiceRequest/ex-ServiceRequest)
+* partOf = Reference(ImagingStudy/ex-DiagnosticReportImagingStudy)
 * status = FHIRObservationStatus#final
 * category.coding = FHIRObservation#imaging "Imaging"
 * code = LOINC#19005-8 "Radiology Imaging study [Impression] (narrative)"
@@ -21,8 +21,8 @@ Description: "Example of encoding an impression as text"
 Usage: #example
 * meta.security = http://terminology.hl7.org/CodeSystem/v3-ActReason#HTEST
 
-* basedOn = Reference(IMRServiceRequest/ex-ServceRequest)
-* partOf = Reference(IMRDiagnosticReportImagingStudy/ex-DiagnosticReportImagingStudy)
+* basedOn = Reference(ServiceRequest/ex-ServiceRequest)
+* partOf = Reference(ImagingStudy/ex-DiagnosticReportImagingStudy)
 * status = FHIRObservationStatus#final
 * category.coding = FHIRObservation#imaging "Imaging"
 * code = LOINC#19005-8 "Radiology Imaging study [Impression] (narrative)"
@@ -37,8 +37,8 @@ Description: "Example of encoding an impression as text"
 Usage: #example
 * meta.security = http://terminology.hl7.org/CodeSystem/v3-ActReason#HTEST
 
-* basedOn = Reference(IMRServiceRequest/ex-ServceRequest)
-* partOf = Reference(IMRDiagnosticReportImagingStudy/ex-DiagnosticReportImagingStudy)
+* basedOn = Reference(ServiceRequest/ex-ServiceRequest)
+* partOf = Reference(ImagingStudy/ex-DiagnosticReportImagingStudy)
 * status = FHIRObservationStatus#final
 * category.coding = FHIRObservation#imaging "Imaging"
 * code = LOINC#19005-8 "Radiology Imaging study [Impression] (narrative)"
@@ -54,8 +54,8 @@ Description: "Example of encoding an impression as text"
 Usage: #example
 * meta.security = http://terminology.hl7.org/CodeSystem/v3-ActReason#HTEST
 
-* basedOn = Reference(IMRServiceRequest/ex-ServceRequest)
-* partOf = Reference(IMRDiagnosticReportImagingStudy/ex-DiagnosticReportImagingStudy)
+* basedOn = Reference(ServiceRequest/ex-ServiceRequest)
+* partOf = Reference(ImagingStudy/ex-DiagnosticReportImagingStudy)
 * status = FHIRObservationStatus#final
 * category.coding = FHIRObservation#imaging "Imaging"
 * code = LOINC#19005-8 "Radiology Imaging study [Impression] (narrative)"
@@ -72,8 +72,8 @@ Description: "Example of encoding an impression as text"
 Usage: #example
 * meta.security = http://terminology.hl7.org/CodeSystem/v3-ActReason#HTEST
 
-* basedOn = Reference(IMRServiceRequest/ex-ServceRequest)
-* partOf = Reference(IMRDiagnosticReportImagingStudy/ex-DiagnosticReportImagingStudy)
+* basedOn = Reference(ServiceRequest/ex-ServiceRequest)
+* partOf = Reference(ImagingStudy/ex-DiagnosticReportImagingStudy)
 * status = FHIRObservationStatus#final
 * category.coding = FHIRObservation#imaging "Imaging"
 * code = LOINC#19005-8 "Radiology Imaging study [Impression] (narrative)"

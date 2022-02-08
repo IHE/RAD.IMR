@@ -3,7 +3,7 @@ InstanceOf: IMRDiagnosticReport
 Title: "IMR DiagnosticReport example"
 Description: "Simple IMR DiagnosticReport"
 Usage: #example
-* basedOn = Reference(IMRServiceRequest/ex-IMRServiceRequest)
+* basedOn = Reference(ServiceRequest/ex-IMRServiceRequest)
 * status = FHIRDiagnosticReportStatus#final "Final"
 * category = FHIRDiagnosticService#RAD "Radiology"
 * code = LOINC#29252-4 "CT Chest WO Contrast"
@@ -12,14 +12,14 @@ Usage: #example
 * issued = 2020-12-31T23:55:50-05:00
 * performer = Reference(Organization/ex-Organization)
 * resultsInterpreter = Reference(Practitioner/ex-Practitioner)
-* result[0] = Reference(IMRObservation/ex-IMRObservation-Finding)
-* result[1] = Reference(IMRObservation/ex-IMRObservation-Impression-1)
-* result[2] = Reference(IMRObservation/ex-IMRObservation-Impression-2)
-* result[3] = Reference(IMRObservation/ex-IMRObservation-Impression-3)
-* result[4] = Reference(IMRObservation/ex-IMRObservation-Impression-4)
-* result[5] = Reference(IMRObservation/ex-IMRObservation-Impression-5)
-* imagingStudy = Reference(IMRDiagnosticReportImagingStudy/ex-IMRDiagnosticReportImagingStudy)
-* extension[comparisonStudy].valueReference = Reference(IMRDiagnosticReport/ex-IMRDiagnosticReportImagingStudy-Comparison)
+* result[0] = Reference(Observation/ex-IMRObservation-Finding)
+* result[1] = Reference(Observation/ex-IMRObservation-Impression-1)
+* result[2] = Reference(Observation/ex-IMRObservation-Impression-2)
+* result[3] = Reference(Observation/ex-IMRObservation-Impression-3)
+* result[4] = Reference(Observation/ex-IMRObservation-Impression-4)
+* result[5] = Reference(Observation/ex-IMRObservation-Impression-5)
+* imagingStudy = Reference(ImagingStudy/ex-IMRDiagnosticReportImagingStudy)
+* extension[comparisonStudy].valueReference = Reference(ImagingStudy/ex-IMRDiagnosticReportImagingStudy-Comparison)
 * presentedForm.data = "VGhpcyBpcyBhIHNhbXBsZQ=="
 * presentedForm.contentType = MIME#text/html "HTML"
 * presentedForm.hash = "25DF2D14B7A81BF0582323E1B337E9EE03C03C10"

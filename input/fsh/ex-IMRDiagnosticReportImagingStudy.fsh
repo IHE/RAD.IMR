@@ -9,7 +9,7 @@ Usage: #example
 * modality = DICOM#CT "CT"
 * subject = Reference(Patient/ex-Patient)
 * started = 2020-12-31T23:30:50-05:00
-* endpoint = Reference(IMRStudyEndpoint/ex-IMRStudyEndpoint-Study)
+* endpoint = Reference(Endpoint/ex-IMRStudyEndpoint-Study)
 * procedureCode.coding = LOINC#29252-4 "CT Chest WO Contrast"
 
 
@@ -24,5 +24,5 @@ Usage: #example
 * modality = DICOM#CT "CT"
 * subject = Reference(Patient/ex-Patient)
 * started = 1776-01-01T23:30:50-05:00
-* endpoint = Reference(IMRStudyEndpoint/ex-IMRStudyEndpoint-Study)
+* endpoint = Reference(Endpoint/ex-IMRStudyEndpoint-Study)
 * procedureCode.coding = LOINC#29252-4 "CT Chest WO Contrast"

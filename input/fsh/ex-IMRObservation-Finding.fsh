@@ -5,8 +5,8 @@ Description: "Example of encoding a complex clinical findings that include multi
 Usage: #example
 * meta.security = http://terminology.hl7.org/CodeSystem/v3-ActReason#HTEST
 
-* basedOn = Reference(IMRServiceRequest/ex-ServceRequest)
-* partOf = Reference(IMRDiagnosticReportImagingStudy/ex-DiagnosticReportImagingStudy)
+* basedOn = Reference(ServiceRequest/ex-ServiceRequest)
+* partOf = Reference(ImagingStudy/ex-DiagnosticReportImagingStudy)
 * status = FHIRObservationStatus#final
 * category.coding = FHIRObservation#imaging "Imaging"
 * code = LOINC#59776-5 "Procedure Findings"
@@ -25,20 +25,28 @@ Although this study is not tailored for the evaluation of subdiaphragmatic conte
 "
 * component[+].code = DICOM#112002 "Series Instance UID"
 * component[=].valueString = "series/2.1/instance/6.1"
+* component[=].id = "1"
 * component[+].code = DICOM#112002 "Series Instance UID"
 * component[=].valueString = "series/2.1/instance/18.1"
+* component[=].id = "2"
 * component[+].code = DICOM#112002 "Series Instance UID"
 * component[=].valueString = "series/2.1/instance/16.1"
+* component[=].id = "3"
 * component[+].code = DICOM#112002 "Series Instance UID"
 * component[=].valueString = "series/601.1/instance/56.1"
+* component[=].id = "4"
 * component[+].code = DICOM#112002 "Series Instance UID"
 * component[=].valueString = "series/4.1/instance/71.1"
+* component[=].id = "5"
 * component[+].code = DICOM#112002 "Series Instance UID"
 * component[=].valueString = "series/601.1/instance/52.1"
+* component[=].id = "6"
 * component[+].code = DICOM#112002 "Series Instance UID"
 * component[=].valueString = "series/601.1/instance/65.1"
+* component[=].id = "7"
 * component[+].code = DICOM#112002 "Series Instance UID"
 * component[=].valueString = "series/601.1/instance/72.1"
+* component[=].id = "8"
 
 // DLP
 * component[+].code = DICOM#113838 "DLP"
