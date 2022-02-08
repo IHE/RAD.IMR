@@ -10,7 +10,7 @@ Usage: #example
 * intent = FHIRRequestIntent#order
 * category.coding = SCT#363679005 "Imaging"
 * subject = Reference(Patient/ex-Patient)
-* reasonReference = Reference(Condition/in-Condition)
+* reasonReference = Reference(Condition/ex-Condition)
 
 
 Instance: ex-Condition
