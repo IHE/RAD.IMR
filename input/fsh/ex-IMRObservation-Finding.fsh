@@ -1,6 +1,6 @@
 Instance:   ex-IMRObservation-Finding
 InstanceOf: IMRObservation
-Title:      "IMR Observation of a full paragraph of findings"
+Title:      "IMR Observation of all findings and technique"
 Description: "Example of encoding a complex clinical findings that include multiple components"
 Usage: #example
 * meta.security = http://terminology.hl7.org/CodeSystem/v3-ActReason#HTEST

@@ -1,7 +1,7 @@
 Instance:   ex-IMRObservation-Impression-1
 InstanceOf: IMRObservation
-Title:      "IMR Observation of a full paragraph of findings"
-Description: "Example of encoding a complex clinical findings that include multiple components"
+Title:      "IMR Observation of Impression 1"
+Description: "Example of encoding an impression as text"
 Usage: #example
 * meta.security = http://terminology.hl7.org/CodeSystem/v3-ActReason#HTEST
 
@@ -16,8 +16,8 @@ Usage: #example
 
 Instance:   ex-IMRObservation-Impression-2
 InstanceOf: IMRObservation
-Title:      "IMR Observation of a full paragraph of findings"
-Description: "Example of encoding a complex clinical findings that include multiple components"
+Title:      "IMR Observation of Impression 2"
+Description: "Example of encoding an impression as text"
 Usage: #example
 * meta.security = http://terminology.hl7.org/CodeSystem/v3-ActReason#HTEST
 
@@ -32,8 +32,8 @@ Usage: #example
 
 Instance:   ex-IMRObservation-Impression-3
 InstanceOf: IMRObservation
-Title:      "IMR Observation of a full paragraph of findings"
-Description: "Example of encoding a complex clinical findings that include multiple components"
+Title:      "IMR Observation of Impression 3"
+Description: "Example of encoding an impression as text"
 Usage: #example
 * meta.security = http://terminology.hl7.org/CodeSystem/v3-ActReason#HTEST
 
@@ -49,8 +49,8 @@ Usage: #example
 
 Instance:   ex-IMRObservation-Impression-4
 InstanceOf: IMRObservation
-Title:      "IMR Observation of a full paragraph of findings"
-Description: "Example of encoding a complex clinical findings that include multiple components"
+Title:      "IMR Observation of Impression 4"
+Description: "Example of encoding an impression as text"
 Usage: #example
 * meta.security = http://terminology.hl7.org/CodeSystem/v3-ActReason#HTEST
 
@@ -67,8 +67,8 @@ Usage: #example
 
 Instance:   ex-IMRObservation-Impression-5
 InstanceOf: IMRObservation
-Title:      "IMR Observation of a full paragraph of findings"
-Description: "Example of encoding a complex clinical findings that include multiple components"
+Title:      "IMR Observation of Impression 5"
+Description: "Example of encoding an impression as text"
 Usage: #example
 * meta.security = http://terminology.hl7.org/CodeSystem/v3-ActReason#HTEST
 

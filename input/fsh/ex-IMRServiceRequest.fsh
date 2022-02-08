@@ -1,7 +1,7 @@
 Instance: ex-ServiceRequest
 InstanceOf: IMRServiceRequest
 Title: "IMR ServiceRequest example"
-Description: "Simple IMR ServiceRequest example"
+Description: "Simple IMR ServiceRequest example with a condition"
 Usage: #example
 * identifier.type.coding = HL7V2#ACSN "Accession ID"
 * identifier.system = "http://www.acme.com/identifiers/accession"

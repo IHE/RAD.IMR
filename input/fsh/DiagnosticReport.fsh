@@ -57,6 +57,8 @@ Description:    "IHE Interactive Multimedia Report (IMR) profile on DiagnosticRp
 // Shall include at least one referenced study
 * imagingStudy 1..1 MS
 * imagingStudy only Reference(IMRDiagnosticReportImagingStudy)
+* imagingStudy ^short = "Study subject to this report"
+* imagingStudy ^definition = "Study subject to this report"
 
 // Shall include at least one presentedForm which is the text with embedded multimedia content. May include PDF
 * presentedForm 1..* MS
