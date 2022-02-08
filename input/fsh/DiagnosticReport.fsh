@@ -35,7 +35,7 @@ Description:    "IHE Interactive Multimedia Report (IMR) profile on DiagnosticRp
 * performer ^slicing.description = "Slice based on the performer reference type"
 * performer ^slicing.ordered = false
 
-* performer contains organization 1..1 and other 0..*
+* performer contains organization 1..1
 * performer[organization] only Reference(Organization)
 
 // At least one resultsInterpreter is a Practitioner
@@ -47,15 +47,15 @@ Description:    "IHE Interactive Multimedia Report (IMR) profile on DiagnosticRp
 * resultsInterpreter ^slicing.description = "Slice based on the resultsInterpreter reference type"
 * resultsInterpreter ^slicing.ordered = false
 
-* resultsInterpreter contains practitioner 1..* and other 0..*
-* resultsInterpreter[practitioner] only Reference(Practitioner)
+* resultsInterpreter contains practitioner 1..*
+* resultsInterpreter[practitioner] only Reference(Practitioner or PractitionerRole)
 
 // May include result which captured measurements
-* result 0..* MS
+* result 1..* MS
 * result only Reference(IMRObservation)
 
 // Shall include at least one referenced study
-* imagingStudy 1..* MS
+* imagingStudy 1..1 MS
 * imagingStudy only Reference(IMRDiagnosticReportImagingStudy)
 
 // Shall include at least one presentedForm which is the text with embedded multimedia content. May include PDF
@@ -75,3 +75,11 @@ Description:    "IHE Interactive Multimedia Report (IMR) profile on DiagnosticRp
 * presentedForm[html].contentType = MIME#text/html "HTML"
 * presentedForm[rtf].contentType = MIME#application/rtf "Rich Text Format"
 * presentedForm[pdf].contentType = MIME#applicatoin/pdf "PDF"
+
+* extension contains ComparisonStudy named comparisonStudy 0..* MS
+
+Extension: ComparisonStudy
+Title: "IMR Comparison Study"
+Id: imr-diagnosticreport-comparison-study
+Description: "Comparison study used in part of diagnostic reporting"
+* value[x] only Reference(IMRDiagnosticReportImagingStudy)

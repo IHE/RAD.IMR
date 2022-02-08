@@ -43,9 +43,11 @@ Most requirements are documented in RAD TF-2 Transactions. This section document
 
 Report Creators encode diagnostic reports with multimedia content for a service request.
 
+Note that how the Report Creator receives the multimedia content is out of scope for this release of IMR.
+
 #### XX.1.1.2 Report Repository <a name="Report Repository"> </a>
 
-Report Repositories store multimedia report.
+Report Repositories store multimedia reports and return them to Report Reader upon requests.
 
 #### XX.1.1.3 Report Reader <a name="Report Reader"> </a>
 
@@ -61,7 +63,11 @@ Report Readers retrieve multimedia report from Report Repositories and present t
 
 #### XX.1.1.6 Imaging Document Source <a name="Imaging Document Source"> </a>
 
-Imaging Docurment Source provides the images and related objects to the Report Readers.
+Imaging Document Source provides the images and related objects to the Report Readers.
+
+Imaging Document Source supports WADO-RS Retrieve [RAD-107].
+
+Imaging Document Source that supports the Image Manager Integration Option also supports returning the objects vis DICOM C-Move. This is necessary to integrate with Image Display access.
 
 ## XX.2 IMR Actor Options <a name="actor-options"> </a>
 
@@ -145,7 +151,7 @@ considerations and Section XX.6 describes some optional groupings in other relat
 Note 1: These grouped actors require IMR Imaging Document Sources that support the Image Manager Integration Option.
 
 
-## XX.4 Interactive Multiemedia Report Overview <a name="overview"> </a>
+## XX.4 Interactive multimedia Report Overview <a name="overview"> </a>
 
 ### XX.4.1 Concepts
 
@@ -178,7 +184,7 @@ Figure XX.4.2.1.2-1: Encode and Transmit Process Flow in IMR Profile
 
 ##### XX.4.2.2.1 Consume and Interact with Multimedia Report by Standalone Report Reader Use Case Description
 
-Upon reviewing reports for a patient in the EMR which natively supports as an IMR Report Reader, the EMR encounters an IMR multiemedia report. It displays the reports with interative links to the multimedia content. The Clinician clicks on the interactive links. The EMR / Report Reader retrieves the images from the Imaging Document Source and displays the images with interactive tools. The Clinicans can navigate the series and see the measurements with annotations as described in the report.
+Upon reviewing reports for a patient in the EMR which natively supports as an IMR Report Reader, the EMR encounters an IMR multimedia report. It displays the reports with interactive links to the multimedia content. The Clinician clicks on the interactive links. The EMR / Report Reader retrieves the images from the Imaging Document Source and displays the images with interactive tools. The Clinicans can navigate the series and see the measurements with annotations as described in the report.
 
 ##### XX.4.2.2.2 Consume and Interact with Multimedia Report by Standalone Report Reader Process Flow
 
@@ -195,7 +201,7 @@ Figure XX.4.2.2.2-1: Consume and Interact with Multimedia Report by Standalone R
 
 ##### XX.4.2.3.1 Consume and Interact with Multimedia Report by Report Reader with Integrated  Image Display Invoker Use Case Description
 
-Upon reviewing reports for a patient in the EMR which supports as an IMR Report Reader with integrated Image Display Invoker, the EMR encounters an IMR multiemedia report. It displays the reports with interative links to the multimedia content. The Clinician clicks on the interactive links. The EMR / Report Reader launches the integrated Image Display Invoker which in turn invokes the confgured Image Display in context based on the information in the link. The Image Display retrieves and displays the images with interactive tools. The Clinicans can navigate the series and see the measurements with annotations as described in the report.
+Upon reviewing reports for a patient in the EMR which supports as an IMR Report Reader with integrated Image Display Invoker, the EMR encounters an IMR multimedia report. It displays the reports with interative links to the multimedia content. The Clinician clicks on the interactive links. The EMR / Report Reader launches the integrated Image Display Invoker which in turn invokes the confgured Image Display in context based on the information in the link. The Image Display retrieves and displays the images with interactive tools. The Clinicans can navigate the series and see the measurements with annotations as described in the report.
 
 ##### XX.4.2.3.2 Consume and Interact with Multimedia Report by Report Reader with Integrated Image Display Invoker Process Flow
 

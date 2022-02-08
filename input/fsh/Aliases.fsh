@@ -11,6 +11,8 @@ Alias: FHIRRequestIntent = http://hl7.org/fhir/request-intent
 Alias: FHIRImagingStudyStatus = http://hl7.org/fhir/imagingstudy-status
 Alias: FHIRObservationStatus = http://hl7.org/fhir/observation-status
 Alias: FHIREndpointStatus = http://hl7.org/fhir/endpoint-status
+Alias: FHIRDiagnosticReportStatus = http://hl7.org/fhir/diagnostic-report-status
+Alias: FHIRDiagnosticService = http://terminology.hl7.org/CodeSystem/v2-0074
 
 Alias: DICOM = http://dicom.nema.org/resources/ontology/DCM
 

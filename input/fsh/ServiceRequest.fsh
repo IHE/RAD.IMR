@@ -1,7 +1,7 @@
 Profile:        IMRServiceRequest
 Parent:         ServiceRequest
 Id:             imr-servicerequest
-Title:          "IMR ServceRequest"
+Title:          "IMR ServiceRequest"
 Description:    "IHE Interactive Multimedia Report (IMR) profile on ServiceRequest"
 
 // Must have an identifier which is the accession number

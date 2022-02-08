@@ -61,7 +61,7 @@ Description:    "IHE Interactive Multimedia Report (IMR) profile on Bundle"
 * entry[Observation].resource 1..1
 * entry[Observation].request.method from IMRProvideReadWriteVS
 
-* entry[ImagingStudy].resource only IMRObservationImagingStudy or IMRDiagnosticReportImagingStudy
+* entry[ImagingStudy].resource only IMRDiagnosticReportImagingStudy
 * entry[ImagingStudy] ^short = "the ImagingStudy"
 * entry[ImagingStudy] ^definition = "the ImagingStudy referenced by the Observation or by the DiagnoistcReport."
 * entry[ImagingStudy].resource 1..1
