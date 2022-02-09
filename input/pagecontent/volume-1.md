@@ -18,7 +18,7 @@ in other related profiles are shown in dotted lines. Actors which have a require
 grouping are shown in conjoined boxes (see Section XX.3).
 
 <div>
-    <img src="IHE_IMR_actor_3_readers.png">
+    <img src="IHE_IMR_actor.drawio.png">
 </div>
 <br clear="all">
 

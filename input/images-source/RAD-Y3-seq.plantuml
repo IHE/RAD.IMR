@@ -1,0 +1,15 @@
+@startuml
+
+hide footbox
+
+participant "Requester" as Reader
+participant "Responder" as Repo
+
+activate Reader
+activate Repo
+Reader->Repo: Find Multimedia DiagnosticReport
+Repo-->Reader: Return DiagnosicReport Bundle
+deactivate Repo
+deactivate Reader
+
+@enduml

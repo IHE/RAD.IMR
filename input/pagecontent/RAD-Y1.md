@@ -19,7 +19,9 @@ Transaction text specifies behavior for each role. The behavior of specific acto
 ### 2:3.Y1.3 Referenced Standards
 
 **FHIR-R4** [HL7 FHIR Release 4.0](http://www.hl7.org/FHIR/R4)
+
 **HTML 5**
+
 **PDF/A**
 
 ### 2:3.Y1.4 Messages
@@ -124,6 +126,8 @@ A Receiver is allowed to be robust for non-compliant resources that violate the 
 
 If necessary for processing, the Receiver shall retrieve Resources referenced by absolute URLs in the FHIR Bundle Resource.
 
+The Receiver may extract the embedded displayable report(s) in DiagnosticReport.presentedForm.data, store them and substitute the corresponding DiagnosticReport.presentedForm with a retrieve URL (i.e. DiagnosticReport.presentedForm.url) instead. The Receiver shall maintain the integrity of the report if the report is extracted.
+
 If the Receiver encounters any errors or if any validation fails, the Receiver shall return an appropriate error.
 
 #### 2:3.Y1.4.2 Multimedia Report Bundle Response Message
@@ -155,6 +159,8 @@ Document Recipient shall provide a CapabilityStatement Resource as described in 
 ### 2:3.Y1.5 Security Considerations
 
 See [IMR Security Considerations](volume-1.html#security-considerations)
+
+Given that the Sender is responsible for the URL placed into presentedForm.url if external reference is used, care must be taken to assure that manipulation of this URL prior to any retrieval requests does not expose resources the Report Reader should not have access to.
 
 #### 2:3.Y1.5.1 Security Audit Considerations
 

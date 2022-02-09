@@ -16,6 +16,8 @@ Description:    "IHE Interactive Multimedia Report (IMR) profile on DiagnosticRp
 * basedOn contains serviceRequest 1..1
 * basedOn[serviceRequest] only Reference(IMRServiceRequest)
 
+* status from IMRDiagnosticReportStatusVS
+
 * category 1..*
 
 // Shall reference on Patient
@@ -79,9 +81,25 @@ Description:    "IHE Interactive Multimedia Report (IMR) profile on DiagnosticRp
 * presentedForm[pdf].contentType = MIME#applicatoin/pdf "PDF"
 
 * extension contains ComparisonStudy named comparisonStudy 0..* MS
+* extension contains IMRDiagnosticReportIndication named indication 0..* MS
 
 Extension: ComparisonStudy
-Title: "IMR Comparison Study"
-Id: imr-diagnosticreport-comparison-study
+Title: "IMR DiagnosticReport Comparison Study"
+Id: comparisonStudy
 Description: "Comparison study used in part of diagnostic reporting"
 * value[x] only Reference(IMRDiagnosticReportImagingStudy)
+
+Extension: IMRDiagnosticReportIndication
+Title: "IMR DiagnosticReport Indication"
+Id: indication
+Description: "Indication that provides contextual information used during the reporting"
+* value[x] only string
+
+ValueSet: IMRDiagnosticReportStatusVS
+Id: imr-diagnosticreport-status-vs
+Title: "IMR DiagnosticReport Status Value Set"
+Description: "Status codes that are applicable to imaging diagnostic report lifecycle."
+* FHIRDiagnosticReportStatus#partial "Partial"
+* FHIRDiagnosticReportStatus#preliminary "Preliminary"
+* FHIRDiagnosticReportStatus#final "Final"
+* FHIRDiagnosticReportStatus#appended "Appended"

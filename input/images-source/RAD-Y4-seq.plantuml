@@ -1,0 +1,15 @@
+@startuml
+
+hide footbox
+
+participant "Requester" as Reader
+participant "Responder" as Repo
+
+activate Reader
+activate Repo
+Reader->Repo: Retrieve Displayable Report
+Repo-->Reader: Return Displayable Report
+deactivate Repo
+deactivate Reader
+
+@enduml
