@@ -4,19 +4,9 @@ Id:             imr-observation
 Title:          "IMR Observation"
 Description:    "IHE Interactive Multimedia Report (IMR) profile on Observation"
 
-* obeys IMRObservationInvariant
-
 // Shall reference one ServiceRequest
 * basedOn 1..1
-
-* basedOn ^slicing.discriminator.type = #type
-* basedOn ^slicing.discriminator.path = Observation.basedOn.resolve()
-* basedOn ^slicing.rules = #open
-* basedOn ^slicing.description = "Slice based on the basedOn reference type"
-* basedOn ^slicing.ordered = false
-
-* basedOn contains serviceRequest 1..1
-* basedOn[serviceRequest] only Reference(IMRServiceRequest)
+* basedOn only Reference(IMRServiceRequest)
 
 // Specify the category to be imaging
 * category 1..*
@@ -37,20 +27,11 @@ Description:    "IHE Interactive Multimedia Report (IMR) profile on Observation"
 * effectiveDateTime 1..1 MS
 
 // At least one performer is an Organization
-* performer 0..*
+* performer only Reference(Practitioner or PractitionerRole or Organization)
 
-* performer ^slicing.discriminator.type = #type
-* performer ^slicing.discriminator.path = Observation.performer.resolve()
-* performer ^slicing.rules = #open
-* performer ^slicing.description = "Slice based on the performer reference type"
-* performer ^slicing.ordered = false
+* value[x] 1..1 MS
 
-* performer contains practitionerOrOrganization 0..*
-* performer[practitionerOrOrganization] only Reference(Practitioner or Organization)
-
-// Must support either value[x] or interpretation
-* value[x] 0..1 MS
-* interpretation 0..* MS
+* method 0..1 MS
 
 // Maximum one study to be referenced in derivedFrom
 * derivedFrom 0..* MS
@@ -65,8 +46,5 @@ Description:    "IHE Interactive Multimedia Report (IMR) profile on Observation"
 * derivedFrom[imagingStudy] only Reference(IMRDiagnosticReportImagingStudy)
 
 * component 0..* MS
-
-Invariant:   IMRObservationInvariant
-Description: "Either value[x] or interpretation or both SHALL be present"
-Expression:  "value[x].exists() or interpretation.exists()"
-Severity:    #error
+* component.id 0..1 MS
+* component.value[x] 1..1 MS
