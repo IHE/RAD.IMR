@@ -13,7 +13,7 @@ Description:    "IHE Interactive Multimedia Report (IMR) profile on DiagnosticRp
 * basedOn ^slicing.description = "Slice based on the basedOn reference type"
 * basedOn ^slicing.ordered = false
 
-* basedOn contains serviceRequest 1..1
+* basedOn contains serviceRequest 1..*
 * basedOn[serviceRequest] only Reference(IMRServiceRequest)
 
 * status from IMRDiagnosticReportStatusVS
@@ -87,13 +87,13 @@ Extension: ComparisonStudy
 Title: "IMR DiagnosticReport Comparison Study"
 Id: comparisonStudy
 Description: "Comparison study used in part of diagnostic reporting"
-* value[x] only Reference(IMRDiagnosticReportImagingStudy)
+* value[x] only Reference(IMRDiagnosticReportImagingStudy or IMRDiagnosticReport)
 
 Extension: IMRDiagnosticReportIndication
 Title: "IMR DiagnosticReport Indication"
 Id: indication
 Description: "Indication that provides contextual information used during the reporting"
-* value[x] only string
+* value[x] only string or CodeableConcept
 
 ValueSet: IMRDiagnosticReportStatusVS
 Id: imr-diagnosticreport-status-vs
@@ -102,4 +102,7 @@ Description: "Status codes that are applicable to imaging diagnostic report life
 * FHIRDiagnosticReportStatus#partial "Partial"
 * FHIRDiagnosticReportStatus#preliminary "Preliminary"
 * FHIRDiagnosticReportStatus#final "Final"
+* FHIRDiagnosticReportStatus#amended "Amended"
+* FHIRDiagnosticReportStatus#corrected "Corrected"
 * FHIRDiagnosticReportStatus#appended "Appended"
+* FHIRDiagnosticReportStatus#cancelled "Cancelled"
