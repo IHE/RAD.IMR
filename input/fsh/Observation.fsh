@@ -5,8 +5,16 @@ Title:          "IMR Observation"
 Description:    "IHE Interactive Multimedia Report (IMR) profile on Observation"
 
 // Shall reference one ServiceRequest
-* basedOn 1..1
-* basedOn only Reference(IMRServiceRequest)
+* basedOn 1..* MS
+
+* basedOn ^slicing.discriminator.type = #type
+* basedOn ^slicing.discriminator.path = Observation.basedOn.resolve()
+* basedOn ^slicing.rules = #open
+* basedOn ^slicing.description = "Slice based on the basedOn reference type"
+* basedOn ^slicing.ordered = false
+
+* basedOn contains serviceRequest 1..*
+* basedOn[serviceRequest] only Reference(IMRServiceRequest)
 
 // Specify the category to be imaging
 * category 1..*
