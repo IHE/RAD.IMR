@@ -30,44 +30,61 @@ Table XX.1-1: IMR Profile - Actors and Transactions
 |---------|---------------|------------------------|-----------------|-----------------------------------|
 | Report Creator | \[RAD-Y1\] Store Multimedia Report | Initiator                       | R               | RAD TF-2: 3.Y1 |
 | Report Repository       | \[RAD-Y1\] Store Multimedia Report | Responder                        | R               | RAD TF-2: 3.Y1 |
+|                         | \[RAD-Y3\] Find Multimedia Report | Responder                         | R               | RAD TF-2: 3.Y3 |
+|                         | \[RAD-Y4\] Retrieve Displayable Multimedia Report | Responder                         | R               | RAD TF-2: 3.Y4 |
 | Report Reader          | \[RAD-Y2\] Display Multimedia Report | Initiator + Responder                      | R               | RAD TF-2: 3.Y2 |
-| Report Reader with <br> integrated Image Display Invoker        | \[RAD-Y2\] Display Multimedia Report | Initiator + Responder                      | R               | RAD TF-2: 3.Y2 |
-| Report Reader with <br> integrated Image Display         | \[RAD-Y2\] Display Multimedia Report | Initiator + Responder                      | R               | RAD TF-2: 3.Y2 |
-| Imaging Document Source | \[RAD-107\] WADO-RS Retrieve | Responder | R | RAD TF-2: 3.107
+|                        | \[RAD-Y3\] Find Multimedia Report    | Initiator                                  | R               | RAD TF-2: 3.Y3 |
+|                        | \[RAD-Y4\] Retrieve Displaybale Multimedia Report    | Initiator                                  | O               | RAD TF-2: 3.Y4 |
+|                        | \[RAD-107\] WADO-RS Retrieve   | Initiator                                  | R               | RAD TF-2: 3.107 |
+| Image Manager / Image Archive | \[RAD-107\] WADO-RS Retrieve | Responder | R | RAD TF-2: 3.107 |
 {: .grid}
 
 ### XX.1.1 Actors Description and Actor Profile Requirements
 Most requirements are documented in RAD TF-2 Transactions. This section documents any additional requirements on profile's actors.
 
-#### XX.1.1.1 Report Creator <a name="Report Creator"> </a>
+#### XX.1.1.1 Report Creator <a name="ReportCreator"> </a>
 
-Report Creators encode diagnostic reports with multimedia content for a service request.
+Report Creators encode diagnostic reports with multimedia content for a service request. Report Creators may also support retrieve displayable multimedia report request if one or more displayable reports are hosted by itself and accessible via a URL.
+
+Report Creators may support multiple rendering of the multimedia reports for different consumers (e.g. simple consumers that do not render the detailed multimedia contents on its own, or external consumers that do not have access to stuides inside the enterprise firewall),
 
 Note that how the Report Creator receives the multimedia content is out of scope for this release of IMR.
 
-#### XX.1.1.2 Report Repository <a name="Report Repository"> </a>
+#### XX.1.1.2 Report Repository <a name="ReportRepository"> </a>
 
 Report Repositories store multimedia reports and return them to Report Reader upon requests.
 
-#### XX.1.1.3 Report Reader <a name="Report Reader"> </a>
+Report Repositories may be grouped with Report Reader to suppor the 'push' model for report distribution. In this case, there is no explicit query/retrieve of multimedia reports required.
 
-Report Readers retrieve multimedia reports from Report Repositories, present the reports to the user and enable the user to interact with the multimedia contents in the reports.
+Optionally, Report Repositories support query/retrieve of multimedia reports. This enables independent Report Readers to retrieve reports.
 
-#### XX.1.1.4 Report Reader with Integrated Invoke Image Display <a name="Report Reader with IID"> </a>
+Furthermore, if Report Repositories receive multimedia reports with embedded displayable reports, it may extract the embedded report out and substitute it with a URL. This enables Report Repositories to support external access of reports in the future.
 
-Report Readers retrieve multimedia report from Report Repositories and present the reports to the user. When interacting with the multimedia contents in the reports, the Report Readers launch the integrated Invoke Image Display actors to access the corresponding multimedia contents in the reports.
+#### XX.1.1.3 Report Reader <a name="ReportReader"> </a>
 
-#### XX.1.1.5 Report Reader with Integrated Image Display <a name="Report Reader with SWF"> </a>
+Report Readers retrieve multimedia reports from Report Repositories and present the reports to the user. For multimedia content embedded in the report (e.g. hyperlinks to corresponding images), the user can interact with the reports to access the multimedia contents.
 
-Report Readers retrieve multimedia report from Report Repositories and present the reports to the user. When interacting with the multimedia contents in the reports, the Report Readers launch the integrated Image Display actors to access the corresponding multimedia contents in the reports.
+There are baseline image viewing capabilities required for Report Reader, while optionally the Report Reader may suport additional advanced behvaior.
 
-#### XX.1.1.6 Imaging Document Source <a name="Imaging Document Source"> </a>
+The following subsections describe three different pathways that the Report Readers can display the images to the user.
 
-Imaging Document Source provides the images and related objects to the Report Readers.
+##### XX.1.1.3.1 Report Reader standalone </a>
 
-Imaging Document Source supports WADO-RS Retrieve [RAD-107].
+Standalone Report Readers are Report Readers that is self-sufficient to handle and display the multimedia report itself as well as all the referenced multimedia contents. In this case, Report Readers retrieve the images from Image Manager / Image Archive and display the images to the user with some basic viewing capabilities.
 
-Imaging Document Source that supports the Image Manager Integration Option also supports returning the objects vis DICOM C-Move. This is necessary to integrate with Image Display access.
+##### XX.1.1.3.2 Report Reader with Integrated Invoke Image Display <a name="ReportReaderwithIID"> </a>
+
+Report Readers retrieve multimedia report from Report Repositories and present the reports to the user. When interacting with the multimedia contents in the reports, the Report Readers launch the integrated Invoke Image Display actors to access the corresponding multimedia contents in the reports and display them to the user.
+
+##### XX.1.1.5 Report Reader with Integrated Image Display <a name="ReportReaderwithSWF"> </a>
+
+Report Readers retrieve multimedia report from Report Repositories and present the reports to the user. When interacting with the multimedia contents in the reports, the Report Readers launch the integrated Image Display actors to access the corresponding multimedia contents in the reports and display them to the user.
+
+#### XX.1.1.6 Image Manager / Image Archive <a name="ImageArchive"> </a>
+
+Image Manager / Image Archive provides the images and related objects to the Report Readers.
+
+Image Manager / Image Archive supports WADO-RS Retrieve [RAD-107] as well as other DICOM DIMSE services. This enables different types of image viewer to retrieve objects.
 
 ## XX.2 IMR Actor Options <a name="actor-options"> </a>
 
@@ -78,18 +95,31 @@ Table XX.2-1: IMR - Actors and Options
 
 | Actor   | Option Name | Reference |
 |---------|-------------|-----------|
-| Report Creator | PDF Report Option  | ??? | 
-|                | HL7 Text Report Option | ??? |
+| Report Creator | PDF Report Option  | Section XX.2.1 | 
+|                | HL7 Text Report Option | Section XX.2.2 |
 | Report Repository | No options defined | -- |
-| Report Reader | Series/Study Navigation Option | ??? |
-| Report Reader with <br> Integrated Invoke Image Display | No options defined | ??? |
-| Report Reader with <br> Integrated Image Display | No options defined | -- |
-| Imaging Document Source | Image Manager Integration Option | ??? |
+| Report Reader | Series/Study Navigation Option | Section XX.2.3 |
+|               | PDF Report Option  | Section XX.2.1 | 
+|               | HL7 Text Report Option | Section XX.2.2 |
 {: .grid}
 
-### XX.2.1 IMR - Actors and Options
+### XX.2.1 PDF Report Option
 
-**TODO: describe this option and the Volume 1 requirements for this option
+The PDF Report Option exports a rendered report with all multimedia contents in the PDF format.
+
+A Report Creator can export a rendered multimedia report, preserving the hyperlinks as in the default HTML version.
+
+A Report Reader or non-IMR Report Reader can use the PDF version if desired.
+
+### XX.2.2 HL7 Text Report Option
+
+The HL7 Text Report Option exports a text-only version of the report without the multimedia contents.
+
+A Report Creator can use this text-only report to commuicate the report with existing non-IMR Report Readers, for example, using HL7 v2 ORU messages, or Send Imaging Result [RAD-128] in IHE [Results Distribution](https://www.ihe.net/uploadedFiles/Documents/Radiology/IHE_RAD_Suppl_RD.pdf) profile as a Report Creator.
+
+### XX.2.3 Series/Study Navigation Option
+
+The Series/Study Navigation Option supports more advanced viewing of the referenced images by enabling scrolling through images in the same series or study.
 
 ## XX.3 IMR Required Actor Groupings <a name="required-groupings"> </a>
 
@@ -116,46 +146,48 @@ considerations and Section XX.6 describes some optional groupings in other relat
 <td>ITI-TF-1: 7.1</td>
 </tr>
 <tr class="even">
-<td>Report Repository</td>
-<td>--</td>
-<td>None</td>
-<td>--</td>
+<td>Report Reader</td>
+<td>Required if using Image Display Invoker to display images</td>
+<td>RAD IID/Image Display Invoker</td>
+<td>RAD-TF-1: ???</td>
 </tr>
 <tr class="odd">
 <td>Report Reader</td>
-<td>--</td>
-<td>None</td>
-<td>--</td>
-</tr>
-<tr class="even">
-<td>Report Reader with<br>Integrated Image Display Invoker</td>
-<td>Required</td>
-<td>RAD IID/Image Display Invoker <br> See Note 1</td>
-<td>RAD-TF-1: ???</td>
-</tr>
-<tr class="odd">
-<td>Report Reader with<br>Integrated Image Display</td>
-<td>Required</td>
-<td>RAD SWF.b/Image Display <br> See Note 1</td>
-<td>RAD-TF-1: ???</td>
-</tr>
-<tr class="even">
-<td>Imaging Document Source</td>
-<td>If Image Manager Integration Option is supported</td>
-<td>RAD SWF.b/Image Manager / Image Archive</td>
+<td>Required if using Image Display to display images</td>
+<td>RAD SWF.b/Image Display</td>
 <td>RAD-TF-1: ???</td>
 </tr>
 </tbody>
 </table>
-
-Note 1: These grouped actors require IMR Imaging Document Sources that support the Image Manager Integration Option.
 
 
 ## XX.4 Interactive multimedia Report Overview <a name="overview"> </a>
 
 ### XX.4.1 Concepts
 
+#### XX.4.1.? Measurement captured as persistent objects vs transient message
 
+#### XX.4.1.? Real Time Communication between Image Display / Evidence Creator and Report Creator
+
+#### XX.4.1.? Level of Interactivity
+
+When interacting with multimedia reports, there are different levels of sophitications:
+
+Level 0: No interactivity
+
+The Report Reader can display the static content in the report, but provides no interactivity with the content for the user.
+
+Level 1: Basic interactivity
+
+The Report Reader can display that static content in the report, including hyperlinks to different multimedia contents in the report (e.g. measurements). The user can click on these links to access a basic view of the source image(s) in which the findings are derived from.
+
+Level 2: Essential interactivity
+
+The Report Reader can provide not only a basic view of the source image(s), but also provide other essential features such as zoom, pan, window levelling, etc. If annotations are available, then the annotations (markup, ROI, etc.) are displayed as well and able to toggle them.
+
+Level 3: Advanced interactivity
+
+The Report Reader can display not only the image referenced directly, but also the full series that contain the image. The Report Reader may provide other tools (e.g. measurements, more advanced image visualization, etc.) as well as support other advanced DICOM objects such as segmentation objects or parametric map objects.
 
 ### XX.4.2 Use Cases
 
@@ -277,6 +309,4 @@ and clinical information. It is appropriate for products implementing the Intera
 
 ## XX.6 IMR Cross-Profile Considerations <a name="other-grouping"> </a>
 
-TODO
-
-
+**Results Distribution**: A Report Creator that supports the HL7 Text Report Option can use Result Distribution to send the text report to other consumers.
