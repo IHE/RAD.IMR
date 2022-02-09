@@ -1,12 +1,15 @@
 @startuml
 
-title "Use Case 1: Report Encoding"
-
 actor "Radiologist" as Rad
-participant "Evidence Creator" as ECreator
+participant "Image Display /\nEvidence Creator" as ECreator
 participant "Report Creator" as RCreator
 participant "Report Repository" as Repo
 
+Rad->>ECreator: //Load existing study//
+note over ECreator
+Existing studies may already have measurements
+data included (e.g. from modality, from AI system)
+end note
 Rad->>RCreator: //Dictate study//
 Rad->>ECreator: //Navigate study//
 note over ECreator
@@ -16,6 +19,10 @@ end note
 
 loop
 ECreator->>RCreator: //Communicate multimedia content//\n//in real time//\n//(method unspecified in IMR)//
+note over ECreator
+Including multimedia content exist in the study or
+created by the Radiologist.
+end note
 RCreator->>RCreator: //Insert multimedia content//\n//in report//
 end
 

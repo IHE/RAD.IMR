@@ -1,7 +1,5 @@
 @startuml
 
-title "Use Case 3: Present Multimedia Report in EMR with Report Reader integrated with Image Display Invoker\n(Partial support of Interactive Multimedia Report)"
-
 actor Clinician as Clinician
 
 box Grouped Actors

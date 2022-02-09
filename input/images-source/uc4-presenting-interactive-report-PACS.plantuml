@@ -1,7 +1,5 @@
 @startuml
 
-title "Use Case 5: Radiologist interacting with Multimedia Report for Prior Study"
-
 actor Radiologist as Radiologist
 
 box Grouped Actors
@@ -36,7 +34,7 @@ else Using DIMSE Retrieve
 Display->Archive: [RAD-16] Retrieve Images, [RAD-31] Retrieve Key Image Notes, [RAD-45] Retrieve Evidence Documents
 end
 
-Radiologist->>Display: //Interact with images and/or series//
+Radiologist->>Display: //Interact with images and/or series//\n//such as scrolling, re-measure//
 end
 
 
