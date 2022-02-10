@@ -58,7 +58,7 @@ Description:    "IHE Interactive Multimedia Report (IMR) profile on DiagnosticRp
 
 // Shall include at least one referenced study
 * imagingStudy 1..1 MS
-* imagingStudy only Reference(IMRDiagnosticReportImagingStudy)
+* imagingStudy only Reference(IMRImagingStudy)
 * imagingStudy ^short = "Study subject to this report"
 * imagingStudy ^definition = "Study subject to this report"
 
@@ -87,7 +87,7 @@ Extension: ComparisonStudy
 Title: "IMR DiagnosticReport Comparison Study"
 Id: comparisonStudy
 Description: "Comparison study used in part of diagnostic reporting"
-* value[x] only Reference(IMRDiagnosticReportImagingStudy or IMRDiagnosticReport)
+* value[x] only Reference(IMRImagingStudy or IMRDiagnosticReport)
 
 Extension: IMRDiagnosticReportIndication
 Title: "IMR DiagnosticReport Indication"

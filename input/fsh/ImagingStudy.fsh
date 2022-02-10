@@ -1,8 +1,8 @@
-Profile:        IMRDiagnosticReportImagingStudy
+Profile:        IMRImagingStudy
 Parent:         ImagingStudy
-Id:             imr-diagnosticreport-imagingstudy
-Title:          "IMR DiagnosticReport ImagingStudy"
-Description:    "IHE Interactive Multimedia Report (IMR) profile on ImagingStudy used in DiagnosticReport"
+Id:             imr-imagingstudy
+Title:          "IMR ImagingStudy"
+Description:    "IHE Interactive Multimedia Report (IMR) profile on ImagingStudy"
 
 // Must have an identifier which is the study instance UID
 * identifier 1..*

@@ -1,7 +1,7 @@
-Instance: ex-DiagnosticReportImagingStudy
-InstanceOf: IMRDiagnosticReportImagingStudy
-Title: "IMR DiagnosticReport ImagingStudy example"
-Description: "Simple IMR ImagingStudy to be used in DiagnosticReport"
+Instance: ex-ImagingStudy
+InstanceOf: IMRImagingStudy
+Title: "IMR ImagingStudy example"
+Description: "Simple IMR ImagingStudy to be used in DiagnosticReport and Observation"
 Usage: #example
 * identifier.type.coding = DICOM#110180 "Study Instance UID"
 * identifier.value = "1.2.3.4.5"
@@ -15,9 +15,9 @@ Usage: #example
 * series.modality = DICOM#CT "Computed Tomography"
 
 
-Instance: ex-DiagnosticReportImagingStudy-Comparison
-InstanceOf: IMRDiagnosticReportImagingStudy
-Title: "IMR DiagnosticReport ImagingStudy example"
+Instance: ex-ImagingStudy-Comparison
+InstanceOf: IMRImagingStudy
+Title: "IMR ImagingStudy example"
 Description: "Simple IMR ImagingStudy to be used as a comparison study in DiagnosticReport"
 Usage: #example
 * identifier.type.coding = DICOM#110180 "Study Instance UID"

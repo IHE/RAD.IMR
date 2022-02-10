@@ -12,7 +12,7 @@ Description:    "IHE Interactive Multimedia Report (IMR) profile on Bundle"
 * entry and entry.resource MS
 * entry contains 
     DiagnosticReport 1..1 and
-    ServiceRequest 1..1 and
+    ServiceRequest 1..* and
     Patient 1..1 and
     Organization 1..* and
     Practitioner 1..* and
@@ -61,7 +61,7 @@ Description:    "IHE Interactive Multimedia Report (IMR) profile on Bundle"
 * entry[Observation].resource 1..1
 * entry[Observation].request.method from IMRProvideReadWriteVS
 
-* entry[ImagingStudy].resource only IMRDiagnosticReportImagingStudy
+* entry[ImagingStudy].resource only IMRImagingStudy
 * entry[ImagingStudy] ^short = "the ImagingStudy"
 * entry[ImagingStudy] ^definition = "the ImagingStudy referenced by the Observation or by the DiagnoistcReport."
 * entry[ImagingStudy].resource 1..1

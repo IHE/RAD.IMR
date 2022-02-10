@@ -51,7 +51,7 @@ Description:    "IHE Interactive Multimedia Report (IMR) profile on Observation"
 * derivedFrom ^slicing.ordered = false
 
 * derivedFrom contains imagingStudy 0..1
-* derivedFrom[imagingStudy] only Reference(IMRDiagnosticReportImagingStudy)
+* derivedFrom[imagingStudy] only Reference(IMRImagingStudy)
 
 * component 0..* MS
 * component.id 0..1 MS
