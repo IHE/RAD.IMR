@@ -25,7 +25,7 @@ Description:    "IHE Interactive Multimedia Report (IMR) profile on ServiceReque
 * subject only Reference(Patient)
 
 // Must have a category of Imaging
-* category 1..*
+* category 0..*
 
 * category ^slicing.discriminator.type = #pattern
 * category ^slicing.discriminator.path = "coding"
@@ -33,7 +33,7 @@ Description:    "IHE Interactive Multimedia Report (IMR) profile on ServiceReque
 * category ^slicing.description = "Slice based on the category.coding"
 * category ^slicing.ordered = false
 
-* category contains imaging 1..1 MS
+* category contains imaging 0..1 MS
 * category[imaging].coding = SCT#363679005 "Imaging"
 
 ValueSet: IMRServiceRequestIntentVS
