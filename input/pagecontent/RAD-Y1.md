@@ -132,6 +132,10 @@ For Senders that claim support of the PDF Report Option, if the PDF Report featu
 
 For Senders that claim support of the HL7 Text Report Option, if the HL7 Text Report feature is enabled in the Sender, then the Sender shall also attach another semantically equivalent diagnostic report in Rich Text format in the presentedForm attribute. The presentedForm.contentType shall have the value "application/rtf". The HL7 Text Report shall include all text (excluding the HTML markup) as in the HTML report, without the hyperlinks.
 
+###### 2:3.Y1.4.1.2.3 Patient, Organization, Practitioner, PractitionerRole
+
+The Patient, Organizatio, Practitioner or PractitionerRole resources are required resources referenced by other resources. However, IMR does not specify any profiles on these resource. The expectation is that these resources are not radiology or imaging specific. When used in real world deployment, the Sender shall apply applicable profiles on these resources according to the deployment.
+
 ##### 2:3.Y1.4.1.3 Expected Actions
 
 The Receiver shall accept both media types `application/fhir+json` and `application/fhir+xml`.

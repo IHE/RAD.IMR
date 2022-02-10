@@ -1,7 +1,6 @@
+The Interactive Multimedia Report (IMR) Profile specifies how a diagnostic report with interactive multimedia content can be reliably encoded, communicated and presented.
 
-**This Implementation Guide template includes skeleton pages for each part of an IHE supplement. The instructions for how to fill out those sections can be found in the included [Supplement Template](https://github.com/IHE/supplement-template/blob/master/suppl_template.md). This supplement template should not be included in your github repo or publication. It is included here for easy reference.**
-
-** TODO: Interactive Multimedia Report profile ... **
+This profile defines content for data encoding, transactions for communicating the content between systems, and behaviors for displaying the content.
 
 [Open and Closed Issues](issues.html)
 
@@ -17,7 +16,10 @@ This guide is organized into four main sections:
    1. [Cross Profile Considerations](volume-1.html#grouping)
 
 2. Volume II: Transaction Detail
-   1. [FooBar do \[domain-YY\]](domain-YY.html)
+   1. [Store Multimedia Report [RAD-Y1]](RAD-Y1.html)
+   1. [Display Multimedia Report [RAD-Y2]](RAD-Y2.html)
+   1. [Find Multimedia Report [RAD-Y3]](RAD-Y3.html)
+   1. [Retrieve Pre-rendered Multimedia Report [RAD-Y4]](RAD-Y4.html)
 
 3. Volume III: Metadata
    1. **TODO: point to your content profiles if you have them**
