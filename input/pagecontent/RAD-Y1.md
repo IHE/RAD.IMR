@@ -1,10 +1,10 @@
 ### 2:3.Y1.1 Scope
 
-This transaction is used to pass a Provide Multimedia Report Bundle Request from a Report Creator to a Report Repository.
+This transaction is used to store multimedia report from a Report Creator to a Report Repository.
 
 ### 2:3.Y1.2 Actors Roles
 
-The roles in this transaction are defined in the following table and may be palyed by the actors shown here:
+The roles in this transaction are defined in the following table and may be played by the actors shown here:
 
 **Table 2:3.Y1.2-1: Actor Roles**
 
@@ -34,18 +34,18 @@ Transaction text specifies behavior for each role. The behavior of specific acto
 
 **Figure 2:3.Y1.4-1: Interaction Diagram**
 
-#### 2:3.Y1.4.1 Provide Multimedia Report Bundle
+#### 2:3.Y1.4.1 Provide Multimedia Report Bundle **Message**
 The Sender sends a multimedia report bundle to the Receiver.
 
 The Receiver shall support handling such messages from more than one Sender. The Sender shall support making requests to more than one Receiver.
 
 ##### 2:3.Y1.4.1.1 Trigger Events
 
-When a radiologist completed a dictation on a study and signed off the report. This trigger is associated with an intention that the Receiver stores the multimedia report contents and makes it available for subsequent query and retrieve requests.
+A radiologist completed a dictation on a study and signed off the report. This trigger is associated with an intention that the Receiver stores the multimedia report contents and makes it available for subsequent query and retrieve requests.
 
 ##### 2:3.Y1.4.1.2 Message Semantics
 
-This message is a HTTP POST request. The Sender is the User Agent. The Receiver is the Origin Server.
+This message is an HTTP POST request. The Sender is the User Agent. The Receiver is the Origin Server.
 
 The Sender shall initiate a FHIR “transaction” using a “create” action by sending an HTTP POST request method composed of a FHIR Bundle Resource containing the following:
 - one DiagnosticReport Resource
@@ -58,7 +58,7 @@ The Sender shall initiate a FHIR “transaction” using a “create” action b
 
 The media type of the HTTP body shall be either `application/fhir+json` or `application/fhir+xml`.
 
-See [http://hl7.org/fhir/R4/http.html#transaction](http://hl7.org/fhir/R4/http.html#transaction) for complete requirements of a transaction. See [http://hl7.org/fhir/R4/bundle-transaction.html](http://hl7.org/fhir/R4/bundle-transaction.html) for example of a transaction bundle.
+See [http://hl7.org/fhir/R4/http.html#transaction](http://hl7.org/fhir/R4/http.html#transaction) for complete requirements of a FHIR transaction. See [http://hl7.org/fhir/R4/bundle-transaction.html](http://hl7.org/fhir/R4/bundle-transaction.html) for an example of a transaction bundle.
 
 The Provide Multimedia Report Bundle message is sent to the base URL as defined in FHIR. See [http://hl7.org/fhir/R4/http.html](http://hl7.org/fhir/R4/http.html) for the definition of “HTTP” access methods and “base”.
 
@@ -66,8 +66,8 @@ The Provide Multimedia Report Bundle message is sent to the base URL as defined 
 
 For complete information on constructing a FHIR Bundle Resource, see [http://hl7.org/fhir/R4/bundle.html](http://hl7.org/fhir/R4/bundle.html)
 
-The FHIR Bundle.meta.profile shall have the following value: 
-- [IMR Bundle](StructureDefinition-imr-bundle.html): `http://profiles.ihe.net/RAD/IMR/StructureDefinition/imr-bundle`
+The FHIR Bundle.meta.profile shall have the following value: `http://profiles.ihe.net/RAD/IMR/StructureDefinition/imr-bundle`
+- The [IMR Bundle](StructureDefinition-imr-bundle.html): 
   - shall be a Transaction Bundle
   - shall create one [IMR DiagnosticReport](StructureDefinition-imr-diagnosticreport.html)
   - may create/update/read one or more [IMR ServiceRequest](StructureDefinition-imr-servicerequest.html)
@@ -81,12 +81,11 @@ Since each resource in the bundle is self-sufficient and are valuable as standal
 
 When resources are `contained`, they shall be contained using the FHIR contained method (see [http://hl7.org/fhir/R4/references.html#contained](http://hl7.org/fhir/R4/references.html#contained) ).
 
-For the pre-rendered report referenced by DiagnosticReport.presentedForm, the Sender shall support one the following:
-- The report is treated as a base64Binary and set in the DiagnosticReport.presentedForm.data
-- The report is conveyed as a [Binary Resource](https://www.hl7.org/fhir/binary.html) and this Binary Resource is referenced in DiagnosticReport.presentedForm.url.
-- The report is hosted somewhere else and not as a Binary Resource. It is referenced in DiagnosticReport.presentedForm.url.
-
-When the DiagnosticReport.presentedForm.url points at a Binary Resource, the Binary Resource shall be in the Bundle. See FHIR Resolving references in Bundles at [http://hl7.org/fhir/R4/bundle.html#references](http://hl7.org/fhir/R4/bundle.html#references). 
+The Sender shall encode the pre-rendered report that is referenced by DiagnosticReport.presentedForm in one of the following ways:
+- Encode the report as a base64Binary in DiagnosticReport.presentedForm.data
+- Encode the report as a base64Binary in a [Binary Resource](https://www.hl7.org/fhir/binary.html) and this Binary Resource is referenced in DiagnosticReport.presentedForm.url.
+  - The Binary Resource shall be in the Bundle. See FHIR Resolving references in Bundles at [http://hl7.org/fhir/R4/bundle.html#references](http://hl7.org/fhir/R4/bundle.html#references). 
+- Host the report somewhere and provide the url in DiagnosticReport.presentedForm.url.
 
 The Sender shall populate accurate .hash and .size for the report content in presentedForm: 
 * Where the presentedForm is a Binary Resource instance, the .hash and .size measure the raw artifact that has been base64encoded in the Binary.data element.  
