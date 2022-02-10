@@ -22,6 +22,8 @@ Description:    "IHE Interactive Multimedia Report (IMR) profile on ImagingStudy
 
 * subject only Reference(Patient)
 
+* started 1..1 MS
+
 // Shall reference one ServiceRequest
 * basedOn 0..*
 
