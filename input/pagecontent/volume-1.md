@@ -165,7 +165,39 @@ considerations and Section XX.6 describes some optional groupings in other relat
 
 ### XX.4.1 Concepts
 
-#### XX.4.1.? Critical Attributes for Diagnoist Report
+#### XX.4.1.? Critical Attributes in Radiology Diagnostic Report
+
+The following table shows a common set of information that usually exist in a radiology report and how they are mapped to FHIR DiagnosticReport resource.
+
+Table XX.4.1.?-1: Mapping of Critical Attributes in Radiology Diagnostic Report
+
+| Report Attribute | FHIR Resource Mapping | Cardinality | Additional Constraint | Note |
+|------------------|-----------------------|-------------|-----------------------|------|
+| Organization     | DiagnosticReport.performer | 1..1 | | Deployment applicable Organization Profile should be applied |
+| Results Interpreter | DiagnosticReport.resultsInterpreter | 1..* | Can be either Practitioner or PractitionerRole | Deployment applicable Practitioner or PractitionerRole Profile should be applied |
+| Patient Name     | DiagnosticReport.subject -> Patient.name | 1..1 -> 0..* |   | Deployment applicable Patient Profile should be applied       |
+| Patient MRN      | DiagnosticReport.subject -> Patient.identifier | 1..1 -> 0..* | | Deployment applicable Patient Profile should be applied |
+| Accession Number | DiagnosticReport.basedOn -> IMRServiceRequest.identifier | 1..* -> 1..* | identifier.type has a code for Accession Number | |
+| Study Date       | DiagnosticReport.imagingStudy -> IMRImagingStudy.started | 1..1 -> 1..1 | | |
+| Study Type       | DiagnosticReport.imagingStudy -> IMRImagingStudy.procedureCode | 1..1 -> 0..* | | |
+| Report Status    | DiagnosticReport.status | 1..1 | partial, preliminary, final, amended, corrected, appended, cancelled | A subset from what is defined in FHIR |
+| Examination      | DiagnosticReport.code | 1..1 | | Code for the diagnostic report, may be the same as the study procedure code |
+| Indication       | DiagnosticReport.extension[indication] | 0..* | | Each value can be either a string or a CodeableConcept |
+| Technique        | DiagnosticReport.result -> IMRObservation.method | 1..* -> 0..1 | IMRObservation.code = LOINC#59776-5 "Procedure Findings" | |
+| DLP              | ??? | | | |
+| Comparison       | DiagnosticReport.extension[comparisonStudy] | 0..* | Can be either an IMRImagingStudy or IMRDiagnosticReport | |
+| Findings         | DiagnosticReport.result -> IMRObservation.valueString | 1..* | LOINC#59776-5 "Procedure Findings" | Highly recommended to encode a single finding per observation, but acceptable to encode all findings as a single string to bridge existing applications |
+| Impressions      | DiagnosticReport.result -> IMRObservation.valueString | 1..* | IMRObservation.code = LOINC#19005-8 "Radiology Imaging study [Impression] (narrative)" | Highly recommended to encode a single impression per observation, but acceptable to encode all impressions as a single string to bridge existing application. Also it is highly recommended to use coded values whenever applicable.|
+
+In addition to the common set above, there are also a number of useful optional attributes that can be used if applicable.
+
+Table XX.4.1.7-2: Useful Optional Attributes in Radiology Diagnostic Report
+
+| Report Attribute | FHIR Resource Mapping | Cardinality | Additional Constraint | Note |
+|------------------|-----------------------|-------------|-----------------------|------|
+| Referring Physician | DiagnosticReport.imagingStudy -> IMRImagingStudy.referrer | 0..* | |
+| Reason For Study | DiagnosticReport.imagingStudy -> IMRImagingStudy.reasonCode | 0..* | |
+| Study Description | DiagnosticReport.imagingStudy -> IMRImagingStudy.description | 0..* | |
 
 
 
