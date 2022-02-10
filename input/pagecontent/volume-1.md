@@ -165,6 +165,8 @@ considerations and Section XX.6 describes some optional groupings in other relat
 
 ### XX.4.1 Concepts
 
+#### XX.4.1.? Critical Attributes for Diagnoist Report
+
 
 
 #### XX.4.1.? Measurement captured as persistent objects vs transient message
@@ -311,4 +313,8 @@ and clinical information. It is appropriate for products implementing the Intera
 
 ## XX.6 IMR Cross-Profile Considerations <a name="other-grouping"> </a>
 
-**Results Distribution**: A Report Creator that supports the HL7 Text Report Option can use Result Distribution to send the text report to other consumers.
+**Scheduled Workflow (SWF.b)**: An Image Display can be grouped with an IMR Report Reader to enhance the report viewing capability for prior studies.
+
+**Results Distribution (RD)**: A Report Creator that supports the HL7 Text Report Option can use Result Distribution to send the text report to other consumers.
+
+**Basic Image Reivew (BIR)**: A Report Reader can be grouped with an Image Display in BIR to provide the required image display functionality.

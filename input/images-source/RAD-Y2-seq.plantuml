@@ -2,15 +2,17 @@
 
 hide footbox
 
+participant "//'User'//" as User
 participant "Requester" as Reader
 participant "Responder" as IM
-participant "//'User'//" as User
 
 activate Reader
 activate IM
+Reader->User: Display Multimedia Report\n(static content with hyperlinks)
+User-->Reader: //Navigate hyperlinks//
 Reader->IM: Retrieve Images
 IM-->Reader: Return Images
-Reader->User: Display Multimedia Report
+Reader->User: Display Images
 deactivate IM
 deactivate Reader
 
