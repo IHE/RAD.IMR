@@ -41,7 +41,7 @@ The Receiver shall support handling such messages from more than one Sender. The
 
 ##### 2:3.Y1.4.1.1 Trigger Events
 
-When a radiologist completed a dictation on a study and signed off the report. This trigger is associated with an intention that the Receiver persistently store the multimedia report contents.
+When a radiologist completed a dictation on a study and signed off the report. This trigger is associated with an intention that the Receiver stores the multimedia report contents and makes it available for subsequent query and retrieve requests.
 
 ##### 2:3.Y1.4.1.2 Message Semantics
 
@@ -49,13 +49,12 @@ This message is a HTTP POST request. The Sender is the User Agent. The Receiver 
 
 The Sender shall initiate a FHIR “transaction” using a “create” action by sending an HTTP POST request method composed of a FHIR Bundle Resource containing the following:
 - one DiagnosticReport Resource
-- one ServiceRequest Resource
+- one or more ServiceRequest Resources
 - one Patient Resource
 - one or more Organization Resources
 - one or more Practitioner Resources
 - one or more Observation Resources
-- one or more Observation ImagingStudy Resources
-- one or more DiagnosticReport ImagingStudy Resources
+- one or more ImagingStudy Resources
 
 The media type of the HTTP body shall be either `application/fhir+json` or `application/fhir+xml`.
 
@@ -70,19 +69,24 @@ For complete information on constructing a FHIR Bundle Resource, see [http://hl7
 The FHIR Bundle.meta.profile shall have the following value: 
 - [IMR Bundle](StructureDefinition-imr-bundle.html): `http://profiles.ihe.net/RAD/IMR/StructureDefinition/imr-bundle`
   - shall be a Transaction Bundle
-  - all resources shall be compliant with minimal constraints
-  - shall create an [IMR DiagnosticReport](StructureDefinition-imr-diagnosticreport.html)
-  - may create/update one [IMR ServiceRequest](StructureDefinition-imr-servicerequest.html)
-  - may create/update one [Patient](http://hl7.org/fhir/R4/patient.html)
-  - may create one or more [Organization](http://hl7.org/fhir/R4/organization.html)
-  - may create one or more [Practitioner](http://hl7.org/fhir/R4/practitioner.html)
-  - may create one or more [IMR Observation](StructureDefinition-imr-observation.html)
-  - may create one or more [IMR Observation ImagingStudy](StructureDefinition-imr-observation-imagingstudy.html)
-  - may create one or more [IMR DiagnositcReport ImagingStudy](StructureDefinition-imr-diagnosticreport-imagingstudy.html)
+  - shall create one [IMR DiagnosticReport](StructureDefinition-imr-diagnosticreport.html)
+  - may create/update/read one or more [IMR ServiceRequest](StructureDefinition-imr-servicerequest.html)
+  - may create/update/read one [Patient](http://hl7.org/fhir/R4/patient.html)
+  - may create/read one or more [Organization](http://hl7.org/fhir/R4/organization.html)
+  - may create/read one or more [Practitioner](http://hl7.org/fhir/R4/practitioner.html)
+  - may create/read one or more [IMR Observation](StructureDefinition-imr-observation.html)
+  - may create/read one or more [IMR ImagingStudy](StructureDefinition-imr-imagingstudy.html)
+
+Since each resource in the bundle is self-sufficient and are valuable as standalone resources outside the context of the DiagnosticReport resource (e.g. independently searchable and same resource can be referenced multiple times), the Sender should create corresponding properly identifiable resources unless the proper record keys or absolute identification information is not available.
 
 When resources are `contained`, they shall be contained using the FHIR contained method (see [http://hl7.org/fhir/R4/references.html#contained](http://hl7.org/fhir/R4/references.html#contained) ).
 
-See FHIR Resolving references in Bundles at [http://hl7.org/fhir/R4/bundle.html#references](http://hl7.org/fhir/R4/bundle.html#references). 
+For the pre-rendered report referenced by DiagnosticReport.presentedForm, the Sender shall support one the following:
+- The report is treated as a base64Binary and set in the DiagnosticReport.presentedForm.data
+- The report is conveyed as a [Binary Resource](https://www.hl7.org/fhir/binary.html) and this Binary Resource is referenced in DiagnosticReport.presentedForm.url.
+- The report is hosted somewhere else and not as a Binary Resource. It is referenced in DiagnosticReport.presentedForm.url.
+
+When the DiagnosticReport.presentedForm.url points at a Binary Resource, the Binary Resource shall be in the Bundle. See FHIR Resolving references in Bundles at [http://hl7.org/fhir/R4/bundle.html#references](http://hl7.org/fhir/R4/bundle.html#references). 
 
 The Sender shall populate accurate .hash and .size for the report content in presentedForm: 
 * Where the presentedForm is a Binary Resource instance, the .hash and .size measure the raw artifact that has been base64encoded in the Binary.data element.  
@@ -90,25 +94,43 @@ The Sender shall populate accurate .hash and .size for the report content in pre
 
 Patient would typically only be allowed by the Receiver in PUSH interaction situations, but may be accepted for other reasons at the discretion of the Receiver actor policy.
 
+The following subsections describe the details requirements for each referenced resource in the bundle. A complete example of a DiagnosticReport is available in [IMR DiagnostReport Example](DiagnosticReport-ex-DiagnosticReport.json.html).
+
 ###### 2:3.Y1.4.1.2.2 Observation
 
-All clinical findings shall be encoded using [IMR Observation](StructureDefinition-imr-observation.html).
+All clinical findings and impressions shall be encoded using [IMR Observation](StructureDefinition-imr-observation.html).
 
-The Observation.valueString or Observation.interpretation shall be used to capture unstructured contents. Structured contents shall use the best data type in Observation.value[x] to capture the content. If image references are available for the observation, then Observation.derivedFrom shall be used to capture image references in which the observation is derived from.
+The Sender shall encode each impression as a separate IMR Observation resource. The Sender may encode each finding as a separate IMR Observation resource, or include all findings in a single IMR Observation resource.
 
-Optionally Observation.component can be used if the finding has multiple components. In this case, Observation.component shall be used to capture each component in the finding, and optionally use the component.derivedFrom extension to include image references.
+The Observation.valueString shall be used to capture unstructured contents. Structured contents shall use the best data type in Observation.value[x] to capture the content.
+
+If image references are available for the observation, then Observation.derivedFrom shall be used to capture study, series and image references using [IMR ImagingStudy](StructureDefinition-imr-imagingstudy.html) resource. In other words, this IMR ImagingStudy resource used in Observation.derivedFrom captures a subset of the series and images in study where the values in the observation are derived from.
+
+Furthermore, image references can be directly referenced inline the findings or impressions. These image references shall be encoded using <IMRRef></IMRRef> markup. Each IMRRef tag has two attributes:
+
+| Attribute | Description |
+|-----------|-------------|
+| type      | Type of multimedia content |
+| id        | Maps to component.id in the same Observation resource |
+{: .grid}
+
+For the corresponding Observation.component that matches the id value,
+- the Observation.component.valueString shall have the value for the series and instance reference in the format /series/{seriesUID}/instance/{sopInstanceUID},
+- the Observation.component.code shall have the coded value (112002, "http://dicom.nema.org/resources/ontology/DCM", "Series Instance UID")
 
 Since there are many variations of finding types and IMR is designed to be general purpose rather than specific to a particular procedure type, therefore no specific encoding requirements are defined. With this said, informative examples are available at [IMR Observation Examples](StructureDefinition-imr-observation-examples.html) to demonstrate the possible encoding of different kinds of observations.
 
 ###### 2:3.Y1.4.1.2.2 Report Attachment
 
-The [IMR DiagnosticReport](StructureDefinition-imr-diagnosticreport.html) resource requires at least one rendered diagnostic report in HTML format in the presentedForm attribute. The presentedForm.contentType shall be set to coded value for text/html.
+The [IMR DiagnosticReport](StructureDefinition-imr-diagnosticreport.html) resource shall have a default rendered diagnostic report in HTML format in the presentedForm attribute. The presentedForm.contentType shall have the value "text/html". Additional pre-rendered reports may be included.
 
-The HTML report shall include semantically the equivalence of all observations defined. For observations that have associated image references (i.e. either at the top level Observation.derivedFrom or at the component level Observation.component.derivedFrom extension), the Sender shall include a hyperlink using the HTML anchor element (i.e. <a>) for the corresponding observation, based on the endpoint(s) defined in the referenced [IMR Observation ImagingStudy]((StructureDefinition-imr-observation-imagingstudy.html)). The anchor elemnt shall be inserted in place where the finding is located in the report, with the finding text being set as the text between the begin and end anchor tags.
+For observations that have image references using Observation.derivedFrom attribute,
+- If the image references are not inline of the Observation.value[x], then the Sender shall add a hyperlink using the HTML anchor element (i.e. <a>), with the display text for the hyperlink being the corresponding value[x]. The value for href for this hyperlink shall be based on the endpoint(s) defined in the referenced [IMR ImagingStudy]((StructureDefinition-imr-imagingstudy.html)).
+- If the image references are inline of Observation.valueString, then the Sender shall substitute the <IMRRef>...</IMRRef> markup with the anchor element. The href attribute shall be set to the concatenation of the ImagingStudy.endpoint.address with the valueString from the matching Observation.component entry. The resulting URL shall be a valid URL according to the contentType.
 
-For Senders that claim support of the PDF Report Option, if the PDF Report feature is enabled in the Sender, then the Sender shall also attach another semantically equivalent diagnostic report in PDF format in the presentedForm attribute. The presentedForm.contentType shall be set to coded value for application/pdf. The PDF Report shall include all text and hyperlinks as in the HTML report.
+For Senders that claim support of the PDF Report Option, if the PDF Report feature is enabled in the Sender, then the Sender shall also attach another semantically equivalent diagnostic report in PDF format in the presentedForm attribute. The presentedForm.contentType shall have the value "application/pdf". The PDF Report shall include all text and hyperlinks as in the HTML report.
 
-For Senders that claim support of the HL7 Text Report Option, if the HL7 Text Report feature is enabled in the Sender, then the Sender shall also attach another semantically equivalent diagnostic report in Rich Text format in the presentedForm attribute. The presentedForm.contentType shall be set to coded value for application/rtf. The HL7 Text Report shall include all text as in the HTML report, without the hyperlinks.
+For Senders that claim support of the HL7 Text Report Option, if the HL7 Text Report feature is enabled in the Sender, then the Sender shall also attach another semantically equivalent diagnostic report in Rich Text format in the presentedForm attribute. The presentedForm.contentType shall have the value "application/rtf". The HL7 Text Report shall include all text (excluding the HTML markup) as in the HTML report, without the hyperlinks.
 
 ##### 2:3.Y1.4.1.3 Expected Actions
 
@@ -126,7 +148,7 @@ A Receiver is allowed to be robust for non-compliant resources that violate the 
 
 If necessary for processing, the Receiver shall retrieve Resources referenced by absolute URLs in the FHIR Bundle Resource.
 
-The Receiver may extract the embedded displayable report(s) in DiagnosticReport.presentedForm.data, store them and substitute the corresponding DiagnosticReport.presentedForm with a retrieve URL (i.e. DiagnosticReport.presentedForm.url) instead. The Receiver shall maintain the integrity of the report if the report is extracted.
+The Receiver may extract the embedded pre-rendered report(s) in DiagnosticReport.presentedForm.data, store them and substitute the corresponding DiagnosticReport.presentedForm with a URL (i.e. DiagnosticReport.presentedForm.url) instead. The Receiver shall maintain the integrity of the report if the report is extracted.
 
 If the Receiver encounters any errors or if any validation fails, the Receiver shall return an appropriate error.
 
