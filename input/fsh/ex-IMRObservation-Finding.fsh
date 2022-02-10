@@ -6,7 +6,7 @@ Usage: #example
 * meta.security = http://terminology.hl7.org/CodeSystem/v3-ActReason#HTEST
 
 * basedOn = Reference(ServiceRequest/ex-ServiceRequest)
-* partOf = Reference(ImagingStudy/ex-DiagnosticReportImagingStudy)
+* partOf = Reference(ImagingStudy/ex-ImagingStudy)
 * status = FHIRObservationStatus#final
 * category.coding = FHIRObservation#imaging "Imaging"
 * code = LOINC#59776-5 "Procedure Findings"
