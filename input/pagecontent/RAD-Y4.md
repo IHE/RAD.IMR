@@ -28,7 +28,7 @@ The roles in this transaction are defined in the following table and may be paly
 
 **Figure 2:3.Y4.4-1: Interaction Diagram**
 
-#### 2:3.Y4.4.1 Retrieve Displayable Report Message
+#### 2:3.Y4.4.1 Retrieve Pre-rendered Report Message
 
 The Requester invokes a HTTP GET request to retrieve the document from the Responder.
 
@@ -36,11 +36,11 @@ The Responder shall support handling such messages from more than one Sender. Th
 
 ##### 2:3.Y4.4.1.1 Trigger Events
 
-The Requester wants to obtain a displayable report.
+The Requester wants to obtain a pre-rendered report.
 
 ##### 2:3.Y4.4.1.2 Message Semantics
 
-The Requester sends a HTTP GET request to the Responder. The Requester uses the url attribute from one of the DiagnosticReport.presentedForm entries returned in [RAD-Y3]. The Requester shall use the DiagnosticReport.presentedForm.contentType to determine which one of the available displayable reports to retrieve.
+The Requester sends a HTTP GET request to the Responder. The Requester uses the url attribute from one of the DiagnosticReport.presentedForm entries returned in [RAD-Y3]. The Requester shall use the DiagnosticReport.presentedForm.contentType to determine which one of the available pre-rendered reports to retrieve.
 
 The Requester may provide HTTP Accept header, according to the semantics of the HTTP protocols (see RFC2616, Section 14.1).  This enables the Requester to indicate prefered mime-types such that the Responder could provide the report requested in an encoding other than the encoding indicated in the DiagnosticReport.presentedForm.
 
@@ -50,19 +50,19 @@ The HTTP If-Unmodified-Since header may be included in the GET request if the Re
 
 ##### 2:3.Y4.4.1.3 Expected Actions
 
-The Responder shall provide the displayable report in the requested MIME type or reply with an HTTP status code indicating the error condition. The Responder is not required to transform the document.
+The Responder shall provide the pre-rendered report in the requested MIME type or reply with an HTTP status code indicating the error condition. The Responder is not required to transform the document.
 
-#### 2:3.Y4.4.2 Return Displayable Report Message
+#### 2:3.Y4.4.2 Return pre-rendered Report Message
 
 This is the return message sent by the Responder. 
 
 ##### 2:3.Y4.4.2.1 Trigger Events
 
-The HTTP Response message is sent upon completion of the Retrieve Displayable Report request. 
+The HTTP Response message is sent upon completion of the Retrieve pre-rendered Report request. 
 
 ##### 2:3.Y4.4.2.2 Message Semantics
 
-This message shall be an HTTP Response, as specified by RFC2616. When the requested displayable report is returned, the Responder shall respond with HTTP Status Code 200. The HTTP message-body shall be the content of the requested document.
+This message shall be an HTTP Response, as specified by RFC2616. When the requested pre-rendered report is returned, the Responder shall respond with HTTP Status Code 200. The HTTP message-body shall be the content of the requested document.
 
 Table 2:3.Y4.4.2.2-1 contains error situations and the HTTP Response.
 

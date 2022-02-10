@@ -28,15 +28,15 @@ Table XX.1-1: IMR Profile - Actors and Transactions
 
 | Actors  | Transactions  | Initiator or Responder | Optionality     | Reference                         |
 |---------|---------------|------------------------|-----------------|-----------------------------------|
-| Report Creator | \[RAD-Y1\] Store Multimedia Report | Initiator                       | R               | RAD TF-2: 3.Y1 |
-| Report Repository       | \[RAD-Y1\] Store Multimedia Report | Responder                        | R               | RAD TF-2: 3.Y1 |
-|                         | \[RAD-Y3\] Find Multimedia Report | Responder                         | R               | RAD TF-2: 3.Y3 |
-|                         | \[RAD-Y4\] Retrieve Displayable Multimedia Report | Responder                         | R               | RAD TF-2: 3.Y4 |
-| Report Reader          | \[RAD-Y2\] Display Multimedia Report | Initiator + Responder                      | R               | RAD TF-2: 3.Y2 |
-|                        | \[RAD-Y3\] Find Multimedia Report    | Initiator                                  | R               | RAD TF-2: 3.Y3 |
-|                        | \[RAD-Y4\] Retrieve Displaybale Multimedia Report    | Initiator                                  | O               | RAD TF-2: 3.Y4 |
-|                        | \[RAD-107\] WADO-RS Retrieve   | Initiator                                  | R               | RAD TF-2: 3.107 |
-| Image Manager / Image Archive | \[RAD-107\] WADO-RS Retrieve | Responder | R | RAD TF-2: 3.107 |
+| Report Creator | \[RAD-Y1\] Store Multimedia Report | Initiator                       | R               | RAD TF-2: 4.Y1 |
+| Report Repository       | \[RAD-Y1\] Store Multimedia Report | Responder                        | R               | RAD TF-2: 4.Y1 |
+|                         | \[RAD-Y3\] Find Multimedia Report | Responder                         | R               | RAD TF-2: 4.Y3 |
+|                         | \[RAD-Y4\] Retrieve Pre-rendered Multimedia Report | Responder                         | R               | RAD TF-2: 4.Y4 |
+| Report Reader          | \[RAD-Y2\] Display Multimedia Report | Initiator + Responder                      | R               | RAD TF-2: 4.Y2 |
+|                        | \[RAD-Y3\] Find Multimedia Report    | Initiator                                  | R               | RAD TF-2: 4.Y3 |
+|                        | \[RAD-Y4\] Retrieve Displaybale Multimedia Report    | Initiator                                  | R               | RAD TF-2: 4.Y4 |
+|                        | \[RAD-107\] WADO-RS Retrieve   | Initiator                                  | R               | RAD TF-2: 4.107 |
+| Image Manager / Image Archive | \[RAD-107\] WADO-RS Retrieve | Responder | R | RAD TF-2: 4.107 |
 {: .grid}
 
 ### XX.1.1 Actors Description and Actor Profile Requirements
@@ -44,7 +44,7 @@ Most requirements are documented in RAD TF-2 Transactions. This section document
 
 #### XX.1.1.1 Report Creator <a name="ReportCreator"> </a>
 
-Report Creators encode diagnostic reports with multimedia content for a service request. Report Creators may also support retrieve displayable multimedia report request if one or more displayable reports are hosted by itself and accessible via a URL.
+Report Creators encode diagnostic reports with multimedia content for a service request. Report Creators may also support retrieve pre-rendered multimedia report request if one or more pre-rendered reports are hosted by itself and accessible via a URL.
 
 Report Creators may support multiple rendering of the multimedia reports for different consumers (e.g. simple consumers that do not render the detailed multimedia contents on its own, or external consumers that do not have access to stuides inside the enterprise firewall),
 
@@ -58,7 +58,7 @@ Report Repositories may be grouped with Report Reader to suppor the 'push' model
 
 Optionally, Report Repositories support query/retrieve of multimedia reports. This enables independent Report Readers to retrieve reports.
 
-Furthermore, if Report Repositories receive multimedia reports with embedded displayable reports, it may extract the embedded report out and substitute it with a URL. This enables Report Repositories to support external access of reports in the future.
+Furthermore, if Report Repositories receive multimedia reports with embedded pre-rendered reports, it may extract the embedded report out and substitute it with a URL. This enables Report Repositories to support external access of reports in the future.
 
 #### XX.1.1.3 Report Reader <a name="ReportReader"> </a>
 
@@ -164,6 +164,8 @@ considerations and Section XX.6 describes some optional groupings in other relat
 ## XX.4 Interactive multimedia Report Overview <a name="overview"> </a>
 
 ### XX.4.1 Concepts
+
+
 
 #### XX.4.1.? Measurement captured as persistent objects vs transient message
 
