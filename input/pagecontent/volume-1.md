@@ -31,7 +31,7 @@ Table XX.1-1: IMR Profile - Actors and Transactions
 | Report Creator | \[RAD-Y1\] Store Multimedia Report | Initiator                       | R               | RAD TF-2: 4.Y1 |
 | Report Repository       | \[RAD-Y1\] Store Multimedia Report | Responder                        | R               | RAD TF-2: 4.Y1 |
 |                         | \[RAD-Y3\] Find Multimedia Report | Responder                         | R               | RAD TF-2: 4.Y3 |
-|                         | \[RAD-Y4\] Retrieve Pre-rendered Multimedia Report | Responder                         | R               | RAD TF-2: 4.Y4 |
+|                         | \[RAD-Y4\] Retrieve Rendered Multimedia Report | Responder                         | R               | RAD TF-2: 4.Y4 |
 | Report Reader          | \[RAD-Y2\] Display Multimedia Report | Initiator + Responder                      | R               | RAD TF-2: 4.Y2 |
 |                        | \[RAD-Y3\] Find Multimedia Report    | Initiator                                  | R               | RAD TF-2: 4.Y3 |
 |                        | \[RAD-Y4\] Retrieve Displaybale Multimedia Report    | Initiator                                  | R               | RAD TF-2: 4.Y4 |
@@ -44,7 +44,7 @@ Most requirements are documented in RAD TF-2 Transactions. This section document
 
 #### XX.1.1.1 Report Creator <a name="ReportCreator"> </a>
 
-Report Creators encode diagnostic reports with multimedia content for a service request. Report Creators may also support retrieve pre-rendered multimedia report request if one or more pre-rendered reports are hosted by itself and accessible via a URL.
+Report Creators encode diagnostic reports with multimedia content for a service request. Report Creators may also support retrieve rendered multimedia report request if one or more rendered reports are hosted by itself and accessible via a URL.
 
 Report Creators may support multiple rendering of the multimedia reports for different consumers (e.g. simple consumers that do not render the detailed multimedia contents on its own, or external consumers that do not have access to stuides inside the enterprise firewall),
 
@@ -58,7 +58,7 @@ Report Repositories may be grouped with Report Reader to suppor the 'push' model
 
 Optionally, Report Repositories support query/retrieve of multimedia reports. This enables independent Report Readers to retrieve reports.
 
-Furthermore, if Report Repositories receive multimedia reports with embedded pre-rendered reports, it may extract the embedded report out and substitute it with a URL. This enables Report Repositories to support external access of reports in the future.
+Furthermore, if Report Repositories receive multimedia reports with embedded rendered reports, it may extract the embedded report out and substitute it with a URL. This enables Report Repositories to support external access of reports in the future.
 
 #### XX.1.1.3 Report Reader <a name="ReportReader"> </a>
 
@@ -165,9 +165,11 @@ considerations and Section XX.6 describes some optional groupings in other relat
 
 ### XX.4.1 Concepts
 
+**TODO** Reference the HIMSS-SIIM IMR Technical Consideration Whitepaper when it is published
+
 #### XX.4.1.? Critical Attributes in Radiology Diagnostic Report
 
-The following table shows a common set of information that usually exist in a radiology report and how they are mapped to FHIR DiagnosticReport resource.
+In radiology reports, there is a common set of values to be included. The following table shows a common set of information and how they are mapped to FHIR DiagnosticReport resource.
 
 Table XX.4.1.?-1: Mapping of Critical Attributes in Radiology Diagnostic Report
 
@@ -184,7 +186,6 @@ Table XX.4.1.?-1: Mapping of Critical Attributes in Radiology Diagnostic Report
 | Examination      | DiagnosticReport.code | 1..1 | | Code for the diagnostic report, may be the same as the study procedure code |
 | Indication       | DiagnosticReport.extension[indication] | 0..* | | Each value can be either a string or a CodeableConcept |
 | Technique        | DiagnosticReport.result -> IMRObservation.method | 1..* -> 0..1 | IMRObservation.code = LOINC#59776-5 "Procedure Findings" | |
-| DLP              | ??? | | | |
 | Comparison       | DiagnosticReport.extension[comparisonStudy] | 0..* | Can be either an IMRImagingStudy or IMRDiagnosticReport | |
 | Findings         | DiagnosticReport.result -> IMRObservation.valueString | 1..* | LOINC#59776-5 "Procedure Findings" | Highly recommended to encode a single finding per observation, but acceptable to encode all findings as a single string to bridge existing applications |
 | Impressions      | DiagnosticReport.result -> IMRObservation.valueString | 1..* | IMRObservation.code = LOINC#19005-8 "Radiology Imaging study [Impression] (narrative)" | Highly recommended to encode a single impression per observation, but acceptable to encode all impressions as a single string to bridge existing application. Also it is highly recommended to use coded values whenever applicable.|
@@ -199,11 +200,34 @@ Table XX.4.1.7-2: Useful Optional Attributes in Radiology Diagnostic Report
 | Reason For Study | DiagnosticReport.imagingStudy -> IMRImagingStudy.reasonCode | 0..* | |
 | Study Description | DiagnosticReport.imagingStudy -> IMRImagingStudy.description | 0..* | |
 
+#### XX.4.1.? Source of Multimedia Content
 
+There are two sources of multimedia content for radiology reporting:
 
-#### XX.4.1.? Measurement captured as persistent objects vs transient message
+- User-defined
+    - These are the content provided by the user. This includes, but not limited to, annotations, measurements, image references, etc.
+- System-defined
+    - These are the content provided by a system. For example, parametric map generated by the modality or region of interest generated by an AI model
+
+These contents should be available to the report authoring system so that it can incorporate the details automatically.
 
 #### XX.4.1.? Real Time Communication between Image Display / Evidence Creator and Report Creator
+
+A key element for an IMR is the ability to include clinical findings such as measurements, ROI, etc. with interactive links to the source images. Traditionally, these annotations, markups, presentation states, and key images could be captured as DICOM objects such as GSPS, SR, or KOS. These objects are designed to capture evidence for long-term reference instead of real-time communication or composition. Most PACS will create these evidence objects at the end of a session in order to capture all the data points created by the image-centric specialist in one object, rather than create multiple evidence objects resulting in one per data point. As a result, these evidence objects in DICOM are good resources for subsequent interactive access when viewing an IMR, but not good candidates as the payload for real-time communication during a reporting session. As the image-centric specialist captures measurements, regions of interest, and other data points, the PACS should provide those data points to the reporting system in real-time without introducing any unnecessary interruptions, or adding transitory content to the permanent record.
+
+Several technologies could be used to implement such communication channels. For example, HL7’s [FHIRcast](https://fhircast.org/) uses the publish/subscribe model. It uses the WebSub W3C standard and originated as an application context synchronization standard that extends the SMART on FHIR authentication pattern. When applying FHIRcast in the context of IMR, the PACS can publish messages regarding the exam (e.g. identifier of a radiology exam) as well as granular context sharing of specific images and measurements (e.g., measurement details and referenced images), and one or more systems can subscribe to this notification and respond accordingly; in particular, a dictation system might launch in exam context, as well as insert the measurements or image references during dictation. The message payload, or event, in FHIRcast is a FHIR resource, such as an Observation. 
+
+For scenarios when both the image viewing system and report authoring system are webapps, FHIRcast may be too heavyweight due to the need for a mediator. The proposed [SMART Web Messaging](https://github.com/HL7/smart-web-messaging) standard is a lightweight alternative that can transmit the same event payloads as FHIRcast, over HTML5 web messaging. This enables two systems to communicate in the same browser process using the same payloads that FHIRcast integration uses, thereby enabling the developers to integrate rapidly, then progressively enhance the solution towards FHIRcast without modifying the event payloads.
+
+It is important to note that this real-time communication is not limited to IMR but generally applicable to many contexts. A realtime mechanism to share granular context from an image viewing system could create a plug-in architecture for decision support systems to extend the image analysis and reporting process. In our prior example, an AI system might be notified of a new measurement, pull the measurement source image and automatically identify the anatomic location and Lung-Rads score that could then be transmitted to the reporting system.
+
+#### XX.4.1.? Placement of Multimedia Content
+
+At a basic level, multimedia content can be placed at the end of the report. This can be achieved with low level of communications between the PACS and the Reporting System as long as these multimedia contents (or their corresponding references) are known at some point by the Reporting System, which can then insert these contents towards the end of the report.
+
+Although this can be useful, a more sophisticated placement of multimedia contents is the ability to insert them in context of the findings and impressions. For example, when a description such as "Prominent or mildly enlarged mediastinal and bilateral hilar lymph nodes measure up to 1.2 x 0.8 cm in the right paratracheal station" is recorded as a finding, the corresponding image reference with the matching markup if available are injected in the same context as hyperlink, such that subsequently upon viewing the report, a user can access the matching multimedia content in context while reading the report.
+
+This sophisticated placement of multimedia contents requires a more complex interaction between the PACS and the Reporting System because both systems need to know the current context and be able to mark their respective data accordingly. This also requires a low latency commmunication because any pause required by the radiologist to synchronize the two systems during a reporting session will cause significant distraction to the radiologist.
 
 #### XX.4.1.? Level of Interactivity
 
