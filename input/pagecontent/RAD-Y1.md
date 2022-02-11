@@ -81,7 +81,7 @@ Since each resource in the bundle is self-sufficient and are valuable as standal
 
 When resources are `contained`, they shall be contained using the FHIR contained method (see [http://hl7.org/fhir/R4/references.html#contained](http://hl7.org/fhir/R4/references.html#contained) ).
 
-The Sender shall encode the pre-rendered report that is referenced by DiagnosticReport.presentedForm in one of the following ways:
+The Sender shall encode the rendered report that is referenced by DiagnosticReport.presentedForm in one of the following ways:
 - Encode the report as a base64Binary in DiagnosticReport.presentedForm.data
 - Encode the report as a base64Binary in a [Binary Resource](https://www.hl7.org/fhir/binary.html) and this Binary Resource is referenced in DiagnosticReport.presentedForm.url.
   - The Binary Resource shall be in the Bundle. See FHIR Resolving references in Bundles at [http://hl7.org/fhir/R4/bundle.html#references](http://hl7.org/fhir/R4/bundle.html#references). 
@@ -121,7 +121,7 @@ Since there are many variations of finding types and IMR is designed to be gener
 
 ###### 2:3.Y1.4.1.2.2 Report Attachment
 
-The [IMR DiagnosticReport](StructureDefinition-imr-diagnosticreport.html) resource shall have a default rendered diagnostic report in HTML format in the presentedForm attribute. The presentedForm.contentType shall have the value "text/html". Additional pre-rendered reports may be included.
+The [IMR DiagnosticReport](StructureDefinition-imr-diagnosticreport.html) resource shall have a default rendered diagnostic report in HTML format in the presentedForm attribute. The presentedForm.contentType shall have the value "text/html". Additional rendered reports may be included.
 
 For observations that have image references using Observation.derivedFrom attribute,
 - If the image references are not inline of the Observation.value[x], then the Sender shall add a hyperlink using the HTML anchor element (i.e. <a>), with the display text for the hyperlink being the corresponding value[x] in a clinically relevant textual representation. The value for href for this hyperlink shall be based on the endpoint(s) defined in the referenced [IMR ImagingStudy]((StructureDefinition-imr-imagingstudy.html)).
@@ -151,7 +151,7 @@ A Receiver is allowed to be robust for non-compliant resources that violate the 
 
 If necessary for processing, the Receiver shall retrieve Resources referenced by absolute URLs in the FHIR Bundle Resource.
 
-The Receiver may extract the embedded pre-rendered report(s) in DiagnosticReport.presentedForm.data, store them and substitute the corresponding DiagnosticReport.presentedForm with a URL (i.e. DiagnosticReport.presentedForm.url) instead. The Receiver shall maintain the integrity of the report if the report is extracted.
+The Receiver may extract the embedded rendered report(s) in DiagnosticReport.presentedForm.data, store them and substitute the corresponding DiagnosticReport.presentedForm with a URL (i.e. DiagnosticReport.presentedForm.url) instead. The Receiver shall maintain the integrity of the report if the report is extracted.
 
 If the Receiver encounters any errors or if any validation fails, the Receiver shall return an appropriate error.
 

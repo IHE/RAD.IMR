@@ -7,8 +7,8 @@ participant "Responder" as Repo
 
 activate Reader
 activate Repo
-Reader->Repo: Retrieve Pre-rendered Report
-Repo-->Reader: Return Pre-rendered Report
+Reader->Repo: Retrieve Rendered Report
+Repo-->Reader: Return Rendered Report
 deactivate Repo
 deactivate Reader
 

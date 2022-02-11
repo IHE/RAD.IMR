@@ -17,8 +17,8 @@ These issues were known as part of the publication, and IHE invites comments.
 
 - Do we need to capture when the DiagnosticReport resource is signed off by the radiologist? There is currently no such timestamp available.
 
-- Should the Report Creator supports RAD-Y4 Retrieve Pre-rendered Diagnostic Report?
-    - It is possile for the Report Creator to include a pre-rendered report in DiagnosticReport.presentedForm using a URL link instead of embedded. This is the case if the Report Creator host the report on its own. In this case, should the Report Creator require to support RAD-Y4? Currently it is optional for the Report Repository to retrieve the report from Report Creator and then switch the hosting to itself. The expectation is that the Report Repository is design to host these reports and support API to query/retrieve reports or distribute the reports. Such behavior is normally not expected from a Report Creator.
+- Should the Report Creator supports RAD-Y4 Retrieve Rendered Diagnostic Report?
+    - It is possile for the Report Creator to include a rendered report in DiagnosticReport.presentedForm using a URL link instead of embedded. This is the case if the Report Creator host the report on its own. In this case, should the Report Creator require to support RAD-Y4? Currently it is optional for the Report Repository to retrieve the report from Report Creator and then switch the hosting to itself. The expectation is that the Report Repository is design to host these reports and support API to query/retrieve reports or distribute the reports. Such behavior is normally not expected from a Report Creator.
 
 #### Closed Issues
 

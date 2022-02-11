@@ -19,7 +19,7 @@ This guide is organized into four main sections:
    1. [Store Multimedia Report [RAD-Y1]](RAD-Y1.html)
    1. [Display Multimedia Report [RAD-Y2]](RAD-Y2.html)
    1. [Find Multimedia Report [RAD-Y3]](RAD-Y3.html)
-   1. [Retrieve Pre-rendered Multimedia Report [RAD-Y4]](RAD-Y4.html)
+   1. [Retrieve Rendered Multimedia Report [RAD-Y4]](RAD-Y4.html)
 
 3. Volume III: Metadata
    1. **TODO: point to your content profiles if you have them**
