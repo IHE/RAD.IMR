@@ -56,3 +56,12 @@ Description:    "IHE Interactive Multimedia Report (IMR) profile on Observation"
 * component 0..* MS
 * component.id 0..1 MS
 * component.value[x] 1..1 MS
+
+* code from IMRObservationCodeVS (extensible)
+
+ValueSet:  IMRObservationCodeVS
+Id: imr-observation-code-vs
+Title: "IMR Study Endpoint PayloadType Value Set"
+Description: "Codes representing the different kinds of findings in radiology report."
+* LOINC#59776-5 "Procedure Findings"
+* LOINC#19005-8 "Radiology Imaging study [Impression] (narrative)"
