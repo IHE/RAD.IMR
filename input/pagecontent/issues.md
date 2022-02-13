@@ -20,6 +20,9 @@ These issues were known as part of the publication, and IHE invites comments.
 - Should the Report Creator supports RAD-Y4 Retrieve Rendered Diagnostic Report?
     - It is possile for the Report Creator to include a rendered report in DiagnosticReport.presentedForm using a URL link instead of embedded. This is the case if the Report Creator host the report on its own. In this case, should the Report Creator require to support RAD-Y4? Currently it is optional for the Report Repository to retrieve the report from Report Creator and then switch the hosting to itself. The expectation is that the Report Repository is design to host these reports and support API to query/retrieve reports or distribute the reports. Such behavior is normally not expected from a Report Creator.
 
+- Use ImageSelection to specify how multimedia content can be referenced in an Observation?
+    - In FHIR R5, a new ImageSelection resource is available, which allows more sophisticated reference to a study, with the additional capability to include imageRegion. This is a good match for IMR, but currently in draft.
+
 #### Closed Issues
 
 These issues have been decided and documented in the publication.
