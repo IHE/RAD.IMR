@@ -68,19 +68,39 @@ There are baseline image viewing capabilities required for Report Reader, while 
 
 The following subsections describe three different pathways that the Report Readers can display the images to the user.
 
-##### XX.1.1.3.1 Report Reader standalone </a>
+##### XX.1.1.3.1 Report Reader standalone <a name="ReportReaderStandalone"> </a>
 
-Standalone Report Readers are Report Readers that is self-sufficient to handle and display the multimedia report itself as well as all the referenced multimedia contents. In this case, Report Readers retrieve the images from Image Manager / Image Archive and display the images to the user with some basic viewing capabilities.
+Standalone Report Readers are Report Readers that can handle and display the multimedia report by itself as well as all the referenced multimedia contents. In this case, Report Readers retrieve the images from Image Manager / Image Archive and display the images to the user with some basic viewing capabilities.
+
+###### XX.1.1.3.1.1 Retrieve Images
+
+Standalone Report Reader shall use WADO-RS Retrieve [RAD-107] to retrieve images from an Image Manager / Image Archive.
+
+The request shall have the same semantics as RetrieveInstance or RetrieveFrames as defined in WADO-RS Retrieve [RAD-107], based on DiagnosticReport.result.derivedFrom.endpoint.address or DiagnosticReport.result.component.extension[derivedFrom].endpoint.address.
+
+If the Standalone Report Reader claims support of the Series/Study Navigation Option, then the request shall also support the RetrieveSeries and RetrieveStudy semantics.
 
 ##### XX.1.1.3.2 Report Reader with Integrated Invoke Image Display <a name="ReportReaderwithIID"> </a>
 
 Report Readers retrieve multimedia report from Report Repositories and present the reports to the user. When interacting with the multimedia contents in the reports, the Report Readers launch the integrated Invoke Image Display actors to access the corresponding multimedia contents in the reports and display them to the user.
 
-##### XX.1.1.5 Report Reader with Integrated Image Display <a name="ReportReaderwithSWF"> </a>
+###### XX.1.1.3.2.1 Retrieve Images
+
+Report Reader integrated with Image Display Invoker shall use Invoke Image Display [RAD-106] to invoke an Image Display which in turn retrieves images from an Image Manager / Image Archive.
+
+The request shall have the same semantics as Retrieve Display of Series Images or Retrieve Display of Study Images in Invoke Image Display [RAD-106].
+
+##### XX.1.1.3.3 Report Reader with Integrated Image Display <a name="ReportReaderwithSWF"> </a>
 
 Report Readers retrieve multimedia report from Report Repositories and present the reports to the user. When interacting with the multimedia contents in the reports, the Report Readers launch the integrated Image Display actors to access the corresponding multimedia contents in the reports and display them to the user.
 
-#### XX.1.1.6 Image Manager / Image Archive <a name="ImageArchive"> </a>
+###### XX.1.1.3.3.1 Retrieve Images
+
+Report Reader integrated with Image Display shall use DICOM C-Move request to retrieve images from an Image Manager / Image Archive.
+
+The request shall have the same semantics as Retrieve Images [RAD-16], Retrieve Presentation States [RAD-17], Retrieve Reports [RAD-27], Retrieve Key Image Notes [RAD-31] or Retrieve Evidence Document [RAD-45].
+
+#### XX.1.1.4 Image Manager / Image Archive <a name="ImageArchive"> </a>
 
 Image Manager / Image Archive provides the images and related objects to the Report Readers.
 
@@ -166,6 +186,12 @@ considerations and Section XX.6 describes some optional groupings in other relat
 ### XX.4.1 Concepts
 
 **TODO** Reference the HIMSS-SIIM IMR Technical Consideration Whitepaper when it is published
+
+#### XX.4.1.? What is Structure
+
+**TODO**
+
+The primary goal is to capture the report content with some interactive links. It is not the intention to require fully coded content in the report.
 
 #### XX.4.1.? Critical Attributes in Radiology Diagnostic Report
 

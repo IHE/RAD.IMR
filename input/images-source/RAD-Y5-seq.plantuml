@@ -7,7 +7,7 @@ participant "//'User'//" as User
 
 activate Reader
 activate User
-Reader->User: Display Multimedia Report
+Reader->User: Display Images
 deactivate User
 deactivate Reader
 

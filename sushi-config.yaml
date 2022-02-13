@@ -67,6 +67,9 @@ pages:
   RAD-Y4.md:
     title: 2:3.Y4 Retrieve Rendered Multimedia Report [RAD-Y4]
     generation: markdown
+  RAD-Y5.md:
+    title: 2:3.Y5 Display Images [RAD-Y5]
+    generation: markdown
   testplan.md:
     title: "Test Plan"
     generation: markdown
@@ -89,5 +92,6 @@ menu:
     "Display Multimedia Report [RAD-Y2]": RAD-Y2.html
     "Find Multimedia Report [RAD-Y3]": RAD-Y3.html
     "Retrieve Rendered Multimedia Report [RAD-Y4]": RAD-Y4.html
+    "Display Images [RAD-Y5]": RAD-Y5.html
   Test Plan: testplan.html
   Artifacts: artifacts.html
