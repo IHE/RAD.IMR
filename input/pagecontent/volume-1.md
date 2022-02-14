@@ -32,9 +32,10 @@ Table XX.1-1: IMR Profile - Actors and Transactions
 | Report Repository       | \[RAD-Y1\] Store Multimedia Report | Responder                        | R               | RAD TF-2: 4.Y1 |
 |                         | \[RAD-Y3\] Find Multimedia Report | Responder                         | R               | RAD TF-2: 4.Y3 |
 |                         | \[RAD-Y4\] Retrieve Rendered Multimedia Report | Responder                         | R               | RAD TF-2: 4.Y4 |
-| Report Reader          | \[RAD-Y2\] Display Multimedia Report | Initiator + Responder                      | R               | RAD TF-2: 4.Y2 |
+| Report Reader          | \[RAD-Y2\] Display Multimedia Report | Responder                      | R               | RAD TF-2: 4.Y2 |
 |                        | \[RAD-Y3\] Find Multimedia Report    | Initiator                                  | R               | RAD TF-2: 4.Y3 |
 |                        | \[RAD-Y4\] Retrieve Displaybale Multimedia Report    | Initiator                                  | R               | RAD TF-2: 4.Y4 |
+|                        | \[RAD-Y5\] Display Images    | Responder                                  | R               | RAD TF-2: 4.Y5 |
 |                        | \[RAD-107\] WADO-RS Retrieve   | Initiator                                  | R               | RAD TF-2: 4.107 |
 | Image Manager / Image Archive | \[RAD-107\] WADO-RS Retrieve | Responder | R | RAD TF-2: 4.107 |
 {: .grid}
@@ -187,44 +188,29 @@ considerations and Section XX.6 describes some optional groupings in other relat
 
 **TODO** Reference the HIMSS-SIIM IMR Technical Consideration Whitepaper when it is published
 
-#### XX.4.1.? What is Structure
+#### XX.4.1.? What is Structure in Radiology Reporting
 
-**TODO**
+In reporting, structure can significantly improve usability, both for machine consumption and human consumption. There are different types of structure that are relevant to reporting:
 
-The primary goal is to capture the report content with some interactive links. It is not the intention to require fully coded content in the report.
+##### Message Structure
 
-#### XX.4.1.? Critical Attributes in Radiology Diagnostic Report
+In the most basic form, the clinical report is conveyed between the sender and the receiver using some kind of message format. The message format defines a structure for the overall payload, including the metadata and the actual report content. For example, HL7 v2 ORU messages or FHIR DiagnosticReport resources define such a message structure that governs where different content should be placed, such as patient, order, findings, impressions, etc.
 
-In radiology reports, there is a common set of values to be included. The following table shows a common set of information and how they are mapped to FHIR DiagnosticReport resource.
+The [Results Distribution](https://www.ihe.net/uploadedFiles/Documents/Radiology/IHE_RAD_Suppl_RD.pdf) profile specifies using HL7 v2 ORU as the message structure while this Interactive Multimedia Report profile specifies using FHIR DiagnosticReport resource as the message structure.
 
-Table XX.4.1.?-1: Mapping of Critical Attributes in Radiology Diagnostic Report
+##### Report Content Structure
 
-| Report Attribute | FHIR Resource Mapping | Cardinality | Additional Constraint | Note |
-|------------------|-----------------------|-------------|-----------------------|------|
-| Organization     | DiagnosticReport.performer | 1..1 | | Deployment applicable Organization Profile should be applied |
-| Results Interpreter | DiagnosticReport.resultsInterpreter | 1..* | Can be either Practitioner or PractitionerRole | Deployment applicable Practitioner or PractitionerRole Profile should be applied |
-| Patient Name     | DiagnosticReport.subject -> Patient.name | 1..1 -> 0..* |   | Deployment applicable Patient Profile should be applied       |
-| Patient MRN      | DiagnosticReport.subject -> Patient.identifier | 1..1 -> 0..* | | Deployment applicable Patient Profile should be applied |
-| Accession Number | DiagnosticReport.basedOn -> IMRServiceRequest.identifier | 1..* -> 1..* | identifier.type has a code for Accession Number | |
-| Study Date       | DiagnosticReport.imagingStudy -> IMRImagingStudy.started | 1..1 -> 1..1 | | |
-| Study Type       | DiagnosticReport.imagingStudy -> IMRImagingStudy.procedureCode | 1..1 -> 0..* | | |
-| Report Status    | DiagnosticReport.status | 1..1 | partial, preliminary, final, amended, corrected, appended, cancelled | A subset from what is defined in FHIR |
-| Examination      | DiagnosticReport.code | 1..1 | | Code for the diagnostic report, may be the same as the study procedure code |
-| Indication       | DiagnosticReport.extension[indication] | 0..* | | Each value can be either a string or a CodeableConcept |
-| Technique        | DiagnosticReport.result -> IMRObservation.method | 1..* -> 0..1 | IMRObservation.code = LOINC#59776-5 "Procedure Findings" | |
-| Comparison       | DiagnosticReport.extension[comparisonStudy] | 0..* | Can be either an IMRImagingStudy or IMRDiagnosticReport | |
-| Findings         | DiagnosticReport.result -> IMRObservation.valueString | 1..* | LOINC#59776-5 "Procedure Findings" | Highly recommended to encode a single finding per observation, but acceptable to encode all findings as a single string to bridge existing applications |
-| Impressions      | DiagnosticReport.result -> IMRObservation.valueString | 1..* | IMRObservation.code = LOINC#19005-8 "Radiology Imaging study [Impression] (narrative)" | Highly recommended to encode a single impression per observation, but acceptable to encode all impressions as a single string to bridge existing application. Also it is highly recommended to use coded values whenever applicable.|
+In a radiology report, although they are many variations of what information a report should contain depending on the procedure and specialty, there are general common sections in a report such as Indication, Methods, Findings, Impressions, etc.
 
-In addition to the common set above, there are also a number of useful optional attributes that can be used if applicable.
+The [Results Distribution](https://www.ihe.net/uploadedFiles/Documents/Radiology/IHE_RAD_Suppl_RD.pdf) profile specifies using different OBX segments for different sections while this Interactive Multimedia Report profile specifies using different FHIR DiagnosticReport.result which are referenced Observation resources for different sections.
 
-Table XX.4.1.7-2: Useful Optional Attributes in Radiology Diagnostic Report
+##### Report Content Encoding
 
-| Report Attribute | FHIR Resource Mapping | Cardinality | Additional Constraint | Note |
-|------------------|-----------------------|-------------|-----------------------|------|
-| Referring Physician | DiagnosticReport.imagingStudy -> IMRImagingStudy.referrer | 0..* | |
-| Reason For Study | DiagnosticReport.imagingStudy -> IMRImagingStudy.reasonCode | 0..* | |
-| Study Description | DiagnosticReport.imagingStudy -> IMRImagingStudy.description | 0..* | |
+Also known as 'structured reporting' or 'synoptic reporting', structure refers to the use of fully coded values in pre-coordinated form or post-coordinated form, in which the values are drawn from some value sets such as LOINC or SNOMED-CT, in order to represent the full concept.
+
+This has been successfully used in certain discipline such as cancer screening, but it is less common in general radiology reporting practice.
+
+The primary goal of this Interactive Multimedia Report Profile is to focus on Report Content Structure, introduce the ability to capture report content with some interactive links that referencing other contents such as the source images. It is not the intention of this profile to require fully coded content in the report.
 
 #### XX.4.1.? Source of Multimedia Content
 
@@ -236,6 +222,10 @@ There are two sources of multimedia content for radiology reporting:
     - These are the content provided by a system. For example, parametric map generated by the modality or region of interest generated by an AI model
 
 These contents should be available to the report authoring system so that it can incorporate the details automatically.
+
+#### XX.4.1.? Image Reference Locations
+
+
 
 #### XX.4.1.? Real Time Communication between Image Display / Evidence Creator and Report Creator
 
