@@ -126,21 +126,21 @@ The Sender shall populate accurate .hash and .size for the report content in pre
 * Where the presentedForm is a Binary Resource instance, the .hash and .size measure the raw artifact that has been base64encoded in the Binary.data element.  
 * Where the presentedForm is hosted elsewhere, not as a Binary Resource, the .hash and the .size shall represent the report content that would be retrieved using the mime-type specified in contentType element. 
 
-**TODO: Write in the context of what the receiver can reject**: Patient would typically only be allowed by the Receiver in PUSH interaction situations, but may be accepted for other reasons at the discretion of the Receiver actor policy.
-
 The following subsections describe the details requirements for each referenced resource in the bundle. A complete example of a DiagnosticReport is available in [IMR DiagnosticReport Example](DiagnosticReport-ex-DiagnosticReport.json.html).
 
 ###### 2:3.Y1.4.1.2.2 Observation
+
+The Sender shall set the code attribute according to the IMR Observation specification indicating if the observation is a finding or impression or some other types.
+
+The Sender shall encode each impression as a separate [IMR Observation](StructureDefinition-imr-observation.html) resource. The Sender shall encode all clinical findings using IMR Observation resources. Each finding may be encoded as a separate IMR Observation resource, or all findings may be included in a single IMR Observation resource as an unstructured content in Observation.valueString.
 
 The Sender shall encode unstructured content in Observation.valueString.
 
 The Sender shall encode structured content using the appropriate data type available in Observation.value[x].
 
-The Sender shall encode the study in which this observation is derived from, if available, in Observation.derivedFrom using an[IMR ImagingStudy](StructureDefinition-imr-imagingstudy.html) resource. This attribute shall include the study and series references. This attribute may include image references.
+###### 2:3.Y1.4.1.2.2.1 Image References in Observation
 
-The Sender shall set the code attribute according to the IMR Observation specification indicating if the observation is a finding or impression or some other types.
-
-The Sender shall encode each impression as a separate [IMR Observation](StructureDefinition-imr-observation.html) resource. The Sender shall encode all clinical findings using IMR Observation resources. Each finding may be encoded as a separate IMR Observation resource, or all findings may be included in a single IMR Observation resource as an unstructured content in Observation.valueString.
+The Sender shall encode the study in which this observation is derived from, if available, in Observation.derivedFrom using an [IMR ImagingStudy](StructureDefinition-imr-imagingstudy.html) resource. This attribute shall include the study and series references. This attribute may include image references.
 
 For unstructured content, one or more image references can be directly embedded inline the text. The Sender shall encode an inline image reference as follow:
 
@@ -169,7 +169,7 @@ Informative examples are available at [IMR Observation Examples](StructureDefini
 
 The Sender shall include a default rendered diagnostic report in HTML format in the DiagnosticReport.presentedForm attribute. The presentedForm.contentType shall have the value "text/html".
 
-For observations that have image references using Observation.derivedFrom attribute, the Sender shall add a hyperlink using the HTML anchor element (i.e. `<a>`), with the display text for the hyperlink being the corresponding value[x] in a clinically relevant textual representation. The value for href for this hyperlink shall be constructed based on the endpoint(s) defined in the referenced [IMR ImagingStudy]((StructureDefinition-imr-imagingstudy.html)) resource.
+For IMR Observations that have image references using Observation.derivedFrom attribute, the Sender shall add a hyperlink using the HTML anchor element (i.e. `<a>`), with the display text for the hyperlink being the corresponding value[x] in a clinically relevant textual representation. The value for href for this hyperlink shall be constructed based on the endpoint(s) defined in the referenced [IMR ImagingStudy]((StructureDefinition-imr-imagingstudy.html)) resource.
 
 For inline image references in Observation.valueString, the Sender shall substitute each `<IMRRef>`...`</IMRRef>` markup with an HTML anchor element. The href attribute shall be set to the concatenation of the ImagingStudy.endpoint.address with the valueString from the matching Observation.component.id entry. The resulting URL shall be a valid URL according to the contentType.
 
@@ -192,6 +192,8 @@ The Receiver shall accept both media types `application/fhir+json` and `applicat
 On receipt of the request message, the Receiver shall validate the resources and respond with one of the HTTP codes defined in the response [Message Semantics](#2365412-message-semantics). 
 
 The Receiver shall process the bundle atomically, analogous to the FHIR “transaction” as specified in [http://hl7.org/fhir/R4/http.html#transaction](http://hl7.org/fhir/R4/http.html#transaction). 
+
+> Note: A Receiver may not allow resources such as Patient, Organization, Practitioner, etc. referenced within the bundle that are unknown to the Receiver. A Receiver may support "conditional create" semantics (currently in trial use as defined in [FHIR RESTful API](https://www.hl7.org/fhir/http.html#create). Therefore the actual behavior is at the discretion of the Receiver actor policy.
 
 The Receiver shall validate the bundle first against the FHIR specification. Guidance on what FHIR considers a valid Resource can be found at [http://hl7.org/fhir/R4/validation.html](http://hl7.org/fhir/R4/validation.html). 
 
