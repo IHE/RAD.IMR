@@ -5,7 +5,7 @@ Title:          "IMR DiagnosticReport"
 Description:    "IHE Interactive Multimedia Report (IMR) profile on DiagnosticRpoert"
 
 // Shall reference one ServiceRequest
-* basedOn 1..*
+* basedOn 1..* MS
 
 * basedOn ^slicing.discriminator.type = #type
 * basedOn ^slicing.discriminator.path = DiagnosticReport.basedOn.resolve()

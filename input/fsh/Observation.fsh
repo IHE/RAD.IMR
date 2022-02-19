@@ -57,6 +57,7 @@ Description:    "IHE Interactive Multimedia Report (IMR) profile on Observation"
 * component.id 0..1 MS
 * component.value[x] 1..1 MS
 
+* code MS
 * code from IMRObservationCodeVS (extensible)
 
 ValueSet:  IMRObservationCodeVS
