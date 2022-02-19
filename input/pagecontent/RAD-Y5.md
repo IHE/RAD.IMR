@@ -1,10 +1,10 @@
 ### 2:3.Y5.1 Scope
 
-This transaction is used to present the images referenced in multimedia report to someone, such as a radiologist or a clinicians, in such a way that the user can interact with.
+This transaction is used to present the images referenced in that multimedia report to someone, such as a radiologist or a clinicians, in such a way that the user can interact with.
 
 ### 2:3.Y5.2 Actors Roles
 
-The roles in this transaction are defined in the following table and may be palyed by the actors shown here:
+The roles in this transaction are defined in the following table and may be played by the actors shown here:
 
 **Table: Actor Roles**
 
@@ -35,29 +35,64 @@ The Display presents the images referenced in a multimedia report to the user.
 
 ##### 2:3.Y5.4.1.1 Trigger Events
 
-The User navigates through the multimedia content and triggers the Display to fetch the selected referenced images as specified in the multimedia report.
-
-The Display received the requested images.
+The Display received the requested images as a result of a User navigating through the multimedia content to view selected referenced images as specified in the multimedia report.
 
 ##### 2:3.Y5.4.1.2 Message Semantics
 
-This transaction does not depend on how the images referenced by the multimedia report are represented (DICOM binary, DICOM XML, DICOM JSON), or the messaging protocol by which the images were transferred to the Display. If the Display receives the reports by a profiled mechanism such as DICOM C-STORE, or DICOMweb WADO-RS, the messaging protocol is specified in that corresponding transaction. If images are accessed by being grouped with another actor such as an Image Display, there is no messaging protocol involved.
+This transaction does not depend on how the images referenced by the multimedia report are represented (DICOM binary, DICOM XML, DICOM JSON), or the messaging protocol by which the images were transferred to the Display. If the Display receives the reports by a profiled mechanism such as DICOM C-STORE, or DICOMweb WADO-RS, the messaging protocol is specified in that corresponding transaction. If the images are accessed by being grouped with another actor such as an Image Display, there is no messaging protocol involved.
 
 #### 2:3.Y5.4.1.3 Expected Actions (i.e. Display Requirements)
 
-The behaviors in this section are specified as baseline capabilities. Displays may have additional or alternative capabilities that may be invokved or configured.
+The behaviors in this section are specified as baseline capabilities. Displays may have additional or alternative capabilities that may be invoked or configured.
 
-**By default, point to BIR ??? flag any issue**
+The Display shall provide support for all the SOP Classes specified in Table 2:3.Y5.4.1.3-1.
 
-The Display shall support the following interactive behavior when showing the images:
-- Window level the images
-- Present markup and annotations received along with the images
-- Toggle the markup and annotations
+Table 2:3.Y5.4.1.3-1: SOP Classes for IMR Report Reader
+
+| SOP Class UID | SOP Class Name |
+|---------------|----------------|
+| 1.2.840.10008.5.1.4.1.1.1 | Computed Radiography Image Storage |
+| 1.2.840.10008.5.1.4.1.1.2 | CT Image Storage |
+| 1.2.840.10008.5.1.4.1.1.1.1 | Digital X-Ray Image Storage – For Presentation |
+| 1.2.840.10008.5.1.4.1.1.4 | MR Image Storage |
+| 1.2.840.10008.5.1.4.1.1.7.2 | Multi-frame Grayscale Byte Secondary Capture Image Storage ??? |
+| 1.2.840.10008.5.1.4.1.1.7.3 | Multi-frame Grayscale Word Secondary Capture Image Storage ??? |
+| 1.2.840.10008.5.1.4.1.1.7.1 | Multi-frame Single Bit Secondary Capture Image Storage ??? |
+| 1.2.840.10008.5.1.4.1.1.7.4 | Multi-frame True Color Secondary Capture Image Storage ??? |
+| 1.2.840.10008.5.1.4.1.1.20 | Nuclear Medicine Image Storage ??? |
+| 1.2.840.10008.5.1.4.1.1.128 | Positron Emission Tomography Image Storage ??? |
+| 1.2.840.10008.5.1.4.1.1.7 | Secondary Capture Image Storage |
+| 1.2.840.10008.5.1.4.1.1.6.1 | Ultrasound Image Storage |
+| 1.2.840.10008.5.1.4.1.1.3.1 | Ultrasound Multi-frame Image Storage |
+| 1.2.840.10008.5.1.4.1.1.12.1 | X-Ray Angiographic Image Storage ??? |
+| 1.2.840.10008.5.1.4.1.1.12.2 | X-Ray Radiofluoroscopic Image Storage ??? |
+{: .grid}
+
+A Display shall support for all SOP Classes not specified in Table 2:3.Y5.4.1.3-1 that have the following
+characteristics:
+- Pixel Data (7FE0,0010) data element present
+- Bits Allocated (0028,0100) of 8 or 16
+- Bits Stored (0028,0101) values of 1 or 8 for Bits Allocated (0028,0100) of 8
+- Bits Stored (0028,0101) values of 9 to 16 inclusive, for Bits Allocated (0028,0100) of
+16
+- High Bit (0028,0102) of one less than Bits Stored (0028,0101) (i.e., in the low bits of
+600 the word, without packing)
+- Samples Per Pixel (0028,0002) of 1 or 3
+- Photometric Interpretation (0028,0004) of MONOCHROME1, MONOCHROME2, RGB, PALETTE COLOR, and any appropriate value for any multi-component compressed transfer syntaxes that are supported (e.g., YBR_FULL_422 for JPEG)
+- Planar Configuration (0028,0006) of 0 or 1 for RGB Photometric Interpretation (0028,0004) (i.e. color-by-pixel or  color-by-plane)
+- Pixel Representation (0028,0103) of 0 or 1 for MONOCHROME1 and MONOCHROME2 Photometric Interpretation (0028,0004) (i.e. signed or unsigned)
+- Number of Frames (0028,0008) absent or with any value (i.e., single or multi-frame images)
+
+The Display shall support the following subset of image viewing capabilities as defined in [Basic Image Review (BIR)](https://www.ihe.net/uploadedFiles/Documents/Radiology/IHE_RAD_Suppl_BIR.pdf) Profile Section 4.16.4.2.2.5 when showing the images:
+- Windowing and Rendering (Section 4.16.4.2.2.5.4 except for Clamp Mode ???)
+- Zooming and Panning (Section 4.16.4.2.2.5.6)
+- Annotation (Section 4.16.4.2.2.5.8)
+- Measurements (Section 4.16.4.2.2.5.10 except for Cobb angle ???)
 
 The Requester may provide basic viewing tools for the user to interactive with the images.
 
 If the Requester supports the Series/Study Navigation Option, the Requester shall support the following additional interactive behavior:
-- Scrolling through the images in the series
+- Scrolling (Section 4.16.4.2.2.5.5)
 
 ### 2:3.Y5.5 Security Considerations
 
