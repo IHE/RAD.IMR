@@ -1,6 +1,6 @@
 ### 2:3.Y2.1 Scope
 
-This transaction is used to present the multimedia report content to someone, such as a radiologist or a clinicians, in such a way that the user can interact with the embedded multimedia contents.
+This transaction is used to present the report content to someone, such as a radiologist or a clinicians, in such a way that the user can interact with the embedded multimedia contents.
 
 ### 2:3.Y2.2 Actors Roles
 
@@ -43,46 +43,65 @@ The report is encoded in a FHIR [IMR DiagnosticReport](StructureDefinition-imr-d
 
 This transaction does not depend on how the IMR DiagnosticReport resources were transferred to the Display. If the Display receives the reports by a profiled mechanism such as Find Multimedia Report [RAD-Y3], the messaging protocol is specified in that corresponding transaction. If reports are accessed by being grouped with another actor such as Report Repository, there is no messaging protocol involved.
 
-#### 2:3.Y2.4.1.3 Expected Actions (i.e. Display Requirements)
+##### 2:3.Y2.4.1.3 Expected Actions (i.e. Display Requirements)
 
-The behaviors in this section are specified as baseline capabilities. Displays may have additional or alternative capabilities that may be invokved or configured.
+The behaviors in this section are specified as baseline capabilities. Displays may have additional or alternative capabilities that may be invoked or configured.
 
-The Display shall present the multimedia report with all content in the IMR DiagnosticReport resource and referenced resources that are flagged as Must Support as in Table 2:3.Y2.4.1.2-1.
+###### 2:3.Y2.4.1.3.1 General Interactive Multimedia Report Display Requirements
+
+The Display shall present the multimedia report with content in the IMR DiagnosticReport resource and referenced resources that are flagged as Must Support as in Table 2:3.Y2.4.1.2-1.
 
 Table 2:3.Y2.4.1.2-1 Must Support Attributes in IMR DiagnosticReport and Referenced Resources
 
 | Resource | Attribute |
 |----------|-----------|
-|IMR DiagnosticReport | comparisonStudy <br> indication <br> effectiveDateTime <br> result <br> imagingStudy <br> presentedForm |
-|IMR ServiceRequest | identifier <br> category |
-|IMR ImagingStudy | identifier <br> started <br> series |
-|IMR Observation | basedOn <br> category <br> effectiveDateTime <br> value <br> method <br> derivedFrom <br> component |
+|IMR DiagnosticReport | comparisonStudy <br> indication <br> basedOn <br> effectiveDateTime <br> result <br> imagingStudy <br> presentedForm |
+|IMR ServiceRequest | identifier |
+|IMR ImagingStudy | identifier <br> started |
+|IMR Observation | basedOn <br> category <br> code <br> effectiveDateTime <br> value <br> method <br> derivedFrom <br> component |
 
-**TODO** same structure in Store
+The mappings of these attributes can be found in Store Multimedia Report [RAD-Y1].
 
-Introduce the term 'inline image references' and '... image references' ...
+###### 2:3.Y2.4.1.3.2 Display of Observation
 
-For observations that have image references using Observation.derivedFrom attribute,
-- If the image references are not inline of the Observation.value[x], then the Requester shall display a hyperlink with the display text for the hyperlink being the corresponding value[x] in a clinically relevant textual representation. The link value for this hyperlink shall be based on the endpoint(s) defined in the referenced [IMR ImagingStudy](StructureDefinition-imr-imagingstudy.html).
-- If the image references are inline of Observation.valueString, then the Requester shall substitute the <IMRRef>...</IMRRef> markup with hyperlinks. The link value for this hyperlink shall be set to the concatenation of the ImagingStudy.endpoint.address with the valueString from the matching Observation.component entry. The resulting URL shall be a valid URL according to the contentType.
+The Display:
 
-The Requester shall display the referenced images (inline or not) as hyperlinks such that the user can interact with. Note that IMR does not prescribe any technology stack used for hyperlinking contents.
+- shall display unstructured content in Observation.valueString
 
-**Look at AIR Display transaction**
+- shall display structured content in Observation.value[x] in a clinically meaningful representation
 
-The Requester shall be able to display who, when and how the observations are made as follow:
-- Who made the observation is available in Observation.performer or DiagnosticReport.resultInterpreter
-- When the observation is made is available in Observation.effectiveDateTime or DiagnosticReport.effectiveDateTime
-- How the observation is made may be available in Observation.method and Observation.device
+- shall be able to display who, when and how the observations are made as follow:
+    - Who made the observation is available in Observation.performer or DiagnosticReport.resultInterpreter
+    - When the observation is made is available in Observation.effectiveDateTime or DiagnosticReport.effectiveDateTime
+    - How the observation is made may be available in Observation.method
 
-**Explain why, always get what the user intented, but variations may exist**
-The Requester may adjust the link to reference the series or study level accordingly to its configuration.
+> A user may choose to redo some of the measurements in order to compare the data recorded in the report, for example. If the user decides to save the new measurements, for example, a new report should be created as an addendum instead of updating the existing report.
 
-Note that although the DiagnosticReport resource provides a 'ready to view' HTML version of the report, the links embedded in the HTML are fixed. So it does not provide the Requester the control of how and what to retrieve.
+###### 2:3.Y2.4.1.3.2.1 Display of Image References in Observation
 
-The user may choose to redo some of the measurements in order to compare the data recorded in the report, for example. Note that these actions shall not affect the existing content in the multimedia report recieved. If the user decides to save the new measurements, for example, a new report will be created as an addendum instead of updating the existing report.
+For IMR Observations that have image references using Observation.derivedFrom attribute, the Display
 
-**Semantics on DiagnosticReport is immutatble. Add CapabilityStatement.**
+- shall present a hyperlink, with the display text for the hyperlink being the corresponding Observation.value[x]
+
+- the URL for this hyperlink shall be constructed based on the endpoint(s) defined in the referenced [IMR ImagingStudy]((StructureDefinition-imr-imagingstudy.html)) resource.
+
+For inline image references in Observation.valueString, the Display
+
+- shall substitute each `<IMRRef>`...`</IMRRef>` markup with a hyperlink
+
+- the URL for this hyperlink shall be set to the concatenation of the ImagingStudy.endpoint.address with the valueString from the matching Observation.component.id entry. The resulting URL shall be a valid URL according to the contentType
+
+- may adjust the URL to reference the series or study level accordingly to its configuration
+
+> The Display may choose to display the full study or only the referenced series, based on the current usage context or configuration.
+
+- may add additional parameters to the URL to invoke specific functions provided by the Image Manager / Image Archive
+
+> For example, the Display may retrieve a rendered JPEG or a thumbnail of the image instead of the DICOM object.
+
+Note that IMR does not prescribe any technology used for hyperlinking contents.
+
+Note that although the DiagnosticReport resource provides a 'ready to view' HTML version of the report, the links embedded in the HTML are fixed. So it does not provide the Display the control of how and what to retrieve.
 
 ### 2:3.Y2.5 Security Considerations
 
