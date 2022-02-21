@@ -60,59 +60,35 @@ https://www.hl7.org/fhir/search.html#revinclude
 
 All query parameter values shall be appropriately encoded per RFC3986 “percent” encoding rules. Note that percent encoding does restrict the character set to a subset of ASCII characters which is used for encoding all other characters used in the URL.
 
-The Requester shall be able to provide the following search parameter for the corresponding attributes:
+The query search parameters supported by the Requester and Responder are defined in Table 2:3.Y3.4.1.2.1-1 below.
 
-| Category   | Attribute | Search Parameters |
-|------------|-------------------|
-| Patient    | Patient ID | `subject` or `subject.identifier` |
-| Order      | Accession Number | `basedOn` or `basedOn.identifier` |
-| Study      | Study Instance UID | `imagingStudy` or `imagingStudy.identifier`|
-| Status     | Report Status | `status` |
+Table 2:3.Y3.4.1.2.1-1 Find Multimedia Report Query Search Parameters
+
+| Domain   | Attribute | Search Parameters | Query Type | Requester Optionality | Responder Optionality | Note |
+|----------|-----------|-------------------|------------|-----------------------|-----------------------|------|
+| Patient | Patient | `subject` | Reference(Patient) | R | R | See Note 1 |
+|         | Patient ID | `subject.identifier` | token | R | R | See Note 2 and 3 |
+|         | Patient Name | `subject.name.given` <br> `subject.name.family` | string | O | R | See Note 3 |
+| ServiceRequest | ServiceRequest | `basedOn` | Reference(ServiceRequest) | R | R | See Note 1 |
+|                | Accession Number | `basedOn.identifier` | token | R | R | See Note 2 and 3 |
+| Study | Study | `imagingStudy` | Reference(ImagingStudy) | R | R | See Note 1 |
+|       | Study Instance UID | `imagingStudy.identifier` | token | R | R | See Note 2 and 3 |
+| Report | Status | `status` | token | R | R | See Note 2 |
+|        | Category | `category` | token | O | O | See Note 2 |
+|        | EffectiveDateTime | `effectiveDateTime` | datetime | O | O | See Note 4 |
+|        | Issued | `issued` | instant | O | O | See Note 4 |
+|        | Code | `code` | token | O | O | See Note 2 |
+|        | Result Interpreter | `resultsInterpreter` | Reference(Practitioner or PractitionerRole) | O | O | See Note 1 |
+|        | Result Interpreter ID | `resultsInterpreter.identifier` <br> `resultsInterpreter.practitioner.identifier` | token | O | O | See Note 2 and 3 |
 {: .grid}
 
-**subject**:
-This parameter, of type Reference(Patient), specifies the referenced Patient resource associated to the DiagnosticReport. When the subject parameter is used, the Patient reference would need to be accessible to both the Requester and the Responder. See FHIR [http://hl7.org/fhir/R4/search.html#reference](http://hl7.org/fhir/R4/search.html#reference) for use of the reference search type.
-
-**subject.identifier**:
-This parameter, of type token, specifies a medical record number associated with the patient to which the DiagnosticReport Resource is assigned. See [ITI TF-2x: Appendix Z.2](https://profiles.ihe.net/ITI/TF/Volume2/ch-Z.html#z.2-query-parameters) for additional constraints on the use of the token search parameter type. This use of **subject.identifier** follows the [FHIR Chaining Parameters](http://hl7.org/fhir/search.html#chaining) search methodology.
-
-**basedOn**:
-This parameter, of type Reference(ServiceRequest), specifies the referenced IMRServiceRequest resource associated to the DiagnosticReport. When the basedOn parameter is used, the ServiceRequest reference would need to be accessible to both the Requester and the Responder. See FHIR [http://hl7.org/fhir/R4/search.html#reference](http://hl7.org/fhir/R4/search.html#reference) for use of the reference search type.
-
-**basedOn.identifier**:
-This parameter, of type token, specifies an accession number associated with the service request to which the DiagnosticReport Resource is assigned.  See [ITI TF-2x: Appendix Z.2](https://profiles.ihe.net/ITI/TF/Volume2/ch-Z.html#z.2-query-parameters) for additional constraints on the use of the token search parameter type. This use of **basedOn.identifier** follows the [FHIR Chaining Parameters](http://hl7.org/fhir/search.html#chaining) search methodology.
-
-**imagingStudy**:
-This parameter, of type Reference(ImagingStudy), specifies the referenced IMRImagingStudy resource associated to the DiagnosticReport. When the imagingStudy parameter is used, the ImagingStudy reference would need to be accessible to both the Requester and the Responder. See FHIR [http://hl7.org/fhir/R4/search.html#reference](http://hl7.org/fhir/R4/search.html#reference) for use of the reference search type.
-
-**imagingStudy.identifier**:
-This parameter, of type token, specifies the study instance UID associated with the imaging study to which the DiagnosticReport Resource is assigned.  See [ITI TF-2x: Appendix Z.2](https://profiles.ihe.net/ITI/TF/Volume2/ch-Z.html#z.2-query-parameters) for additional constraints on the use of the token search parameter type. This use of **imagingStudy.identifier** follows the [FHIR Chaining Parameters](http://hl7.org/fhir/search.html#chaining) search methodology.
-
-**status**:
-This parameter, of type token, specifies the status of the DiagnosticReport Resource. The valid values for status are defined in [IMR DiagnosticReport Status](ValueSet-imr-diagnosticreport-status-vs.html) See [ITI TF-2x: Appendix Z.2](https://profiles.ihe.net/ITI/TF/Volume2/ch-Z.html#z.2-query-parameters) for additional constraints on the use of the token search parameter type.
-
-The Requester may be able to provide the following search parameters:
-
-**subject.name.given** and **subject.name.family**:
-These parameters, of type string, specify the name parts of the patient, which is associated with the DiagnosticReport Resource. See [ITI TF-2x: Appendix Z.2](https://profiles.ihe.net/ITI/TF/Volume2/ch-Z.html#z.2-query-parameters) for use of the string data type. This use of **subject.name.given** and **subject.name.family** follows the [FHIR Chaining Parameters](http://hl7.org/fhir/search.html#chaining) search methodology.
-
-**category**:
-This parameter, of type token, specifies the general classification of the DiagnosticReport Resource. See [ITI TF-2x: Appendix Z.2](https://profiles.ihe.net/ITI/TF/Volume2/ch-Z.html#z.2-query-parameters) for additional constraints on the use of the token search parameter type.
-
-**effectiveDateTime**:
-This parameter, of type datetime, specifies the date and time when the report captured in this DiagnosticReport is in effect. See FHIR [http://hl7.org/fhir/R4/search.html#date](http://hl7.org/fhir/R4/search.html#date) for use of the datetime search type.
-
-**issued**:
-This parameter, of type instant, specifies the instance when this DiagnosticReport Resource was created. See FHIR [http://hl7.org/fhir/R4/search.html#date](http://hl7.org/fhir/R4/search.html#date) for use of the instant search type.
-
-**code**:
-This parameter, of type token, specifies the kind of report of this DiagnosticReport Resource. See [ITI TF-2x: Appendix Z.2](https://profiles.ihe.net/ITI/TF/Volume2/ch-Z.html#z.2-query-parameters) for additional constraints on the use of the token search parameter type.
-
-**resultsInterpreter**:
-This parameter, of type Reference(Practitioner or PractitionerRole), specifies the referenced Practitioner or PractitionerRole resource associated to the DiagnosticReport. When the resultsInterpreter parameter is used, the Practitioner or PractitionerRole reference would need to be accessible to both the Requester and the Responder. See FHIR [http://hl7.org/fhir/R4/search.html#reference](http://hl7.org/fhir/R4/search.html#reference) for use of the reference search type.
-
-**resultsInterpreter.identifier** or **resultsInterpreter.practitioner.identifier**:
-This parameter, of type token, specifies an identifier associated with the practitioner to which the DiagnosticReport Resource is interpreted by.  See [ITI TF-2x: Appendix Z.2](https://profiles.ihe.net/ITI/TF/Volume2/ch-Z.html#z.2-query-parameters) for additional constraints on the use of the token search parameter type. This use of **resultsInterpreter.identifier** or **resultsInterpreter.practitioner.identifier** follows the [FHIR Chaining Parameters](http://hl7.org/fhir/search.html#chaining) search methodology.
+> Note 1: See FHIR [http://hl7.org/fhir/R4/search.html#reference](http://hl7.org/fhir/R4/search.html#reference) for use of the reference search type.
+>
+> Note 2: See [ITI TF-2x: Appendix Z.2](https://profiles.ihe.net/ITI/TF/Volume2/ch-Z.html#z.2-query-parameters) for additional constraints on the use of the token search parameter type.
+>
+> Note 3: See [FHIR Chaining Parameters](http://hl7.org/fhir/search.html#chaining) for search methodology on referenced resources.
+>
+> Note 4: See FHIR [http://hl7.org/fhir/R4/search.html#date](http://hl7.org/fhir/R4/search.html#date) for use of the datetime search type.
 
 ###### 2:3.Y3.4.1.2.2 Populating Expected Response Format
 
@@ -151,7 +127,7 @@ subject=9876&status=final&code=http://loinc.org|1234-5
 
 ##### 2:3.Y3.4.1.3 Expected Actions
 
-The Responder shall be capable of processing, all query parameters listed above.
+The Responder shall be capable of processing, all query parameters according to Table 2:3.Y3.4.1.2.1-1 above.
 
 The Responder shall process the query to discover the DiagnosticReport entries that match the search parameters given. 
 
