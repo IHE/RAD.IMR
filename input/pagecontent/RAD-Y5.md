@@ -19,7 +19,7 @@ Transaction text specifies behavior for each role. The behavior of specific acto
 
 ### 2:3.Y5.3 Referenced Standards
 
-**DICOM**
+**DICOM PS3.3**: A. Composite Information Object Definitions
 
 ### 2:3.Y5.4 Messages
 

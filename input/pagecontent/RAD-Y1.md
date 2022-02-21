@@ -18,11 +18,11 @@ Transaction text specifies behavior for each role. The behavior of specific acto
 
 ### 2:3.Y1.3 Referenced Standards
 
-**FHIR-R4** [HL7 FHIR Release 4.0](http://www.hl7.org/FHIR/R4)
+**FHIR-R4**: [HL7 FHIR Release 4.0](http://www.hl7.org/FHIR/R4)
 
-**HTML 5**
+**HTML 5**: [HTML Living Standard](https://html.spec.whatwg.org/multipage/)
 
-**PDF/A**
+**PDF/A**: [ISO 19005-1:2005](https://www.iso.org/standard/38920.html)
 
 ### 2:3.Y1.4 Messages
 
@@ -172,6 +172,8 @@ The Sender shall include a default rendered diagnostic report in HTML format in 
 For IMR Observations that have image references using Observation.derivedFrom attribute, the Sender shall add a hyperlink using the HTML anchor element (i.e. `<a>`), with the display text for the hyperlink being the corresponding value[x] in a clinically relevant textual representation. The value for href for this hyperlink shall be constructed based on the endpoint(s) defined in the referenced [IMR ImagingStudy]((StructureDefinition-imr-imagingstudy.html)) resource.
 
 For inline image references in Observation.valueString, the Sender shall substitute each `<IMRRef>`...`</IMRRef>` markup with an HTML anchor element. The href attribute shall be set to the concatenation of the ImagingStudy.endpoint.address with the valueString from the matching Observation.component.id entry. The resulting URL shall be a valid URL according to the contentType.
+
+The resulting URLs, upon invocation, shall result in some rendered content rather than contents that will be downloaded. For example, a rendered image is appropriate while a downloaded DICOM object is not.
 
 The Sender may include additional rendering of the same report (e.g. PDF).
 

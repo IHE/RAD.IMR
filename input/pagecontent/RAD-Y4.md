@@ -4,7 +4,7 @@ This transaction is used by the Requester to retrieve a ready-to-present version
 
 ### 2:3.Y4.2 Actors Roles
 
-The roles in this transaction are defined in the following table and may be palyed by the actors shown here:
+The roles in this transaction are defined in the following table and may be played by the actors shown here:
 
 **Table 2:3.Y4.2-1: Actor Roles**
 
@@ -16,7 +16,11 @@ The roles in this transaction are defined in the following table and may be paly
 
 ### 2:3.Y4.3 Referenced Standards
 
-**HTTP**
+**RFC1738**: [Uniform Resource Locators (URL)](http://www.ietf.org/rfc/rfc1738.txt)
+
+**RFC2616**: [HyperText Transfer Protocol HTTP/1.1](http://www.ietf.org/rfc/rfc2616.txt)
+
+**RFC7540**: [Hypertext Transfer Protocol Version 2 (HTTP/2)](https://tools.ietf.org/html/rfc7540)
 
 ### 2:3.Y4.4 Messages
 
@@ -42,7 +46,7 @@ The Requester wants to obtain a rendered report.
 
 The Requester sends a HTTP GET request to the Responder. The Requester uses the url attribute from one of the DiagnosticReport.presentedForm entries returned in [RAD-Y3]. The Requester shall use the DiagnosticReport.presentedForm.contentType to determine which one of the available rendered reports to retrieve.
 
-The Requester may provide HTTP Accept header, according to the semantics of the HTTP protocols (see RFC2616, Section 14.1).  This enables the Requester to indicate prefered mime-types such that the Responder could provide the report requested in an encoding other than the encoding indicated in the DiagnosticReport.presentedForm.
+The Requester may provide HTTP Accept header, according to the semantics of the HTTP protocols (see RFC2616, Section 14.1).  This enables the Requester to indicate preferred mime-types such that the Responder could provide the report requested in an encoding other than the encoding indicated in the DiagnosticReport.presentedForm.
 
 The only MIME type assured to be returned is the MIME type indicated in the DiagnosticReport.presentedForm.contentType.
 

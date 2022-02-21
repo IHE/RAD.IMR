@@ -4,7 +4,7 @@ This transaction is used to present the report content to someone, such as a rad
 
 ### 2:3.Y2.2 Actors Roles
 
-The roles in this transaction are defined in the following table and may be palyed by the actors shown here:
+The roles in this transaction are defined in the following table and may be played by the actors shown here:
 
 **Table: Actor Roles**
 

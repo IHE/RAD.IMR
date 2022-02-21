@@ -126,7 +126,7 @@ For example given:
 * FHIR server root is `http://test.fhir.org/R4/fhir`
 * Patient reference id is `9876`
 * status of final
-* with clinical code from loinc of `1234-5`
+* with clinical code from LOINC of `1234-5`
 * examples do not include all http headers such as the security headers
 
 ###### 2:3.Y3.4.1.2.3.1 Example GET
