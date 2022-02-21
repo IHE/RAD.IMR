@@ -132,7 +132,9 @@ The following subsections describe the details requirements for each referenced 
 
 The Sender shall set the code attribute according to the IMR Observation specification indicating if the observation is a finding or impression or some other types.
 
-The Sender shall encode each impression as a separate [IMR Observation](StructureDefinition-imr-observation.html) resource. The Sender shall encode all clinical findings using IMR Observation resources. Each finding may be encoded as a separate IMR Observation resource, or all findings may be included in a single IMR Observation resource as an unstructured content in Observation.valueString.
+The Sender shall encode each impression as a separate [IMR Observation](StructureDefinition-imr-observation.html) resource. See [IMR Observation Examples](StructureDefinition-imr-observation-examples.html) for examples that encode different impression as different IMR Observation resources.
+
+The Sender shall encode all clinical findings using IMR Observation resources. Each finding may be encoded as a separate IMR Observation resource, or all findings may be included in a single IMR Observation resource as an unstructured content in Observation.valueString. See [IMR Observation Examples](StructureDefinition-imr-observation-examples.html) for an example that encodes multiple findings in paragraph form in a single IMR Observation resources.
 
 The Sender shall encode unstructured content in Observation.valueString.
 
