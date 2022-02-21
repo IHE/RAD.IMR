@@ -23,6 +23,9 @@ These issues were known as part of the publication, and IHE invites comments.
 - Use ImageSelection to specify how multimedia content can be referenced in an Observation?
     - In FHIR R5, a new ImageSelection resource is available, which allows more sophisticated reference to a study, with the additional capability to include imageRegion. This is a good match for IMR, but currently in draft.
 
+- Should the Report Creator required to create a default rendered report, or leave it as an option?
+    - The presentedForm is required to be fully ready-to-display by the Rendered Report Reader. This means all image references are required to be rendered as some rendered format, whether it is WADO-RS with Rendered Image, or other rendered format supported by the browser. It may be too much to ask for a Report Creator to do.
+
 #### Closed Issues
 
 These issues have been decided and documented in the publication.
