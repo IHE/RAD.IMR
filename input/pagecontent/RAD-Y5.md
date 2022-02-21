@@ -94,6 +94,8 @@ The Requester may provide basic viewing tools for the user to interactive with t
 If the Requester supports the Series/Study Navigation Option, the Requester shall support the following additional interactive behavior:
 - Scrolling (Section 4.16.4.2.2.5.5)
 
+> Note that the Display is only required to display the actual objects referenced in the DiagnosticReport resource. If display of images from another plane (e.g. coronal or sagittal) other than the plane used during acquisition (e.g. axial) is necessary, then images on these other planes should be reconstructed (e.g. using multiplanar reconstruction), created as separate set of images and referenced in the DiagnosticReport resource. The Display is not required to support reconstruction.
+
 ### 2:3.Y5.5 Security Considerations
 
 See [IMR Security Considerations](volume-1.html#security-considerations)

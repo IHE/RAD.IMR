@@ -112,7 +112,11 @@ The FHIR Bundle.meta.profile shall have the following value: `http://profiles.ih
   - may create/read one or more [IMR Observation](StructureDefinition-imr-observation.html)
   - may create/read one or more [IMR ImagingStudy](StructureDefinition-imr-imagingstudy.html)
 
-Since each resource in the bundle is self-sufficient and are valuable as standalone resources outside the context of the DiagnosticReport resource (e.g. independently searchable and same resource can be referenced multiple times), the Sender should create corresponding properly identifiable resources unless the proper record keys or absolute identification information is not available.
+The Sender may set meta.profile of each resource to be the corresponding IMR profile. This enables the recipients to validate the received resource against the IMR resource profile specification.
+
+> Note that a Sender may choose not to set meta.profile to a specific profile, or may set it to multiple profiles.
+
+Since each resource in the bundle is valuable as standalone resources outside the context of the DiagnosticReport resource (e.g. independently searchable and same resource can be referenced multiple times), the Sender should create corresponding properly identifiable resources unless the proper record keys or absolute identification information is not available.
 
 When resources are `contained`, they shall be contained using the FHIR contained method (see [http://hl7.org/fhir/R4/references.html#contained](http://hl7.org/fhir/R4/references.html#contained) ).
 
@@ -175,13 +179,11 @@ For IMR Observations that have image references using Observation.derivedFrom at
 
 For inline image references in Observation.valueString, the Sender shall substitute each `<IMRRef>`...`</IMRRef>` markup with an HTML anchor element. The href attribute shall be set to the concatenation of the ImagingStudy.endpoint.address with the valueString from the matching Observation.component.id entry. The resulting URL shall be a valid URL according to the contentType.
 
-The resulting URLs, upon invocation, shall result in some rendered content rather than contents that will be downloaded. For example, a rendered image is appropriate while a downloaded DICOM object is not.
+The resulting URLs, upon invocation, shall result in some rendered content rather than contents that will be downloaded. For example, using a WADO-RS link with rendered image is appropriate while a plain WADO-RS link to retrieve DICOM object is not.
 
 The Sender may include additional rendering of the same report (e.g. PDF).
 
 For Senders that claim support of the PDF Report Option, if the PDF Report feature is enabled in the Sender, then in addition to the HTML report, the Sender shall also attach a semantically equivalent diagnostic report in PDF format in the presentedForm attribute. The presentedForm.contentType shall have the value "application/pdf". The Sender shall include in the PDF report all text and hyperlinks as in the HTML report.
-
-For Senders that claim support of the HL7 Text Report Option, if the HL7 Text Report feature is enabled in the Sender, then in addition to the HTML report, the Sender shall also attach a semantically equivalent diagnostic report in Rich Text format in the presentedForm attribute. The presentedForm.contentType shall have the value "application/rtf". The Sender shall include in the RTF report all text (excluding the HTML markup) as in the HTML report, without the hyperlinks.
 
 The Sender may include other rendered reports in presentedForm. The Sender shall set the presentedForm.contentType with an appropriate value corresponding to the rendered report format.
 

@@ -135,7 +135,7 @@ Table XX.2-1: IMR - Actors and Options
 |               | Integrated Image Display Option (See Note 1) | Section XX.2.5 |
 |               | Series/Study Navigation Option | Section XX.2.6 |
 | Rendered Report Reader | PDF Report Option | Section XX.2.1 |
-| Image Manager / Image Archive | No options defined | -- |
+| Image Manager / Image Archive | Retrieve Rendered Instance Option | Section XX.2.7 |
 | Image Display | No options defined | -- |
 {: .grid}
 
@@ -194,6 +194,12 @@ If the Report Reader also claims support of the Series/Study Navigation Option, 
 The Series/Study Navigation Option enables actors to scroll through images in the same series or study.
 
 A Report Reader that supports this option shall display the referenced image, if specified, as the anchor image immediately display to the user, and shall enable the user to scroll through the other images in the same series (and optionally study) as the anchor image.
+
+### XX.2.7 Retrieve Rendered Instance Option
+
+The Retrieve Rendered Instance Option enables actors to retrieve a rendered image rather than retrieve the original DICOM instance.
+
+An Image Manager / Image Archive that supports this option shall return the requested images in the requested rendered media type as defined in DICOM PS3.18 Section 9.5 [Retrieve Rendered Instance Transaction](https://dicom.nema.org/medical/dicom/current/output/html/part18.html#sect_9.5).
 
 ## XX.3 IMR Required Actor Groupings <a name="required-groupings"> </a>
 
@@ -297,6 +303,22 @@ Level 3: Advanced interactivity
 
 The Report Reader can display not only the image referenced directly, but also the full series that contain the image. The Report Reader may provide other tools (e.g. measurements, more advanced image visualization, etc.) as well as support other advanced DICOM objects such as segmentation objects or parametric map objects.
 
+#### XX.4.1.7 Multiplanar Reconstruction
+
+Multiplanar reconstruction, or MPR, involves the process of converting data from an imaging modality acquired in a certain plane, usually axial, into another plane such as coronal or sagittal or oblique. It is most commonly performed with thin-slice data from volumetric CT in the axial plane, but it may be accomplished with scanning in any plane and whichever modality capable of cross-sectional imaging, including magnetic resonance imaging (MRI).
+
+Although MPR is a feature available in many PACS implementations, it is a advanced operation that is computational intensive. For the interactive image viewing capability on interactive multimedia report, MPR is not expected to be available. If viewing of the images from different planes is desirable, then the acquired data should be reconstructed to other planes and then be saved as separate set of images. These new set of reconstructed images can then be referenced in the DiagnosticReport resource.
+
+#### XX.4.1.8 Query Payload
+
+A DiagnosticReport resource includes many references to other resources, such as Patient, IMR Observation, IMR ImagingStudy, etc. By default, a FHIR server returns query responses with references to other resources. The requester is expected to retrieve these referenced resources separately afterwards.
+
+Optionally, a FHIR server may support the [_include](http://hl7.org/fhir/R4/search.html#include) search result parameters. If the requester specifies this parameter in the search request, then the FHIR Server will include all referenced resources in the same response. The advantage is that the requester only needs to issue a single query result and the result will contain all the necessary data. The disadvantages are (1) the payload size may increase significantly, (2) the server will need to perform more work and may return the response slower, (3) it is an optional capability of the server.
+
+#### XX.4.1.9 Referenced Resource vs Contained Resource
+
+A DiagnosticReport resource includes many references to other resources. Technically it is possible for the Report Creator to include these other resources as [contained](https://www.hl7.org/fhir/references.html#contained) resources, these contained resources are not independently accessible and they cannot be searched. Therefore in IMR, when storing a DiagnosticReport resource, all referenced resources are actual resources and are referenced accordingly.
+
 ### XX.4.2 Use Cases
 
 This profile is focused on encoding multimedia contents in diagnostic reports such that later the user can interact with the embedded multimedia contents in the reports.
@@ -395,8 +417,6 @@ See ITI TF-2x: [Appendix Z.8 “Mobile Security Considerations”](https://profi
 
 General [Security and Privacy guidance](http://hl7.org/fhir/secpriv-module.html) is provided in the FHIR Specification.
 
-The rendered report bundled in the DiagnosticReport includes hyperlinks. It is recommended for any deployment to have network configurations that only allow trusted known address to be accessed, and block unknown addresses.
-
 ### XX.5.1 Security Considerations for Actors
 
 This profile strongly recommends all actors group with an ITI ATNA Secure Application or
@@ -414,6 +434,8 @@ Furthermore, for the FHIR-based transactions, this profile strongly recommends t
 
 Multimedia report instances as defined in this profile contain personal demographic information
 and clinical information. It is appropriate for products implementing the Interactive Multimedia Report Profile to include appropriate PHI controls. Specifying such mechanisms and features is outside the scope of this profile.
+
+The rendered report (either rendered by the Report Reader, or bundled in the DiagnosticReport) includes hyperlinks. It is recommended for any deployment to have network configurations that only allow trusted known clients (e.g. by IP address or subnet) to access, and block unknown clients. Furthermore, the requests to these hyperlinks should be authorized. Unauthorized access should be rejected.
 
 ## XX.6 IMR Cross-Profile Considerations <a name="other-grouping"> </a>
 
