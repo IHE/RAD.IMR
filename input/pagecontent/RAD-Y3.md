@@ -75,8 +75,8 @@ Table 2:3.Y3.4.1.2.1-1 Find Multimedia Report Query Search Parameters
 |       | Study Instance UID | `imagingStudy.identifier` | token | R | R | See Note 2 and 3 |
 | Report | Status | `status` | token | R | R | See Note 2 |
 |        | Category | `category` | token | O | O | See Note 2 |
-|        | EffectiveDateTime | `effectiveDateTime` | datetime | O | O | See Note 4 |
-|        | Issued | `issued` | instant | O | O | See Note 4 |
+|        | EffectiveDateTime | `effectiveDateTime` | date | O | O | See Note 4 |
+|        | Issued | `issued` | date | O | O | See Note 4 |
 |        | Code | `code` | token | O | O | See Note 2 |
 |        | Result Interpreter | `resultsInterpreter` | Reference(Practitioner or PractitionerRole) | O | O | See Note 1 |
 |        | Result Interpreter ID | `resultsInterpreter.identifier` <br> `resultsInterpreter.practitioner.identifier` | token | O | O | See Note 2 and 3 |
@@ -88,7 +88,7 @@ Table 2:3.Y3.4.1.2.1-1 Find Multimedia Report Query Search Parameters
 >
 > Note 3: See [FHIR Chaining Parameters](http://hl7.org/fhir/search.html#chaining) for search methodology on referenced resources.
 >
-> Note 4: See FHIR [http://hl7.org/fhir/R4/search.html#date](http://hl7.org/fhir/R4/search.html#date) for use of the datetime search type.
+> Note 4: See FHIR [http://hl7.org/fhir/R4/search.html#date](http://hl7.org/fhir/R4/search.html#date) for use of the date search type.
 
 ###### 2:3.Y3.4.1.2.2 Populating Expected Response Format
 
