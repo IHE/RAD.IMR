@@ -7,8 +7,8 @@ participant "Receiver" as Repo
 
 activate Creator
 activate Repo
-Creator->Repo: Provide Multimedia Report Bundle
-Repo-->Creator: Multimedia Report Bundle Response
+Creator->Repo: Store Multimedia Report Bundle Request
+Repo-->Creator: Store Multimedia Report Bundle Response
 deactivate Repo
 deactivate Creator
 

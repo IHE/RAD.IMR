@@ -1,7 +1,7 @@
-Profile:        IMRProvideReportBundle
+Profile:        IMRStoreMultimediaReportBundle
 Parent:         Bundle
-Id:             imr-bundle
-Title:          "IMR Provide Report Bundle"
+Id:             imr-store-multimedia-report-bundle
+Title:          "IMR Store Multimedia Report Bundle"
 Description:    "IHE Interactive Multimedia Report (IMR) profile on Bundle"
 * meta.profile 1..*
 * type = #transaction
