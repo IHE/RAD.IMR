@@ -72,25 +72,29 @@ The `[base]` is the [Service Base URL](https://www.hl7.org/fhir/http.html#root),
 
 In radiology reports, there is a common set of values to be included. The following table specifies how the Sender shall map these attributes to FHIR DiagnosticReport resource and other referenced resources. Refer to the StructureDefinition for these resources in the [Artifacts](artifacts.html) page for details.
 
-Table 2:3.Y1.4.1.2-1: Mapping of Critical Attributes in Radiology Diagnostic Report
+Table 2:3.Y1.4.1.2-1: Mapping of Attributes in Diagnostic Report
 
-| Report Attribute | FHIR Resource Mapping | Cardinality | Additional Constraint | Note |
-|------------------|-----------------------|-------------|-----------------------|------|
-| Organization     | DiagnosticReport.performer | 1..1 | | Deployment applicable Organization Profile should be applied |
-| Results Interpreter | DiagnosticReport.resultsInterpreter | 1..* | Can be either Practitioner or PractitionerRole | Deployment applicable Practitioner or PractitionerRole Profile should be applied |
-| Patient Name     | DiagnosticReport.subject -> Patient.name | 1..1 -> 0..* |   | Deployment applicable Patient Profile should be applied       |
-| Patient MRN      | DiagnosticReport.subject -> Patient.identifier | 1..1 -> 0..* | | Deployment applicable Patient Profile should be applied |
-| Accession Number | DiagnosticReport.basedOn -> IMRServiceRequest.identifier | 1..* -> 1..* | identifier.type has a code for Accession Number | |
-| Study Date       | DiagnosticReport.imagingStudy -> IMRImagingStudy.started | 1..1 -> 1..1 | | |
-| Study Type       | DiagnosticReport.imagingStudy -> IMRImagingStudy.procedureCode | 1..1 -> 0..* | | |
-| Report Status    | DiagnosticReport.status | 1..1 | partial, preliminary, final, amended, corrected, appended, cancelled | A subset from what is defined in FHIR |
-| Examination      | DiagnosticReport.code | 1..1 | | Code for the diagnostic report, may be the same as the study procedure code |
-| Indication       | DiagnosticReport.extension[indication] | 0..* | | Each value can be either a string or a CodeableConcept |
-| Technique        | DiagnosticReport.result -> IMRObservation.method | 1..* -> 0..1 | IMRObservation.code = LOINC#59776-5 "Procedure Findings" | |
-| Comparison       | DiagnosticReport.extension[comparisonStudy] | 0..* | Can be either an IMRImagingStudy or IMRDiagnosticReport | |
-| Findings         | DiagnosticReport.result -> IMRObservation.valueString | 1..* | LOINC#59776-5 "Procedure Findings" | Highly recommended to encode a single finding per observation, but acceptable to encode all findings as a single string to bridge existing applications |
-| Impressions      | DiagnosticReport.result -> IMRObservation.valueString | 1..* | IMRObservation.code = LOINC#19005-8 "Radiology Imaging study [Impression] (narrative)" | Highly recommended to encode a single impression per observation, but acceptable to encode all impressions as a single string to bridge existing application. Also it is highly recommended to use coded values whenever applicable.|
+| Report Attribute | FHIR Resource Mapping | Additional Constraint | Note |
+|------------------|-----------------------|-----------------------|------|
+| Organization     | DiagnosticReport.performer | See [IMR DiagnosticReport](StructureDefinition-imr-diagnosticreport.html) for details | The organization which is responsible for the diagnostic report. <br><br> See Note 1 |
+| Results Interpreter | DiagnosticReport.resultsInterpreter | Can be either Practitioner or PractitionerRole <br><br> See [IMR DiagnosticReport](StructureDefinition-imr-diagnosticreport.html) for details | The primary result interpreter(s) <br><br> See Note 1 |
+| Patient Name     | DiagnosticReport.subject.name -> Patient.name | See [IMR DiagnosticReport](StructureDefinition-imr-diagnosticreport.html) for details | See Note 1 |
+| Patient ID       | DiagnosticReport.subject.identifier -> Patient.identifier | See [IMR DiagnosticReport](StructureDefinition-imr-diagnosticreport.html) for details | See Note 1 |
+| Accession Number | DiagnosticReport.basedOn.identifier -> IMRServiceRequest.identifier | See [IMR DiagnosticReport](StructureDefinition-imr-diagnosticreport.html) and [IMR ServiceRequest](StructureDefinition-imr-servicerequest.html) for details | Identified by the identifier.type |
+| Study Date       | DiagnosticReport.imagingStudy.started -> IMRImagingStudy.started | See [IMR ImagingStudy](StructureDefinition-imr-imagingstudy.html) for details | |
+| Study Type       | DiagnosticReport.imagingStudy.procedureCode -> IMRImagingStudy.procedureCode | See [IMR ImagingStudy](StructureDefinition-imr-imagingstudy.html) for details | |
+| Report Status    | DiagnosticReport.status | partial, preliminary, final, amended, corrected, appended, cancelled <br><br> See [IMR DiagnosticReport](StructureDefinition-imr-diagnosticreport.html) for details | A subset from what is defined in FHIR |
+| Examination      | DiagnosticReport.code | See [IMR DiagnosticReport](StructureDefinition-imr-diagnosticreport.html) for details | Code for the type of diagnostic report, may be the same as the study procedure code |
+| Indication       | DiagnosticReport.extension[indication] | See [IMR DiagnosticReport](StructureDefinition-imr-diagnosticreport.html) for details | Each value can be either a string or a CodeableConcept |
+| Technique        | DiagnosticReport.result.method -> IMRObservation.method | Technique details is set in the same observation  resource that captures the finding. i.e. IMRObservation.code = LOINC#59776-5 "Procedure Findings" <br><br> See [IMR DiagnosticReport](StructureDefinition-imr-diagnosticreport.html) and [IMR Observation](StructureDefinition-imr-observation.html) for details | |
+| Comparison       | DiagnosticReport.extension[comparisonStudy] | Can be either an IMRImagingStudy or IMRDiagnosticReport <br><br> See [IMR DiagnosticReport](StructureDefinition-imr-diagnosticreport.html) for details | |
+| Findings         | DiagnosticReport.result.valueString -> IMRObservation.valueString | Identified by IMRObservation.code = LOINC#59776-5 "Procedure Findings" <br><br> See [IMR DiagnosticReport](StructureDefinition-imr-diagnosticreport.html) and [IMR Observation](StructureDefinition-imr-observation.html) for details | Highly recommended to encode a single finding per observation, but permitted to encode all findings as a single string to bridge existing applications. Also See Note 2 |
+| Impressions      | DiagnosticReport.result.valueString -> IMRObservation.valueString | Identified by IMRObservation.code = LOINC#19005-8 "Radiology Imaging study [Impression] (narrative)" <br><br> See [IMR DiagnosticReport](StructureDefinition-imr-diagnosticreport.html) and [IMR Observation](StructureDefinition-imr-observation.html) for details | Highly recommended to encode a single impression per observation, but permitted to encode all impressions as a single string to bridge existing application. Also it is highly recommended to use coded values. |
 {: .grid}
+
+> Note 1: There is no IMR defined FHIR resource profile for the resource. An implementation may use other FHIR resource profile applicable for the deployment.
+
+> Note 2: In common cases, there is no direct association between findings and impressions besides they are associated to the same DiagnosticReport resource. Explicit 
 
 In addition to the common set above, there are also a number of useful optional attributes that can be used if applicable.
 
