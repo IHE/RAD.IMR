@@ -36,7 +36,7 @@ The roles in this transaction are defined in the following table and may be play
 
 The Requester invokes a HTTP GET request to retrieve the document from the Responder.
 
-The Responder shall support handling such messages from more than one Sender. The Requester shall support making requests to more than one Responder.
+The Responder shall support handling such messages from more than one Sender. The Requester shall support sending such messages to more than one Responder.
 
 ##### 2:3.Y4.4.1.1 Trigger Events
 

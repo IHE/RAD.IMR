@@ -323,7 +323,7 @@ Although MPR is a feature available in many PACS implementations, it is a advanc
 
 A DiagnosticReport resource includes many references to other resources, such as Patient, IMR Observation, IMR ImagingStudy, etc. By default, a FHIR server returns query responses with references to other resources. The requester is expected to retrieve these referenced resources separately afterwards.
 
-Optionally, a FHIR server may support the [_include](http://hl7.org/fhir/R4/search.html#include) search result parameters. If the requester specifies this parameter in the search request, then the FHIR Server will include all referenced resources in the same response. The advantage is that the requester only needs to issue a single query result and the result will contain all the necessary data. The disadvantages are (1) the payload size may increase significantly, (2) the server will need to perform more work and may return the response slower, (3) it is an optional capability of the server.
+Optionally, a FHIR server may support the [_include](http://hl7.org/fhir/search.html#include) search result parameters. If the requester specifies this parameter in the search request, then the FHIR Server will include all referenced resources in the same response. The advantage is that the requester only needs to issue a single query result and the result will contain all the necessary data. The disadvantages are (1) the payload size may increase significantly, (2) the server will need to perform more work and may return the response slower, (3) it is an optional capability of the server.
 
 #### XX.4.1.9 Referenced Resource vs Contained Resource
 

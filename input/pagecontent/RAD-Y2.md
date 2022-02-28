@@ -8,8 +8,6 @@ The roles in this transaction are defined in the following table and may be play
 
 **Table: Actor Roles**
 
-**Introduce Display role**
-
 | Role      | Description                                   | Actor(s)          |
 |-----------|-----------------------------------------------|-------------------|
 | Display | Presents multimedia reports to a user, such as a radiologist    | Report Reader |
@@ -75,7 +73,7 @@ The Display:
     - When the observation is made is available in Observation.effectiveDateTime or DiagnosticReport.effectiveDateTime
     - How the observation is made may be available in Observation.method
 
-> A user may choose to redo some of the measurements in order to compare the data recorded in the report, for example. If the user decides to save the new measurements, for example, a new report should be created as an addendum instead of updating the existing report.
+> Some implementations may allow users to modify or supplement observations in a displayed report. For example, the user may re-measure an observed feature. The implementation might allow saving the new measurements as an addendum. Existing report should not be modified.
 
 ###### 2:3.Y2.4.1.3.2.1 Display of Image References in Observation
 

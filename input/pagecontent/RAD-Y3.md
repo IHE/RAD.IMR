@@ -32,7 +32,7 @@ The roles in this transaction are defined in the following table and may be play
 
 The Requester uses the search method parameterized query to obtain DiagnosticReport Resources from the Responder. 
 
-The Responder shall support handling such messages from more than one Requester. The Requester shall support making requests to more than one Responder.
+The Responder shall support handling such messages from more than one Requester. The Requester shall support sending such messages to more than one Responder.
 
 ##### 2:3.Y3.4.1.1 Trigger Events
 
@@ -42,7 +42,7 @@ The Requester needs to obtain DiagnosticReport Resources matching various metada
 
 This message is a HTTP GET or HTTP POST request. The Requester is the User Agent. The Responder is the Origin Server.
 
-The Requester executes an HTTP search against the Responder DiagnosticReport URL. The search target follows the FHIR HTTP specification, addressing the DiagnosticReport Resource [http://hl7.org/fhir/R4/http.html](http://hl7.org/fhir/R4/http.html):
+The Requester executes an HTTP search against the Responder DiagnosticReport URL. The search target follows the FHIR HTTP specification, addressing the DiagnosticReport Resource [http://hl7.org/fhir/http.html](http://hl7.org/fhir/http.html):
 ```
 [base]/DiagnosticReport?<query>
 ```
@@ -82,13 +82,13 @@ Table 2:3.Y3.4.1.2.1-1 Find Multimedia Report Query Search Parameters
 |        | Result Interpreter ID | `resultsInterpreter.identifier` <br> `resultsInterpreter.practitioner.identifier` | token | O | O | See Note 2 and 3 |
 {: .grid}
 
-> Note 1: See FHIR [http://hl7.org/fhir/R4/search.html#reference](http://hl7.org/fhir/R4/search.html#reference) for use of the reference search type.
+> Note 1: See FHIR [http://hl7.org/fhir/search.html#reference](http://hl7.org/fhir/search.html#reference) for use of the reference search type.
 >
 > Note 2: See [ITI TF-2x: Appendix Z.2](https://profiles.ihe.net/ITI/TF/Volume2/ch-Z.html#z.2-query-parameters) for additional constraints on the use of the token search parameter type.
 >
 > Note 3: See [FHIR Chaining Parameters](http://hl7.org/fhir/search.html#chaining) for search methodology on referenced resources.
 >
-> Note 4: See FHIR [http://hl7.org/fhir/R4/search.html#date](http://hl7.org/fhir/R4/search.html#date) for use of the date search type.
+> Note 4: See FHIR [http://hl7.org/fhir/search.html#date](http://hl7.org/fhir/search.html#date) for use of the date search type.
 
 ###### 2:3.Y3.4.1.2.2 Populating Expected Response Format
 
@@ -99,7 +99,7 @@ See [ITI TF-2x: Appendix Z.6](https://profiles.ihe.net/ITI/TF/Volume2/ch-Z.html#
 ###### 2:3.Y3.4.1.2.3 Example DiagnosticReport search
 
 For example given:
-* FHIR server root is `http://test.fhir.org/R4/fhir`
+* FHIR server root is `http://test.fhir.org/fhir`
 * Patient reference id is `9876`
 * status of final
 * with clinical code from LOINC of `1234-5`
@@ -107,17 +107,17 @@ For example given:
 
 ###### 2:3.Y3.4.1.2.3.1 Example GET
 ```
-GET test.fhir.net/R4/fhir/DiagnosticReport?subject=9876&status=final&code=http://loinc.org|1234-5
+GET test.fhir.net/fhir/DiagnosticReport?subject=9876&status=final&code=http://loinc.org|1234-5
 ```
 
 ###### 2:3.Y3.4.1.2.3.2 Example POST
 ```
-POST test.fhir.net/R4/fhir/DiagnosticReport/_search?subject=9876&status=final&code=http://loinc.org|1234-5
+POST test.fhir.net/fhir/DiagnosticReport/_search?subject=9876&status=final&code=http://loinc.org|1234-5
 ```
 
 ###### 2:3.Y3.4.1.2.3.3 Example POST body
 ```
-POST test.fhir.net/R4/fhir/DiagnosticReport/_search	  
+POST test.fhir.net/fhir/DiagnosticReport/_search	  
 Host test.fhir.net
 Content-Type: application/x-www-form-urlencoded
 Accept: application/fhir+json; fhirVersion=4.0										  
@@ -131,9 +131,9 @@ The Responder shall be capable of processing, all query parameters according to 
 
 The Responder shall process the query to discover the DiagnosticReport entries that match the search parameters given. 
 
-The Responder shall support both GET and POST-based searches [http://hl7.org/fhir/R4/http.html#search](http://hl7.org/fhir/R4/http.html#search).
+The Responder shall support both GET and POST-based searches [http://hl7.org/fhir/http.html#search](http://hl7.org/fhir/http.html#search).
 
-The Responder shall implement the parameters described above. The Responder may choose to support additional query parameters beyond the subset listed above. Any additional query parameters supported shall be supported according to the core FHIR specification. Such additional parameters are considered out of scope for this transaction. Any parameters not supported should be ignored. See [http://hl7.org/fhir/R4/search.html#errors](http://hl7.org/fhir/R4/search.html#errors).
+The Responder shall implement the parameters described above. The Responder may choose to support additional query parameters beyond the subset listed above. Any additional query parameters supported shall be supported according to the core FHIR specification. Such additional parameters are considered out of scope for this transaction. Any parameters not supported should be ignored. See [http://hl7.org/fhir/search.html#errors](http://hl7.org/fhir/search.html#errors).
 
 #### 2:3.Y3.4.2 Return DiagnosticReport Bundle Message
 
@@ -147,7 +147,7 @@ The Responder completed processing of the Find Multimedia DiagnosticReport Reque
 
 Based on the query results, the Responder will either return an error or success. Guidance on handling Access Denied related to use of 200, 403 and 404 can be found in [ITI TF-2x: Appendix Z.7](https://profiles.ihe.net/ITI/TF/Volume2/ch-Z.html#z.8-mobile-security-considerations). 
 
-When the Responder needs to report an error, it shall use HTTP error response codes and should include a FHIR OperationOutcome with more details on the failure. See FHIR [http://hl7.org/fhir/R4/http.html](http://hl7.org/fhir/R4/http.html) and [http://hl7.org/fhir/R4/operationoutcome.html](http://hl7.org/fhir/R4/operationoutcome.html).
+When the Responder needs to report an error, it shall use HTTP error response codes and should include a FHIR OperationOutcome with more details on the failure. See FHIR [http://hl7.org/fhir/http.html](http://hl7.org/fhir/http.html) and [http://hl7.org/fhir/operationoutcome.html](http://hl7.org/fhir/operationoutcome.html).
 
 If the Find Multimedia DiagnosticReport message is processed successfully, whether or not any DiagnosticReport Resources are found, the HTTP status code shall be 200. The Return DiagnosticReport Bundle message shall be a Bundle Resource containing zero or more DiagnosticReport Resources. If the Responder is sending warnings, the Bundle Resource shall also contain an OperationOutcome Resource that contains those warnings.
 
