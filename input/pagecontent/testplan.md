@@ -2,7 +2,7 @@
 
 ## Test Plan
 
-**TODO: include actor based tests, include positive and edge cases. **
+**Note: During the Public Comment phase, this page contains generic statements.  Detailed test plans will be added during the Trial Implementation phase.
 
 ### Unit Test Procedure
 
