@@ -1,8 +1,8 @@
-### 2:3.Y5.1 Scope
+### 2:4.Y5.1 Scope
 
 This transaction is used to present the images referenced in that multimedia report to someone, such as a radiologist or a clinicians, in such a way that the user can interact with.
 
-### 2:3.Y5.2 Actors Roles
+### 2:4.Y5.2 Actors Roles
 
 The roles in this transaction are defined in the following table and may be played by the actors shown here:
 
@@ -17,37 +17,37 @@ The roles in this transaction are defined in the following table and may be play
 
 Transaction text specifies behavior for each role. The behavior of specific actors may also be specified when it goes beyond that of the general role.
 
-### 2:3.Y5.3 Referenced Standards
+### 2:4.Y5.3 Referenced Standards
 
 **DICOM PS3.3**: A. Composite Information Object Definitions
 
-### 2:3.Y5.4 Messages
+### 2:4.Y5.4 Messages
 
 <div>
 {%include RAD-Y5-seq.svg%}
 </div>
 <br clear="all">
 
-**Figure 2:3.Y5.4-1: Interaction Diagram**
+**Figure 4.Y5.4-1: Interaction Diagram**
 
-#### 2:3.Y5.4.1 Display Images Message
+#### 2:4.Y5.4.1 Display Images Message
 The Display presents the images referenced in a multimedia report to the user.
 
-##### 2:3.Y5.4.1.1 Trigger Events
+##### 2:4.Y5.4.1.1 Trigger Events
 
 The Display received the requested images as a result of a User navigating through the multimedia content to view selected referenced images as specified in the multimedia report.
 
-##### 2:3.Y5.4.1.2 Message Semantics
+##### 2:4.Y5.4.1.2 Message Semantics
 
-This transaction does not depend on how the images referenced by the multimedia report are represented (DICOM binary, DICOM XML, DICOM JSON), or the messaging protocol by which the images were transferred to the Display. If the Display receives the reports by a profiled mechanism such as DICOM C-STORE, or DICOMweb WADO-RS, the messaging protocol is specified in that corresponding transaction. If the images are accessed by being grouped with another actor such as an Image Display, there is no messaging protocol involved.
+This transaction does not depend on how the images referenced by the multimedia report are represented (DICOM binary, DICOM XML, DICOM JSON), or the messaging protocol by which the images were transferred to the Display. If the Display receives the images by a profiled mechanism such as DICOM C-STORE, or DICOMweb WADO-RS, the messaging protocol is specified in that corresponding transaction. If the images are accessed by being grouped with another actor such as an Image Display, there is no messaging protocol involved.
 
-#### 2:3.Y5.4.1.3 Expected Actions (i.e. Display Requirements)
+#### 2:4.Y5.4.1.3 Expected Actions (i.e. Display Requirements)
 
-The behaviors in this section are specified as baseline capabilities. Displays may have additional or alternative capabilities that may be invoked or configured.
+The behaviors in this section are specified as baseline capabilities. The Display may have additional or alternative capabilities that may be invoked or configured.
 
-The Display shall provide support for all the SOP Classes specified in Table 2:3.Y5.4.1.3-1.
+The Display shall provide support for all the SOP Classes specified in Table 2:4.Y5.4.1.3-1.
 
-Table 2:3.Y5.4.1.3-1: SOP Classes for IMR Report Reader
+Table 2:4.Y5.4.1.3-1: SOP Classes for IMR Report Reader
 
 | SOP Class UID | SOP Class Name |
 |---------------|----------------|
@@ -68,7 +68,7 @@ Table 2:3.Y5.4.1.3-1: SOP Classes for IMR Report Reader
 | 1.2.840.10008.5.1.4.1.1.12.2 | X-Ray Radiofluoroscopic Image Storage ??? |
 {: .grid}
 
-A Display shall support for all SOP Classes not specified in Table 2:3.Y5.4.1.3-1 that have the following
+A Display shall support for all SOP Classes not specified in Table 2:4.Y5.4.1.3-1 that have the following
 characteristics:
 - Pixel Data (7FE0,0010) data element present
 - Bits Allocated (0028,0100) of 8 or 16
@@ -89,21 +89,21 @@ The Display shall support the following subset of image viewing capabilities as 
 - Annotation (Section 4.16.4.2.2.5.8)
 - Measurements (Section 4.16.4.2.2.5.10 except for Cobb angle ???)
 
-The Requester may provide basic viewing tools for the user to interactive with the images.
+The Display may provide basic viewing tools for the user to interactive with the images.
 
-If the Requester supports the Series/Study Navigation Option, the Requester shall support the following additional interactive behavior:
+If the Display supports the Series/Study Navigation Option, the Display shall support the following additional interactive behavior:
 - Scrolling (Section 4.16.4.2.2.5.5)
 
 > Note that the Display is only required to display the actual objects referenced in the DiagnosticReport resource. If display of images from another plane (e.g. coronal or sagittal) other than the plane used during acquisition (e.g. axial) is necessary, then images on these other planes should be reconstructed (e.g. using multiplanar reconstruction), created as separate set of images and referenced in the DiagnosticReport resource. The Display is not required to support reconstruction.
 
-### 2:3.Y5.5 Security Considerations
+### 2:4.Y5.5 Security Considerations
 
 See [IMR Security Considerations](volume-1.html#security-considerations)
 
-#### 2:3.Y2.5.1 Security Audit Considerations
+#### 2:4.Y2.5.1 Security Audit Considerations
 
 The Radiology Audit Trail Option in the ITI Audit Trail and Node Authentication Profile (ITI TF-1:9) defines audit requirements for IHE Radiology transactions. See RAD TF-3: 5.1.
 
-#### 2:3.Y2.5.2 Display Specific Security Considerations
+#### 2:4.Y2.5.2 Display Specific Security Considerations
 
-Since this transaction involves the display of PHI, it may be reasonable for Report Readers to implement typical access controls for patient records, such as logins for users and role-based access policies. Since this transaction involves parsing datasets generated by other systems, it may be reasonable for Report Readers to implement basic digital hygiene, such as sanitizing datasets to avoid malicious executable scripts that might be executed by a browser-based viewer.
+Since this transaction involves the display of PHI, it may be reasonable for the Display to implement typical access controls for patient records, such as logins for users and role-based access policies. Since this transaction involves parsing datasets generated by other systems, it may be reasonable for the Display to implement basic digital hygiene, such as sanitizing datasets to avoid malicious executable scripts that might be executed by a browser-based viewer.
