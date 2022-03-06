@@ -28,30 +28,30 @@ Table XX.1-1: IMR Profile - Actors and Transactions
 
 | Actors  | Transactions  | Initiator or Responder | Optionality     | Reference                         |
 |---------|---------------|------------------------|-----------------|-----------------------------------|
-| Report Creator | \[RAD-Y1\] Store Multimedia Report | Initiator | R | RAD TF-2: 4.Y1 |
-| Report Repository | \[RAD-Y1\] Store Multimedia Report | Responder | R | RAD TF-2: 4.Y1 |
-|                   | \[RAD-Y3\] Find Multimedia Report | Responder | R | RAD TF-2: 4.Y3 |
-|                   | \[RAD-Y4\] Retrieve Rendered Multimedia Report | Responder | R | RAD TF-2: 4.Y4 |
-| Report Reader | \[RAD-Y1\] Store Multimedia Report | Responder | O (Note 1) | RAD TF-2: 4.Y1 |
-|               | \[RAD-Y2\] Display Multimedia Report | N/A | R | RAD TF-2: 4.Y2 |
-|               | \[RAD-Y3\] Find Multimedia Report | Initiator | O (Note 1) | RAD TF-2: 4.Y3 |
-|               | \[RAD-Y5\] Display Images | N/A | R | RAD TF-2: 4.Y5 |
-|               | \[RAD-107\] WADO-RS Retrieve | Initiator | O | RAD TF-2: 4.107 |
-| Rendered Report Reader | \[RAD-Y1\] Store Multimedia Report | Responder | O (Note 1) | RAD TF-2: 4.107 |
-|                        | \[RAD-Y3\] Find Multimedia Report | Initiator | O (Note 1) | RAD TF-2: 4.Y3 |
-|                        | \[RAD-Y4\] Retrieve Rendered Multimedia Report | Initiator | R | RAD TF-2: 4.Y4 |
-| Image Manager / Image Archive | \[RAD-16\] Retrieve Images | Responder | R | RAD TF-2: 4.16 |
-|                               | \[RAD-17\] Retrieve Presentation States | Responder | R | RAD TF-2: 4.17 |
-|                               | \[RAD-31\] Retrieve Key Images | Responder | R | RAD TF-2: 4.31 |
-|                               | \[RAD-45\] Retrieve Evidence Documents | Responder | R | RAD TF-2: 4.45 |
-|                               | \[RAD-107\] WADO-RS Retrieve | Responder | R | RAD TF-2: 4.107 |
-| Image Display | \[RAD-16\] Retrieve Images | Initiator | O (Note 2) | RAD TF-2: 4.16 |
-|               | \[RAD-17\] Retrieve Presentation States | Initiator | O | RAD TF-2: 4.17 |
-|               | \[RAD-31\] Retrieve Key Images | Initiator | O | RAD TF-2: 4.31 |
-|               | \[RAD-45\] Retrieve Evidence Documents | Initiator | O | RAD TF-2: 4.45 |
-|               | \[RAD-107\] WADO-RS Retrieve | Initiator | O (Note 2) | RAD TF-2: 4.107 |
-|               | \[RAD-106\] Invoke Image Display | Responder | O | RAD TF-2: 4.106 |
-|               | \[RAD-Y5\] Display Images | N/A | R | RAD TF-2: 4.Y5 |
+| Report Creator | Store Multimedia Report \[RAD-Y1\] | Initiator | R | RAD TF-2: 4.Y1 |
+| Report Repository | Store Multimedia Report \[RAD-Y1\] | Responder | R | RAD TF-2: 4.Y1 |
+|                   | Find Multimedia Report  \[RAD-Y3\]| Responder | R | RAD TF-2: 4.Y3 |
+|                   | Retrieve Rendered Multimedia Report \[RAD-Y4\] | Responder | R | RAD TF-2: 4.Y4 |
+| Report Reader | Store Multimedia Report \[RAD-Y1\]| Responder | O (Note 1) | RAD TF-2: 4.Y1 |
+|               | Display Multimedia Report \[RAD-Y2\] | N/A | R | RAD TF-2: 4.Y2 |
+|               | Find Multimedia Report \[RAD-Y3\] | Initiator | O (Note 1) | RAD TF-2: 4.Y3 |
+|               | Display Images \[RAD-Y5\] | N/A | R | RAD TF-2: 4.Y5 |
+|               | WADO-RS Retrieve \[RAD-107\] | Initiator | O | RAD TF-2: 4.107 |
+| Rendered Report Reader | Store Multimedia Report \[RAD-Y1\] | Responder | O (Note 1) | RAD TF-2: 4.107 |
+|                        | Find Multimedia Report \[RAD-Y3\] | Initiator | O (Note 1) | RAD TF-2: 4.Y3 |
+|                        | Retrieve Rendered Multimedia Report \[RAD-Y4\] | Initiator | R | RAD TF-2: 4.Y4 |
+| Image Manager / Image Archive | Retrieve Images \[RAD-16\] | Responder | R | RAD TF-2: 4.16 |
+|                               | Retrieve Presentation States \[RAD-17\] | Responder | R | RAD TF-2: 4.17 |
+|                               | Retrieve Key Images \[RAD-31\] | Responder | R | RAD TF-2: 4.31 |
+|                               | Retrieve Evidence Documents \[RAD-45\] | Responder | R | RAD TF-2: 4.45 |
+|                               | WADO-RS Retrieve | Responder \[RAD-107\] | R | RAD TF-2: 4.107 |
+| Image Display | Retrieve Images \[RAD-16\] | Initiator | O (Note 2) | RAD TF-2: 4.16 |
+|               | Retrieve Presentation States \[RAD-17\] | Initiator | O | RAD TF-2: 4.17 |
+|               | Retrieve Key Images \[RAD-31\] | Initiator | O | RAD TF-2: 4.31 |
+|               | Retrieve Evidence Documents \[RAD-45\] | Initiator | O | RAD TF-2: 4.45 |
+|               | WADO-RS Retrieve \[RAD-107\] | Initiator | O (Note 2) | RAD TF-2: 4.107 |
+|               | Invoke Image Display \[RAD-106\] | Responder | O | RAD TF-2: 4.106 |
+|               | Display Images \[RAD-Y5\] | N/A | R | RAD TF-2: 4.Y5 |
 {: .grid}
 
 > Note 1: The actor shall support at least one of [RAD-Y1] or [RAD-Y3].
