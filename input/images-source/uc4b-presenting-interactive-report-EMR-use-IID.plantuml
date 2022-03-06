@@ -23,7 +23,7 @@ Display->>Archive: //Retrieve study//
 Display->>Display: //Display study//
 
 group IMR Interactive Viewing of Multimedia Content in Report
-Reader->>Repo: //Retrieve multimedia report//
+Reader->Repo: [RAD-Y3] Find Multimedia Report
 Reader->Reader: [RAD-Y2] Display Multimedia Report
 
 note over Reader

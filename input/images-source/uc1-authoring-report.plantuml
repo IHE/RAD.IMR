@@ -4,6 +4,8 @@ actor "Radiologist" as Rad
 participant "Image Display /\nEvidence Creator" as ECreator
 participant "Report Creator" as RCreator
 participant "Report Repository" as Repo
+participant "Report Reader" as Reader
+participant "Rendered Report Reader" as RenderedReader
 
 Rad->>ECreator: //Load existing study//
 note over ECreator
@@ -30,7 +32,13 @@ Rad->>RCreator: //End dictation//
 
 group IMR Encode Report with embedded Multimedia Content
 RCreator->RCreator: Generate interactive multimedia report
+
+opt Select one or more destinations
 RCreator->Repo: [RAD-Y1] Store multimedia report
+RCreator->Reader: [RAD-Y1] Store multimedia report
+RCreator->RenderedReader: [RAD-Y1] Store multimedia report
+end opt
+
 end group
 
 @enduml

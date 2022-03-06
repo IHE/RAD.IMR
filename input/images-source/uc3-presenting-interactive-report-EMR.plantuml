@@ -13,7 +13,7 @@ participant "Image Manager/\nImage Archive" as Archive
 
 Clinician->>EMR: //Request multimedia report//
 group IMR Interactive Viewing of Multimedia Content in Report
-EMR->>Repo: //Retrieve multimedia report//
+EMR->Repo: [RAD-Y3] Find Multimedia Report
 EMR->EMR: [RAD-Y2] Display Multimedia Report
 note over EMR
 Present report, including multimedia contents
@@ -26,10 +26,14 @@ Invoker->Display: [RAD-106] Invoke Image Display
 note over Invoker
 Launch series
 end note
+
+loop Retrieve images, presentation states, window levelling
 Display->>Archive: //Retrieve series//
 Display->Display: //Display series//
 
 Clinician->>Display: //Interact with images and/or series//
+end loop
+
 end
 
 @enduml

@@ -32,22 +32,31 @@ Table XX.1-1: IMR Profile - Actors and Transactions
 | Report Repository | \[RAD-Y1\] Store Multimedia Report | Responder | R | RAD TF-2: 4.Y1 |
 |                   | \[RAD-Y3\] Find Multimedia Report | Responder | R | RAD TF-2: 4.Y3 |
 |                   | \[RAD-Y4\] Retrieve Rendered Multimedia Report | Responder | R | RAD TF-2: 4.Y4 |
-| Report Reader | \[RAD-Y1\] Store Multimedia Report | Responder | O (See Note 1) | RAD TF-2: 4.Y1 |
-|               | \[RAD-Y2\] Display Multimedia Report | Responder | R | RAD TF-2: 4.Y2 |
-|               | \[RAD-Y3\] Find Multimedia Report | Initiator | O (See Note 1) | RAD TF-2: 4.Y3 |
-|               | \[RAD-Y5\] Display Images | Responder | R | RAD TF-2: 4.Y5 |
+| Report Reader | \[RAD-Y1\] Store Multimedia Report | Responder | O (Note 1) | RAD TF-2: 4.Y1 |
+|               | \[RAD-Y2\] Display Multimedia Report | N/A | R | RAD TF-2: 4.Y2 |
+|               | \[RAD-Y3\] Find Multimedia Report | Initiator | O (Note 1) | RAD TF-2: 4.Y3 |
+|               | \[RAD-Y5\] Display Images | N/A | R | RAD TF-2: 4.Y5 |
 |               | \[RAD-107\] WADO-RS Retrieve | Initiator | O | RAD TF-2: 4.107 |
-| Rendered Report Reader | \[RAD-Y1\] Store Multimedia Report | Responder | O (See Note 1) | RAD TF-2: 4.107 |
-|                        | \[RAD-Y3\] Find Multimedia Report | Initiator | O (See Note 1) | RAD TF-2: 4.Y3 |
+| Rendered Report Reader | \[RAD-Y1\] Store Multimedia Report | Responder | O (Note 1) | RAD TF-2: 4.107 |
+|                        | \[RAD-Y3\] Find Multimedia Report | Initiator | O (Note 1) | RAD TF-2: 4.Y3 |
 |                        | \[RAD-Y4\] Retrieve Rendered Multimedia Report | Initiator | R | RAD TF-2: 4.Y4 |
 | Image Manager / Image Archive | \[RAD-16\] Retrieve Images | Responder | R | RAD TF-2: 4.16 |
+|                               | \[RAD-17\] Retrieve Presentation States | Responder | R | RAD TF-2: 4.17 |
 |                               | \[RAD-31\] Retrieve Key Images | Responder | R | RAD TF-2: 4.31 |
 |                               | \[RAD-45\] Retrieve Evidence Documents | Responder | R | RAD TF-2: 4.45 |
 |                               | \[RAD-107\] WADO-RS Retrieve | Responder | R | RAD TF-2: 4.107 |
-| Image Display | \[RAD-106\] Invoke Image Display | Responder | R | RAD TF-2: 4.106 |
+| Image Display | \[RAD-16\] Retrieve Images | Initiator | O (Note 2) | RAD TF-2: 4.16 |
+|               | \[RAD-17\] Retrieve Presentation States | Initiator | O | RAD TF-2: 4.17 |
+|               | \[RAD-31\] Retrieve Key Images | Initiator | O | RAD TF-2: 4.31 |
+|               | \[RAD-45\] Retrieve Evidence Documents | Initiator | O | RAD TF-2: 4.45 |
+|               | \[RAD-107\] WADO-RS Retrieve | Initiator | O (Note 2) | RAD TF-2: 4.107 |
+|               | \[RAD-106\] Invoke Image Display | Responder | O | RAD TF-2: 4.106 |
+|               | \[RAD-Y5\] Display Images | N/A | R | RAD TF-2: 4.Y5 |
 {: .grid}
 
-> Note 1: A Report Reader shall support at least one of RAD-Y1 or RAD-Y3.
+> Note 1: The actor shall support at least one of [RAD-Y1] or [RAD-Y3].
+
+> Note 2: The Image Display shall support at least one of WADO-RS Retrieve [RAD-107] or Retrieve Images [RAD-16].
 
 ### XX.1.1 Actors Description and Actor Profile Requirements
 Most requirements are documented in RAD TF-2 Transactions. This section documents any additional requirements on profile's actors.
@@ -78,25 +87,25 @@ Report Readers receive multimedia reports by either querying Report Repositories
 
 There are baseline image viewing capabilities required for Report Readers, while optionally the Report Reader may support additional advanced behavior. In other words, a Report Reader provides [Level 2 Interactivity](#xx416-level-of-interactivity) or higher as discussed in Section XX.4.1.6.
 
-Report Readers shall support at least one of the following named options to retrieve the referenced images and display them to the user.
+To retrieve and display referenced images in the report, Report Readers shall support at least one of the following named options.
 
-##### XX.1.1.3.1 Report Reader with WADO-RS Retrieve Option
+##### XX.1.1.3.1 Report Reader with Rendered Instance Retrieve Option
 
-Report Readers with WADO-RS Retrieve Option are Report Readers that can handle retrieve and display of referenced images in multimedia reports without external dependencies. When triggered to view images, Report Readers retrieve the images from Image Manager / Image Archive and display the images to the user with some basic viewing capabilities.
+Report Readers with Rendered Instance Retrieve Option are Report Readers that can handle retrieve and display of referenced images in multimedia reports. When triggered to view images, Report Readers retrieve rendered images from Image Manager / Image Archive and display the images to the user with some basic viewing capabilities.
 
-See [WADO-RS Retrieve Option](#xx23-wado-rs-retrieve-option) for details.
+See [Rendered Instance Retrieve Option](#xx23-rendered-instance-retrieve-option) for details.
 
-##### XX.1.1.3.2 Report Reader with Integrated Image Display Invoker Option
+##### XX.1.1.3.2 Report Reader with External Image Display Retrieve Option
 
-Report Readers with Integrated Image Display Invoker Option are Report Readers that delegate the image viewing capabilities to external Image Display invoked by the integrated Image Display Invoker. When triggered to view images, Report Readers translate the embedded image references and endpoints in the DiagnosticReport resource into corresponding Invoke Image Display URLs.
+Report Readers with External Image Display Retrieve Option are Report Readers that delegate the image viewing capabilities to external Image Display invoked by the integrated Image Display Invoker. When triggered to view images, Report Readers translate the embedded image references and endpoints in the DiagnosticReport resource into corresponding Invoke Image Display URLs.
 
-See [Integrated Image Display Invoker Option](#xx24-integrated-image-display-invoker-option) for details.
+See [External Image Display Retrieve Option](#xx24-external-image-display-retrieve-option) for details.
 
-##### XX.1.1.3.3 Report Reader with Integrated Image Display Option
+##### XX.1.1.3.3 Report Reader with DICOM Instance Retrieve Option
 
-Report Readers with Integrated Image Display Option are Report Readers that integrate with Image Displays directly which provide the image viewing capabilities. When triggered to view images, the Report Readers translate the embedded image references and endpoints in the DiagnosticReport resource into corresponding commands (out of scope of IMR) and launch the integrated Image Display in context.
+Report Readers with DICOM Instance Retrieve Option are Report Readers that integrate with Image Displays directly which provide the image viewing capabilities. When triggered to view images, the Report Readers translate the embedded image references and endpoints in the DiagnosticReport resource into corresponding commands (out of scope of IMR) and launch the integrated Image Display in context, which in turn retrieves and displays the images using either DICOM retrieve or WADO-RS retrieve.
 
-See [Integrated Image Display Option](#xx25-integrated-image-display-option) for details.
+See [DICOM Instance Retrieve Option](#xx25-dicom-instance-retrieve-option) for details.
 
 #### XX.1.1.4 Rendered Report Readers
 
@@ -114,6 +123,8 @@ Image Managers / Image Archives provide the images and related objects to the Re
 
 Image Managers / Image Archives shall support WADO-RS Retrieve [RAD-107] as well as [RAD-16], [RAD-17], [RAD-31] and [RAD-45] DICOM DIMSE services. This enables different types of Image Displays to retrieve objects.
 
+Image Managers / Image Archives shall also support returning images in the requested rendered media type as defined in DICOM PS3.18 Section 9.5 [Retrieve Rendered Instance Transaction](https://dicom.nema.org/medical/dicom/current/output/html/part18.html#sect_9.5).
+
 #### XX.1.1.6 Image Display
 
 Image Displays retrieve images from Image Managers / Image Archives, display the images to the user and provide different interactive tools for user to interactive with the images, based on requests from Image Display Invokers.
@@ -129,16 +140,16 @@ Table XX.2-1: IMR - Actors and Options
 
 | Actor   | Option Name | Reference |
 |---------|-------------|-----------|
-| Report Creator | PDF Report Option  | Section XX.2.1 | 
-|                | HL7 Text Report Option | Section XX.2.2 |
+| Report Creator | PDF Report | Section XX.2.1 | 
+|                | HL7 Text Report | Section XX.2.2 |
 | Report Repository | No options defined | -- |
-| Report Reader | WADO-RS Retrieve Option (See Note 1) | Section XX.2.3 |
-|               | Integrated Image Display Invoker Option (See Note 1) | Section XX.2.4 |
-|               | Integrated Image Display Option (See Note 1) | Section XX.2.5 |
-|               | Series/Study Navigation Option | Section XX.2.6 |
-| Rendered Report Reader | PDF Report Option | Section XX.2.1 |
-| Image Manager / Image Archive | Retrieve Rendered Instance Option | Section XX.2.7 |
-| Image Display | No options defined | -- |
+| Report Reader | Rendered Instance Retrieve (Note 1) | Section XX.2.3 |
+|               | External Image Display Retrieve (Note 1) | Section XX.2.4 |
+|               | DICOM Instance Retrieve (Note 1) | Section XX.2.5 |
+|               | Series/Study Navigation | Section XX.2.6 |
+| Rendered Report Reader | PDF Report | Section XX.2.1 |
+| Image Manager / Image Archive | No options defined | -- |
+| Image Display | IID Invoke Option | Section XX.2.7 |
 {: .grid}
 
 > Note 1: The Report Reader shall support at least one of the options to retrieve images.
@@ -163,39 +174,48 @@ A Report Creator that supports this option shall create a text-only rendition of
 
 A Report Creator shall use this text-only report to communicate the report with existing non-IMR Report Readers, for example, using HL7 v2 ORU messages, or Send Imaging Result [RAD-128] in IHE [Results Distribution](https://www.ihe.net/uploadedFiles/Documents/Radiology/IHE_RAD_Suppl_RD.pdf) profile as a Report Creator.
 
-### XX.2.3 WADO-RS Retrieve Option
+### XX.2.3 Rendered Instance Retrieve Option
 
-The WADO-RS Retrieve Option enables actors to retrieve images from Image Manager / Image Archive using WADO-RS.
+The Rendered Instance Retrieve Option enables a Report Reader to retrieve rendered images from Image Manager / Image Archive using WADO-RS.
 
-A Report Reader that supports this option shall use WADO-RS Retrieve [RAD-107] to retrieve images from an Image Manager / Image Archive.
+A Report Reader that supports this option shall use WADO-RS Retrieve [RAD-107] to retrieve rendered images from an Image Manager / Image Archive.
 
-The requests shall use the information in DiagnosticReport.result.derivedFrom.endpoint.address and DiagnosticReport.result.component.valueString to construct valid WADO-RS URLs that conform to the semantics as RetrieveInstance or RetrieveFrames as defined in WADO-RS Retrieve [RAD-107], retrieve the corresponding.
+The requests shall use the information in DiagnosticReport.result.derivedFrom.endpoint.address and DiagnosticReport.result.component.valueString to construct valid WADO-RS URLs that conform to the semantics as RetrieveInstance or RetrieveFrames as defined in WADO-RS Retrieve [RAD-107], retrieve the corresponding rendered images.
 
-A Report Reader that claims support of the Series/Study Navigation Option shall be able to construct WADO-RS URLs that confirm to the RetrieveSeries and RetrieveStudy semantics.
+A Report Reader that also supports the Series/Study Navigation Option shall be able to construct WADO-RS URLs that confirm to the RetrieveSeries and RetrieveStudy semantics.
 
-### XX.2.4 Integrated Image Display Invoker Option
+### XX.2.4 External Image Display Retrieve Option
 
-The Integrated Image Display Invoker Option enables actors to display images via an external Image Display actor.
+The External Image Display Retrieve Option enables actors to display images via an external Image Display actor.
 
 A Report Reader that supports this option shall use Invoke Image Display [RAD-106] to invoke an Image Display which in turn retrieves images from an Image Manager / Image Archive. Report Readers shall translate the embedded image references and endpoints in the DiagnosticReport resource into corresponding Invoke Image Display URLs.
 
+> Note: For this option to work, the Image Display also needs to support the [IID Invoke Option](#xx27-iid-invoke-option).
+
 The Invoke Image Display requests shall have the same semantics as Retrieve Display of Series Images or Retrieve Display of Study Images in Invoke Image Display [RAD-106].
 
-> Note: [RAD-106] currently does not support invoking an Image Display at the series level. Retrieve Display of Series Images functionality is available in CP-RAD-xxx.
+> Note: [RAD-106] currently does not support invoking an Image Display at the series level nor the IHE-IMR viewer type. Retrieve Display of Series Images functionality and IHE-IMR viewer type are available in CP-RAD-xxx.
 
-> Note: A Report Reader that supports this Option can also claim support of the Series/Study Navigation Option as the Image Display Invoker always invokes the Image Display at the series or study level.
+> Note: A Report Reader that supports this Option can also supports the Series/Study Navigation Option as the Image Display Invoker always invokes the Image Display at the series or study level.
 
-### XX.2.5 Integrated Image Display Option
+### XX.2.5 DICOM Instance Retrieve Option
 
-The Integrated Image Display Option enables actors to display images via the integrated Image Display actor.
+The DICOM Instance Retrieve Option enables actors to retrieve and display images via an integrated Image Display actor.
 
-A Report Reader that supports this option shall launch an Image Display to display the referenced image first. The integrated Image Display may use DICOM C-Move request, WADO-RS retrieve request or other means to retrieve images from an Image Manager / Image Archive. The Image Display may provide additional functions that the user can interact with.
+A Report Reader that supports this option shall launch an Image Display to display the referenced image first. The integrated Image Display may use DICOM C-Move request or WADO-RS retrieve request to retrieve images from an Image Manager / Image Archive.
 
-For DICOM C-Move requests, the requests shall have the same semantics as Retrieve Images [RAD-16], Retrieve Presentation States [RAD-17], Retrieve Key Image Notes [RAD-31] or Retrieve Evidence Document [RAD-45].
+To retrieve images using DICOM DIMSE services, the integrated Image Display shall support one or more of the following transactions as an Image Display:
 
-For WADO-RS requests, the requests shall have the same semantics as RetrieveInstance or RetrieveFrames as defined in WADO-RS Retrieve [RAD-107], constructed based on DiagnosticReport.result.derivedFrom.endpoint.address and DiagnosticReport.result.component.valueString.
+- Retrieve Images [RAD-16]
+- Retrieve Presentation States [RAD-17]
+- Retrieve Key Image Notes [RAD-31]
+- Retrieve Evidence Document [RAD-45]
 
-If the Report Reader also claims support of the Series/Study Navigation Option, then the WADO-RS request shall also support the RetrieveSeries and RetrieveStudy semantics.
+To retrieve images using WADO-RS, the integrated Image Display shall support WADO-RS Retrieve [RAD-107]. The requests shall have the same semantics as RetrieveInstance or RetrieveFrames, constructed based on DiagnosticReport.result.derivedFrom.endpoint.address and DiagnosticReport.result.component.valueString.
+
+If the Report Reader also supports the Series/Study Navigation Option, then the WADO-RS request shall also support the RetrieveSeries and RetrieveStudy semantics.
+
+The integrated Image Display may provide additional functions that the user can interact with.
 
 ### XX.2.6 Series/Study Navigation Option
 
@@ -203,11 +223,13 @@ The Series/Study Navigation Option enables actors to scroll through images in th
 
 A Report Reader that supports this option shall initially display the referenced image, and shall enable the user to scroll through the other images in the same series (and optionally study) as the referenced image.
 
-### XX.2.7 Retrieve Rendered Instance Option
+### XX.2.7 IID Invoke Option
 
-The Retrieve Rendered Instance Option enables actors to retrieve a rendered image rather than retrieve the original DICOM instance.
+The IID Invoke Option enables an Image Display to be invoked by the Image Display Invoker.
 
-An Image Manager / Image Archive that supports this option shall return the requested images in the requested rendered media type as defined in DICOM PS3.18 Section 9.5 [Retrieve Rendered Instance Transaction](https://dicom.nema.org/medical/dicom/current/output/html/part18.html#sect_9.5).
+An Image Display that supports this option shall support the Invoke Image Display [RAD-106] transaction as an Image Display.
+
+> Note that the Retrieve Display of Series Images functionality and IHE-IMR viewer type are available in CP-RAD-xxx.
 
 ## XX.3 IMR Required Actor Groupings <a name="required-groupings"> </a>
 
@@ -223,8 +245,8 @@ considerations and Section XX.6 describes some optional groupings in other relat
 |-----------|--------------------|-----------------------------|-----------|
 | Report Creator | Required | ITI CT / Time Client | ITI-TF-1: 7.1 |
 | Report Repository | -- | None | -- |
-| Report Reader | With the Integrated Image Display Invoker Option | RAD IID / Image Display Invoker | RAD-IID: 35.1.1.2 |
-|               | With the Integrated Image Display Option | RAD SWF.b / Image Display | RAD-TF-1: 34.1 |
+| Report Reader | With the External Image Display Retrieve Option | RAD IID / Image Display Invoker | RAD-IID: 35.1.1.2 |
+|               | With the DICOM Instance Retrieve Option | RAD IMR / Image Display | RAD-IMR: XX.1.1.6 |
 | Rendered Report Reader | -- | None | -- |
 | Image Manager / Image Archive | -- | None | -- |
 | Image Display | -- | None | -- |
@@ -339,7 +361,7 @@ Note that the IMR profile is currently focused on intra-enterprise use cases. Ot
 
 ##### XX.4.2.1.1 Encode and Transmit Multimedia Report Use Case Description
 
-During a report dictation session, the Evidence Creator (not part of IMR) conveys multimedia contents to the Report Creator on demand as instructed by the user. (Note that the interaction between the Evidence Creator and Report Creator is out of scope for IMR) When a dictation session ended, the Report Creator encodes the diagnostic report along with the collected multimedia content. Once completed, the Report Creator stores the multimedia report to the Report Repository.
+During a report dictation session, the Evidence Creator (not part of IMR) conveys multimedia contents to the Report Creator on demand as instructed by the user. (Note that the interaction between the Evidence Creator and Report Creator is out of scope for IMR) When a dictation session ended, the Report Creator encodes the diagnostic report along with the collected multimedia content. Once completed, the Report Creator stores the multimedia report to the Report Repository, Report Reader and/or Rendered Report Reader.
 
 ##### XX.4.2.1.2 Encode and Transmit Multimedia Report Process Flow
 
@@ -356,7 +378,7 @@ Figure XX.4.2.1.2-1: Encode and Transmit Process Flow in IMR Profile
 
 ##### XX.4.2.2.1 Consume and Interact with Multimedia Report by Standalone Report Reader Use Case Description
 
-Upon reviewing reports for a patient in the EMR which natively supports as an IMR Report Reader, the EMR encounters an IMR multimedia report. It displays the reports with interactive links to the multimedia content. The Clinician clicks on the interactive links. The EMR / Report Reader retrieves the images from the Imaging Document Source and displays the images with interactive tools. The Clinicians can navigate the series and see the measurements with annotations as described in the report.
+Upon reviewing reports for a patient in the EMR which natively supports as an IMR Report Reader, the EMR encounters an IMR multimedia report. It processes the report content and displays the reports with interactive links. The Clinician clicks on the interactive links. The EMR / Report Reader retrieves the rendered images from the Image Manager / Image Archive and displays the images with interactive tools. The Clinicians can navigate the series and see the measurements with annotations as described in the report.
 
 ##### XX.4.2.2.2 Consume and Interact with Multimedia Report by Standalone Report Reader Process Flow
 
@@ -368,6 +390,21 @@ Figure XX.4.2.2.2-1 shows how the Clinician can use the EMR with native IMR Repo
 <br clear="all">
 
 Figure XX.4.2.2.2-1: Consume and Interact with Multimedia Report by Standalone Report Reader Process Flow in IMR Profile
+
+##### XX.4.2.2.3 Consume and Interact with Multimedia Report by Rendered Report Reader Use Case Description
+
+Alternatively, the EMR supports as an IMR Rendered Report Reader. In this case, the EMR extracts and displays the rendered report already embedded in the IMR multimedia report. The Clinicians clicks on the interactive links. The EMR / Rendered Report Reader invokes the links and displays the rendered content.
+
+##### XX.4.2.2.4 Consume and Interact with Multimedia Report by Rendered Report Reader Process Flow
+
+Figure XX.4.2.2.4-1 shows how the Clinician can use the EMR with native IMR Rendered Report Reader support to interact with the multimedia content available in the report.
+
+<div>
+{%include uc2a-presenting-interactive-report-presentedform.svg%}
+</div>
+<br clear="all">
+
+Figure XX.4.2.2.4-1: Consume and Interact with Multimedia Report by Rendered Report Reader Process Flow in IMR Profile
 
 #### XX.4.2.3 Use Case 3: Consume and Interact with Multimedia Report by Report Reader with Integrated Invoker Image Display
 

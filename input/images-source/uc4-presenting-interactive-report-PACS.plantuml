@@ -18,7 +18,7 @@ Display->>Archive: //Retrieve current and prior studies//
 Display->>Display: //Display study//
 
 group IMR Interactive Viewing of Multimedia Content in Report
-Reader->>Repo: //Retrieve multimedia report//\n//for prior studies//
+Reader->Repo: [RAD-Y3] Find Multimedia Report\nfor prior studies
 Reader->Reader: [RAD-Y2] Display Multimedia Report
 
 note over Reader
@@ -28,6 +28,8 @@ end note
 
 Radiologist->>Reader: //Click on image references in Report//
 Reader->>Display: //View series//\n//(internal communication)//
+
+loop Retrieve images, presentation states, window levelling
 alt Using WADO-RS Retrieve
 Display->WADO: [RAD-107] WADO-RS Retrieve
 else Using DIMSE Retrieve
@@ -35,6 +37,8 @@ Display->Archive: [RAD-16] Retrieve Images, [RAD-31] Retrieve Key Image Notes, [
 end
 
 Radiologist->>Display: //Interact with images and/or series//\n//such as scrolling, re-measure//
+end loop
+
 end
 
 
