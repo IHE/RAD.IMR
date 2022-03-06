@@ -282,6 +282,12 @@ Also known as 'structured reporting' or 'synoptic reporting', encoding structure
 
 This has been successfully used in certain discipline such as cancer screening, but it is less common in general radiology reporting practice.
 
+##### Presentation Structure
+
+While Report Content Structure and Report Content Encoding Structure focus on imposing structure to data elements, they do not impose any requirements on how these data elements will be presented to the user. FHIR Composition resource is designed for presentation structure using elements like *section*.
+
+> FHIR is currently working on integrating FHIR DiagnosticReport and Composition to enable better presentation structure.
+
 The primary goal of this Interactive Multimedia Report Profile is to focus on Message Structure and Report Content Structure, introduce the ability to capture report content with some interactive links that referencing other contents such as the source images in which the measurements are derived from. It is not the intention of this profile to require fully coded content in the report.
 
 #### XX.4.1.2 Source of Multimedia Content
