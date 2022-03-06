@@ -63,75 +63,73 @@ Most requirements are documented in RAD TF-2 Transactions. This section document
 
 #### XX.1.1.1 Report Creator
 
-Report Creators encode diagnostic reports with multimedia content using FHIR DiagnosticReport resource. Each resulting DiagnosticReport resource also includes a default rendered report.
+A Report Creator encodea diagnostic reports with multimedia content using FHIR DiagnosticReport resource. Each resulting DiagnosticReport resource also includes a default rendered report in the same DiagnosticReport resource, either as base64 encoded binary, or by reference using a URL..
 
-Report Creators may support creating multiple renditions of the same multimedia report for different consumers (e.g. simple consumers that do not render the detailed multimedia contents on its own, or external consumers that do not have access to studies inside the enterprise firewall).
+A Report Creator may support creating multiple renditions of the same multimedia report for different consumers (e.g. simple consumers that do not render the detailed multimedia contents on its own, or external consumers that do not have access to studies inside the enterprise firewall).
 
-Report Creators store the DiagnosticReport resources to Report Repositories, Report Readers or Rendered Report Readers. 
+A Report Creator stores the DiagnosticReport resources to Report Repositories, Report Readers or Rendered Report Readers. 
 
-Report Creators shall include a rendered report in the same DiagnosticReport resource, either as base64 encoded binary, or by reference using a URL.
-
-> Note that in IMR, Report Creator is the actor responsible for authoring the report. How the Report Creator receives the multimedia content is out of scope for this release of IMR. In practice, A Report Creator may be grouped with an Image Display, or a Report Creator is integrated with an Image Display via proprietary APIs or standard context sharing mechanism such as FHIRcast.
+> Note that in IMR, the Report Creator is the actor responsible for authoring the report. How the Report Creator receives the multimedia content is out of scope for this release of IMR. In practice, a Report Creator may be grouped with an Image Display, or a Report Creator is integrated with an Image Display via proprietary APIs or standard context sharing mechanism such as FHIRcast.
 
 #### XX.1.1.2 Report Repository
 
-Report Repositories store multimedia reports received from Report Creators and make the reports available for other consumers.
+A Report Repository stores multimedia reports received from Report Creators and makes the reports available for other consumers.
 
-Report Repositories support query/retrieve of multimedia reports by Report Readers and Rendered Report Readers.
+A Report Repository supports query/retrieve of multimedia reports by Report Readers and Rendered Report Readers.
 
-> Note that a Report Repository shall not modify the DiagnosticReport content, but it may modify how the embedded rendered report can be accessed, if necessary. For example, a Report Repository may adjust an internal URL to an external accessible URL, or it may retrieve the rendered report referenced by a URL and embedded directly in the DiagnosticReport resource as base64 encoded in query responses. Details regarding how Report Repositories may adjust the accessibility of the rendered report is out of scope of IMR.
+A Report Repository shall not modify the DiagnosticReport content, but it may modify how the embedded rendered report can be accessed, if necessary. For example, a Report Repository may adjust an internal URL to an external accessible URL, or it may retrieve the rendered report referenced by a URL and embedded directly in the DiagnosticReport resource as base64 encoded in query responses. Details regarding how a Report Repository may adjust the accessibility of the rendered report is out of scope of IMR.
 
 #### XX.1.1.3 Report Reader
 
-Report Readers present the reports to the user, including the multimedia content embedded in the report as hyperlinks. When users click on the hyperlinks, Report Readers present the referenced images to the user in a way that the user can interact with the images (e.g. windowing, zooming, panning, toggle annotations, etc.).
+A Report Reader presents the reports to the user, including the multimedia content embedded in the report as hyperlinks. When users click on the hyperlinks, the Report Reader presents the referenced images to the user in a way that the user can interact with the images (e.g. windowing, zooming, panning, toggle annotations, etc.).
 
-Report Readers receive multimedia reports by either querying Report Repositories or receive directly from Report Creators.
+A Report Reader receives multimedia reports directly from Report Creators or query/retrieves them from Report Repositories.
 
-There are baseline image viewing capabilities required for Report Readers, while optionally the Report Reader may support additional advanced behavior. In other words, a Report Reader provides [Level 2 Interactivity](#xx416-level-of-interactivity) or higher as discussed in Section XX.4.1.6.
+A Report Reader shall provide baseline image viewing capabilities, i.e. [Level 2 Interactivity](#xx416-level-of-interactivity) as discussed in Section XX.4.1.6. A Report Reader may support additional advanced behavior. 
 
-To retrieve and display referenced images in the report, Report Readers shall support at least one of the following named options.
+To retrieve and display referenced images in the report, Report Readers shall support at least one of the following named options:
 
 ##### XX.1.1.3.1 Report Reader with Rendered Instance Retrieve Option
 
-Report Readers with Rendered Instance Retrieve Option can handle retrieve and display of referenced images in multimedia reports. When triggered to view images, Report Readers retrieve rendered images from Image Manager / Image Archive and display the images to the user with some basic viewing capabilities.
+A Report Reader with the Rendered Instance Retrieve Option can handle retrieve and display of referenced images in multimedia reports. When triggered to view images, a Report Readers retrieves rendered images from Image Manager / Image Archive and displays the images to the user with some basic viewing capabilities.
 
 See [Rendered Instance Retrieve Option](#xx23-rendered-instance-retrieve-option) for details.
 
 ##### XX.1.1.3.2 Report Reader with External Image Display Retrieve Option
 
-Report Readers with External Image Display Retrieve Option delegate the image viewing capabilities to external Image Display invoked by the integrated Image Display Invoker. When triggered to view images, Report Readers translate the embedded image references and endpoints in the DiagnosticReport resource into corresponding Invoke Image Display URLs.
+A Report Reader with the External Image Display Retrieve Option delegates the image viewing capabilities to an external Image Display invoked by the IID / Integrated Image Display Invoker. When triggered to view images, the Report Reader translates the embedded image references and endpoints in the DiagnosticReport resource into corresponding Invoke Image Display URLs.
 
 See [External Image Display Retrieve Option](#xx24-external-image-display-retrieve-option) for details.
 
 ##### XX.1.1.3.3 Report Reader with DICOM Instance Retrieve Option
 
-Report Readers with DICOM Instance Retrieve Option integrate with Image Displays directly to provide the image viewing capabilities. When triggered to view images, the Report Readers translate the embedded image references and endpoints in the DiagnosticReport resource into corresponding commands (out of scope of IMR) and launch the integrated Image Display in context, which in turn retrieves and displays the images using either DICOM retrieve or WADO-RS retrieve.
+A Report Reader with the DICOM Instance Retrieve Option integrates with Image Displays directly to provide the image viewing capabilities. When triggered to view images, the Report Reader translates the embedded image references and endpoints in the DiagnosticReport resource into corresponding commands (out of scope of IMR) and launches the integrated Image Display in context, to retrieve the images using either DICOM retrieve or WADO-RS retrieve and then displays them.
 
 See [DICOM Instance Retrieve Option](#xx25-dicom-instance-retrieve-option) for details.
 
 #### XX.1.1.4 Rendered Report Readers
 
-Rendered Report Readers present the rendered reports embedded in the DiagnosticReport resource to the user, including the multimedia content embedded in the report as hyperlinks. When users click on the hyperlinks, Rendered Report Readers launched the rendered references images to the user.
+A Rendered Report Reader presents the rendered reports embedded in the DiagnosticReport resource to the user, including the multimedia content embedded in the report as hyperlinks. When users click on the hyperlinks, the Rendered Report Reader launches the rendered references images to the user.
 
-Rendered Report Readers receive multimedia reports by either querying Report Repositories or receive directly from Report Creators.
+A Rendered Report Reader receives multimedia reports directly from Report Creators or query/retrieves them from Report Repositories.
 
-A Report Reader provides [Level 1 Interactivity](#xx416-level-of-interactivity) as discussed in Section XX.4.1.6.
+A Rendered Report Reader provides [Level 1 Interactivity](#xx416-level-of-interactivity) as discussed in Section XX.4.1.6.
 
-> Note that there is no additional image viewing capabilities required for Rendered Report Readers. In other words, the image viewing capabilities presented by the Rendered Report Readers is limited by how Report Creators created the rendered report. For example, for image references, one Report Creator may render them using WADO-RS links which will show a static rendered image, while another Report Creator may render them using IHE Invoke Image Display links which will launch a viewer to show the referenced image with additional interactivity such as scrolling, zooming, etc..
+> Note that there are no additional image viewing capabilities required for Rendered Report Readers. In other words, the image viewing capabilities presented by the Rendered Report Readers is limited by how the Report Creator created the rendered report. For example, for image references, one Report Creator may render them using WADO-RS links which will show a static rendered image, while another Report Creator may render them using IID Invoke Image Display links which will launch a viewer to show the referenced image with additional interactivity such as scrolling, zooming, etc..
 
 #### XX.1.1.5 Image Manager / Image Archive
 
-Image Managers / Image Archives provide the images and related objects to the Report Readers or Image Displays.
+An Image Managers / Image Archive provides the images and related objects to the Report Readers or Image Displays.
 
-Image Managers / Image Archives shall support WADO-RS Retrieve [RAD-107] as well as DICOM DIMSE Services in [RAD-16], [RAD-17], [RAD-31] and [RAD-45]. This enables different types of Image Displays to retrieve objects.
+An Image Managers / Image Archive shall support WADO-RS Retrieve [RAD-107] as well as DICOM DIMSE Services in [RAD-16], [RAD-17], [RAD-31] and [RAD-45]. This enables different types of Image Displays to retrieve objects.
 
-Image Managers / Image Archives shall also support returning images in the requested rendered media type as defined in DICOM PS3.18 Section 9.5 [Retrieve Rendered Instance Transaction](https://dicom.nema.org/medical/dicom/current/output/html/part18.html#sect_9.5).
+An Image Managers / Image Archive shall also support returning images in the requested rendered media type as defined in DICOM PS3.18 Section 9.5 [Retrieve Rendered Instance Transaction](https://dicom.nema.org/medical/dicom/current/output/html/part18.html#sect_9.5).
 
 #### XX.1.1.6 Image Display
 
-Image Displays retrieve images from Image Managers / Image Archives, display the images to the user and provide different interactive tools for user to interactive with the images, based on requests from Image Display Invokers.
+An Image Display retrieves images from Image Manager / Image Archives, displays the images to the user, and provides different interactive tools for user to interact with the images, based on requests from Image Display Invokers.
 
-An Image Display that grouped with a Report Reader shall follow the [DICOM Instance Retrieve Option](#xx25-dicom-instance-retrieve-option).
+An Image Display that is grouped with a Report Reader shall follow the [DICOM Instance Retrieve Option](#xx25-dicom-instance-retrieve-option).
 
 An Image Display that is invoked by an IID Image Display Invoker grouped with a Report Reader shall follow the [External Image Display Retrieve Option](#xx24-external-image-display-retrieve-option).
 
