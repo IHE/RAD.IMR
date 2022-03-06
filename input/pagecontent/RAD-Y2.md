@@ -10,7 +10,7 @@ The roles in this transaction are defined in the following table and may be play
 
 | Role      | Description                                   | Actor(s)          |
 |-----------|-----------------------------------------------|-------------------|
-| Display | Presents multimedia reports to a user, such as a radiologist    | Report Reader |
+| Display | Presents multimedia reports to a user, such as a radiologist    | Report Reader <br> Rendered Report Reader|
 {: .grid}
 
 Transaction text specifies behavior for each role. The behavior of specific actors may also be specified when it goes beyond that of the general role.

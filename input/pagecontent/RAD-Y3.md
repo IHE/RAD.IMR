@@ -10,7 +10,7 @@ The roles in this transaction are defined in the following table and may be play
 
 | Role      | Description                                   | Actor(s)          |
 |-----------|-----------------------------------------------|-------------------|
-| Requester | Request DiagnosticReport that matches a filter         | Report Reader     |
+| Requester | Request DiagnosticReports that match a filter         | Report Reader     |
 | Responder | Return matching DiagnosticReports in a bundle  | Report Repository |
 {: .grid}
 
@@ -58,9 +58,11 @@ https://www.hl7.org/fhir/search.html#revinclude
 
 ###### 2:3.Y3.4.1.2.1 Query Search Parameters <a name="query-parameters"> </a>
 
-All query parameter values shall be appropriately encoded per RFC3986 “percent” encoding rules. Note that percent encoding does restrict the character set to a subset of ASCII characters which is used for encoding all other characters used in the URL.
+All query parameter values shall be encoded per RFC3986 “percent” encoding rules. Note that percent encoding restrict the character set to a subset of ASCII characters. Certain ASCII characters used for URL syntax are not permitted in the query parameter value and need to be escaped.
 
-The query search parameters supported by the Requester and Responder are defined in Table 2:3.Y3.4.1.2.1-1 below.
+The Requester shall be capable of providing the parameters attributes and query types as indicated by Requester Optionality 'R' in Table 2:3.Y3.4.1.2.1-1 below.
+
+The Responder shall support the parameters attributes and query types as indicated by Responder Optionality 'R' in Table 2:3.Y3.4.1.2.1-1 below.
 
 Table 2:3.Y3.4.1.2.1-1 Find Multimedia Report Query Search Parameters
 
@@ -103,7 +105,8 @@ For example given:
 * Patient reference id is `9876`
 * status of final
 * with clinical code from LOINC of `1234-5`
-* examples do not include all http headers such as the security headers
+
+The examples belows omitted some http headers such as the security headers for simplicity.
 
 ###### 2:3.Y3.4.1.2.3.1 Example GET
 ```
@@ -127,13 +130,13 @@ subject=9876&status=final&code=http://loinc.org|1234-5
 
 ##### 2:3.Y3.4.1.3 Expected Actions
 
-The Responder shall be capable of processing, all query parameters according to Table 2:3.Y3.4.1.2.1-1 above.
-
 The Responder shall process the query to discover the DiagnosticReport entries that match the search parameters given. 
 
 The Responder shall support both GET and POST-based searches [http://hl7.org/fhir/http.html#search](http://hl7.org/fhir/http.html#search).
 
-The Responder shall implement the parameters described above. The Responder may choose to support additional query parameters beyond the subset listed above. Any additional query parameters supported shall be supported according to the core FHIR specification. Such additional parameters are considered out of scope for this transaction. Any parameters not supported should be ignored. See [http://hl7.org/fhir/search.html#errors](http://hl7.org/fhir/search.html#errors).
+The Responder shall be capable of processing all query parameters according to Table 2:3.Y3.4.1.2.1-1.
+
+The Responder may choose to support additional query parameters. Any additional query parameters supported shall be supported according to the core FHIR specification. See [http://hl7.org/fhir/search.html#errors](http://hl7.org/fhir/search.html#errors).
 
 #### 2:3.Y3.4.2 Return DiagnosticReport Bundle Message
 
@@ -151,7 +154,7 @@ When the Responder needs to report an error, it shall use HTTP error response co
 
 If the Find Multimedia DiagnosticReport message is processed successfully, whether or not any DiagnosticReport Resources are found, the HTTP status code shall be 200. The Return DiagnosticReport Bundle message shall be a Bundle Resource containing zero or more DiagnosticReport Resources. If the Responder is sending warnings, the Bundle Resource shall also contain an OperationOutcome Resource that contains those warnings.
 
-The response shall adhere to the FHIR Bundle constraints specified in [ITI TF-2x: Appendix Z.1](https://profiles.ihe.net/ITI/TF/Volume2/ch-Z.html#z.1-resource-bundles).
+The response shall adhere to any FHIR Bundle constraints specified in [ITI TF-2x: Appendix Z.1](https://profiles.ihe.net/ITI/TF/Volume2/ch-Z.html#z.1-resource-bundles).
 
 ###### 2:3.Y3.4.2.2.1 DiagnosticReport Resource Contents
 
@@ -165,7 +168,7 @@ Resource Bundling shall comply with the guidelines in [ITI TF-2x: Appendix Z.1](
 
 If the Responder returns an HTTP redirect response (HTTP status codes 301, 302, 303, or 307), the Requester shall follow the redirect, but may stop processing if it detects a loop. See RFC7231 Section 6.4 Redirection 3xx.
 
-The Requester shall process the results according to application-defined rules. The Requester should be robust as the response may contain DiagnosticReport Resources that match the query parameters but are not compliant with the DiagnosticReport constraints defined here.
+The Requester shall process the results according to application-defined rules.
 
 #### 2:3.Y3.4.4 CapabilityStatement Resource
 
@@ -177,7 +180,7 @@ TODO: Create the capability statements
 
 See [IMR Security Considerations](volume-1.html#security-considerations)
 
-This transaction should not return information that the Requester is not authorized to access. Where authorization here is inclusive of system, app, and user according to local policy, patient consents, and security layering. However, the transaction may return DiagnosticReport resources that have Reference elements that the Requester may not have access to. This is to say that the authorization need only be to the content returned in the Bundle. There may be references (URLs) for which the content is not authorized. This is considered proper as the Requester would need to retrieve the content pointed to by those references, and at that time the proper authorization decision would be made on that context and content. In this way it is possible for a Requester to get DiagnosticReport resources that are pointing at data that the Requester is not authorized to retrieve. Thus, the URLs used must be carefully crafted so as to not expose sensitive data in the URL value.
+This transaction should not return information that the Requester is not authorized to access. Where authorization here is inclusive of system, app, and user according to local policy, patient consents, and security layering. However, the transaction may return DiagnosticReport resources that have Reference elements that the Requester may not have access to. This is to say that the authorization need only be to the content returned in the Bundle. There may be references (URLs) for which the Requester is not authorized to access the content. This is considered proper as the Requester would need to retrieve the content pointed to by those references, and at that time the proper authorization decision would be made on that context and content. In this way it is possible for a Requester to get DiagnosticReport resources that are pointing at data that the Requester is not authorized to retrieve. Thus, the URLs used must be carefully crafted so as to not expose sensitive data in the URL value.
 
 #### 2:3.Y3.5.1 Security Audit Considerations
 
