@@ -5,7 +5,7 @@ The Interactive Multimedia Report (IMR) Profile specifies how a diagnostic repor
 This profile defines content for data encoding, transactions for communicating the content between systems, and behaviors for displaying the content.
 
 
-## 1:X.1 IMR Actors, Transactions, and Content Modules <a name="actors-and-transactions"> </a>
+## 1:X.1 IMR Actors, Transactions, and Content Modules
 
 This section defines the actors, transactions, and/or content modules in this profile. General
 definitions of actors are given in the Technical Frameworks General Introduction Appendix A.
@@ -133,7 +133,7 @@ An Image Display that is grouped with a Report Reader shall follow the [DICOM In
 
 An Image Display that is invoked by an IID Image Display Invoker grouped with a Report Reader shall follow the [External Image Display Retrieve Option](#xx24-external-image-display-retrieve-option).
 
-## XX.2 IMR Actor Options <a name="actor-options"> </a>
+## XX.2 IMR Actor Options
 
 Options that may be selected for each actor in this implementation guide, are listed in Table XX.2-1 below. Dependencies 
 between options when applicable are specified in notes.
@@ -233,7 +233,7 @@ An Image Display that supports this option shall support the Invoke Image Displa
 
 > Note that the Retrieve Display of Series Images functionality and IHE-IMR viewer type are available in CP-RAD-xxx.
 
-## XX.3 IMR Required Actor Groupings <a name="required-groupings"> </a>
+## XX.3 IMR Required Actor Groupings
 
 An actor from this profile (Column 1) shall implement all of the required transactions and/or
 content modules in this profile ***in addition to all*** of the requirements for the grouped actor (Column 3).
@@ -254,7 +254,7 @@ considerations and Section XX.6 describes some optional groupings in other relat
 | Image Display | -- | None | -- |
 {: .grid}
 
-## XX.4 Interactive multimedia Report Overview <a name="overview"> </a>
+## XX.4 Interactive multimedia Report Overview
 
 ### XX.4.1 Concepts
 
@@ -455,7 +455,7 @@ Figure XX.4.2.4.3-1 shows how the Clinician can use the EMR that supports IMR Re
 
 Figure XX.4.2.4.3-1: Consume and Interact with Multimedia Report by Report Reader with Integrated Image Display Process Flow in IMR Profile
 
-## XX.5 IMR Security Considerations <a name="security-considerations"> </a>
+## XX.5 IMR Security Considerations
 
 Refer to RAD TF-1x: Appendix F “Security Environment Considerations”.
 
@@ -488,7 +488,7 @@ The rendered report attached in the DiagnosticReport resource may be referenced 
 
 The Rendered Report Readers should verify if these URLs are legitimate and from a trusted source, minimizing the chance of phishing attack and executing malicious script embedded inside a report.
 
-## XX.6 IMR Cross-Profile Considerations <a name="other-grouping"> </a>
+## XX.6 IMR Cross-Profile Considerations
 
 **Scheduled Workflow (SWF.b)**: An Image Display can be grouped with an IMR Report Reader to enhance the report viewing capability for prior studies.
 

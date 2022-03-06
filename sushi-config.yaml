@@ -81,12 +81,12 @@ menu:
   IMR Home: index.html
   Volume 1:
     Introduction: volume-1.html
-    Actors and Transactions: volume-1.html#actors-and-transactions
-    Actor Options: volume-1.html#actor-options
-    Required Groupings: volume-1.html#required-groupings
-    Overview: volume-1.html#overview
-    Security Considerations: volume-1.html#security-considerations
-    Cross-Profile Considerations: volume-1.html#grouping
+    Actors and Transactions: volume-1.html#1x1-imr-actors-transactions-and-content-modules
+    Actor Options: volume-1.html#xx2-imr-actor-options
+    Required Groupings: volume-1.html#xx3-imr-required-actor-groupings
+    Overview: volume-1.html#xx4-interactive-multimedia-report-overview
+    Security Considerations: volume-1.html#xx5-imr-security-considerations
+    Cross-Profile Considerations: volume-1.html#xx6-imr-cross-profile-considerations
   Volume 2:
     "Store Multimedia Report [RAD-Y1]": RAD-Y1.html
     "Display Multimedia Report [RAD-Y2]": RAD-Y2.html
