@@ -129,7 +129,9 @@ Image Managers / Image Archives shall also support returning images in the reque
 
 Image Displays retrieve images from Image Managers / Image Archives, display the images to the user and provide different interactive tools for user to interactive with the images, based on requests from Image Display Invokers.
 
-Image Displays shall support Invoke Image Display [RAD-106].
+An Image Display that grouped with a Report Reader shall follow the [DICOM Instance Retrieve Option](#xx25-dicom-instance-retrieve-option).
+
+An Image Display that is invoked by an Image Display Invoker grouped with a Report Reader shall follow the [External Image Display Retrieve Option](#xx24-external-image-display-retrieve-option).
 
 ## XX.2 IMR Actor Options <a name="actor-options"> </a>
 
