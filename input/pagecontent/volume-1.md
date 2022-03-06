@@ -67,7 +67,9 @@ Report Creators encode diagnostic reports with multimedia content using FHIR Dia
 
 Report Creators may support creating multiple renditions of the same multimedia report for different consumers (e.g. simple consumers that do not render the detailed multimedia contents on its own, or external consumers that do not have access to studies inside the enterprise firewall).
 
-Report Creators store the DiagnosticReport resources to Report Repositories, Report Readers or Rendered Report Readers. report Creators shall include a rendered report in the same DiagnosticReport resource, either as base64 encoded binary, or by reference using a URL.
+Report Creators store the DiagnosticReport resources to Report Repositories, Report Readers or Rendered Report Readers. 
+
+Report Creators shall include a rendered report in the same DiagnosticReport resource, either as base64 encoded binary, or by reference using a URL.
 
 > Note that in IMR, Report Creator is the actor responsible for authoring the report. How the Report Creator receives the multimedia content is out of scope for this release of IMR. In practice, A Report Creator may be grouped with an Image Display, or a Report Creator is integrated with an Image Display via proprietary APIs or standard context sharing mechanism such as FHIRcast.
 
@@ -91,19 +93,19 @@ To retrieve and display referenced images in the report, Report Readers shall su
 
 ##### XX.1.1.3.1 Report Reader with Rendered Instance Retrieve Option
 
-Report Readers with Rendered Instance Retrieve Option are Report Readers that can handle retrieve and display of referenced images in multimedia reports. When triggered to view images, Report Readers retrieve rendered images from Image Manager / Image Archive and display the images to the user with some basic viewing capabilities.
+Report Readers with Rendered Instance Retrieve Option can handle retrieve and display of referenced images in multimedia reports. When triggered to view images, Report Readers retrieve rendered images from Image Manager / Image Archive and display the images to the user with some basic viewing capabilities.
 
 See [Rendered Instance Retrieve Option](#xx23-rendered-instance-retrieve-option) for details.
 
 ##### XX.1.1.3.2 Report Reader with External Image Display Retrieve Option
 
-Report Readers with External Image Display Retrieve Option are Report Readers that delegate the image viewing capabilities to external Image Display invoked by the integrated Image Display Invoker. When triggered to view images, Report Readers translate the embedded image references and endpoints in the DiagnosticReport resource into corresponding Invoke Image Display URLs.
+Report Readers with External Image Display Retrieve Option delegate the image viewing capabilities to external Image Display invoked by the integrated Image Display Invoker. When triggered to view images, Report Readers translate the embedded image references and endpoints in the DiagnosticReport resource into corresponding Invoke Image Display URLs.
 
 See [External Image Display Retrieve Option](#xx24-external-image-display-retrieve-option) for details.
 
 ##### XX.1.1.3.3 Report Reader with DICOM Instance Retrieve Option
 
-Report Readers with DICOM Instance Retrieve Option are Report Readers that integrate with Image Displays directly which provide the image viewing capabilities. When triggered to view images, the Report Readers translate the embedded image references and endpoints in the DiagnosticReport resource into corresponding commands (out of scope of IMR) and launch the integrated Image Display in context, which in turn retrieves and displays the images using either DICOM retrieve or WADO-RS retrieve.
+Report Readers with DICOM Instance Retrieve Option integrate with Image Displays directly to provide the image viewing capabilities. When triggered to view images, the Report Readers translate the embedded image references and endpoints in the DiagnosticReport resource into corresponding commands (out of scope of IMR) and launch the integrated Image Display in context, which in turn retrieves and displays the images using either DICOM retrieve or WADO-RS retrieve.
 
 See [DICOM Instance Retrieve Option](#xx25-dicom-instance-retrieve-option) for details.
 
@@ -121,7 +123,7 @@ A Report Reader provides [Level 1 Interactivity](#xx416-level-of-interactivity) 
 
 Image Managers / Image Archives provide the images and related objects to the Report Readers or Image Displays.
 
-Image Managers / Image Archives shall support WADO-RS Retrieve [RAD-107] as well as [RAD-16], [RAD-17], [RAD-31] and [RAD-45] DICOM DIMSE services. This enables different types of Image Displays to retrieve objects.
+Image Managers / Image Archives shall support WADO-RS Retrieve [RAD-107] as well as DICOM DIMSE Services in [RAD-16], [RAD-17], [RAD-31] and [RAD-45]. This enables different types of Image Displays to retrieve objects.
 
 Image Managers / Image Archives shall also support returning images in the requested rendered media type as defined in DICOM PS3.18 Section 9.5 [Retrieve Rendered Instance Transaction](https://dicom.nema.org/medical/dicom/current/output/html/part18.html#sect_9.5).
 
@@ -131,7 +133,7 @@ Image Displays retrieve images from Image Managers / Image Archives, display the
 
 An Image Display that grouped with a Report Reader shall follow the [DICOM Instance Retrieve Option](#xx25-dicom-instance-retrieve-option).
 
-An Image Display that is invoked by an Image Display Invoker grouped with a Report Reader shall follow the [External Image Display Retrieve Option](#xx24-external-image-display-retrieve-option).
+An Image Display that is invoked by an IID Image Display Invoker grouped with a Report Reader shall follow the [External Image Display Retrieve Option](#xx24-external-image-display-retrieve-option).
 
 ## XX.2 IMR Actor Options <a name="actor-options"> </a>
 
@@ -245,7 +247,7 @@ considerations and Section XX.6 describes some optional groupings in other relat
 
 | IMR Actor | Grouping Condition | Actor(s) to be grouped with | Reference |
 |-----------|--------------------|-----------------------------|-----------|
-| Report Creator | Required | ITI CT / Time Client | ITI-TF-1: 7.1 |
+| Report Creator | Required | ITI CT / Time Client | ITI TF-1: 7.1 |
 | Report Repository | -- | None | -- |
 | Report Reader | With the External Image Display Retrieve Option | RAD IID / Image Display Invoker | RAD-IID: 35.1.1.2 |
 |               | With the DICOM Instance Retrieve Option | RAD IMR / Image Display | RAD-IMR: XX.1.1.6 |
