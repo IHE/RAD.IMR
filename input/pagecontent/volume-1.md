@@ -178,7 +178,7 @@ A Report Creator shall use this text-only report to communicate the report with 
 
 ### XX.2.3 Rendered Instance Retrieve Option
 
-The Rendered Instance Retrieve Option enables a Report Reader to retrieve rendered images from Image Manager / Image Archive using WADO-RS.
+The Rendered Instance Retrieve Option enables a Report Reader to retrieve rendered images from Image Manager / Image Archive using WADO-RS.  See [Use Case #2] (#xx422-use-case-2-consume-and-interact-with-multimedia-report-by-standalone-report-reader).
 
 A Report Reader that supports this option shall use WADO-RS Retrieve [RAD-107] to retrieve rendered images from an Image Manager / Image Archive.
 
@@ -188,7 +188,7 @@ A Report Reader that also supports the Series/Study Navigation Option shall be a
 
 ### XX.2.4 External Image Display Retrieve Option
 
-The External Image Display Retrieve Option enables actors to display images via an external Image Display actor.
+The External Image Display Retrieve Option enables actors to display images via an external Image Display actor. See [Use Case #3] (#xx423-use-case-3-consume-and-interact-with-multimedia-report-by-report-reader-with-integrated-invoker-image-display).
 
 A Report Reader that supports this option shall use Invoke Image Display [RAD-106] to invoke an Image Display which in turn retrieves images from an Image Manager / Image Archive. Report Readers shall translate the embedded image references and endpoints in the DiagnosticReport resource into corresponding Invoke Image Display URLs.
 
