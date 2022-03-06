@@ -34,7 +34,7 @@ The roles in this transaction are defined in the following table and may be play
 
 #### 2:3.Y4.4.1 Retrieve Rendered Report Message
 
-The Requester invokes a HTTP GET request to retrieve the document from the Responder.
+The Requester invokes an HTTP GET request to retrieve the document from the Responder.
 
 The Responder shall support handling such messages from more than one Sender. The Requester shall support sending such messages to more than one Responder.
 
@@ -44,7 +44,7 @@ The Requester wants to obtain a rendered report.
 
 ##### 2:3.Y4.4.1.2 Message Semantics
 
-The Requester sends a HTTP GET request to the Responder. The Requester uses the url attribute from one of the DiagnosticReport.presentedForm entries returned in [RAD-Y3]. The Requester shall use the DiagnosticReport.presentedForm.contentType to determine which one of the available rendered reports to retrieve.
+The Requester sends an HTTP GET request to the Responder. The Requester uses the url attribute from one of the DiagnosticReport.presentedForm entries returned in [RAD-Y3]. The Requester shall use the DiagnosticReport.presentedForm.contentType to determine which one of the available rendered reports to retrieve.
 
 The Requester may provide HTTP Accept header, according to the semantics of the HTTP protocols (see RFC2616, Section 14.1).  This enables the Requester to indicate preferred mime-types such that the Responder could provide the report requested in an encoding other than the encoding indicated in the DiagnosticReport.presentedForm.
 

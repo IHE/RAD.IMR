@@ -40,7 +40,7 @@ The Requester needs to obtain DiagnosticReport Resources matching various metada
 
 ##### 2:3.Y3.4.1.2 Message Semantics
 
-This message is a HTTP GET or HTTP POST request. The Requester is the User Agent. The Responder is the Origin Server.
+This message is an HTTP GET or HTTP POST request. The Requester is the User Agent. The Responder is the Origin Server.
 
 The Requester executes an HTTP search against the Responder DiagnosticReport URL. The search target follows the FHIR HTTP specification, addressing the DiagnosticReport Resource [http://hl7.org/fhir/http.html](http://hl7.org/fhir/http.html):
 ```
@@ -140,7 +140,7 @@ The Responder may choose to support additional query parameters. Any additional 
 
 #### 2:3.Y3.4.2 Return DiagnosticReport Bundle Message
 
-The Responder returns a HTTP Status code appropriate to the processing as well as a Bundle of the matching DiagnosticReport Resources.
+The Responder returns an HTTP Status code appropriate to the processing as well as a Bundle of the matching DiagnosticReport Resources.
 
 ##### 2:3.Y3.4.2.1 Trigger Events
 
