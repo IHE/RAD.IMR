@@ -301,11 +301,7 @@ There are two sources of multimedia content for radiology reporting:
 
 These contents should be available to the report authoring system so that it can incorporate the details automatically.
 
-#### XX.4.1.3 Image Reference Locations
-
-A multimedia report may include references to images in which the findings or impressions are derived from. The image references may be general references not specific to a particular statement in the report. However, there may be multiple measurements stated in the same finding and each measurement is derived from a different set of images. In this case, the image references should be inline corresponding to the matching measurements to avoid any confusion.
-
-#### XX.4.1.4 Real Time Communication between Image Display / Evidence Creator and Report Creator
+#### XX.4.1.3 Real Time Communication between Image Display / Evidence Creator and Report Creator
 
 A key element for an IMR is the ability to include clinical findings such as measurements, ROI, etc. with interactive links to the source images. Traditionally, these annotations, markups, presentation states, and key images could be captured as DICOM objects such as GSPS, SR, or KOS. These objects are designed to capture evidence for long-term reference instead of real-time communication or composition. Most PACS will create these evidence objects at the end of a session in order to capture all the data points created by the image-centric specialist in one object, rather than create multiple evidence objects resulting in one per data point. As a result, these evidence objects in DICOM are good resources for subsequent interactive access when viewing an IMR, but not good candidates as the payload for real-time communication during a reporting session. As the image-centric specialist captures measurements, regions of interest, and other data points, the PACS should provide those data points to the reporting system in real-time without introducing any unnecessary interruptions, or adding transitory content to the permanent record.
 
@@ -315,13 +311,25 @@ For scenarios when both the image viewing system and report authoring system are
 
 It is important to note that this real-time communication is not limited to IMR but generally applicable to many contexts. A realtime mechanism to share granular context from an image viewing system could create a plug-in architecture for decision support systems to extend the image analysis and reporting process. In our prior example, an AI system might be notified of a new measurement, pull the measurement source image and automatically identify the anatomic location and Lung-Rads score that could then be transmitted to the reporting system.
 
-#### XX.4.1.5 Placement of Multimedia Content
+#### XX.4.1.4 Placement of Multimedia Content
 
 At a basic level, multimedia content can be placed at the end of the report. This can be achieved with low level of communications between the PACS and the Reporting System as long as these multimedia contents (or their corresponding references) are known at some point by the Reporting System, which can then insert these contents towards the end of the report.
 
 Although this can be useful, a more sophisticated placement of multimedia contents is the ability to insert them in context of the findings and impressions. For example, when a description such as "Prominent or mildly enlarged mediastinal and bilateral hilar lymph nodes measure up to 1.2 x 0.8 cm in the right paratracheal station" is recorded as a finding, the corresponding image reference with the matching markup if available are injected in the same context as hyperlink, such that subsequently upon viewing the report, a user can access the matching multimedia content in context while reading the report.
 
 This sophisticated placement of multimedia contents requires a more complex interaction between the PACS and the Reporting System because both systems need to know the current context and be able to mark their respective data accordingly. This also requires a low latency communication because any pause required by the radiologist to synchronize the two systems during a reporting session will cause significant distraction to the radiologist.
+
+#### XX.4.1.5 Image References in Report 
+
+Each image reference may references
+- a single image (e.g. Object 10)
+- a range of images (e.g. Object 10-12)
+- a discrete set of images (e.g. Object 10,14,17)
+- a combination of the above (e.g. Object 10-12,14,17-20)
+
+In most cases, the image references refer to the same study context as the study being reported on. Occasionally, the image references may refer to a comparison study that is used during reporting.
+
+In addition to reference an object as a whole, sometimes the reference is specific to a region of interest in the object. The region of interest (ROI) can be one or more points, a line or a segmented line (e.g. polyline), a geometric shape (e.g. ellipse, polygon), or a volume (e.g. ellipsoid).
 
 #### XX.4.1.6 Level of Interactivity
 
