@@ -11,7 +11,7 @@ The roles in this transaction are defined in the following table and may be play
 | Role      | Description                                   | Actor(s)          |
 |-----------|-----------------------------------------------|-------------------|
 | Sender    | Store Multimedia Reports | Report Creator    |
-| Receiver  | Receive Multimedia Reports | Report Repository |
+| Receiver  | Receive Multimedia Reports | Report Repository <br> Report Reader <br> Rendered Report Reader |
 {: .grid}
 
 Transaction text specifies behavior for each role. The behavior of specific actors may also be specified when it goes beyond that of the general role.
