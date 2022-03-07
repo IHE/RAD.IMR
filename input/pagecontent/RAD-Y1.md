@@ -68,7 +68,7 @@ This URL is configurable by the Responder and is subject to the following constr
 
 The `[base]` is the [Service Base URL](https://www.hl7.org/fhir/http.html#root), which is the address where all of the resources defined by this interface are found.
 
-###### 2:3.Y1.4.1.2-1 Attributes in Diagnostic Report <a name="DiagnosticReportAttributes"> </a>
+###### 2:3.Y1.4.1.2-1 Attributes in Diagnostic Report
 
 In radiology reports, there is a common set of values to be included. The following table specifies how the Sender shall map these attributes to FHIR DiagnosticReport resource and other referenced resources. Refer to the StructureDefinition for these resources in the [Artifacts](artifacts.html) page for details.
 
