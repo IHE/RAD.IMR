@@ -75,7 +75,7 @@ Description:    "IHE Interactive Multimedia Report (IMR) profile on DiagnosticRp
 * presentedForm.contentType 1..1 MS
 * presentedForm.size 1..1 MS
 * presentedForm.hash 1..1 MS
-* presentedForm contains html 1..* and rtf 0..* and pdf 0..*
+* presentedForm contains html 1..* and pdf 0..*
 * presentedForm[html].contentType = MIME#text/html "HTML"
 * presentedForm[pdf].contentType = MIME#applicatoin/pdf "PDF"
 
