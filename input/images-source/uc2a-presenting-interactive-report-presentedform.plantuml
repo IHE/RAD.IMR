@@ -7,7 +7,7 @@ participant "Rendered Report Reader\n(EMR)" as EMR
 participant "Report Repository" as Repo
 end box
 
-participant "Imaging Document Source" as Archive
+participant "Image Manager/\nImage Archive" as Archive
 
 Clinician->>EMR: //Request multimedia report//
 group IMR Interactive Viewing of Multimedia Content in Report
@@ -25,7 +25,7 @@ end
 Clinician->>EMR: //Click on hyperlinked measurements//
 
 EMR->Archive: Retrieve rendered images in series\n[RAD-107] WADO-RS Retrieve
-EMR->>EMR: //Display images with measurements shown in ROI//
+EMR->EMR: Display images with measurements shown in ROI [RAD-Y5]
 
 Clinician->>EMR: //Interact with images and/or series//\n//such as scrolling or window levelling//
 
