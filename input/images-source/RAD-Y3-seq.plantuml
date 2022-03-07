@@ -7,8 +7,8 @@ participant "Responder" as Repo
 
 activate Reader
 activate Repo
-Reader->Repo: Find Multimedia DiagnosticReport
-Repo-->Reader: Return DiagnosicReport Bundle
+Reader->Repo: Find Multimedia DiagnosticReports
+Repo-->Reader: Return DiagnosicReports Bundle
 deactivate Repo
 deactivate Reader
 
