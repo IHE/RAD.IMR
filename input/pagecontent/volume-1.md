@@ -109,7 +109,7 @@ See [DICOM Instance Retrieve Option](#xx25-dicom-instance-retrieve-option) for d
 
 #### XX.1.1.4 Rendered Report Readers
 
-A Rendered Report Reader presents the rendered reports embedded in the DiagnosticReport resource to the user, including the multimedia content embedded in the report as hyperlinks. When users click on the hyperlinks, the Rendered Report Reader launches the rendered references images to the user.
+A Rendered Report Reader presents the rendered reports embedded in the DiagnosticReport resource to the user, including the multimedia content embedded in the report as well as all hyperlinks. When users click on the hyperlinks, the Rendered Report Reader launches the rendered references images to the user.
 
 A Rendered Report Reader receives multimedia reports directly from Report Creators or query/retrieves them from Report Repositories.
 
