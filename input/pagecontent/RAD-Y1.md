@@ -104,8 +104,11 @@ Table XX.4.1.7-2: Useful Optional Attributes in Radiology Diagnostic Report
 | Referring Physician | DiagnosticReport.imagingStudy -> IMRImagingStudy.referrer | 0..* | |
 | Reason For Study | DiagnosticReport.imagingStudy -> IMRImagingStudy.reasonCode | 0..* | |
 | Study Description | DiagnosticReport.imagingStudy -> IMRImagingStudy.description | 0..* | |
+| Body Part | DiagnosticReport.result -> IMRObservation.bodySite | 0..1 | |
 | Relationship between findings and impressions | DiagnosticReport.result -> IMRObservation.hasMember | 0..* | Specify related observations, e.g. linking impression to finding, or finding to another finding |
 {: .grid}
+
+> See [HIMSS-SIIM Whitepaper: The Importance of Body Part Labeling to Enable Enterprise Imaging](https://link.springer.com/article/10.1007/s10278-020-00415-0) for the importance of body part labelling.
 
 ###### 2:3.Y1.4.1.2.1 Bundle Resources
 
