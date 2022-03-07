@@ -1,6 +1,6 @@
 ### 2:3.Y3.1 Scope
 
-This transaction is used to find DiagnosticReport Resources that satisfy a set of parameters. The result of the query is a FHIR Bundle containing DiagnosticReport Resources that match the query parameters.
+This transaction is used to find DiagnosticReport Resources that satisfy a set of parameters.
 
 ### 2:3.Y3.2 Actors Roles
 
@@ -10,13 +10,15 @@ The roles in this transaction are defined in the following table and may be play
 
 | Role      | Description                                   | Actor(s)          |
 |-----------|-----------------------------------------------|-------------------|
-| Requester | Request DiagnosticReports that match a filter         | Report Reader     |
-| Responder | Return matching DiagnosticReports in a bundle  | Report Repository |
+| Requester | Request DiagnosticReports that match a filter         | Report Reader <br> Rendered Report Reader |
+| Responder | Return matching DiagnosticReports  | Report Repository |
 {: .grid}
 
 ### 2:3.Y3.3 Referenced Standards
 
 **FHIR-R4** [HL7 FHIR Release 4.0](http://www.hl7.org/FHIR/R4)
+
+**FHIR-R4 Search** [HL7 FHIR Search](https://www.hl7.org/fhir/search.html)
 
 ### 2:3.Y3.4 Messages
 
@@ -28,9 +30,9 @@ The roles in this transaction are defined in the following table and may be play
 
 **Figure 2:3.Y3.4-1: Interaction Diagram**
 
-#### 2:3.Y3.4.1 Request Multimedia DiagnosticReports Message
+#### 2:3.Y3.4.1 Find Multimedia DiagnosticReports Message
 
-The Requester uses the search method parameterized query to obtain DiagnosticReport Resources from the Responder. 
+The Requester provides a matching filter in a request for matching DiagnosticReport that are available on the Responder.
 
 The Responder shall support handling such messages from more than one Requester. The Requester shall support sending such messages to more than one Responder.
 
@@ -42,21 +44,27 @@ The Requester needs to obtain DiagnosticReport Resources matching various metada
 
 This message is an HTTP GET or HTTP POST request. The Requester is the User Agent. The Responder is the Origin Server.
 
-The Requester executes an HTTP search against the Responder DiagnosticReport URL. The search target follows the FHIR HTTP specification, addressing the DiagnosticReport Resource [http://hl7.org/fhir/http.html](http://hl7.org/fhir/http.html):
+The Responder shall support both HTTP GET and HTTP POST request. The Requester may choose either form of request.
+
+The Requester shall be capable of executing an HTTP search against the Responder DiagnosticReport URL. The search target follows the [FHIR HTTP](http://hl7.org/fhir/http.html) specification, addressing the DiagnosticReport Resource:
 ```
 [base]/DiagnosticReport?<query>
 ```
-This URL is configurable by the Responder and is subject to the following constraints: 
+The Requester shall construct the URL according to following constraints: 
 
-The `[base]` is the [Service Base URL](https://www.hl7.org/fhir/http.html#root), which is the address where all of the resources defined by this interface are found.
+- The `[base]` shall be the [Service Base URL](https://www.hl7.org/fhir/http.html#root), which is the address where all of the resources defined by this interface are found.
 
-The `<query>` contains a series of encoded name-value pairs representing the filter for the query, as specified in Section [Query Search Parameters](#query-parameters), as well as control parameters to modify the behavior of the Responder such as response format, or pagination.
+- The `[base]` shall be configurable
 
-https://www.hl7.org/fhir/search.html#revinclude
+- The `<query>` shall contain a series of encoded name-value pairs representing the filter for the query, as specified in Section [Query Search Parameters](#23y34121-query-search-parameters)
 
-> Note: The Requester may use the same search parameters specified below to specify other search criteria beyond what IMR DiagnosticReport is required. For example, DiagnosticReport.basedOn may also reference a CarePlan and the Requester may search for DiagnosticReport that referenced specific CarePlan.
+- The `<query>` may contain additional search result parameters to request modified behavior of the Responder such as response format, pagination, summary, subset of elements, etc.. See [FHIR Search](https://www.hl7.org/fhir/search.html#Summary) for details.
 
-###### 2:3.Y3.4.1.2.1 Query Search Parameters <a name="query-parameters"> </a>
+> Note: The Responder may not support any of the additional search result parameters.
+
+> Note: The Requester may use the same search parameters specified below to specify other search criteria beyond what IMR DiagnosticReport is required. For example, DiagnosticReport.basedOn may also reference a CarePlan and the Requester may search for DiagnosticReports that referenced specific CarePlan.
+
+###### 2:3.Y3.4.1.2.1 Query Search Parameters
 
 All query parameter values shall be encoded per RFC3986 “percent” encoding rules. Note that percent encoding restrict the character set to a subset of ASCII characters. Certain ASCII characters used for URL syntax are not permitted in the query parameter value and need to be escaped.
 
@@ -66,22 +74,23 @@ The Responder shall support the parameters attributes and query types as indicat
 
 Table 2:3.Y3.4.1.2.1-1 Find Multimedia Report Query Search Parameters
 
-| Domain   | Attribute | Search Parameters | Query Type | Requester Optionality | Responder Optionality | Note |
-|----------|-----------|-------------------|------------|-----------------------|-----------------------|------|
-| Patient | Patient | `subject` | Reference(Patient) | R | R | See Note 1 |
-|         | Patient ID | `subject.identifier` | token | R | R | See Note 2 and 3 |
-|         | Patient Name | `subject.name.given` <br> `subject.name.family` | string | O | R | See Note 3 |
-| ServiceRequest | ServiceRequest | `basedOn` | Reference(ServiceRequest) | R | R | See Note 1 |
-|                | Accession Number | `basedOn.identifier` | token | R | R | See Note 2 and 3 |
-| Study | Study | `imagingStudy` | Reference(ImagingStudy) | R | R | See Note 1 |
-|       | Study Instance UID | `imagingStudy.identifier` | token | R | R | See Note 2 and 3 |
-| Report | Status | `status` | token | R | R | See Note 2 |
-|        | Category | `category` | token | O | O | See Note 2 |
-|        | EffectiveDateTime | `effectiveDateTime` | date | O | O | See Note 4 |
-|        | Issued | `issued` | date | O | O | See Note 4 |
-|        | Code | `code` | token | O | O | See Note 2 |
-|        | Result Interpreter | `resultsInterpreter` | Reference(Practitioner or PractitionerRole) | O | O | See Note 1 |
-|        | Result Interpreter ID | `resultsInterpreter.identifier` <br> `resultsInterpreter.practitioner.identifier` | token | O | O | See Note 2 and 3 |
+| Domain   | Attribute | Search Parameters <br> See Note 3 | Query Type <br> See Note 1, 2 and 4 | Requester Optionality | Responder Optionality |
+|----------|-----------|-------------------|------------|-----------------------|-----------------------|
+| Patient | Patient | `subject` | Reference(Patient) | R | R |
+|         | Patient ID | `subject.identifier` | token | R | R |
+|         | Patient Name | `subject.name.given` <br> `subject.name.family` | string | O | R |
+| ServiceRequest | ServiceRequest | `basedOn` | Reference(ServiceRequest) | R | R |
+|                | Accession Number | `basedOn.identifier` | token | R | R |
+| Study | Study | `imagingStudy` | Reference(ImagingStudy) | R | R |
+|       | Study Instance UID | `imagingStudy.identifier` | token | R | R |
+|       | Modality | `imagingStudy.modality` <br> `imagingStudy.series.modality` | token | R | R |
+|       | Study Date | `imagingStudy.started` | date | R | R |
+| Report | Status | `status` | token | R | R |
+|        | Category | `category` | token | O | O |
+|        | Code | `code` | token | O | O |
+|        | Result Interpreter | `resultsInterpreter` | Reference(Practitioner or PractitionerRole) | O | O |
+|        | Result Interpreter ID | `resultsInterpreter.identifier` <br> `resultsInterpreter.practitioner.identifier` | token | O | O |
+| All | *Any other attributes* | *Other attributes in DiagnosticReport* | *varies* | O | O |
 {: .grid}
 
 > Note 1: See FHIR [http://hl7.org/fhir/search.html#reference](http://hl7.org/fhir/search.html#reference) for use of the reference search type.
@@ -92,33 +101,27 @@ Table 2:3.Y3.4.1.2.1-1 Find Multimedia Report Query Search Parameters
 >
 > Note 4: See FHIR [http://hl7.org/fhir/search.html#date](http://hl7.org/fhir/search.html#date) for use of the date search type.
 
-###### 2:3.Y3.4.1.2.2 Populating Expected Response Format
-
-The FHIR standard provides encodings for responses as either XML or JSON. The Responder shall support both message encodings, whilst the Requester shall support one and may support both.
-
-See [ITI TF-2x: Appendix Z.6](https://profiles.ihe.net/ITI/TF/Volume2/ch-Z.html#z.6-populating-the-expected-response-format) for details. 
-
-###### 2:3.Y3.4.1.2.3 Example DiagnosticReport search
+###### 2:3.Y3.4.1.2.2 Example DiagnosticReport search
 
 For example given:
 * FHIR server root is `http://test.fhir.org/fhir`
-* Patient reference id is `9876`
-* status of final
-* with clinical code from LOINC of `1234-5`
+* desired Patient reference id is `9876`
+* status of desired report to be final
+* with clinical code `1234-5` from LOINC
 
 The examples belows omitted some http headers such as the security headers for simplicity.
 
-###### 2:3.Y3.4.1.2.3.1 Example GET
+###### 2:3.Y3.4.1.2.2.1 Example GET
 ```
 GET test.fhir.net/fhir/DiagnosticReport?subject=9876&status=final&code=http://loinc.org|1234-5
 ```
 
-###### 2:3.Y3.4.1.2.3.2 Example POST
+###### 2:3.Y3.4.1.2.2.2 Example POST
 ```
 POST test.fhir.net/fhir/DiagnosticReport/_search?subject=9876&status=final&code=http://loinc.org|1234-5
 ```
 
-###### 2:3.Y3.4.1.2.3.3 Example POST body
+###### 2:3.Y3.4.1.2.2.3 Example POST body
 ```
 POST test.fhir.net/fhir/DiagnosticReport/_search	  
 Host test.fhir.net
@@ -138,9 +141,15 @@ The Responder shall be capable of processing all query parameters according to T
 
 The Responder may choose to support additional query parameters. Any additional query parameters supported shall be supported according to the core FHIR specification. See [http://hl7.org/fhir/search.html#errors](http://hl7.org/fhir/search.html#errors).
 
-#### 2:3.Y3.4.2 Return DiagnosticReport Bundle Message
+###### 2:3.Y3.4.1.3.1 Populating Expected Response Format
 
-The Responder returns an HTTP Status code appropriate to the processing as well as a Bundle of the matching DiagnosticReport Resources.
+The FHIR standard provides encodings for responses as either XML or JSON. The Responder shall support both message encodings, whilst the Requester shall support one and may support both.
+
+See [ITI TF-2x: Appendix Z.6](https://profiles.ihe.net/ITI/TF/Volume2/ch-Z.html#z.6-populating-the-expected-response-format) for details.
+
+#### 2:3.Y3.4.2 Return DiagnosticReports Bundle Message
+
+The Responder sends matching entries back to the Requester.
 
 ##### 2:3.Y3.4.2.1 Trigger Events
 
@@ -148,13 +157,21 @@ The Responder completed processing of the Find Multimedia DiagnosticReport Reque
 
 ##### 2:3.Y3.4.2.2 Message Semantics
 
-Based on the query results, the Responder will either return an error or success. Guidance on handling Access Denied related to use of 200, 403 and 404 can be found in [ITI TF-2x: Appendix Z.7](https://profiles.ihe.net/ITI/TF/Volume2/ch-Z.html#z.8-mobile-security-considerations). 
+The message is an HTTP GET or HTTP POST response. The Requester is the User Agent. The Responder is the Origin Server.
+
+The Responder returns an HTTP Status code appropriate to the processing as well as a Bundle of the matching DiagnosticReport Resources.
+
+Based on the query results, the Responder shall either return an error or success. Guidance on handling Access Denied related to use of 200, 403 and 404 can be found in [ITI TF-2x: Appendix Z.7](https://profiles.ihe.net/ITI/TF/Volume2/ch-Z.html#z.8-mobile-security-considerations). 
 
 When the Responder needs to report an error, it shall use HTTP error response codes and should include a FHIR OperationOutcome with more details on the failure. See FHIR [http://hl7.org/fhir/http.html](http://hl7.org/fhir/http.html) and [http://hl7.org/fhir/operationoutcome.html](http://hl7.org/fhir/operationoutcome.html).
 
 If the Find Multimedia DiagnosticReport message is processed successfully, whether or not any DiagnosticReport Resources are found, the HTTP status code shall be 200. The Return DiagnosticReport Bundle message shall be a Bundle Resource containing zero or more DiagnosticReport Resources. If the Responder is sending warnings, the Bundle Resource shall also contain an OperationOutcome Resource that contains those warnings.
 
+The Responder shall return the query results in the encoding (XML or JSON) specified by the Requester.
+
 The response shall adhere to any FHIR Bundle constraints specified in [ITI TF-2x: Appendix Z.1](https://profiles.ihe.net/ITI/TF/Volume2/ch-Z.html#z.1-resource-bundles).
+
+The Responder shall return the full content of matching DiagnosticReport resources in the returned bundle. The Responder may support additional search result parameters (e.g. _summary, _elements, _include, etc.) and return the modified results accordingly.
 
 ###### 2:3.Y3.4.2.2.1 DiagnosticReport Resource Contents
 
@@ -170,6 +187,8 @@ If the Responder returns an HTTP redirect response (HTTP status codes 301, 302, 
 
 The Requester shall process the results according to application-defined rules.
 
+The Requester may show the attributes in the query response to the user.
+
 #### 2:3.Y3.4.4 CapabilityStatement Resource
 
 Responders implementing this transaction shall provide a CapabilityStatement Resource as described in [ITI TF-2x: Appendix Z.3](https://profiles.ihe.net/ITI/TF/Volume2/ch-Z.html#z.3-capabilitystatement-resource) indicating the transaction has been implemented. 
@@ -178,9 +197,9 @@ TODO: Create the capability statements
 
 ### 2:3.Y3.5 Security Considerations
 
-See [IMR Security Considerations](volume-1.html#security-considerations)
-
 This transaction should not return information that the Requester is not authorized to access. Where authorization here is inclusive of system, app, and user according to local policy, patient consents, and security layering. However, the transaction may return DiagnosticReport resources that have Reference elements that the Requester may not have access to. This is to say that the authorization need only be to the content returned in the Bundle. There may be references (URLs) for which the Requester is not authorized to access the content. This is considered proper as the Requester would need to retrieve the content pointed to by those references, and at that time the proper authorization decision would be made on that context and content. In this way it is possible for a Requester to get DiagnosticReport resources that are pointing at data that the Requester is not authorized to retrieve. Thus, the URLs used must be carefully crafted so as to not expose sensitive data in the URL value.
+
+Search using GET may include sensitive information in the search parameters. Therefore, secure communications and endpoint management are recommended.
 
 #### 2:3.Y3.5.1 Security Audit Considerations
 
