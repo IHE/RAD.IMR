@@ -91,21 +91,19 @@ The Display:
 
 ###### 2:3.Y2.4.1.3.2.1 Display of Image References in Observation
 
-For IMR Observations that have image references using Observation.derivedFrom attribute, the Display
+For inline image references in narrative content, the Display
 
-- shall present a hyperlink, with the display text for the hyperlink being the corresponding Observation.value[x]
+- shall substitute each `<IMRRef>`...`</IMRRef>` element with a hyperlink
 
-- the URL for this hyperlink shall be constructed based on the endpoint(s) defined in the referenced [IMR ImagingStudy]((StructureDefinition-imr-imagingstudy.html)) resource.
+- shall use the text enclosed by the `<IMRRef>` element as the display text for the hyperlink
 
-For inline image references in Observation.valueString, the Display
-
-- shall substitute each `<IMRRef>`...`</IMRRef>` markup with a hyperlink
-
-- the URL for this hyperlink shall be set to the concatenation of the ImagingStudy.endpoint.address with the valueString from the matching Observation.component.id entry. The resulting URL shall be a valid URL according to the contentType
+- the URL for this hyperlink shall be set to the concatenation of the Observation.derivedFrom.endpoint.address with the valueString from the matching Observation.component.id entry. The resulting URL shall be a valid URL according to the contentType
 
 - may add additional parameters to the URL to invoke specific functions provided by the Image Manager / Image Archive
 
 > For example, the Display may retrieve a rendered JPEG or a thumbnail of the image instead of the DICOM object.
+
+Refer to [RAD-Y1] [Section 2:3.Y1.4.1.2.2.1](RAD-Y1.html#23y141221-image-references-in-observation) for details about inline image reference encoding.
 
 This transaction does not prescribe any specific presentation when presenting hyperlinks. For example, the Displays may display the hyperlinks as text or as thumbnail images.
 

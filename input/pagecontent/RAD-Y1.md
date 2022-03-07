@@ -167,9 +167,9 @@ For narrative content, the Sender can directly embed one or more image reference
 
 > Note: IMR currently focus on image references only. Reference to other DICOM objects such as segmentation objects, parametric maps or other non-DICOM objects are out of scope of IMR.
 
-The Sender shall encode an inline image reference as follows:
+The Sender shall specify each inline image reference using the `<IMRRef>` XML element and the corresponding `</IMRRef>` end element. This `<IMRRef>` element shall have the attributes as defined in Table 2:3.Y1.4.1.2.2.1-1.
 
-- Begin with an `<IMRRef>` XML tag. Each `<IMRRef>` tag has two attributes:
+Table 2:3.Y1.4.1.2.2.1-1: Attributes for the `<IMRRef>` element
 
 | Attribute | Optionality | Description |
 |-----------|-------------|-------------|
@@ -177,12 +177,26 @@ The Sender shall encode an inline image reference as follows:
 | id        | R | Maps to component.id in the same `Observation` resource |
 {: .grid}
 
-- End with an `</IMRRef>` XML end tag.
+This `<IMRRef>` represents a *placeholder* for the image reference details. The display text is the text enclosed by the `<IMRRef>` element.
 
-The Sender shall encode the referenced image in `<IMRRef>` using Observation.component as follow:
+The Sender shall encode the corresponding image reference details in the same `Observation` resource using Observation.component as follows:
 - Observation.component.id shall match the `id` attribute in the `<IMRRef>` tag
 - Observation.component.valueString shall have the value for the series instance UID and SOP Instance UID in the format `/series/{seriesUID}/instance/{sopInstanceUID}`,
-- Observation.component.code shall have the coded value (112002, "http://dicom.nema.org/resources/ontology/DCM", "Series Instance UID")
+- Observation.component.code shall have the coded value (55113-5, "http://loinc.org", "Key Images")
+
+Example 1: The image references are specified inline with the corresponding measurements
+```
+The imaged portion of a thyroid gland is unremarkable. Prominent or mildly enlarged mediastinal and bilateral hilar lymph nodes measure up to <IMRRef type="image" id=1>1.2 x 0.8 cm in the right paratracheal station</IMRRef>, <IMRRef type="image" id=2>2.3 x 1.4 cm in the subcarinal station</IMRRef>, and <IMRRef type="image" id=3>1.4 x 0.9 cm in the right hilar stations</IMRRef>. No significant axillary lymphadenopathy is detected.
+```
+
+In Example 1, the display text for the hyperlink is the corresponding measurement details.
+
+Example 2: The image references are specified adjacent to the corresponding measurements
+```
+The imaged portion of a thyroid gland is unremarkable. Prominent or mildly enlarged mediastinal and bilateral hilar lymph nodes measure up to 1.2 x 0.8 cm in the right paratracheal station<IMRRef type="image" id=1>image</IMRRef>, 2.3 x 1.4 cm in the subcarinal station<IMRRef type="image" id=2>image</IMRRef>, and 1.4 x 0.9 cm in the right hilar stations<IMRRef type="image" id=3>image</IMRRef>. No significant axillary lymphadenopathy is detected.
+```
+
+In Example 2, the display text for the hyperlink is the simple text **image** adjacent to the corresponding measurement details.
 
 > Note: The current design of Observation only supports a single image reference in the same study context as the Observation (i.e. Observation.derivedFrom) for each inline reference using the `<IMRRef>` tag. FHIR is working on a new ImagingSelection resource which supports referencing multiple images as well as image regions in any study. It is the intention of IMR that when ImagingSelection becomes available, IMR will be updated to support it as an extension in Observation.component.
 
@@ -202,7 +216,7 @@ The Sender shall construct the resulting URLs such that the content returned upo
 
 > In other words, the Sender shall not presume that the Receiver can download and render the linked content.
 
-For Senders that claim support of the PDF Report Option, if configured, then the Sender shall also attach a semantically equivalent diagnostic report in PDF format in the presentedForm attribute. The presentedForm.contentType shall have the value "application/pdf". The Sender shall include in the PDF report all text and linked contents as in the HTML report. The Sender may preserve the linked contents as hyperlinks, or substitute the linked contents with the actual rendered contents and embedded them in the PDF file.
+For Senders that supports the PDF Report Option, if configured, shall also attach a semantically equivalent diagnostic report in PDF format in the presentedForm attribute. The presentedForm.contentType shall have the value "application/pdf". The Sender shall include in the PDF report all text and linked contents as in the HTML report. The Sender may preserve the linked contents as hyperlinks, or substitute the linked contents with the actual rendered contents and embedded them in the PDF file.
 
 For all rendered reports, the Sender shall set the presentedForm.contentType with a value corresponding to the rendered report format.
 
