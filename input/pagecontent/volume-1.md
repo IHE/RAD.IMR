@@ -63,13 +63,13 @@ Most requirements are documented in RAD TF-2 Transactions. This section document
 
 #### XX.1.1.1 Report Creator
 
-A Report Creator encodes diagnostic reports with multimedia content using FHIR DiagnosticReport resource. Each resulting DiagnosticReport resource also includes a default rendered report in the same DiagnosticReport resource, either as base64 encoded binary, or by reference using a URL..
+A Report Creator encodes diagnostic reports with multimedia content using FHIR DiagnosticReport resources. Each resulting DiagnosticReport resource also includes a default rendered report in the same DiagnosticReport resource, either as base64 encoded binary, or by reference using a URL.
 
 A Report Creator may support creating multiple renditions of the same multimedia report for different consumers (e.g. simple consumers that do not render the detailed multimedia contents on its own, or external consumers that do not have access to studies inside the enterprise firewall).
 
-A Report Creator stores the DiagnosticReport resources to Report Repositories, Report Readers or Rendered Report Readers. 
+A Report Creator stores the DiagnosticReport resources to Report Repositories, Report Readers, or Rendered Report Readers. 
 
-> Note that in IMR, the Report Creator is the actor responsible for authoring the report. How the Report Creator receives the multimedia content is out of scope for this release of IMR. In practice, a Report Creator may be grouped with an Image Display, or a Report Creator is integrated with an Image Display via proprietary APIs or standard context sharing mechanism such as FHIRcast.
+> Note that in IMR, the Report Creator is the actor responsible for authoring the report. How the Report Creator receives the multimedia content in the report is out of scope for this release of IMR. In practice, a Report Creator may be grouped with an Image Display, or a Report Creator may be integrated with an Image Display via proprietary APIs or standard context sharing mechanism such as FHIRcast.
 
 #### XX.1.1.2 Report Repository
 
@@ -77,13 +77,13 @@ A Report Repository stores multimedia reports received from Report Creators and 
 
 A Report Repository supports query/retrieve of multimedia reports by Report Readers and Rendered Report Readers.
 
-A Report Repository shall not modify the DiagnosticReport content, but it may modify how the embedded rendered report can be accessed, if necessary. For example, a Report Repository may adjust an internal URL to an external accessible URL, or it may retrieve the rendered report referenced by a URL and embedded directly in the DiagnosticReport resource as base64 encoded in query responses. Details regarding how a Report Repository may adjust the accessibility of the rendered report is out of scope of IMR.
+A Report Repository shall not modify the DiagnosticReport content, but it may modify how the embedded rendered report can be accessed, if necessary. For example, a Report Repository may adjust an internal URL to an externally accessible URL, or it may retrieve the rendered report referenced by a URL and embedded directly in the DiagnosticReport resource as base64 encoded in query responses. How a Report Repository may adjust the accessibility of the rendered report is out of scope of IMR.
 
 #### XX.1.1.3 Report Reader
 
-A Report Reader presents the reports to the user, including the multimedia content embedded in the report as hyperlinks. When users click on the hyperlinks, the Report Reader presents the referenced images to the user in a way that the user can interact with the images (e.g. windowing, zooming, panning, toggle annotations, etc.).
-
 A Report Reader receives multimedia reports directly from Report Creators or query/retrieves them from Report Repositories.
+
+A Report Reader presents reports to the user, including the multimedia content embedded in the report as hyperlinks. When users click on the hyperlinks, the Report Reader presents the referenced images to the user in a way that the user can interact with the images (e.g. windowing, zooming, panning, toggle annotations, etc.).
 
 A Report Reader shall provide baseline image viewing capabilities, i.e. [Level 2 Interactivity](#xx416-level-of-interactivity) as discussed in Section XX.4.1.6. A Report Reader may support additional advanced behavior. 
 
@@ -97,19 +97,19 @@ See [Rendered Instance Retrieve Option](#xx23-rendered-instance-retrieve-option)
 
 ##### XX.1.1.3.2 Report Reader with External Image Display Retrieve Option
 
-A Report Reader with the External Image Display Retrieve Option delegates the image viewing capabilities to an external Image Display invoked by the IID / Integrated Image Display Invoker. When triggered to view images, the Report Reader translates the embedded image references and endpoints in the DiagnosticReport resource into corresponding Invoke Image Display URLs.
+A Report Reader with the External Image Display Retrieve Option delegates the image viewing capabilities to an external Image Display that is invoked by an integrated IID / Image Display Invoker actor. When triggered to view images, the Report Reader translates the embedded image references and endpoints in the DiagnosticReport resource into corresponding Invoke Image Display URLs.
 
 See [External Image Display Retrieve Option](#xx24-external-image-display-retrieve-option) for details.
 
 ##### XX.1.1.3.3 Report Reader with DICOM Instance Retrieve Option
 
-A Report Reader with the DICOM Instance Retrieve Option integrates with Image Displays directly to provide the image viewing capabilities. When triggered to view images, the Report Reader translates the embedded image references and endpoints in the DiagnosticReport resource into corresponding commands (out of scope of IMR) and launches the integrated Image Display in context, to retrieve the images using either DICOM retrieve or WADO-RS retrieve and then displays them.
+A Report Reader with the DICOM Instance Retrieve Option integrates with an Image Display directly to provide the image viewing capabilities. When triggered to view images, the Report Reader translates the embedded image references and endpoints in the DiagnosticReport resource into corresponding commands (out of scope of IMR) and launches the integrated Image Display in context, to retrieve the images using either DICOM retrieve or WADO-RS retrieve and then display them.
 
 See [DICOM Instance Retrieve Option](#xx25-dicom-instance-retrieve-option) for details.
 
 #### XX.1.1.4 Rendered Report Readers
 
-A Rendered Report Reader presents the rendered reports embedded in the DiagnosticReport resource to the user, including the multimedia content embedded in the report as well as all hyperlinks. When users click on the hyperlinks, the Rendered Report Reader launches the rendered references images to the user.
+A Rendered Report Reader presents to the user the rendered report that is embedded in the DiagnosticReport resource, including the multimedia content embedded in the report as well as all hyperlinks. When the user clicks on the hyperlinks, the Rendered Report Reader launches the rendered references images to the user.
 
 A Rendered Report Reader receives multimedia reports directly from Report Creators or query/retrieves them from Report Repositories.
 
