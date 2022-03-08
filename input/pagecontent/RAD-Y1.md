@@ -1,12 +1,12 @@
-### 2:3.Y1.1 Scope
+### 2:4.Y1.1 Scope
 
 This transaction is used to store multimedia reports.
 
-### 2:3.Y1.2 Actors Roles
+### 2:4.Y1.2 Actors Roles
 
 The roles in this transaction are defined in the following table and may be played by the actors shown here:
 
-**Table 2:3.Y1.2-1: Actor Roles**
+**Table 2:4.Y1.2-1: Actor Roles**
 
 | Role      | Description                                   | Actor(s)          |
 |-----------|-----------------------------------------------|-------------------|
@@ -16,7 +16,7 @@ The roles in this transaction are defined in the following table and may be play
 
 Transaction text specifies behavior for each role. The behavior of specific actors may also be specified when it goes beyond that of the general role.
 
-### 2:3.Y1.3 Referenced Standards
+### 2:4.Y1.3 Referenced Standards
 
 **FHIR-R4**: [HL7 FHIR Release 4.0](http://www.hl7.org/FHIR/R4)
 
@@ -24,7 +24,7 @@ Transaction text specifies behavior for each role. The behavior of specific acto
 
 **PDF/A**: [ISO 19005-1:2005](https://www.iso.org/standard/38920.html)
 
-### 2:3.Y1.4 Messages
+### 2:4.Y1.4 Messages
 
 <div>
 {%include RAD-Y1-seq.svg%}
@@ -32,18 +32,18 @@ Transaction text specifies behavior for each role. The behavior of specific acto
 
 <div style="clear: left"/>
 
-**Figure 2:3.Y1.4-1: Interaction Diagram**
+**Figure 2:4.Y1.4-1: Interaction Diagram**
 
-#### 2:3.Y1.4.1 Store Multimedia Report Bundle Request Message
+#### 2:4.Y1.4.1 Store Multimedia Report Bundle Request Message
 The Sender sends a multimedia report bundle to the Receiver.
 
 The Receiver shall support handling such messages from more than one Sender. The Sender shall support sending such messages to more than one Receiver.
 
-##### 2:3.Y1.4.1.1 Trigger Events
+##### 2:4.Y1.4.1.1 Trigger Events
 
 The Sender determines that a multimedia report is ready to be sent. e.g. a radiologist completed a dictation on a study and signed off the report. This trigger is associated with an intention that the Receiver stores the multimedia report contents and makes it available for subsequent query and retrieve requests.
 
-##### 2:3.Y1.4.1.2 Message Semantics
+##### 2:4.Y1.4.1.2 Message Semantics
 
 This message is an HTTP POST request. The Sender is the User Agent. The Receiver is the Origin Server.
 
@@ -68,11 +68,11 @@ This URL is configurable by the Responder and is subject to the following constr
 
 The `[base]` is the [Service Base URL](https://www.hl7.org/fhir/http.html#root), which is the address where all of the resources defined by this interface are found.
 
-###### 2:3.Y1.4.1.2-1 Attributes in Diagnostic Report
+###### 2:4.Y1.4.1.2-1 Attributes in Diagnostic Report
 
 In radiology reports, there is a common set of values to be included. The following table specifies how the Sender shall map these attributes to FHIR DiagnosticReport resource and other referenced resources. Refer to the StructureDefinition for these resources in the [Artifacts](artifacts.html) page for details.
 
-Table 2:3.Y1.4.1.2-1: Mapping of Attributes in Diagnostic Report
+Table 2:4.Y1.4.1.2-1: Mapping of Attributes in Diagnostic Report
 
 | Report Attribute | FHIR Resource Mapping | Additional Constraint | Note |
 |------------------|-----------------------|-----------------------|------|
@@ -110,7 +110,7 @@ Table XX.4.1.7-2: Useful Optional Attributes in Radiology Diagnostic Report
 
 > See [HIMSS-SIIM Whitepaper: The Importance of Body Part Labeling to Enable Enterprise Imaging](https://link.springer.com/article/10.1007/s10278-020-00415-0) for the importance of body part labelling.
 
-###### 2:3.Y1.4.1.2.1 Bundle Resources
+###### 2:4.Y1.4.1.2.1 Bundle Resources
 
 For complete information on constructing a FHIR Bundle Resource, see [http://hl7.org/fhir/bundle.html](http://hl7.org/fhir/bundle.html)
 
@@ -145,7 +145,7 @@ The Sender shall populate accurate .hash and .size for the rendered report conte
 
 The following subsections describe the details requirements for each referenced resource in the bundle. A complete example of a DiagnosticReport is available in [IMR DiagnosticReport Example](DiagnosticReport-ex-DiagnosticReport.json.html).
 
-###### 2:3.Y1.4.1.2.2 IMR Observation Resources
+###### 2:4.Y1.4.1.2.2 IMR Observation Resources
 
 The Sender shall set the `code` attribute according to the [IMR Observation](StructureDefinition-imr-observation.html) resource profile indicating if the IMR Observation resource represents finding(s), impression(s) or some other type of observations.
 
@@ -159,7 +159,7 @@ The Sender shall encode narrative content in findings or impressions using Obser
 
 The Sender may encode code-able content in findings or impressions using the appropriate data type available in Observation.value[x].
 
-###### 2:3.Y1.4.1.2.2.1 Image References in Observation
+###### 2:4.Y1.4.1.2.2.1 Image References in Observation
 
 The Sender shall encode the study in which this observation is derived from, if available, in Observation.derivedFrom using an [IMR ImagingStudy](StructureDefinition-imr-imagingstudy.html) resource. This attribute shall include the study and series references. IMR ImagingStudy may include image references.
 
@@ -167,9 +167,9 @@ For narrative content, the Sender can directly embed one or more image reference
 
 > Note: IMR currently focus on image references only. Reference to other DICOM objects such as segmentation objects, parametric maps or other non-DICOM objects are out of scope of IMR.
 
-The Sender shall specify each inline image reference using the `<IMRRef>` XML element and the corresponding `</IMRRef>` end element. This `<IMRRef>` element shall have the attributes as defined in Table 2:3.Y1.4.1.2.2.1-1.
+The Sender shall specify each inline image reference using the `<IMRRef>` XML element and the corresponding `</IMRRef>` end element. This `<IMRRef>` element shall have the attributes as defined in Table 2:4.Y1.4.1.2.2.1-1.
 
-Table 2:3.Y1.4.1.2.2.1-1: Attributes for the `<IMRRef>` element
+Table 2:4.Y1.4.1.2.2.1-1: Attributes for the `<IMRRef>` element
 
 | Attribute | Optionality | Description |
 |-----------|-------------|-------------|
@@ -204,7 +204,7 @@ In Example 2, the display text for the hyperlink is the simple text **image** ad
 
 Informative examples are available at [IMR Observation Examples](StructureDefinition-imr-observation-examples.html) to demonstrate the possible encoding of different kinds of observations.
 
-###### 2:3.Y1.4.1.2.2 Rendered Report in DiagnosticReport.presentedForm
+###### 2:4.Y1.4.1.2.2 Rendered Report in DiagnosticReport.presentedForm
 
 The Sender shall include in DiagnosticReport.presentedForm at least one rendered report in HTML format. The presentedForm.contentType shall have the value "text/html". The Sender may include other renditions of the same report (e.g. PDF).
 
@@ -220,11 +220,11 @@ For Senders that supports the PDF Report Option, if configured, shall also attac
 
 For all rendered reports, the Sender shall set the presentedForm.contentType with a value corresponding to the rendered report format.
 
-###### 2:3.Y1.4.1.2.3 Patient, Organization, Practitioner, PractitionerRole
+###### 2:4.Y1.4.1.2.3 Patient, Organization, Practitioner, PractitionerRole
 
 The Patient, Organization, Practitioner or PractitionerRole resources are required resources. However, IMR does not specify any FHIR resource profiles on these resources. These resources are not radiology or imaging specific. Real world deployment may specify constraints on these resources.
 
-##### 2:3.Y1.4.1.3 Expected Actions
+##### 2:4.Y1.4.1.3 Expected Actions
 
 The Receiver shall accept both media types `application/fhir+json` and `application/fhir+xml`.
 
@@ -246,15 +246,15 @@ The Receiver may extract the embedded rendered report(s) in DiagnosticReport.pre
 
 If the Receiver encounters any errors or if any validation fails, the Receiver shall return an appropriate error.
 
-#### 2:3.Y1.4.2 Store Multimedia Report Bundle Response Message
+#### 2:4.Y1.4.2 Store Multimedia Report Bundle Response Message
 
 The Receiver sends a response message describing the message outcome to the Sender.
 
-##### 2:3.Y1.4.2.1 Trigger Events
+##### 2:4.Y1.4.2.1 Trigger Events
 
 The Receiver receives a Store Multimedia Report Bundle message.
 
-##### 2:3.Y1.4.2.2 Message Semantics
+##### 2:4.Y1.4.2.2 Message Semantics
 
 This message is an HTTP POST response. The Sender is the User Agent. The Receiver is the Origin Server.
 
@@ -270,20 +270,20 @@ The Receiver shall not send a success response until the multimedia report is co
 
 An informative StructureDefinition is outlined for [IMR Store Multimedia Report Bundle Message](StructureDefinition-imr-store-multimedia-report-bundle.html).
 
-##### 2:3.Y1.4.2.3 Expected Actions
+##### 2:4.Y1.4.2.3 Expected Actions
 
 If the Receiver returns an HTTP redirect response (HTTP status codes 301, 302, 303, or 307), the Sender shall follow the redirect, but may stop processing if it detects a loop. See [RFC7231 Section 6.4 Redirection 3xx](https://tools.ietf.org/html/rfc7231#section-6.4).
 
 The Sender processes the results according to application-defined rules.	
 
-#### 2:3.Y1.4.3 CapabilityStatement Resource
+#### 2:4.Y1.4.3 CapabilityStatement Resource
 
-Receiver shall provide a CapabilityStatement Resource as described in [ITI TF-2x: Appendix Z.3](https://profiles.ihe.net/ITI/TF/Volume2/ch-Z.html#z.3-capabilitystatement-resource) indicating the resources associated with an IMR report has been implemented. 
+Receiver shall provide a CapabilityStatement Resource as described in [ITI TF-2: Appendix Z.3](https://profiles.ihe.net/ITI/TF/Volume2/ch-Z.html#z.3-capabilitystatement-resource) indicating the resources associated with an IMR report has been implemented. 
 
-### 2:3.Y1.5 Security Considerations
+### 2:4.Y1.5 Security Considerations
 
 The Sender may use external URLs in presentedForm.url. In this case, the Receiver should consider validating the URL to ensure that it is a valid URL referencing a known legitimate host to avoid phishing attack.
 
-#### 2:3.Y1.5.1 Security Audit Considerations
+#### 2:4.Y1.5.1 Security Audit Considerations
 
 This transaction is associated with a Patient-Record-event ATNA Trigger Event on both the Sender and the Receiver.
