@@ -97,7 +97,7 @@ Table 2:4.Y1.4.1.2-1: Mapping of Attributes in Diagnostic Report
 
 In addition to the common set above, there are also a number of useful optional attributes that can be used if applicable.
 
-Table XX.4.1.7-2: Useful Optional Attributes in Radiology Diagnostic Report
+Table 2:4.Y1.4.1.7-2: Useful Optional Attributes in Radiology Diagnostic Report
 
 | Report Attribute | FHIR Resource Mapping | Cardinality | Additional Constraint | Note |
 |------------------|-----------------------|-------------|-----------------------|------|
