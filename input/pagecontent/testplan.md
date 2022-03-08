@@ -1,6 +1,3 @@
-**TODO: fill in the goals of the testing.
-
-## Test Plan
 
 **Note: During the Public Comment phase, this page contains generic statements.  Detailed test plans will be added during the Trial Implementation phase.
 
