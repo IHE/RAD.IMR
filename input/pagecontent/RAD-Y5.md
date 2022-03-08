@@ -25,8 +25,6 @@ Transaction text specifies behavior for each role. The behavior of specific acto
 
 **DICOM PS3.3**: A. Composite Information Object Definitions
 
-**DICOM PS3.10**: Media Storage and File Format for Media Interchange
-
 ### 2:3.Y5.4 Messages
 
 <div>
@@ -37,7 +35,7 @@ Transaction text specifies behavior for each role. The behavior of specific acto
 **Figure 2:3.Y5.4-1: Interaction Diagram**
 
 #### 2:3.Y5.4.1 Display Images Message
-The Display presents the images referenced in a multimedia report to the user.
+The Display presents the images referenced in a report to the user.
 
 ##### 2:3.Y5.4.1.1 Trigger Events
 
@@ -45,39 +43,17 @@ A user or an automated function determines that one or more images should be pre
 
 ##### 2:3.Y5.4.1.2 Message Semantics
 
-The images are encoded as described in DICOM PS3.10.
+The images are encoded as DICOM SOP instances.
 
-This transaction does not depend on how the images referenced by the multimedia report are represented (DICOM binary, DICOM XML, DICOM JSON), or the messaging protocol by which the images were transferred to the Display. If the Display receives the reports by a profiled mechanism such as DICOM C-STORE, or DICOMweb WADO-RS, the messaging protocol is specified in that corresponding transaction. If the images are accessed by being grouped with another actor such as an Image Display, there is no messaging protocol involved.
+Display of images does not depend on how the images were obtained by the Display.
 
 #### 2:3.Y5.4.1.3 Expected Actions (i.e. Display Requirements)
 
 The behaviors in this section are specified as baseline capabilities. Displays may have additional or alternative capabilities that may be invoked or configured.
 
-The Display shall provide support for all the SOP Classes specified in Table 2:3.Y5.4.1.3-1.
+This transaction does not specify particular SOP classes that must be displayed.
 
-Table 2:3.Y5.4.1.3-1: Required SOP Classes Support for Display
-
-| SOP Class UID | SOP Class Name |
-|---------------|----------------|
-| 1.2.840.10008.5.1.4.1.1.1 | Computed Radiography Image Storage |
-| 1.2.840.10008.5.1.4.1.1.2 | CT Image Storage |
-| 1.2.840.10008.5.1.4.1.1.1.1 | Digital X-Ray Image Storage – For Presentation |
-| 1.2.840.10008.5.1.4.1.1.4 | MR Image Storage |
-| 1.2.840.10008.5.1.4.1.1.7.2 | Multi-frame Grayscale Byte Secondary Capture Image Storage ??? |
-| 1.2.840.10008.5.1.4.1.1.7.3 | Multi-frame Grayscale Word Secondary Capture Image Storage ??? |
-| 1.2.840.10008.5.1.4.1.1.7.1 | Multi-frame Single Bit Secondary Capture Image Storage ??? |
-| 1.2.840.10008.5.1.4.1.1.7.4 | Multi-frame True Color Secondary Capture Image Storage ??? |
-| 1.2.840.10008.5.1.4.1.1.20 | Nuclear Medicine Image Storage ??? |
-| 1.2.840.10008.5.1.4.1.1.128 | Positron Emission Tomography Image Storage ??? |
-| 1.2.840.10008.5.1.4.1.1.7 | Secondary Capture Image Storage |
-| 1.2.840.10008.5.1.4.1.1.6.1 | Ultrasound Image Storage |
-| 1.2.840.10008.5.1.4.1.1.3.1 | Ultrasound Multi-frame Image Storage |
-| 1.2.840.10008.5.1.4.1.1.12.1 | X-Ray Angiographic Image Storage ??? |
-| 1.2.840.10008.5.1.4.1.1.12.2 | X-Ray Radiofluoroscopic Image Storage ??? |
-{: .grid}
-
-A Display shall support for all SOP Classes not specified in Table 2:3.Y5.4.1.3-1 that have the following
-characteristics:
+Displays shall be able to display images from SOP classes with the following characteristics:
 - Pixel Data (7FE0,0010) data element present
 - Bits Allocated (0028,0100) of 8 or 16
 - Bits Stored (0028,0101) values of 1 or 8 for Bits Allocated (0028,0100) of 8
@@ -92,17 +68,17 @@ characteristics:
 - Number of Frames (0028,0008) absent or with any value (i.e., single or multi-frame images)
 
 The Display shall support the following subset of image viewing capabilities as defined in [Basic Image Review (BIR)](https://www.ihe.net/uploadedFiles/Documents/Radiology/IHE_RAD_Suppl_BIR.pdf) Profile Section 4.16.4.2.2.5 when showing the images:
-- Windowing and Rendering (Section 4.16.4.2.2.5.4 except for Clamp Mode ???)
+- Windowing and Rendering (Section 4.16.4.2.2.5.4)
 - Zooming and Panning (Section 4.16.4.2.2.5.6)
 - Annotation (Section 4.16.4.2.2.5.8)
-- Measurements (Section 4.16.4.2.2.5.10 except for Cobb angle ???)
+- Measurements (Section 4.16.4.2.2.5.10)
 
 The Display may provide basic viewing tools for the user to interactive with the images.
 
 If the Display supports the Series/Study Navigation Option, the Display shall support the following additional interactive behavior:
 - Scrolling (Section 4.16.4.2.2.5.5)
 
-> Note that the Display is only required to display the actual objects referenced in the DiagnosticReport resource. If display of images from another plane (e.g. coronal or sagittal) other than the plane used during acquisition (e.g. axial) is necessary, then images on these other planes should be reconstructed (e.g. using multiplanar reconstruction), created as separate set of images and referenced in the DiagnosticReport resource. The Display is not required to support reconstruction.
+> Note that the Display is only required to display objects specifically referenced in the DiagnosticReport resource. If display of images from a plane (e.g. coronal or sagittal) other than the plane used during acquisition (e.g. axial) is necessary, then images on these other planes should be reconstructed (e.g. using multiplanar reconstruction), created as separate set of images and referenced in the DiagnosticReport resource. The Display is not required to support reconstruction.
 
 ### 2:3.Y5.5 Security Considerations
 

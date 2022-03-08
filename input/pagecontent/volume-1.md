@@ -44,7 +44,7 @@ Table XX.1-1: IMR Profile - Actors and Transactions
 |                               | Retrieve Presentation States \[RAD-17\] | Responder | R | RAD TF-2: 4.17 |
 |                               | Retrieve Key Images \[RAD-31\] | Responder | R | RAD TF-2: 4.31 |
 |                               | Retrieve Evidence Documents \[RAD-45\] | Responder | R | RAD TF-2: 4.45 |
-|                               | WADO-RS Retrieve | Responder \[RAD-107\] | R | RAD TF-2: 4.107 |
+|                               | WADO-RS Retrieve \[RAD-107\] | Responder | R | RAD TF-2: 4.107 |
 | Image Display | Retrieve Images \[RAD-16\] | Initiator | O (Note 2) | RAD TF-2: 4.16 |
 |               | Retrieve Presentation States \[RAD-17\] | Initiator | O | RAD TF-2: 4.17 |
 |               | Retrieve Key Images \[RAD-31\] | Initiator | O | RAD TF-2: 4.31 |
@@ -343,7 +343,7 @@ Level 1: Basic interactivity
 
 The Report Reader can display that static content in the report, including hyperlinks to different multimedia contents in the report (e.g. measurements). The user can click on these links to access a basic view of the source image(s) in which the findings are derived from.
 
-Level 2: Essential interactivity
+Level 2: Intermediate interactivity
 
 The Report Reader can provide not only a basic view of the source image(s), but also provide other essential features such as zoom, pan, window levelling, etc. If annotations are available, then the annotations (markup, ROI, etc.) are displayed as well and able to toggle them.
 
@@ -363,7 +363,7 @@ A DiagnosticReport resource includes many references to other resources, such as
 
 Optionally, a FHIR server may support the [_include](http://hl7.org/fhir/search.html#include) search result parameters. If the requester specifies this parameter in the search request, then the FHIR Server will include all referenced resources in the same response. The advantage is that the requester only needs to issue a single query result and the result will contain all the necessary data. The disadvantages are (1) the payload size may increase significantly, (2) the server will need to perform more work and may return the response slower, (3) it is an optional capability of the server.
 
-#### XX.4.1.9 Referenced Resource vs Contained Resource
+#### XX.4.1.9 Referenced FHIR Resource vs Contained FHIR Resource
 
 A DiagnosticReport resource includes many references to other resources. Technically it is possible for the Report Creator to include these other resources as [contained](https://www.hl7.org/fhir/references.html#contained) resources, these contained resources are not independently accessible and they cannot be searched. Therefore in IMR, when storing a DiagnosticReport resource, all referenced resources are actual resources and are referenced accordingly.
 
