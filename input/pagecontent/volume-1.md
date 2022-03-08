@@ -377,7 +377,7 @@ Note that the IMR profile is currently focused on intra-enterprise use cases. Ot
 
 ##### XX.4.2.1.1 Encode and Transmit Multimedia Report Use Case Description
 
-During a report dictation session, the Evidence Creator (not part of IMR) conveys multimedia contents to the Report Creator on demand as instructed by the user. (Note that the interaction between the Evidence Creator and Report Creator is out of scope for IMR) When a dictation session ended, the Report Creator encodes the diagnostic report along with the collected multimedia content. Once completed, the Report Creator stores the multimedia report to the Report Repository, Report Reader and/or Rendered Report Reader.
+During a report dictation session, the Evidence Creator (not part of IMR) conveys multimedia contents to the Report Creator on demand as instructed by the user. (Note that the interaction between the Evidence Creator and Report Creator is out of scope for IMR.) When a dictation session ends, the Report Creator encodes the diagnostic report along with the collected multimedia content. Once completed, the Report Creator stores the multimedia report to the Report Repository, Report Reader and/or Rendered Report Reader.
 
 ##### XX.4.2.1.2 Encode and Transmit Multimedia Report Process Flow
 
@@ -409,11 +409,11 @@ Figure XX.4.2.2.2-1: Consume and Interact with Multimedia Report by Standalone R
 
 ##### XX.4.2.2.3 Consume and Interact with Multimedia Report by Rendered Report Reader Use Case Description
 
-Alternatively, the EMR supports as an IMR Rendered Report Reader. In this case, the EMR extracts and displays the rendered report already embedded in the IMR multimedia report. The Clinicians clicks on the interactive links. The EMR / Rendered Report Reader invokes the links and displays the rendered content.
+Alternatively, the EMR supports the IMR Rendered Report Reader. In this case, the EMR extracts and displays the rendered report already embedded in the IMR multimedia report. The Clinician clicks on the interactive links. The EMR / Rendered Report Reader invokes the links and displays the rendered content.
 
 ##### XX.4.2.2.4 Consume and Interact with Multimedia Report by Rendered Report Reader Process Flow
 
-Figure XX.4.2.2.4-1 shows how the Clinician can use the EMR with native IMR Rendered Report Reader support to interact with the multimedia content available in the report.
+Figure XX.4.2.2.4-1 shows how the Clinician can use the EMR with a native IMR Rendered Report Reader support to interact with the multimedia content available in the report.
 
 <div>
 {%include uc2a-presenting-interactive-report-presentedform.svg%}
@@ -422,11 +422,13 @@ Figure XX.4.2.2.4-1 shows how the Clinician can use the EMR with native IMR Rend
 
 Figure XX.4.2.2.4-1: Consume and Interact with Multimedia Report by Rendered Report Reader Process Flow in IMR Profile
 
-#### XX.4.2.3 Use Case 3: Consume and Interact with Multimedia Report by Report Reader with Integrated Invoker Image Display
+#### XX.4.2.3 Use Case 3: Consume and Interact with Multimedia Report by Report Reader with Integrated Image Display Invoker
 
-##### XX.4.2.3.1 Consume and Interact with Multimedia Report by Report Reader with Integrated  Image Display Invoker Use Case Description
+##### XX.4.2.3.1 Consume and Interact with Multimedia Report by Report Reader with Integrated Image Display Invoker Use Case Description
 
-The functionality of this use case is the same as in Use Case 2. The difference is that the IMR Report Reader does not natively support image viewing capability. Instead it paired with an Image Display Invoker to launch an Image Display that can do so. Upon reviewing reports for a patient in the EMR which supports as an IMR Report Reader with integrated Image Display Invoker, the EMR encounters an IMR multimedia report. It displays the reports with interactive links to the multimedia content. The Clinician clicks on the interactive links. The EMR / Report Reader launches the integrated Image Display Invoker which in turn invokes the configured Image Display in context based on the information in the link. The Image Display retrieves and displays the images with interactive tools. The Clinicians can navigate the series and see the measurements with annotations as described in the report.
+The functionality of this use case is the same as in Use Case 2. The difference is that the IMR Report Reader does not natively support image viewing capability. Instead, it is grouped with an Image Display Invoker actor to launch an Image Display that can do so. 
+
+Upon reviewing reports for a patient in the EMR which supports as an IMR Report Reader with integrated Image Display Invoker, the EMR encounters an IMR multimedia report. It displays the reports with interactive links to the multimedia content. The Clinician clicks on the interactive links. The EMR / Report Reader launches the integrated Image Display Invoker which in turn invokes the configured Image Display in context based on the information in the link. The Image Display retrieves and displays the images with interactive tools. The Clinicians can navigate the series and see the measurements with annotations as described in the report.
 
 ##### XX.4.2.3.2 Consume and Interact with Multimedia Report by Report Reader with Integrated Image Display Invoker Process Flow
 
@@ -437,13 +439,13 @@ Figure XX.4.2.3.2-1 shows how the Clinician can use the EMR that supports IMR Re
 </div>
 <br clear="all">
 
-Figure XX.4.2.3.2-1: Consume and Interact with Multimedia Report by Report Reader with Integrated Invoke Image Display Process Flow in IMR Profile
+Figure XX.4.2.3.2-1: Consume and Interact with Multimedia Report by Report Reader with Integrated Image Display Invoker Process Flow in IMR Profile
 
 #### XX.4.2.4 Use Case 4: Consume and Interact with Multimedia Report for Prior Study by Radiologist
 
 ##### XX.4.2.4.1 Consume and Interact with Multimedia Report for Prior Study by Radiologist Use Case Description
 
-A radiologist is in the process of dictating a study. Relevant prior studies are displayed along with the current study. The prior studies have associated multimedia reports. The Report Reader integrated with the Image Display displays the multimedia reports to the radiologist with interactive links. When the Radiologist clicks on the links, the Report Reader triggers the viewport in the Image Display currently showing the prior study to show the specific image in which the measurements are derived from. The Radiologist can continue and re-measure to confirm the data submitted by the residence.
+A radiologist is in the process of dictating a study. Relevant prior studies are displayed along with the current study. The prior studies have associated multimedia reports. The Report Reader integrated with an Image Display displays the multimedia reports to the radiologist with interactive links. When the Radiologist clicks on the links, the Report Reader triggers the viewport in the Image Display currently showing the prior study to show the specific image in which the measurements are derived from. The Radiologist can continue and re-measure to confirm the data submitted by the resident.
 
 ##### XX.4.2.4.2 Consume and Interact with Multimedia Report for Prior Study by Radiologist Process Flow
 
@@ -476,7 +478,7 @@ Refer to RAD TF-1x: Appendix F “Security Environment Considerations”.
 Protected Healthcare Information (PHI) is present in the DICOM instances being stored,
 retrieved, processed, and displayed, as well as in the API being invoked.
 
-See ITI TF-2x: [Appendix Z.8 “Mobile Security Considerations”](https://profiles.ihe.net/ITI/TF/Volume2/ch-Z.html#z.8-mobile-security-considerations) for FHIR based transactions.
+See ITI TF-2: [Appendix Z.8 “Mobile Security Considerations”](https://profiles.ihe.net/ITI/TF/Volume2/ch-Z.html#z.8-mobile-security-considerations) for FHIR based transactions.
 
 General [Security and Privacy guidance](http://hl7.org/fhir/secpriv-module.html) is provided in the FHIR Specification.
 
