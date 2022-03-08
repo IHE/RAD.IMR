@@ -59,11 +59,11 @@ Table XX.1-1: IMR Profile - Actors and Transactions
 > Note 2: The Image Display shall support at least one of WADO-RS Retrieve [RAD-107] or Retrieve Images [RAD-16].
 
 ### XX.1.1 Actors Description and Actor Profile Requirements
-Most requirements are documented in RAD TF-2 Transactions. This section documents any additional requirements on profile's actors.
+Most requirements are documented in RAD TF-2 Transactions. This section documents any additional requirements on this profile's actors.
 
 #### XX.1.1.1 Report Creator
 
-A Report Creator encodea diagnostic reports with multimedia content using FHIR DiagnosticReport resource. Each resulting DiagnosticReport resource also includes a default rendered report in the same DiagnosticReport resource, either as base64 encoded binary, or by reference using a URL..
+A Report Creator encodes diagnostic reports with multimedia content using FHIR DiagnosticReport resource. Each resulting DiagnosticReport resource also includes a default rendered report in the same DiagnosticReport resource, either as base64 encoded binary, or by reference using a URL..
 
 A Report Creator may support creating multiple renditions of the same multimedia report for different consumers (e.g. simple consumers that do not render the detailed multimedia contents on its own, or external consumers that do not have access to studies inside the enterprise firewall).
 
