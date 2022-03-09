@@ -15,7 +15,7 @@ Both appendices are located at <http://ihe.net/Technical_Frameworks/#GenIntro>.
 Figure 1:XX.1-1 shows the actors directly involved in the IMR Profile and the relevant transactions
 between them. If needed for context, other actors that may be indirectly involved due to their participation
 in other related profiles are shown in dotted lines. Actors which have a required
-grouping are shown in conjoined boxes (see Section 1:XX.3).
+grouping are shown in conjoined boxes (see [Section 1:XX.3[(#1xx3-imr-required-actor-groupings)).
 
 <div>
     <img src="IHE_IMR_actor.drawio.png">
@@ -142,15 +142,15 @@ between options when applicable are specified in notes.
 
 | Actor   | Option Name | Reference |
 |---------|-------------|-----------|
-| Report Creator | PDF Report | Section 1:XX.2.1 | 
-|                | HL7 Text Report | Section 1:XX.2.2 |
-| Report Repository | No options defined | -- |
-| Report Reader | Rendered Instance Retrieve (Note 1) | Section 1:XX.2.3 |
+| Report Creator | PDF Report | [Section 1:XX.2.1](#1xx21-pdf-report-option) | 
+|                | HL7 Text Report | [Section 1:XX.2.2](#1xx22-hl7-text-report-option) |
+| Report Repository | *No options defined* | -- |
+| Report Reader | Rendered Instance Retrieve (Note 1) | [Section 1:XX.2.3](#1xx23-rendered-instance-retrieve-option) |
 |               | External Image Display Retrieve (Note 1) | Section 1:XX.2.4 |
-|               | DICOM Instance Retrieve (Note 1) | Section 1:XX.2.5 |
-|               | Series/Study Navigation | Section 1:XX.2.6 |
-| Rendered Report Reader | PDF Report | Section 1:XX.2.1 |
-| Image Manager / Image Archive | No options defined | -- |
+|               | DICOM Instance Retrieve (Note 1) | [Section 1:XX.2.5](#1xx25-dicom-instance-retrieve-option) |
+|               | Series/Study Navigation | [Section 1:XX.2.6](#1xx26-seriesstudy-navigation-option) |
+| Rendered Report Reader | PDF Report | [Section 1:XX.2.1](#1xx21-pdf-report-option) |
+| Image Manager / Image Archive | *No options defined* | -- |
 | Image Display | IID Invoke Option | Section 1:XX.2.7 |
 {: .grid}
 
@@ -178,7 +178,7 @@ A Report Creator shall use this text-only report to communicate the report with 
 
 ### 1:XX.2.3 Rendered Instance Retrieve Option
 
-The Rendered Instance Retrieve Option enables a Report Reader to retrieve rendered images from Image Manager / Image Archive using WADO-RS.  See [Use Case #2] (#1xx422-use-case-2-consume-and-interact-with-multimedia-report-by-standalone-report-reader).
+The Rendered Instance Retrieve Option enables a Report Reader to retrieve rendered images from Image Manager / Image Archive using WADO-RS.  See [Use Case #2](#1xx422-use-case-2-consume-and-interact-with-multimedia-report-by-standalone-report-reader).
 
 A Report Reader that supports this option shall use WADO-RS Retrieve [RAD-107] to retrieve rendered images from an Image Manager / Image Archive.
 
@@ -188,7 +188,7 @@ A Report Reader that also supports the Series/Study Navigation Option shall be a
 
 ### 1:XX.2.4 External Image Display Retrieve Option
 
-The External Image Display Retrieve Option enables actors to display images via an external Image Display actor. See [Use Case #3] (#1xx423-use-case-3-consume-and-interact-with-multimedia-report-by-report-reader-with-integrated-invoker-image-display).
+The External Image Display Retrieve Option enables actors to display images via an external Image Display actor. See [Use Case #3](#1xx423-use-case-3-consume-and-interact-with-multimedia-report-by-report-reader-with-integrated-invoker-image-display).
 
 A Report Reader that supports this option shall use Invoke Image Display [RAD-106] to invoke an Image Display which in turn retrieves images from an Image Manager / Image Archive. Report Readers shall translate the embedded image references and endpoints in the DiagnosticReport resource into corresponding Invoke Image Display URLs.
 
@@ -250,7 +250,7 @@ considerations and Section 1:XX.6 describes some optional groupings in other rel
 | Report Creator | Required | ITI CT / Time Client | ITI TF-1: 7.1 |
 | Report Repository | -- | None | -- |
 | Report Reader | With the External Image Display Retrieve Option | RAD IID / Image Display Invoker | RAD IID 1:35.1.1.2 |
-|               | With the DICOM Instance Retrieve Option | RAD IMR / Image Display | RAD IMR 1:XX.1.1.6 |
+|               | With the DICOM Instance Retrieve Option | RAD IMR / Image Display | [Section 1:XX.2.5](#1xx25-dicom-instance-retrieve-option) |
 | Rendered Report Reader | -- | None | -- |
 | Image Manager / Image Archive | -- | None | -- |
 | Image Display | -- | None | -- |
