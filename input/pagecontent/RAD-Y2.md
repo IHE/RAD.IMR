@@ -62,8 +62,8 @@ Table 2:4.Y2.4.1.3-1 Actor Display Requirements
 
 | Actor | Display Requirements |
 |-------|----------------------|
-| Report Reader | [2:4.Y2.4.1.3.1 Display of Attributes in DiagnosticReport](#23y24131-display-of-attributes-in-diagnosticreport) <br> [2:4.Y2.4.1.3.2 Display of Observation](#23y24132-display-of-observation) |
-| Rendered Report Reader | [2:4.Y2.4.1.3.3 Display of Rendered Report in DiagnosticReport.presentedForm](#23y24133-display-of-rendered-report-in-diagnosticreportpresentedform) |
+| Report Reader | [2:4.Y2.4.1.3.1 Display of Attributes in DiagnosticReport](#24y24131-display-of-attributes-in-diagnosticreport) <br> [2:4.Y2.4.1.3.2 Display of Observation](#24y24132-display-of-observation) |
+| Rendered Report Reader | [2:4.Y2.4.1.3.3 Display of Rendered Report in DiagnosticReport.presentedForm](#24y24133-display-of-rendered-report-in-diagnosticreportpresentedform) |
 {: .grid}
 
 ###### 2:4.Y2.4.1.3.1 Display of Attributes in DiagnosticReport
