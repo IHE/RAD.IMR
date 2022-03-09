@@ -47,14 +47,7 @@ The Sender determines that a multimedia report is ready to be sent. e.g. a radio
 
 This message is an HTTP POST request. The Sender is the User Agent. The Receiver is the Origin Server.
 
-The Sender shall initiate a FHIR “transaction” using a “create” action by sending an HTTP POST request method composed of a FHIR Bundle Resource containing the following:
-- one DiagnosticReport Resource
-- one or more ServiceRequest Resources
-- one Patient Resource
-- one or more Organization Resources
-- one or more Practitioner Resources
-- one or more Observation Resources
-- one or more ImagingStudy Resources
+The Sender shall initiate a FHIR “transaction” using a “create” action by sending an HTTP POST request method composed of an IMR Bundle Resource as defined in [Section 2:2:4.Y1.4.1.2.1].
 
 The media type of the HTTP body shall be either `application/fhir+json` or `application/fhir+xml`.
 
@@ -68,54 +61,15 @@ This URL is configurable by the Responder and is subject to the following constr
 
 The `[base]` is the [Service Base URL](https://www.hl7.org/fhir/http.html#root), which is the address where all of the resources defined by this interface are found.
 
-###### 2:4.Y1.4.1.2.1 Attributes in Diagnostic Report
+The following subsections contain additional constraints on the contents of the IMR Bundle.
 
-In radiology reports, there is a common set of values to be included. Table 2:4.Y1.4.1.2.1-1 specifies how the Sender shall map these attributes to FHIR DiagnosticReport Resource and other referenced resources.  Refer to the StructureDefinition for these resources on the [Artifacts](artifacts.html) page.
-
-**Table 2:4.Y1.4.1.2.1-1: Mapping of Attributes in Diagnostic Report**
-
-| Report Attribute | FHIR Resource Mapping | Additional Constraint | Note |
-|------------------|-----------------------|-----------------------|------|
-| Organization     | DiagnosticReport.performer | See [IMR DiagnosticReport](StructureDefinition-imr-diagnosticreport.html) for details | The organization which is responsible for the diagnostic report. <br><br> See Note 1 |
-| Results Interpreter | DiagnosticReport.resultsInterpreter | Can be either Practitioner or PractitionerRole <br><br> See [IMR DiagnosticReport](StructureDefinition-imr-diagnosticreport.html) for details | The primary result interpreter(s) <br><br> See Note 1 |
-| Patient Name     | DiagnosticReport.subject.name -> Patient.name | See [IMR DiagnosticReport](StructureDefinition-imr-diagnosticreport.html) for details | See Note 1 |
-| Patient ID       | DiagnosticReport.subject.identifier -> Patient.identifier | See [IMR DiagnosticReport](StructureDefinition-imr-diagnosticreport.html) for details | See Note 1 |
-| Accession Number | DiagnosticReport.basedOn.identifier -> IMRServiceRequest.identifier | See [IMR DiagnosticReport](StructureDefinition-imr-diagnosticreport.html) and [IMR ServiceRequest](StructureDefinition-imr-servicerequest.html) for details | Identified by the identifier.type |
-| Study Date       | DiagnosticReport.imagingStudy.started -> IMRImagingStudy.started | See [IMR ImagingStudy](StructureDefinition-imr-imagingstudy.html) for details | |
-| Study Type       | DiagnosticReport.imagingStudy.procedureCode -> IMRImagingStudy.procedureCode | See [IMR ImagingStudy](StructureDefinition-imr-imagingstudy.html) for details | |
-| Report Status    | DiagnosticReport.status | partial, preliminary, final, amended, corrected, appended, cancelled <br><br> See [IMR DiagnosticReport](StructureDefinition-imr-diagnosticreport.html) for details | A subset from what is defined in FHIR |
-| Examination      | DiagnosticReport.code | See [IMR DiagnosticReport](StructureDefinition-imr-diagnosticreport.html) for details | Code for the type of diagnostic report, may be the same as the study procedure code |
-| Indication       | DiagnosticReport.extension[indication] | See [IMR DiagnosticReport](StructureDefinition-imr-diagnosticreport.html) for details | Each value can be either a string or a CodeableConcept |
-| Technique        | DiagnosticReport.result.method -> IMRObservation.method | Technique details is set in the same observation  resource that captures the finding. i.e. IMRObservation.code = LOINC#59776-5 "Procedure Findings" <br><br> See [IMR DiagnosticReport](StructureDefinition-imr-diagnosticreport.html) and [IMR Observation](StructureDefinition-imr-observation.html) for details | |
-| Comparison       | DiagnosticReport.extension[comparisonStudy] | Can be either an IMRImagingStudy or IMRDiagnosticReport <br><br> See [IMR DiagnosticReport](StructureDefinition-imr-diagnosticreport.html) for details | |
-| Report Section   | DiagnosticReport.result.valueString -> IMRObservation.valueString | Identified by IMRObservation.code. See [IMR DiagnosticReport](StructureDefinition-imr-diagnosticreport.html) and [IMR Observation](StructureDefinition-imr-observation.html) for details | The code is used to identify what *section* the observation belongs to. For example, LOINC code __59776-5__ represents a procedure finding and LOINC code __19005-8__ represents a narrative impression. <br><br> Highly recommended to encode a single finding or impression per IMR Observation, but permitted to encode all findings as a single string and all impressions as a single string to bridge existing applications. <br><br> Also See Note 2 |
-{: .grid}
-
-> Note 1: There is no IMR-defined FHIR resource profile for the resource. An implementation may use other FHIR resource profile applicable for the deployment.
-
-> Note 2: In common cases, there is no direct association between findings and impressions except that they are associated with the same DiagnosticReport Resource. Explicit 
-
-In addition to the common set above, there are also a number of useful optional attributes that can be included, if applicable.
-
-**Table 2:4.Y1.4.1.2.1-2: Useful Optional Attributes in Radiology Diagnostic Report**
-
-| Report Attribute | FHIR Resource Mapping | Cardinality | Additional Constraint | Note |
-|------------------|-----------------------|-------------|-----------------------|------|
-| Referring Physician | DiagnosticReport.imagingStudy -> IMRImagingStudy.referrer | 0..* | |
-| Reason For Study | DiagnosticReport.imagingStudy -> IMRImagingStudy.reasonCode | 0..* | |
-| Study Description | DiagnosticReport.imagingStudy -> IMRImagingStudy.description | 0..* | |
-| Body Part | DiagnosticReport.result -> IMRObservation.bodySite | 0..1 | |
-| Relationship between findings and impressions | DiagnosticReport.result -> IMRObservation.hasMember | 0..* | Specify related observations, e.g. linking impression to finding, or finding to another finding |
-{: .grid}
-
-> See [HIMSS-SIIM Whitepaper: The Importance of Body Part Labeling to Enable Enterprise Imaging](https://link.springer.com/article/10.1007/s10278-020-00415-0) for the importance of body part labelling.
-
-###### 2:4.Y1.4.1.2.2 Bundle Resources
+###### 2:4.Y1.4.1.2.1 IMR Bundle Resource 
 
 For complete information on constructing a FHIR Bundle Resource, see [http://hl7.org/fhir/bundle.html](http://hl7.org/fhir/bundle.html)
 
 The FHIR Bundle.meta.profile shall have the following value: `http://profiles.ihe.net/RAD/IMR/StructureDefinition/imr-bundle`
-- The [IMR Bundle](StructureDefinition-imr-bundle.html): 
+
+The [IMR Bundle](StructureDefinition-imr-bundle.html): 
   - shall be a [Transaction Bundle](http://hl7.org/fhir/http.html#transaction)
   - shall create one [IMR DiagnosticReport](StructureDefinition-imr-diagnosticreport.html)
   - may create/update/read one or more [IMR ServiceRequest](StructureDefinition-imr-servicerequest.html)
@@ -145,7 +99,72 @@ The Sender shall populate accurate .hash and .size for the rendered report conte
 
 The following subsections contain requirements for each referenced resource in the bundle. A complete example of a DiagnosticReport is available in [IMR DiagnosticReport Example](DiagnosticReport-ex-DiagnosticReport.json.html).
 
-###### 2:4.Y1.4.1.2.3 IMR Observation Resources
+###### 2:4.Y1.4.1.2.2 IMR DiagnosticReport Resource 
+
+The Sender shall construct the IMR DiagnosticReport Resource according to the IMR DiagnosticReport [StructureDefinition] (StructureDefinition-imr-diagnosticreport.html)
+
+Section 2:4.Y1.4.1.2.2.1 contains mapping requirements.
+Section 2:4.Y1.4.1.2.2.2 contains requirements for including a rendered report in an IMR Diagnostic Report Resource.
+
+###### 2:4.Y1.4.1.2.2.1 Mapping of Attributes in a Diagnostic Report
+
+There is a common set of attributes to be included in radiology diagnostic reports. Table 2:4.Y1.4.1.2.2.1-1 specifies how the Sender shall map these attributes to the IMR DiagnosticReport Resource and other referenced resources.  Refer to the StructureDefinition for these resources on the [Artifacts](artifacts.html) page.
+
+**Table 2:4.Y1.4.1.2.2.1-1: Mapping of Attributes in DiagnosticReport**
+
+| Report Attribute | FHIR Resource Mapping | Additional Constraint | Note |
+|------------------|-----------------------|-----------------------|------|
+| Organization     | DiagnosticReport.performer | See [IMR DiagnosticReport](StructureDefinition-imr-diagnosticreport.html) for details | The organization which is responsible for the diagnostic report. <br><br> See Note 1 |
+| Results Interpreter | DiagnosticReport.resultsInterpreter | Can be either Practitioner or PractitionerRole <br><br> See [IMR DiagnosticReport](StructureDefinition-imr-diagnosticreport.html) for details | The primary result interpreter(s) <br><br> See Note 1 |
+| Patient Name     | DiagnosticReport.subject.name -> Patient.name | See [IMR DiagnosticReport](StructureDefinition-imr-diagnosticreport.html) for details | See Note 1 |
+| Patient ID       | DiagnosticReport.subject.identifier -> Patient.identifier | See [IMR DiagnosticReport](StructureDefinition-imr-diagnosticreport.html) for details | See Note 1 |
+| Accession Number | DiagnosticReport.basedOn.identifier -> IMRServiceRequest.identifier | See [IMR DiagnosticReport](StructureDefinition-imr-diagnosticreport.html) and [IMR ServiceRequest](StructureDefinition-imr-servicerequest.html) for details | Identified by the identifier.type |
+| Study Date       | DiagnosticReport.imagingStudy.started -> IMRImagingStudy.started | See [IMR ImagingStudy](StructureDefinition-imr-imagingstudy.html) for details | |
+| Study Type       | DiagnosticReport.imagingStudy.procedureCode -> IMRImagingStudy.procedureCode | See [IMR ImagingStudy](StructureDefinition-imr-imagingstudy.html) for details | |
+| Report Status    | DiagnosticReport.status | partial, preliminary, final, amended, corrected, appended, cancelled <br><br> See [IMR DiagnosticReport](StructureDefinition-imr-diagnosticreport.html) for details | A subset from what is defined in FHIR |
+| Examination      | DiagnosticReport.code | See [IMR DiagnosticReport](StructureDefinition-imr-diagnosticreport.html) for details | Code for the type of diagnostic report, may be the same as the study procedure code |
+| Indication       | DiagnosticReport.extension[indication] | See [IMR DiagnosticReport](StructureDefinition-imr-diagnosticreport.html) for details | Each value can be either a string or a CodeableConcept |
+| Technique        | DiagnosticReport.result.method -> IMRObservation.method | Technique details is set in the same observation  resource that captures the finding. i.e. IMRObservation.code = LOINC#59776-5 "Procedure Findings" <br><br> See [IMR DiagnosticReport](StructureDefinition-imr-diagnosticreport.html) and [IMR Observation](StructureDefinition-imr-observation.html) for details | |
+| Comparison       | DiagnosticReport.extension[comparisonStudy] | Can be either an IMRImagingStudy or IMRDiagnosticReport <br><br> See [IMR DiagnosticReport](StructureDefinition-imr-diagnosticreport.html) for details | |
+| Report Section   | DiagnosticReport.result.valueString -> IMRObservation.valueString | Identified by IMRObservation.code. See [IMR DiagnosticReport](StructureDefinition-imr-diagnosticreport.html) and [IMR Observation](StructureDefinition-imr-observation.html) for details | The code is used to identify what *section* the observation belongs to. For example, LOINC code __59776-5__ represents a procedure finding and LOINC code __19005-8__ represents a narrative impression. <br><br> Highly recommended to encode a single finding or impression per IMR Observation, but permitted to encode all findings as a single string and all impressions as a single string to bridge existing applications. <br><br> Also See Note 2 |
+{: .grid}
+
+> Note 1: There is no IMR-defined FHIR resource profile for the resource. An implementation may use other FHIR resource profile applicable for the deployment.
+
+> Note 2: In common cases, there is no direct association between findings and impressions except that they are associated with the same DiagnosticReport Resource. Explicit 
+
+In addition to the common set above, there are also a number of useful optional attributes that can be included, if applicable.
+
+**Table 2:4.Y1.4.1.2.2.1-2: Useful Optional Attributes in Radiology Diagnostic Report**
+
+| Report Attribute | FHIR Resource Mapping | Cardinality | Additional Constraint | Note |
+|------------------|-----------------------|-------------|-----------------------|------|
+| Referring Physician | DiagnosticReport.imagingStudy -> IMRImagingStudy.referrer | 0..* | |
+| Reason For Study | DiagnosticReport.imagingStudy -> IMRImagingStudy.reasonCode | 0..* | |
+| Study Description | DiagnosticReport.imagingStudy -> IMRImagingStudy.description | 0..* | |
+| Body Part | DiagnosticReport.result -> IMRObservation.bodySite | 0..1 | |
+| Relationship between findings and impressions | DiagnosticReport.result -> IMRObservation.hasMember | 0..* | Specify related observations, e.g. linking impression to finding, or finding to another finding |
+{: .grid}
+
+> See [HIMSS-SIIM Whitepaper: The Importance of Body Part Labeling to Enable Enterprise Imaging](https://link.springer.com/article/10.1007/s10278-020-00415-0) for the importance of body part labelling.
+
+###### 2:4.Y1.4.1.2.2.2 Rendered Report in IMR DiagnosticReport Resource
+
+The Sender shall include in DiagnosticReport.presentedForm at least one rendered report in HTML format. The presentedForm.contentType shall have the value "text/html". The Sender may include other renditions of the same report (e.g. PDF).
+
+For IMR Observations that have image references using Observation.derivedFrom attribute, the Sender shall add a hyperlink using the HTML anchor element (i.e. `<a>`), with the display text for the hyperlink being the corresponding value[x] in a clinically relevant textual representation. The value for href for this hyperlink shall be constructed based on the endpoint(s) defined in the referenced [IMR ImagingStudy]((StructureDefinition-imr-imagingstudy.html)) Resource.
+
+For inline image references in Observation.valueString, the Sender shall substitute each `<IMRRef>`...`</IMRRef>` markup with an HTML anchor element. The href attribute shall be set to the concatenation of the ImagingStudy.endpoint.address with the valueString from the matching Observation.component.id entry. The resulting URL shall be a valid URL according to the contentType.
+
+The Sender shall construct the resulting URLs such that the content returned upon invocation shall be contents that are ready to be presented, rather than contents that required download and additional tools to present. For example, using a WADO-RS URL with rendered image is appropriate while a plain WADO-RS URL to retrieve a DICOM object is not.
+
+> In other words, the Sender shall not presume that the Receiver can download and render the linked content.
+
+For Senders that supports the PDF Report Option, if configured, shall also attach a semantically equivalent diagnostic report in PDF format in the presentedForm attribute. The presentedForm.contentType shall have the value "application/pdf". The Sender shall include in the PDF report all text and linked contents as in the HTML report. The Sender may preserve the linked contents as hyperlinks, or substitute the linked contents with the actual rendered contents and embedded them in the PDF file.
+
+For all rendered reports, the Sender shall set the presentedForm.contentType with a value corresponding to the rendered report format.
+
+###### 2:4.Y1.4.1.2.3 IMR Observation Resource
 
 The Sender shall set the `code` attribute according to the [IMR Observation](StructureDefinition-imr-observation.html) resource profile indicating whether the IMR Observation resource represents finding(s), impression(s), or some other type of observations.
 
@@ -153,7 +172,7 @@ The Sender shall encode all clinical impressions using [IMR Observation](Structu
 
 The Sender shall encode all clinical findings using IMR Observation Resources. Each finding may be encoded as a separate IMR Observation Resource, or all findings may be included in a single IMR Observation resource as a narrative content in Observation.valueString. See [IMR Observation Examples](StructureDefinition-imr-observation-examples.html) for an example that encodes multiple findings in paragraph form in a single IMR Observation Resource.
 
-> See [Structure in Radiology Reporting](volume-1.html#xx411-structure-in-radiology-reporting) for discussions regarding different *structures* applicable to radiology reporting.
+> See [Structure in Radiology Reporting](volume-1.html#1xx411-structure-in-radiology-reporting) for discussions regarding different *structures* applicable to radiology reporting.
 
 The Sender shall encode narrative content in findings or impressions using Observation.valueString.
 
@@ -167,7 +186,7 @@ For narrative content, the Sender can directly embed one or more image reference
 
 > Note: IMR currently focus on image references only. Reference to other DICOM objects such as segmentation objects, parametric maps or other non-DICOM objects are out of scope of IMR.
 
-The Sender shall specify each inline image reference using the `<IMRRef>` XML element and the corresponding `</IMRRef>` end element. This `<IMRRef>` element shall have the attributes as defined in Table 2:4.Y1.4.1.2.2.1-1.
+The Sender shall specify each inline image reference using the `<IMRRef>` XML element and the corresponding `</IMRRef>` end element. This `<IMRRef>` element shall have the attributes as defined in Table 2:4.Y1.4.1.3.1-1.
 
 **Table 2:4.Y1.4.1.2.3.1-1: Attributes for the `<IMRRef>` element**
 
@@ -200,27 +219,11 @@ In Example 2, the display text for the hyperlink is the simple text **image** ad
 
 > Note: The current design of Observation only supports a single image reference in the same study context as the Observation (i.e. Observation.derivedFrom) for each inline reference using the `<IMRRef>` tag. FHIR is working on a new ImagingSelection Resource which supports referencing multiple images as well as image regions in any study. It is the intention of IMR that when ImagingSelection becomes available, IMR will be updated to support it as an extension in Observation.component.
 
-> Note: The current design of DiagnosticReport does not define how the different attributes should be presented in what order, except for the presentedForm. FHIR is working on integrating DiagnosticReport with Composition, which enables an explicit control of sections. It is the intention of IMR that when Composition is integrated with DiagnosticReport, IMR will be updated to support it.
+> Note: The current design of a FHIR DiagnosticReport does not define how the different attributes should be presented in what order, except for the presentedForm. FHIR is working on integrating DiagnosticReport with Composition, which enables an explicit control of sections. It is the intention of IMR that when Composition is integrated with DiagnosticReport, IMR will be updated to support it.
 
 Informative examples are available at [IMR Observation Examples](StructureDefinition-imr-observation-examples.html) to demonstrate the possible encoding of different kinds of observations.
 
-###### 2:4.Y1.4.1.2.4 Rendered Report in IMR DiagnosticReport Resource
-
-The Sender shall include in DiagnosticReport.presentedForm at least one rendered report in HTML format. The presentedForm.contentType shall have the value "text/html". The Sender may include other renditions of the same report (e.g. PDF).
-
-For IMR Observations that have image references using Observation.derivedFrom attribute, the Sender shall add a hyperlink using the HTML anchor element (i.e. `<a>`), with the display text for the hyperlink being the corresponding value[x] in a clinically relevant textual representation. The value for href for this hyperlink shall be constructed based on the endpoint(s) defined in the referenced [IMR ImagingStudy]((StructureDefinition-imr-imagingstudy.html)) Resource.
-
-For inline image references in Observation.valueString, the Sender shall substitute each `<IMRRef>`...`</IMRRef>` markup with an HTML anchor element. The href attribute shall be set to the concatenation of the ImagingStudy.endpoint.address with the valueString from the matching Observation.component.id entry. The resulting URL shall be a valid URL according to the contentType.
-
-The Sender shall construct the resulting URLs such that the content returned upon invocation shall be contents that are ready to be presented, rather than contents that required download and additional tools to present. For example, using a WADO-RS URL with rendered image is appropriate while a plain WADO-RS URL to retrieve a DICOM object is not.
-
-> In other words, the Sender shall not presume that the Receiver can download and render the linked content.
-
-For Senders that supports the PDF Report Option, if configured, shall also attach a semantically equivalent diagnostic report in PDF format in the presentedForm attribute. The presentedForm.contentType shall have the value "application/pdf". The Sender shall include in the PDF report all text and linked contents as in the HTML report. The Sender may preserve the linked contents as hyperlinks, or substitute the linked contents with the actual rendered contents and embedded them in the PDF file.
-
-For all rendered reports, the Sender shall set the presentedForm.contentType with a value corresponding to the rendered report format.
-
-###### 2:4.Y1.4.1.2.5 Patient, Organization, Practitioner, PractitionerRole Rescources
+###### 2:4.Y1.4.1.2.4 Patient, Organization, Practitioner, PractitionerRole Rescources
 
 The Patient, Organization, Practitioner or PractitionerRole Resources are required resources. However, IMR does not specify any FHIR resource profiles on these resources. These resources are not radiology or imaging specific. Real world deployment may specify constraints on these resources.
 
