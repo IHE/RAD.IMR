@@ -47,7 +47,7 @@ The Sender determines that a multimedia report is ready to be sent. e.g. a radio
 
 This message is an HTTP POST request. The Sender is the User Agent. The Receiver is the Origin Server.
 
-The Sender shall initiate a FHIR “transaction” using a “create” action by sending an HTTP POST request method composed of an IMR Bundle Resource as defined in [Section 2:2:4.Y1.4.1.2.1].
+The Sender shall initiate a FHIR “transaction” using a “create” action by sending an HTTP POST request method composed of an IMR Bundle Resource as defined in [Section 2:4.Y1.4.1.2.1](#24y14121-imr-bundle-resource).
 
 The media type of the HTTP body shall be either `application/fhir+json` or `application/fhir+xml`.
 
@@ -79,7 +79,7 @@ The [IMR Bundle](StructureDefinition-imr-bundle.html):
   - may create/read one or more [IMR Observation](StructureDefinition-imr-observation.html)
   - may create/read one or more [IMR ImagingStudy](StructureDefinition-imr-imagingstudy.html)
 
-The Sender may set meta.profile of each resource to be the corresponding IMR profile. This enables the recipients to validate the received resource against the IMR resource profile specification.
+The Sender may set meta.profile of each resource to be the corresponding IMR profile. This enables a Receiver to validate the received resource against the IMR resource profile specification.
 
 > Note that a Sender may choose not to set meta.profile to a specific profile, or may set it to multiple profiles.
 
@@ -87,15 +87,15 @@ The Sender shall create corresponding properly identifiable resources unless the
 
 When resources are `contained`, they shall be contained using the FHIR contained method (see [http://hl7.org/fhir/references.html#contained](http://hl7.org/fhir/references.html#contained) ).
 
-A complete example of an IMR DiagnosticReport is available in [IMR DiagnosticReport Example](DiagnosticReport-ex-DiagnosticReport.json.html).
-
 ###### 2:4.Y1.4.1.2.2 IMR DiagnosticReport Resource 
 
-The Sender shall construct the IMR DiagnosticReport Resource according to the IMR DiagnosticReport [StructureDefinition] (StructureDefinition-imr-diagnosticreport.html)
+The Sender shall construct the IMR DiagnosticReport Resource according to the IMR DiagnosticReport [StructureDefinition](StructureDefinition-imr-diagnosticreport.html)
 
 Section 2:4.Y1.4.1.2.2.1 contains mapping requirements.
 
-Section 2:4.Y1.4.1.2.2.2 contains requirements for including a rendered report in an IMR Diagnostic Report Resource.
+Section 2:4.Y1.4.1.2.2.2 contains requirements for including a rendered report in an IMR DiagnosticReport Resource.
+
+A complete example of an IMR DiagnosticReport Resource is available in [IMR DiagnosticReport Example](DiagnosticReport-ex-DiagnosticReport.json.html).
 
 ###### 2:4.Y1.4.1.2.2.1 Mapping of Attributes in a Diagnostic Report
 
@@ -110,8 +110,8 @@ There is a common set of attributes included in radiology diagnostic reports. Ta
 | Patient Name     | DiagnosticReport.subject.name -> Patient.name | 0..* |See [IMR DiagnosticReport](StructureDefinition-imr-diagnosticreport.html) for details | See Note 1 |
 | Patient ID       | DiagnosticReport.subject.identifier -> Patient.identifier | 0..* | See [IMR DiagnosticReport](StructureDefinition-imr-diagnosticreport.html) for details | See Note 1 |
 | Accession Number | DiagnosticReport.basedOn.identifier -> IMRServiceRequest.identifier | 1..* | See [IMR DiagnosticReport](StructureDefinition-imr-diagnosticreport.html) and [IMR ServiceRequest](StructureDefinition-imr-servicerequest.html) for details | Identified by the identifier.type |
-| Study Date       | DiagnosticReport.imagingStudy.started -> IMRImagingStudy.started | | See [IMR ImagingStudy](StructureDefinition-imr-imagingstudy.html) for details | |
-| Study Type       | DiagnosticReport.imagingStudy.procedureCode -> IMRImagingStudy.procedureCode | | See [IMR ImagingStudy](StructureDefinition-imr-imagingstudy.html) for details | |
+| Study Date       | DiagnosticReport.imagingStudy.started -> IMRImagingStudy.started | 1..1 | See [IMR ImagingStudy](StructureDefinition-imr-imagingstudy.html) for details | |
+| Study Type       | DiagnosticReport.imagingStudy.procedureCode -> IMRImagingStudy.procedureCode | 1..1 | See [IMR ImagingStudy](StructureDefinition-imr-imagingstudy.html) for details | |
 | Report Status    | DiagnosticReport.status | 1..1 | partial, preliminary, final, amended, corrected, appended, cancelled <br><br> See [IMR DiagnosticReport](StructureDefinition-imr-diagnosticreport.html) for details | A subset from what is defined in FHIR |
 | Examination      | DiagnosticReport.code | 1..1 | See [IMR DiagnosticReport](StructureDefinition-imr-diagnosticreport.html) for details | Code for the type of diagnostic report, may be the same as the study procedure code |
 | Indication       | DiagnosticReport.extension[indication] | 0..* | See [IMR DiagnosticReport](StructureDefinition-imr-diagnosticreport.html) for details | Each value can be either a string or a CodeableConcept |
@@ -131,17 +131,17 @@ There is a common set of attributes included in radiology diagnostic reports. Ta
 
 > See [HIMSS-SIIM Whitepaper: The Importance of Body Part Labeling to Enable Enterprise Imaging](https://link.springer.com/article/10.1007/s10278-020-00415-0) for the importance of body part labelling.
 
-###### 
+###### 2:4.Y1.4.1.2.2.2 Rendered Report in IMR DiagnosticReport Resource
 
-The Sender shall include in DiagnosticReport.presentedForm at least one rendered report in HTML format. The presentedForm.contentType shall have the value "text/html".   The Sender may include other renditions of the same report (e.g. PDF).
+The Sender shall include in DiagnosticReport.presentedForm at least one rendered report in HTML format. DiagnosticReport.presentedForm.contentType shall have the value "text/html".   The Sender may include other renditions of the same report (e.g. PDF).
 
-For all rendered reports, the Sender shall set the presentedForm.contentType with a value corresponding to the rendered report format.
+For all rendered reports, the Sender shall set the DiagnosticReport.presentedForm.contentType with a value corresponding to the rendered report format.
 
 The Sender shall encode the rendered report that is referenced by DiagnosticReport.presentedForm in one of the following ways:
-- Encode the rendered report as a base64Binary in DiagnosticReport.presentedForm.data
-- Host the rendered report somewhere and provide the url in DiagnosticReport.presentedForm.url.
-- Encode the rendered report as a base64Binary in a [Binary Resource](https://www.hl7.org/fhir/binary.html) and this Binary Resource is referenced in DiagnosticReport.presentedForm.url.
+- as a base64Binary in DiagnosticReport.presentedForm.data
+- as a base64Binary in a [Binary Resource](https://www.hl7.org/fhir/binary.html) and this Binary Resource is referenced in DiagnosticReport.presentedForm.url.
   - The Binary Resource shall be in the Bundle. See FHIR Resolving references in Bundles at [http://hl7.org/fhir/bundle.html#references](http://hl7.org/fhir/bundle.html#references). 
+- host the rendered report somewhere and provide the url in DiagnosticReport.presentedForm.url
 
 The Sender shall populate accurate values for hash and size for the rendered report content in DiagnosticReport.presentedForm.hash and DiagnosticReport.presentedForm.size: 
 * Where the presentedForm is a Binary Resource instance, the .hash and .size shall represent the raw artifact that has been base64encoded in the Binary.data element.  
@@ -149,7 +149,7 @@ The Sender shall populate accurate values for hash and size for the rendered rep
 
 A Sender that supports the **PDF Report Option**, if configured, shall also attach a semantically equivalent diagnostic report in PDF format in the DiagnosticReport.presentedForm attribute. The presentedForm.contentType shall have the value "application/pdf". The Sender shall include in the PDF report all text and linked contents as in the HTML report. The Sender may preserve the linked contents as hyperlinks, or substitute the linked contents with the actual rendered contents and embedded them in the PDF file.
 
-###### TO DO: Find the right home for this
+###### TO DO: Create the right subsection heading or Find the right home for this content
 
 For IMR Observations that have image references using Observation.derivedFrom attribute (see [Section 2:4.Y1.4.1.2.3.1] (#24y141231-image-references-in-observation)), the Sender shall add a hyperlink using the HTML anchor element (i.e. `<a>`), with the display text for the hyperlink being the corresponding value[x] in a clinically relevant textual representation. The value for href for this hyperlink shall be constructed based on the endpoint(s) defined in the referenced [IMR ImagingStudy]((StructureDefinition-imr-imagingstudy.html)) Resource.
 
@@ -179,13 +179,11 @@ The Sender shall encode narrative content in findings or impressions using Obser
 
 The Sender may encode code-able content in findings or impressions using the appropriate data type available in Observation.value[x].
 
-###### 2:4.Y1.4.1.2.3.1 Image References in Observation
+###### 2:4.Y1.4.1.2.3.1 Image References in an IMR Observation Resource
 
 The Sender shall encode the study in which this observation is derived from, if available, in Observation.derivedFrom using an [IMR ImagingStudy](StructureDefinition-imr-imagingstudy.html) Resource. This attribute shall include the study and series references. IMR ImagingStudy may include image references.
 
 For narrative content, the Sender can directly embed one or more image references inline the text.
-
-
 
 The Sender shall specify each inline image reference using the `<IMRRef>` XML element and the corresponding `</IMRRef>` end element. This `<IMRRef>` element shall have the attributes as defined in Table 2:4.Y1.4.1.3.1-1.
 
