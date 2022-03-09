@@ -203,4 +203,4 @@ Search using GET may include sensitive information in the search parameters. The
 
 #### 2:3.Y3.5.1 Security Audit Considerations
 
-This transaction is associated with a Query ATNA Trigger Event on both the Requester and the Responder.
+This transaction is associated with a 'Query Information' ATNA Trigger Event on both the Requester and the Responder.  See [ITI TF-2: 3.20.4.1.1.1](https://profiles.ihe.net/ITI/TF/Volume2/ITI-20.html#3.20.4.1.1.1).
