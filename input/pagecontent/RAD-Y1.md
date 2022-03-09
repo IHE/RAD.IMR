@@ -35,9 +35,9 @@ Transaction text specifies behavior for each role. The behavior of specific acto
 **Figure 2:4.Y1.4-1: Interaction Diagram**
 
 #### 2:4.Y1.4.1 Store Multimedia Report Bundle Request Message
-The Sender sends a multimedia report bundle to the Receiver.
+The Sender sends a multimedia report bundle to the Receiver.  The Sender shall support sending such messages to more than one Receiver.
 
-The Receiver shall support handling such messages from more than one Sender. The Sender shall support sending such messages to more than one Receiver.
+The Receiver shall support handling such messages from more than one Sender. 
 
 ##### 2:4.Y1.4.1.1 Trigger Events
 
@@ -70,7 +70,7 @@ The `[base]` is the [Service Base URL](https://www.hl7.org/fhir/http.html#root),
 
 ###### 2:4.Y1.4.1.2-1 Attributes in Diagnostic Report
 
-In radiology reports, there is a common set of values to be included. The following table specifies how the Sender shall map these attributes to FHIR DiagnosticReport resource and other referenced resources. Refer to the StructureDefinition for these resources in the [Artifacts](artifacts.html) page for details.
+In radiology reports, there is a common set of values to be included. Table 2:4.Y1.4.1.2-1 specifies how the Sender shall map these attributes to FHIR DiagnosticReport Resource and other referenced resources.  Refer to the StructureDefinition for these resources on the [Artifacts](artifacts.html) page.
 
 Table 2:4.Y1.4.1.2-1: Mapping of Attributes in Diagnostic Report
 
@@ -91,11 +91,11 @@ Table 2:4.Y1.4.1.2-1: Mapping of Attributes in Diagnostic Report
 | Report Section   | DiagnosticReport.result.valueString -> IMRObservation.valueString | Identified by IMRObservation.code. See [IMR DiagnosticReport](StructureDefinition-imr-diagnosticreport.html) and [IMR Observation](StructureDefinition-imr-observation.html) for details | The code is used to identify what *section* the observation belongs to. For example, LOINC code __59776-5__ represents a procedure finding and LOINC code __19005-8__ represents a narrative impression. <br><br> Highly recommended to encode a single finding or impression per IMR Observation, but permitted to encode all findings as a single string and all impressions as a single string to bridge existing applications. <br><br> Also See Note 2 |
 {: .grid}
 
-> Note 1: There is no IMR defined FHIR resource profile for the resource. An implementation may use other FHIR resource profile applicable for the deployment.
+> Note 1: There is no IMR-defined FHIR resource profile for the resource. An implementation may use other FHIR resource profile applicable for the deployment.
 
-> Note 2: In common cases, there is no direct association between findings and impressions besides they are associated to the same DiagnosticReport resource. Explicit 
+> Note 2: In common cases, there is no direct association between findings and impressions except that they are associated with the same DiagnosticReport Resource. Explicit 
 
-In addition to the common set above, there are also a number of useful optional attributes that can be used if applicable.
+In addition to the common set above, there are also a number of useful optional attributes that can be included if applicable.
 
 Table 2:4.Y1.4.1.7-2: Useful Optional Attributes in Radiology Diagnostic Report
 
@@ -129,7 +129,7 @@ The Sender may set meta.profile of each resource to be the corresponding IMR pro
 
 > Note that a Sender may choose not to set meta.profile to a specific profile, or may set it to multiple profiles.
 
-The Sender shall create corresponding properly identifiable resources unless the proper record keys or absolute identification information is not available. Identifiable resources are preferred because each resource in the bundle is valuable as a standalone resource outside the context of the DiagnosticReport resource (e.g. independently searchable and same resource can be referenced multiple times).
+The Sender shall create corresponding properly identifiable resources unless the proper record keys or absolute identification information is not available. Identifiable resources are preferred because each resource in the bundle is valuable as a standalone resource outside the context of the DiagnosticReport Resource (e.g. independently searchable, and the same resource can be referenced multiple times).
 
 When resources are `contained`, they shall be contained using the FHIR contained method (see [http://hl7.org/fhir/references.html#contained](http://hl7.org/fhir/references.html#contained) ).
 
@@ -143,15 +143,15 @@ The Sender shall populate accurate .hash and .size for the rendered report conte
 * Where the presentedForm is a Binary Resource instance, the .hash and .size measure the raw artifact that has been base64encoded in the Binary.data element.  
 * Where the presentedForm is hosted elsewhere, not as a Binary Resource, the .hash and the .size shall represent the rendered report content that would be retrieved using the mime-type specified in contentType element. 
 
-The following subsections describe the details requirements for each referenced resource in the bundle. A complete example of a DiagnosticReport is available in [IMR DiagnosticReport Example](DiagnosticReport-ex-DiagnosticReport.json.html).
+The following subsections contain requirements for each referenced resource in the bundle. A complete example of a DiagnosticReport is available in [IMR DiagnosticReport Example](DiagnosticReport-ex-DiagnosticReport.json.html).
 
 ###### 2:4.Y1.4.1.2.2 IMR Observation Resources
 
-The Sender shall set the `code` attribute according to the [IMR Observation](StructureDefinition-imr-observation.html) resource profile indicating if the IMR Observation resource represents finding(s), impression(s) or some other type of observations.
+The Sender shall set the `code` attribute according to the [IMR Observation](StructureDefinition-imr-observation.html) resource profile indicating whether the IMR Observation resource represents finding(s), impression(s), or some other type of observations.
 
-The Sender shall encode all clinical impressions using [IMR Observation](StructureDefinition-imr-observation.html) resources. Each impression may be encoded as a separate IMR Observation resource, or all impressions may be included in a single IMR OBservation resource as a narrative content in Observation.valueString. See [IMR Observation Examples](StructureDefinition-imr-observation-examples.html) for examples that encode different impression as different IMR Observation resources.
+The Sender shall encode all clinical impressions using [IMR Observation](StructureDefinition-imr-observation.html) Resources. Each impression may be encoded as a separate IMR Observation Resource, or all impressions may be included in a single IMR Observation Resource as a narrative content in Observation.valueString. See [IMR Observation Examples](StructureDefinition-imr-observation-examples.html) for examples that encode different impression as different IMR Observation Resources.
 
-The Sender shall encode all clinical findings using IMR Observation resources. Each finding may be encoded as a separate IMR Observation resource, or all findings may be included in a single IMR Observation resource as a narrative content in Observation.valueString. See [IMR Observation Examples](StructureDefinition-imr-observation-examples.html) for an example that encodes multiple findings in paragraph form in a single IMR Observation resources.
+The Sender shall encode all clinical findings using IMR Observation Resources. Each finding may be encoded as a separate IMR Observation Resource, or all findings may be included in a single IMR Observation resource as a narrative content in Observation.valueString. See [IMR Observation Examples](StructureDefinition-imr-observation-examples.html) for an example that encodes multiple findings in paragraph form in a single IMR Observation Resource.
 
 > See [Structure in Radiology Reporting](volume-1.html#xx411-structure-in-radiology-reporting) for discussions regarding different *structures* applicable to radiology reporting.
 
@@ -198,7 +198,7 @@ The imaged portion of a thyroid gland is unremarkable. Prominent or mildly enlar
 
 In Example 2, the display text for the hyperlink is the simple text **image** adjacent to the corresponding measurement details.
 
-> Note: The current design of Observation only supports a single image reference in the same study context as the Observation (i.e. Observation.derivedFrom) for each inline reference using the `<IMRRef>` tag. FHIR is working on a new ImagingSelection resource which supports referencing multiple images as well as image regions in any study. It is the intention of IMR that when ImagingSelection becomes available, IMR will be updated to support it as an extension in Observation.component.
+> Note: The current design of Observation only supports a single image reference in the same study context as the Observation (i.e. Observation.derivedFrom) for each inline reference using the `<IMRRef>` tag. FHIR is working on a new ImagingSelection Resource which supports referencing multiple images as well as image regions in any study. It is the intention of IMR that when ImagingSelection becomes available, IMR will be updated to support it as an extension in Observation.component.
 
 > Note: The current design of DiagnosticReport does not define how the different attributes should be presented in what order, except for the presentedForm. FHIR is working on integrating DiagnosticReport with Composition, which enables an explicit control of sections. It is the intention of IMR that when Composition is integrated with DiagnosticReport, IMR will be updated to support it.
 
@@ -208,7 +208,7 @@ Informative examples are available at [IMR Observation Examples](StructureDefini
 
 The Sender shall include in DiagnosticReport.presentedForm at least one rendered report in HTML format. The presentedForm.contentType shall have the value "text/html". The Sender may include other renditions of the same report (e.g. PDF).
 
-For IMR Observations that have image references using Observation.derivedFrom attribute, the Sender shall add a hyperlink using the HTML anchor element (i.e. `<a>`), with the display text for the hyperlink being the corresponding value[x] in a clinically relevant textual representation. The value for href for this hyperlink shall be constructed based on the endpoint(s) defined in the referenced [IMR ImagingStudy]((StructureDefinition-imr-imagingstudy.html)) resource.
+For IMR Observations that have image references using Observation.derivedFrom attribute, the Sender shall add a hyperlink using the HTML anchor element (i.e. `<a>`), with the display text for the hyperlink being the corresponding value[x] in a clinically relevant textual representation. The value for href for this hyperlink shall be constructed based on the endpoint(s) defined in the referenced [IMR ImagingStudy]((StructureDefinition-imr-imagingstudy.html)) Resource.
 
 For inline image references in Observation.valueString, the Sender shall substitute each `<IMRRef>`...`</IMRRef>` markup with an HTML anchor element. The href attribute shall be set to the concatenation of the ImagingStudy.endpoint.address with the valueString from the matching Observation.component.id entry. The resulting URL shall be a valid URL according to the contentType.
 
@@ -222,7 +222,7 @@ For all rendered reports, the Sender shall set the presentedForm.contentType wit
 
 ###### 2:4.Y1.4.1.2.3 Patient, Organization, Practitioner, PractitionerRole
 
-The Patient, Organization, Practitioner or PractitionerRole resources are required resources. However, IMR does not specify any FHIR resource profiles on these resources. These resources are not radiology or imaging specific. Real world deployment may specify constraints on these resources.
+The Patient, Organization, Practitioner or PractitionerRole Resources are required resources. However, IMR does not specify any FHIR resource profiles on these resources. These resources are not radiology or imaging specific. Real world deployment may specify constraints on these resources.
 
 ##### 2:4.Y1.4.1.3 Expected Actions
 
@@ -252,23 +252,23 @@ The Receiver sends a response message describing the message outcome to the Send
 
 ##### 2:4.Y1.4.2.1 Trigger Events
 
-The Receiver receives a Store Multimedia Report Bundle message.
+The Receiver receives a Store Multimedia Report Bundle Request message.
 
 ##### 2:4.Y1.4.2.2 Message Semantics
 
 This message is an HTTP POST response. The Sender is the User Agent. The Receiver is the Origin Server.
 
-The Receiver returns an HTTP Status code appropriate to the processing outcome, conforming to the transaction specification requirements as specified in [http://hl7.org/fhir/http.html#transaction](http://hl7.org/fhir/http.html#transaction) to the Sender. This enables the Sender to know the outcome of processing the FHIR transaction, and the identities assigned to the resources by the Receiver.
+The Receiver returns an HTTP Status code appropriate to the processing outcome, conforming to the transaction specification requirements in [http://hl7.org/fhir/http.html#transaction](http://hl7.org/fhir/http.html#transaction) to the Sender. This enables the Sender to know the outcome of processing the FHIR transaction, and the identities assigned to the resources by the Receiver.
 
 The Receiver shall construct a Bundle, with `type` set to `transaction-response`, that contains one entry for each entry in the request, in the same order as received, with the `Bundle.entry.response.outcome` indicating the results of processing the entry warnings such as PartialFolderContentNotProcessed. The Receiver shall comply with FHIR [http://hl7.org/fhir/bundle.html#transaction-response](http://hl7.org/fhir/bundle.html#transaction-response) and [http://hl7.org/fhir/http.html#transaction-response](http://hl7.org/fhir/http.html#transaction-response).
 
 To indicate success, the Receiver shall return an HTTP status `200`. The Receiver shall include in the HTTP response header the `location` element, and the `etag` element if the Receiver supports FHIR resource versioning.
 
-The `Bundle.entry.response.status` shall be `201` to indicate the Resource has been created, 
+The `Bundle.entry.response.status` shall be `201` to indicate the Resource has been created. 
 
 The Receiver shall not send a success response until the multimedia report is completely processed and persisted as appropriate to the Receiver configuration.
 
-An informative StructureDefinition is outlined for [IMR Store Multimedia Report Bundle Message](StructureDefinition-imr-store-multimedia-report-bundle.html).
+An informative StructureDefinition is fout at [IMR Store Multimedia Report Bundle Message](StructureDefinition-imr-store-multimedia-report-bundle.html).
 
 ##### 2:4.Y1.4.2.3 Expected Actions
 
