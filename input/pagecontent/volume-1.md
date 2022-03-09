@@ -99,7 +99,7 @@ See [Rendered Instance Retrieve Option](#xx23-rendered-instance-retrieve-option)
 
 A Report Reader with the External IID Image Display Retrieve Option delegates the image viewing capabilities to an external Image Display that is invoked by an integrated IID / Image Display Invoker actor. When triggered to view images, the Report Reader translates the embedded image references and endpoints in the DiagnosticReport resource into corresponding Invoke Image Display URLs.
 
-See [External Image Display Retrieve Option](#xx24-external-image-display-retrieve-option) for details.
+See [External IID Image Display Retrieve Option](#1xx24-external-iid-image-display-retrieve-option) for details.
 
 ##### XX.1.1.3.3 Report Reader with DICOM Instance Retrieve Option
 
@@ -146,12 +146,12 @@ Table XX.2-1: IMR - Actors and Options
 |                | HL7 Text Report | Section XX.2.2 |
 | Report Repository | No options defined | -- |
 | Report Reader | Rendered Instance Retrieve (Note 1) | Section XX.2.3 |
-|               | External IID Image Display Retrieve (Note 1) | Section XX.2.4 |
+|               | External IID Image Display Retrieve (Note 1) | [Section 1:XX.2.4](#1xx24-external-iid-image-display-retrieve-option) |
 |               | DICOM Instance Retrieve (Note 1) | Section XX.2.5 |
 |               | Series/Study Navigation | Section XX.2.6 |
 | Rendered Report Reader | PDF Report | Section XX.2.1 |
 | Image Manager / Image Archive | No options defined | -- |
-| Image Display | External IID Image Display Retrieve | Section XX.2.4 |
+| Image Display | External IID Image Display Retrieve | [Section 1:XX.2.4](#1xx24-external-iid-image-display-retrieve-option) |
 {: .grid}
 
 > Note 1: The Report Reader shall support at least one of the options to retrieve images.
