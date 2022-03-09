@@ -278,7 +278,7 @@ The `Bundle.entry.response.status` shall be `201` to indicate the Resource has b
 
 The Receiver shall not send a success response until the multimedia report is completely processed and persisted as appropriate to the Receiver configuration.
 
-An informative StructureDefinition is fout at [IMR Store Multimedia Report Bundle Message](StructureDefinition-imr-store-multimedia-report-bundle.html).
+An informative StructureDefinition is found at [IMR Store Multimedia Report Bundle Message](StructureDefinition-imr-store-multimedia-report-bundle.html).
 
 ##### 2:4.Y1.4.2.3 Expected Actions
 
@@ -288,7 +288,7 @@ The Sender processes the results according to application-defined rules.
 
 #### 2:4.Y1.4.3 CapabilityStatement Resource
 
-Receiver shall provide a CapabilityStatement Resource as described in [ITI TF-2: Appendix Z.3](https://profiles.ihe.net/ITI/TF/Volume2/ch-Z.html#z.3-capabilitystatement-resource) indicating the resources associated with an IMR report has been implemented. 
+Receiver shall provide a CapabilityStatement Resource as described in [ITI TF-2: Appendix Z.3](https://profiles.ihe.net/ITI/TF/Volume2/ch-Z.html#z.3-capabilitystatement-resource) indicating which resources associated with an IMR report have been implemented. 
 
 ### 2:4.Y1.5 Security Considerations
 
