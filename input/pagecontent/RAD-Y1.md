@@ -68,11 +68,11 @@ This URL is configurable by the Responder and is subject to the following constr
 
 The `[base]` is the [Service Base URL](https://www.hl7.org/fhir/http.html#root), which is the address where all of the resources defined by this interface are found.
 
-###### 2:4.Y1.4.1.2-1 Attributes in Diagnostic Report
+###### 2:4.Y1.4.1.2.1 Attributes in Diagnostic Report
 
-In radiology reports, there is a common set of values to be included. Table 2:4.Y1.4.1.2-1 specifies how the Sender shall map these attributes to FHIR DiagnosticReport Resource and other referenced resources.  Refer to the StructureDefinition for these resources on the [Artifacts](artifacts.html) page.
+In radiology reports, there is a common set of values to be included. Table 2:4.Y1.4.1.2.1-1 specifies how the Sender shall map these attributes to FHIR DiagnosticReport Resource and other referenced resources.  Refer to the StructureDefinition for these resources on the [Artifacts](artifacts.html) page.
 
-Table 2:4.Y1.4.1.2-1: Mapping of Attributes in Diagnostic Report
+**Table 2:4.Y1.4.1.2.1-1: Mapping of Attributes in Diagnostic Report**
 
 | Report Attribute | FHIR Resource Mapping | Additional Constraint | Note |
 |------------------|-----------------------|-----------------------|------|
@@ -95,9 +95,9 @@ Table 2:4.Y1.4.1.2-1: Mapping of Attributes in Diagnostic Report
 
 > Note 2: In common cases, there is no direct association between findings and impressions except that they are associated with the same DiagnosticReport Resource. Explicit 
 
-In addition to the common set above, there are also a number of useful optional attributes that can be included if applicable.
+In addition to the common set above, there are also a number of useful optional attributes that can be included, if applicable.
 
-Table 2:4.Y1.4.1.7-2: Useful Optional Attributes in Radiology Diagnostic Report
+**Table 2:4.Y1.4.1.2.1-2: Useful Optional Attributes in Radiology Diagnostic Report**
 
 | Report Attribute | FHIR Resource Mapping | Cardinality | Additional Constraint | Note |
 |------------------|-----------------------|-------------|-----------------------|------|
@@ -110,7 +110,7 @@ Table 2:4.Y1.4.1.7-2: Useful Optional Attributes in Radiology Diagnostic Report
 
 > See [HIMSS-SIIM Whitepaper: The Importance of Body Part Labeling to Enable Enterprise Imaging](https://link.springer.com/article/10.1007/s10278-020-00415-0) for the importance of body part labelling.
 
-###### 2:4.Y1.4.1.2.1 Bundle Resources
+###### 2:4.Y1.4.1.2.2 Bundle Resources
 
 For complete information on constructing a FHIR Bundle Resource, see [http://hl7.org/fhir/bundle.html](http://hl7.org/fhir/bundle.html)
 
@@ -145,7 +145,7 @@ The Sender shall populate accurate .hash and .size for the rendered report conte
 
 The following subsections contain requirements for each referenced resource in the bundle. A complete example of a DiagnosticReport is available in [IMR DiagnosticReport Example](DiagnosticReport-ex-DiagnosticReport.json.html).
 
-###### 2:4.Y1.4.1.2.2 IMR Observation Resources
+###### 2:4.Y1.4.1.2.3 IMR Observation Resources
 
 The Sender shall set the `code` attribute according to the [IMR Observation](StructureDefinition-imr-observation.html) resource profile indicating whether the IMR Observation resource represents finding(s), impression(s), or some other type of observations.
 
@@ -159,7 +159,7 @@ The Sender shall encode narrative content in findings or impressions using Obser
 
 The Sender may encode code-able content in findings or impressions using the appropriate data type available in Observation.value[x].
 
-###### 2:4.Y1.4.1.2.2.1 Image References in Observation
+###### 2:4.Y1.4.1.2.3.1 Image References in Observation
 
 The Sender shall encode the study in which this observation is derived from, if available, in Observation.derivedFrom using an [IMR ImagingStudy](StructureDefinition-imr-imagingstudy.html) resource. This attribute shall include the study and series references. IMR ImagingStudy may include image references.
 
@@ -169,7 +169,7 @@ For narrative content, the Sender can directly embed one or more image reference
 
 The Sender shall specify each inline image reference using the `<IMRRef>` XML element and the corresponding `</IMRRef>` end element. This `<IMRRef>` element shall have the attributes as defined in Table 2:4.Y1.4.1.2.2.1-1.
 
-Table 2:4.Y1.4.1.2.2.1-1: Attributes for the `<IMRRef>` element
+**Table 2:4.Y1.4.1.2.3.1-1: Attributes for the `<IMRRef>` element**
 
 | Attribute | Optionality | Description |
 |-----------|-------------|-------------|
@@ -204,7 +204,7 @@ In Example 2, the display text for the hyperlink is the simple text **image** ad
 
 Informative examples are available at [IMR Observation Examples](StructureDefinition-imr-observation-examples.html) to demonstrate the possible encoding of different kinds of observations.
 
-###### 2:4.Y1.4.1.2.2 Rendered Report in DiagnosticReport.presentedForm
+###### 2:4.Y1.4.1.2.4 Rendered Report in IMR DiagnosticReport Resource
 
 The Sender shall include in DiagnosticReport.presentedForm at least one rendered report in HTML format. The presentedForm.contentType shall have the value "text/html". The Sender may include other renditions of the same report (e.g. PDF).
 
@@ -220,7 +220,7 @@ For Senders that supports the PDF Report Option, if configured, shall also attac
 
 For all rendered reports, the Sender shall set the presentedForm.contentType with a value corresponding to the rendered report format.
 
-###### 2:4.Y1.4.1.2.3 Patient, Organization, Practitioner, PractitionerRole
+###### 2:4.Y1.4.1.2.5 Patient, Organization, Practitioner, PractitionerRole Rescources
 
 The Patient, Organization, Practitioner or PractitionerRole Resources are required resources. However, IMR does not specify any FHIR resource profiles on these resources. These resources are not radiology or imaging specific. Real world deployment may specify constraints on these resources.
 
@@ -286,4 +286,4 @@ The Sender may use external URLs in presentedForm.url. In this case, the Receive
 
 #### 2:4.Y1.5.1 Security Audit Considerations
 
-This transaction is associated with a Patient-Record-event ATNA Trigger Event on both the Sender and the Receiver.
+This transaction is associated with a 'Patient-record-event' ATNA Trigger Event on both the Sender and the Receiver. See [ITI TF-2: 3.20.4.1.1.1](https://profiles.ihe.net/ITI/TF/Volume2/ITI-20.html#3.20.4.1.1.1).
