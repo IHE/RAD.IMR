@@ -228,7 +228,7 @@ The Patient, Organization, Practitioner or PractitionerRole Resources are requir
 
 The Receiver shall accept both media types `application/fhir+json` and `application/fhir+xml`.
 
-On receipt of the request message, the Receiver shall validate the resources and respond with one of the HTTP codes defined in the response [Message Semantics](#23y1412-message-semantics). 
+On receipt of the request message, the Receiver shall validate the resources and respond with one of the HTTP codes defined in the response [Message Semantics](#24y1412-message-semantics). 
 
 The Receiver shall process the transaction bundle atomically as specified in [http://hl7.org/fhir/http.html#transaction](http://hl7.org/fhir/http.html#transaction). 
 
