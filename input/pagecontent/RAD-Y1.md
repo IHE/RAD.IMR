@@ -87,15 +87,7 @@ The Sender shall create corresponding properly identifiable resources unless the
 
 When resources are `contained`, they shall be contained using the FHIR contained method (see [http://hl7.org/fhir/references.html#contained](http://hl7.org/fhir/references.html#contained) ).
 
-The Sender shall encode the rendered report that is referenced by DiagnosticReport.presentedForm in one of the following ways:
-- Encode the rendered report as a base64Binary in DiagnosticReport.presentedForm.data
-- Encode the rendered report as a base64Binary in a [Binary Resource](https://www.hl7.org/fhir/binary.html) and this Binary Resource is referenced in DiagnosticReport.presentedForm.url.
-  - The Binary Resource shall be in the Bundle. See FHIR Resolving references in Bundles at [http://hl7.org/fhir/bundle.html#references](http://hl7.org/fhir/bundle.html#references). 
-- Host the rendered report somewhere and provide the url in DiagnosticReport.presentedForm.url.
 
-The Sender shall populate accurate .hash and .size for the rendered report content in presentedForm: 
-* Where the presentedForm is a Binary Resource instance, the .hash and .size measure the raw artifact that has been base64encoded in the Binary.data element.  
-* Where the presentedForm is hosted elsewhere, not as a Binary Resource, the .hash and the .size shall represent the rendered report content that would be retrieved using the mime-type specified in contentType element. 
 
 The following subsections contain requirements for each referenced resource in the bundle. A complete example of a DiagnosticReport is available in [IMR DiagnosticReport Example](DiagnosticReport-ex-DiagnosticReport.json.html).
 
@@ -129,11 +121,11 @@ There is a common set of attributes to be included in radiology diagnostic repor
 | Report Section   | DiagnosticReport.result.valueString -> IMRObservation.valueString | Identified by IMRObservation.code. See [IMR DiagnosticReport](StructureDefinition-imr-diagnosticreport.html) and [IMR Observation](StructureDefinition-imr-observation.html) for details | The code is used to identify what *section* the observation belongs to. For example, LOINC code __59776-5__ represents a procedure finding and LOINC code __19005-8__ represents a narrative impression. <br><br> Highly recommended to encode a single finding or impression per IMR Observation, but permitted to encode all findings as a single string and all impressions as a single string to bridge existing applications. <br><br> Also See Note 2 |
 {: .grid}
 
-> Note 1: There is no IMR-defined FHIR resource profile for the resource. An implementation may use other FHIR resource profile applicable for the deployment.
+> Note 1: There is no IMR-defined FHIR resource profile for the resource. An implementation may use other FHIR resource profiles applicable for their deployment.
 
-> Note 2: In common cases, there is no direct association between findings and impressions except that they are associated with the same DiagnosticReport Resource. Explicit 
+> Note 2: In common cases, there is no direct association between findings and impressions except that they are associated with the same DiagnosticReport Resource. 
 
-In addition to the common set above, there are also a number of useful optional attributes that can be included, if applicable.
+In addition to the common set above, there are a number of useful optional attributes that can also be included, if applicable.
 
 **Table 2:4.Y1.4.1.2.2.1-2: Useful Optional Attributes in Radiology Diagnostic Report**
 
@@ -160,19 +152,35 @@ The Sender shall construct the resulting URLs such that the content returned upo
 
 > In other words, the Sender shall not presume that the Receiver can download and render the linked content.
 
-For Senders that supports the PDF Report Option, if configured, shall also attach a semantically equivalent diagnostic report in PDF format in the presentedForm attribute. The presentedForm.contentType shall have the value "application/pdf". The Sender shall include in the PDF report all text and linked contents as in the HTML report. The Sender may preserve the linked contents as hyperlinks, or substitute the linked contents with the actual rendered contents and embedded them in the PDF file.
+The Sender shall encode the rendered report that is referenced by DiagnosticReport.presentedForm in one of the following ways:
+- Encode the rendered report as a base64Binary in DiagnosticReport.presentedForm.data
+- Encode the rendered report as a base64Binary in a [Binary Resource](https://www.hl7.org/fhir/binary.html) and this Binary Resource is referenced in DiagnosticReport.presentedForm.url.
+  - The Binary Resource shall be in the Bundle. See FHIR Resolving references in Bundles at [http://hl7.org/fhir/bundle.html#references](http://hl7.org/fhir/bundle.html#references). 
+- Host the rendered report somewhere and provide the url in DiagnosticReport.presentedForm.url.
+
+The Sender shall populate accurate .hash and .size for the rendered report content in presentedForm: 
+* Where the presentedForm is a Binary Resource instance, the .hash and .size measure the raw artifact that has been base64encoded in the Binary.data element.  
+* Where the presentedForm is hosted elsewhere, not as a Binary Resource, the .hash and the .size shall represent the rendered report content that would be retrieved using the mime-type specified in contentType element. 
 
 For all rendered reports, the Sender shall set the presentedForm.contentType with a value corresponding to the rendered report format.
 
+A Sender that supports the **PDF Report Option**, if configured, shall also attach a semantically equivalent diagnostic report in PDF format in the presentedForm attribute. The presentedForm.contentType shall have the value "application/pdf". The Sender shall include in the PDF report all text and linked contents as in the HTML report. The Sender may preserve the linked contents as hyperlinks, or substitute the linked contents with the actual rendered contents and embedded them in the PDF file.
+
 ###### 2:4.Y1.4.1.2.3 IMR Observation Resource
 
-The Sender shall set the `code` attribute according to the [IMR Observation](StructureDefinition-imr-observation.html) resource profile indicating whether the IMR Observation resource represents finding(s), impression(s), or some other type of observations.
+The Sender shall encode all clinical finding(s), impressions(s) or other observation(s) using IMR Observation Resources.
 
-The Sender shall encode all clinical impressions using [IMR Observation](StructureDefinition-imr-observation.html) Resources. Each impression may be encoded as a separate IMR Observation Resource, or all impressions may be included in a single IMR Observation Resource as a narrative content in Observation.valueString. See [IMR Observation Examples](StructureDefinition-imr-observation-examples.html) for examples that encode different impression as different IMR Observation Resources.
+> See [Section 1:XX.4.1.1 Structure in Radiology Reporting](#1xx411-structure-in-radiology-reporting) for discussions regarding different *structures* applicable to radiology reporting.
 
-The Sender shall encode all clinical findings using IMR Observation Resources. Each finding may be encoded as a separate IMR Observation Resource, or all findings may be included in a single IMR Observation resource as a narrative content in Observation.valueString. See [IMR Observation Examples](StructureDefinition-imr-observation-examples.html) for an example that encodes multiple findings in paragraph form in a single IMR Observation Resource.
+The Sender shall set the `code` attribute according to the [IMR Observation](StructureDefinition-imr-observation.html) resource profile indicating whether the IMR Observation Resource represents finding(s), impression(s), or some other type of observations.
 
-> See [Structure in Radiology Reporting](volume-1.html#1xx411-structure-in-radiology-reporting) for discussions regarding different *structures* applicable to radiology reporting.
+For clinical findings, the Sender shall either: 
+- encode each finding as a separate [IMR Observation] (StructureDefinition-imr-observation.html) Resource, **or** 
+- include all findings in a single IMR Observation Resource as narrative content in Observation.valueString. See [IMR Observation Examples](StructureDefinition-imr-observation-examples.html) for an example that encodes multiple findings in paragraph form in a single IMR Observation Resource.
+
+For clinical impressions, the Sender shall either:
+- enclode each impression as a separate [IMR Observation](StructureDefinition-imr-observation.html) Resource, **or**
+- include all impressions a single IMR Observation Resource as a narrative content in Observation.valueString. See [IMR Observation Examples](StructureDefinition-imr-observation-examples.html) for examples that encode different impression as different IMR Observation Resources.
 
 The Sender shall encode narrative content in findings or impressions using Observation.valueString.
 
