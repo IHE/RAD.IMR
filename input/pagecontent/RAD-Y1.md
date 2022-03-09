@@ -258,7 +258,7 @@ The Receiver receives a Store Multimedia Report Bundle Request message.
 
 This message is an HTTP POST response. The Sender is the User Agent. The Receiver is the Origin Server.
 
-The Receiver returns an HTTP Status code appropriate to the processing outcome, conforming to the transaction specification requirements in [http://hl7.org/fhir/http.html#transaction](http://hl7.org/fhir/http.html#transaction) to the Sender. This enables the Sender to know the outcome of processing the FHIR transaction, and the identities assigned to the resources by the Receiver.
+The Receiver returns an HTTP Status code appropriate to the processing outcome, conforming to the transaction specification requirements in [http://hl7.org/fhir/http.html#trules](http://hl7.org/fhir/http.html#trules) to the Sender. This enables the Sender to know the outcome of processing the FHIR transaction, and the identities assigned to the resources by the Receiver.
 
 The Receiver shall construct a Bundle, with `type` set to `transaction-response`, that contains one entry for each entry in the request, in the same order as received, with the `Bundle.entry.response.outcome` indicating the results of processing the entry warnings such as PartialFolderContentNotProcessed. The Receiver shall comply with FHIR [http://hl7.org/fhir/bundle.html#transaction-response](http://hl7.org/fhir/bundle.html#transaction-response) and [http://hl7.org/fhir/http.html#transaction-response](http://hl7.org/fhir/http.html#transaction-response).
 
