@@ -1,12 +1,12 @@
-### 2:3.Y4.1 Scope
+### 2:4.Y4.1 Scope
 
 This transaction is used by the Requester to retrieve a rendered report from the Responder.
 
-### 2:3.Y4.2 Actors Roles
+### 2:4.Y4.2 Actors Roles
 
 The roles in this transaction are defined in the following table and may be played by the actors shown here:
 
-**Table 2:3.Y4.2-1: Actor Roles**
+**Table 2:4.Y4.2-1: Actor Roles**
 
 | Role      | Description                                   | Actor(s)          |
 |-------------------|--------------------------|
@@ -14,7 +14,7 @@ The roles in this transaction are defined in the following table and may be play
 | Responder | Return rendered report  | Report Repository |
 {: .grid}
 
-### 2:3.Y4.3 Referenced Standards
+### 2:4.Y4.3 Referenced Standards
 
 **RFC1738**: [Uniform Resource Locators (URL)](http://www.ietf.org/rfc/rfc1738.txt)
 
@@ -22,7 +22,7 @@ The roles in this transaction are defined in the following table and may be play
 
 **RFC7540**: [Hypertext Transfer Protocol Version 2 (HTTP/2)](https://tools.ietf.org/html/rfc7540)
 
-### 2:3.Y4.4 Messages
+### 2:4.Y4.4 Messages
 
 <div>
 {%include RAD-Y4-seq.svg%}
@@ -30,19 +30,19 @@ The roles in this transaction are defined in the following table and may be play
 
 <div style="clear: left"/>
 
-**Figure 2:3.Y4.4-1: Interaction Diagram**
+**Figure 2:4.Y4.4-1: Interaction Diagram**
 
-#### 2:3.Y4.4.1 Retrieve Rendered Report Message
+#### 2:4.Y4.4.1 Retrieve Rendered Report Message
 
-The Requester retrieves a rendered report from the Responder
+The Requester retrieves a rendered report from the Responder.  The Requester shall support sending such messages to more than one Responder.
 
-The Responder shall support handling such messages from more than one Sender. The Requester shall support sending such messages to more than one Responder.
+The Responder shall support handling such messages from more than one Sender. 
 
-##### 2:3.Y4.4.1.1 Trigger Events
+##### 2:4.Y4.4.1.1 Trigger Events
 
 The Requester wants to retrieve the rendered report identified in the query response.
 
-##### 2:3.Y4.4.1.2 Message Semantics
+##### 2:4.Y4.4.1.2 Message Semantics
 
 The message is an HTTP GET request. The Requester is the User Agent. The Responder is the Original Server.
 
@@ -58,19 +58,19 @@ The only MIME type assured to be returned is the MIME type indicated in the Diag
 
 The HTTP If-Unmodified-Since header may be included in the GET request if the Requester caches the retrieved report locally.
 
-##### 2:3.Y4.4.1.3 Expected Actions
+##### 2:4.Y4.4.1.3 Expected Actions
 
 The Responder shall provide the rendered report in the requested MIME type or reply with an HTTP status code indicating the error condition. The Responder is not required to transform the document.
 
-#### 2:3.Y4.4.2 Return Rendered Report Message
+#### 2:4.Y4.4.2 Return Rendered Report Message
 
 The Responder sends the requested rendered report back to the Requester.
 
-##### 2:3.Y4.4.2.1 Trigger Events
+##### 2:4.Y4.4.2.1 Trigger Events
 
 The Responder receives a Retrieve Rendered Report request from the Requester.
 
-##### 2:3.Y4.4.2.2 Message Semantics
+##### 2:4.Y4.4.2.2 Message Semantics
 
 The message is an HTTP GET response. The Requester is the User Agent. The Responder is the Origin Server.
 
@@ -80,9 +80,9 @@ The Responder shall respond with an HTTP Status Code 200 when it successfully re
 
 The Responder may return HTTP redirect responses (responses with HTTP Status Codes 301, 302, 303 or 307) in response to a request. See RFC7231 Section 6.4 Redirection 3xx.
 
-In case of an error, the Responder shall return an HTTP Error Response Code for different failure situations according to Table 2:3.Y4.4.2.2-1.
+In case of an error, the Responder shall return an HTTP Error Response Code for different failure situations according to Table 2:4.Y4.4.2.2-1.
 
-**Table 2:3.Y4.4.2.2-1: Failure Situations and corresponding HTTP Error Response Codes**
+**Table 2:4.Y4.4.2.2-1: Failure Situations and corresponding HTTP Error Response Codes**
 
 |Failure Situation	| HTTP Response |
 |-----------|---------------|
@@ -96,7 +96,7 @@ The Responder may return other HTTP Status Codes. Guidance on handling Access De
 
 When the Responder needs to report an error, it shall use HTTP error response codes and should include a FHIR OperationOutcome with more details on the failure. See FHIR [http://hl7.org/fhir/http.html](http://hl7.org/fhir/http.html) and [http://hl7.org/fhir/operationoutcome.html](http://hl7.org/fhir/operationoutcome.html) 
 
-##### 2:3.Y4.4.2.3 Expected Actions
+##### 2:4.Y4.4.2.3 Expected Actions
 
 If the Responder returns an HTTP redirect response (HTTP status codes 301, 302, 303, or 307), the Requester shall follow the redirect, but may stop processing if it detects a loop. See [RFC7231 Section 6.4 Redirection 3xx](https://tools.ietf.org/html/rfc7231#section-6.4).
 
@@ -104,18 +104,18 @@ The Requester shall process the results according to application-defined rules.
 
 In the DiagnosticReport.presentedForm, the .hash and .size, when populated, represent the hash and size of the corresponding rendered report. The Requester should verify the integrity of the received rendered report using the hash and size attributes.
 
-#### 2:3.Y4.4.3 CapabilityStatement Resource
+#### 2:4.Y4.4.3 CapabilityStatement Resource
 
 **TODO**
 
-Document Responders implementing this transaction shall provide a CapabilityStatement Resource as described in [ITI TF-2x: Appendix Z.3](https://profiles.ihe.net/ITI/TF/Volume2/ch-Z.html#z.3-capabilitystatement-resource) indicating the transaction has been implemented. 
+Document Responders implementing this transaction shall provide a CapabilityStatement Resource as described in [ITI TF-2: Appendix Z.3](https://profiles.ihe.net/ITI/TF/Volume2/ch-Z.html#z.3-capabilitystatement-resource) indicating the transaction has been implemented. 
 * Requirements CapabilityStatement for [Document Consumer](CapabilityStatement-IHE.MHD.DocumentConsumer.html)
 * Requirements CapabilityStatement for [Document Responder](CapabilityStatement-IHE.MHD.DocumentResponder.html)
 
-### 2:3.Y4.5 Security Considerations
+### 2:4.Y4.5 Security Considerations
 
 The rendered report is available via an external URLs in presentedForm.url. The Requester should consider validating the URL to ensure that it is a valid URL referencing a known legitimate host to avoid phishing attack.
 
-#### 2:3.Y4.5.1 Security Audit Considerations
+#### 2:4.Y4.5.1 Security Audit Considerations
 
-This transaction is associated with a Patient-Record-event ATNA Trigger Event on both the Requester and the Responder.
+This transaction is associated with a 'Patient-ecord-event' ATNA Trigger Event on both the Requester and the Responder. See [ITI TF-2: 3.20.4.1.1.1](https://profiles.ihe.net/ITI/TF/Volume2/ITI-20.html#3.20.4.1.1.1).
