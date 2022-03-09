@@ -201,6 +201,6 @@ This transaction should not return information that the Requester is not authori
 
 Search using GET may include sensitive information in the search parameters. Therefore, secure communications and endpoint management are recommended.
 
-#### 2:3.Y3.5.1 Security Audit Considerations
+#### 2:4.Y3.5.1 Security Audit Considerations
 
 This transaction is associated with a 'Query Information' ATNA Trigger Event on both the Requester and the Responder.  See [ITI TF-2: 3.20.4.1.1.1](https://profiles.ihe.net/ITI/TF/Volume2/ITI-20.html#3.20.4.1.1.1).
