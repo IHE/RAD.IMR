@@ -91,9 +91,9 @@ When resources are `contained`, they shall be contained using the FHIR contained
 
 The Sender shall construct the IMR DiagnosticReport Resource according to the IMR DiagnosticReport [StructureDefinition](StructureDefinition-imr-diagnosticreport.html)
 
-Section 2:4.Y1.4.1.2.2.1 contains mapping requirements.
+[Section 2:4.Y1.4.1.2.2.1](#24y141221-mapping-of-attributes-in-a-diagnostic-report) contains mapping requirements.
 
-Section 2:4.Y1.4.1.2.2.2 contains requirements for including a rendered report in an IMR DiagnosticReport Resource.
+[Section 2:4.Y1.4.1.2.2.2](#24y141222-rendered-report-in-imr-diagnosticreport-resource) contains requirements for including a rendered report in an IMR DiagnosticReport Resource.
 
 A complete example of an IMR DiagnosticReport Resource is available in [IMR DiagnosticReport Example](DiagnosticReport-ex-DiagnosticReport.json.html).
 
@@ -133,13 +133,15 @@ There is a common set of attributes included in radiology diagnostic reports. Ta
 
 ###### 2:4.Y1.4.1.2.2.2 Rendered Report in IMR DiagnosticReport Resource
 
-The Sender shall include in DiagnosticReport.presentedForm at least one rendered report in HTML format. DiagnosticReport.presentedForm.contentType shall have the value "text/html".   The Sender may include other renditions of the same report (e.g. PDF).
+The Sender shall include in DiagnosticReport.presentedForm at least one rendered report in HTML format. DiagnosticReport.presentedForm.contentType shall have the value "text/html".   
+
+The Sender may include other renditions of the same report (e.g. PDF).
 
 For all rendered reports, the Sender shall set the DiagnosticReport.presentedForm.contentType with a value corresponding to the rendered report format.
 
 The Sender shall encode the rendered report that is referenced by DiagnosticReport.presentedForm in one of the following ways:
 - as a base64Binary in DiagnosticReport.presentedForm.data
-- as a base64Binary in a [Binary Resource](https://www.hl7.org/fhir/binary.html) and this Binary Resource is referenced in DiagnosticReport.presentedForm.url.
+- as a base64Binary in a [Binary Resource](https://www.hl7.org/fhir/binary.html), and this Binary Resource is referenced in DiagnosticReport.presentedForm.url.
   - The Binary Resource shall be in the Bundle. See FHIR Resolving references in Bundles at [http://hl7.org/fhir/bundle.html#references](http://hl7.org/fhir/bundle.html#references). 
 - host the rendered report somewhere and provide the url in DiagnosticReport.presentedForm.url
 
@@ -147,15 +149,19 @@ The Sender shall populate accurate values for hash and size for the rendered rep
 * Where the presentedForm is a Binary Resource instance, the .hash and .size shall represent the raw artifact that has been base64encoded in the Binary.data element.  
 * Where the presentedForm is hosted elsewhere, not as a Binary Resource, the .hash and the .size shall represent the rendered report content that would be retrieved using the mime-type specified in DiagnosticReport.presentedForm.contentType. 
 
-A Sender that supports the **PDF Report Option**, if configured, shall also attach a semantically equivalent diagnostic report in PDF format in the DiagnosticReport.presentedForm attribute. The presentedForm.contentType shall have the value "application/pdf". The Sender shall include in the PDF report all text and linked contents as in the HTML report. The Sender may preserve the linked contents as hyperlinks, or substitute the linked contents with the actual rendered contents and embedded them in the PDF file.
+A Sender that supports the **PDF Report Option**, if configured, shall also include a semantically equivalent diagnostic report in PDF format in the DiagnosticReport.presentedForm attribute. The presentedForm.contentType shall have the value "application/pdf". The Sender shall include in the PDF report all text and linked contents as in the HTML report. The Sender may preserve the linked contents as hyperlinks, or substitute the linked contents with the actual rendered contents and embedded them in the PDF file.
 
-###### TO DO: Create the right subsection heading or Find the right home for this content
+###### TO DO: Create the right subsection heading (eg. Image References in Diagnostic Reports???) or, Find the right home for this content
 
-For IMR Observations that have image references using Observation.derivedFrom attribute (see [Section 2:4.Y1.4.1.2.3.1] (#24y141231-image-references-in-observation)), the Sender shall add a hyperlink using the HTML anchor element (i.e. `<a>`), with the display text for the hyperlink being the corresponding value[x] in a clinically relevant textual representation. The value for href for this hyperlink shall be constructed based on the endpoint(s) defined in the referenced [IMR ImagingStudy]((StructureDefinition-imr-imagingstudy.html)) Resource.
+TO DO: Does this belong, instead, in a subsection under :4.Y1.4.1.2.3 IMR Observation Resource??
+
+TO DO: <we need a lead-in sentence; is this accurate??> This section contains requirements for the Sender that needs to include image references in the rendered report in HTML format in DiagnosticReport.presentedForm 
+
+For IMR Observations that have image references using Observation.derivedFrom attribute (see [Section 2:4.Y1.4.1.2.3.1](#24y141231-image-references-in-observation)), the Sender shall add a hyperlink using the HTML anchor element (i.e. `<a>`), with the display text for the hyperlink being the corresponding value[x] in a clinically relevant textual representation. The value for href for this hyperlink shall be constructed based on the endpoint(s) defined in the referenced [IMR ImagingStudy]((StructureDefinition-imr-imagingstudy.html)) Resource.
 
 For inline image references in Observation.valueString, the Sender shall substitute each `<IMRRef>`...`</IMRRef>` markup with an HTML anchor element. The href attribute shall be set to the concatenation of the ImagingStudy.endpoint.address with the valueString from the matching Observation.component.id entry. The resulting URL shall be a valid URL according to the contentType.
 
-The Sender shall construct the resulting URLs such that the content returned upon invocation shall be contents that are ready to be presented, rather than contents that required download and additional tools to present. For example, using a WADO-RS URL with rendered image is appropriate while a plain WADO-RS URL to retrieve a DICOM object is not.
+The Sender shall construct the resulting URLs such that the contents returned upon invocation are ready to be presented, rather than contents that would require download and additional tools in order to present. For example, using a WADO-RS URL with a rendered image is appropriate, whereas a plain WADO-RS URL to retrieve a DICOM object is not.
 
 > In other words, the Sender shall not presume that the Receiver can download and render the linked content.
 
@@ -163,7 +169,7 @@ The Sender shall construct the resulting URLs such that the content returned upo
 
 The Sender shall encode all clinical finding(s), impressions(s) or other observation(s) using IMR Observation Resources.
 
-> See [Section 1:XX.4.1.1 Structure in Radiology Reporting](#1xx411-structure-in-radiology-reporting) for discussions regarding different *structures* applicable to radiology reporting.
+> See [Section 1:XX.4.1.1](#1xx411-structure-in-radiology-reporting) "Structure in Radiology Reporting" for discussions regarding different *structures* applicable to radiology reporting.
 
 The Sender shall set the `code` attribute according to the [IMR Observation](StructureDefinition-imr-observation.html) resource profile indicating whether the IMR Observation Resource represents finding(s), impression(s), or some other type of observations.
 
@@ -183,7 +189,7 @@ The Sender may encode code-able content in findings or impressions using the app
 
 The Sender shall encode the study in which this observation is derived from, if available, in Observation.derivedFrom using an [IMR ImagingStudy](StructureDefinition-imr-imagingstudy.html) Resource. This attribute shall include the study and series references. IMR ImagingStudy may include image references.
 
-For narrative content, the Sender can directly embed one or more image references inline the text.
+For narrative content, the Sender may directly embed one or more image references inline the text.  TO DO:  Does this sentence belong under IMR DiagnosticReport ?? 
 
 The Sender shall specify each inline image reference using the `<IMRRef>` XML element and the corresponding `</IMRRef>` end element. This `<IMRRef>` element shall have the attributes as defined in Table 2:4.Y1.4.1.3.1-1.
 
@@ -194,12 +200,12 @@ The Sender shall specify each inline image reference using the `<IMRRef>` XML el
 | Attribute | Optionality | Description |
 |-----------|-------------|-------------|
 | type      | R | Type of multimedia content. Value shall be 'image' |
-| id        | R | Maps to component.id in the same `Observation` resource |
+| id        | R | Maps to component.id in the same Observation Resource |
 {: .grid}
 
 This `<IMRRef>` represents a *placeholder* for the image reference details. The display text is the text enclosed by the `<IMRRef>` element.
 
-The Sender shall encode the corresponding image reference details in the same `Observation` resource using Observation.component as follows:
+The Sender shall encode the corresponding image reference details in the same Observation Resource using Observation.component as follows:
 - Observation.component.id shall match the `id` attribute in the `<IMRRef>` tag
 - Observation.component.valueString shall have the value for the series instance UID and SOP Instance UID in the format `/series/{seriesUID}/instance/{sopInstanceUID}`,
 - Observation.component.code shall have the coded value (55113-5, "http://loinc.org", "Key Images")
