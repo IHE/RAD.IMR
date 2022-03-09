@@ -83,24 +83,23 @@ The Sender may set meta.profile of each resource to be the corresponding IMR pro
 
 > Note that a Sender may choose not to set meta.profile to a specific profile, or may set it to multiple profiles.
 
-The Sender shall create corresponding properly identifiable resources unless the proper record keys or absolute identification information is not available. Identifiable resources are preferred because each resource in the bundle is valuable as a standalone resource outside the context of the DiagnosticReport Resource (e.g. independently searchable, and the same resource can be referenced multiple times).
+The Sender shall create corresponding properly identifiable resources unless the proper record keys or absolute identification information is not available. Identifiable resources are preferred because each resource in the bundle is valuable as a standalone resource outside the context of the IMR DiagnosticReport Resource (e.g. independently searchable, and the same resource can be referenced multiple times).
 
 When resources are `contained`, they shall be contained using the FHIR contained method (see [http://hl7.org/fhir/references.html#contained](http://hl7.org/fhir/references.html#contained) ).
 
-
-
-The following subsections contain requirements for each referenced resource in the bundle. A complete example of a DiagnosticReport is available in [IMR DiagnosticReport Example](DiagnosticReport-ex-DiagnosticReport.json.html).
+A complete example of an IMR DiagnosticReport is available in [IMR DiagnosticReport Example](DiagnosticReport-ex-DiagnosticReport.json.html).
 
 ###### 2:4.Y1.4.1.2.2 IMR DiagnosticReport Resource 
 
 The Sender shall construct the IMR DiagnosticReport Resource according to the IMR DiagnosticReport [StructureDefinition] (StructureDefinition-imr-diagnosticreport.html)
 
 Section 2:4.Y1.4.1.2.2.1 contains mapping requirements.
+
 Section 2:4.Y1.4.1.2.2.2 contains requirements for including a rendered report in an IMR Diagnostic Report Resource.
 
 ###### 2:4.Y1.4.1.2.2.1 Mapping of Attributes in a Diagnostic Report
 
-There is a common set of attributes to be included in radiology diagnostic reports. Table 2:4.Y1.4.1.2.2.1-1 specifies how the Sender shall map these attributes to the IMR DiagnosticReport Resource and other referenced resources.  Refer to the StructureDefinition for these resources on the [Artifacts](artifacts.html) page.
+There is a common set of attributes included in radiology diagnostic reports. Table 2:4.Y1.4.1.2.2.1-1 specifies how the Sender shall map these attributes to the IMR DiagnosticReport Resource and other referenced resources.  Refer to the StructureDefinition for these resources on the [Artifacts](artifacts.html) page.
 
 **Table 2:4.Y1.4.1.2.2.1-1: Mapping of Attributes in DiagnosticReport**
 
@@ -125,7 +124,7 @@ There is a common set of attributes to be included in radiology diagnostic repor
 
 > Note 2: In common cases, there is no direct association between findings and impressions except that they are associated with the same DiagnosticReport Resource. 
 
-In addition to the common set above, there are a number of useful optional attributes that can also be included, if applicable.
+In addition to the common set above, there are a number of useful optional attributes that the Sender may include, if applicable.
 
 **Table 2:4.Y1.4.1.2.2.1-2: Useful Optional Attributes in Radiology Diagnostic Report**
 
@@ -140,31 +139,33 @@ In addition to the common set above, there are a number of useful optional attri
 
 > See [HIMSS-SIIM Whitepaper: The Importance of Body Part Labeling to Enable Enterprise Imaging](https://link.springer.com/article/10.1007/s10278-020-00415-0) for the importance of body part labelling.
 
-###### 2:4.Y1.4.1.2.2.2 Rendered Report in IMR DiagnosticReport Resource
+###### 
 
-The Sender shall include in DiagnosticReport.presentedForm at least one rendered report in HTML format. The presentedForm.contentType shall have the value "text/html". The Sender may include other renditions of the same report (e.g. PDF).
+The Sender shall include in DiagnosticReport.presentedForm at least one rendered report in HTML format. The presentedForm.contentType shall have the value "text/html".   The Sender may include other renditions of the same report (e.g. PDF).
 
-For IMR Observations that have image references using Observation.derivedFrom attribute, the Sender shall add a hyperlink using the HTML anchor element (i.e. `<a>`), with the display text for the hyperlink being the corresponding value[x] in a clinically relevant textual representation. The value for href for this hyperlink shall be constructed based on the endpoint(s) defined in the referenced [IMR ImagingStudy]((StructureDefinition-imr-imagingstudy.html)) Resource.
+For all rendered reports, the Sender shall set the presentedForm.contentType with a value corresponding to the rendered report format.
+
+The Sender shall encode the rendered report that is referenced by DiagnosticReport.presentedForm in one of the following ways:
+- Encode the rendered report as a base64Binary in DiagnosticReport.presentedForm.data
+- Host the rendered report somewhere and provide the url in DiagnosticReport.presentedForm.url.
+- Encode the rendered report as a base64Binary in a [Binary Resource](https://www.hl7.org/fhir/binary.html) and this Binary Resource is referenced in DiagnosticReport.presentedForm.url.
+  - The Binary Resource shall be in the Bundle. See FHIR Resolving references in Bundles at [http://hl7.org/fhir/bundle.html#references](http://hl7.org/fhir/bundle.html#references). 
+
+The Sender shall populate accurate values for hash and size for the rendered report content in DiagnosticReport.presentedForm.hash and DiagnosticReport.presentedForm.size: 
+* Where the presentedForm is a Binary Resource instance, the .hash and .size shall represent the raw artifact that has been base64encoded in the Binary.data element.  
+* Where the presentedForm is hosted elsewhere, not as a Binary Resource, the .hash and the .size shall represent the rendered report content that would be retrieved using the mime-type specified in DiagnosticReport.presentedForm.contentType. 
+
+A Sender that supports the **PDF Report Option**, if configured, shall also attach a semantically equivalent diagnostic report in PDF format in the DiagnosticReport.presentedForm attribute. The presentedForm.contentType shall have the value "application/pdf". The Sender shall include in the PDF report all text and linked contents as in the HTML report. The Sender may preserve the linked contents as hyperlinks, or substitute the linked contents with the actual rendered contents and embedded them in the PDF file.
+
+###### TO DO: Find the right home for this
+
+For IMR Observations that have image references using Observation.derivedFrom attribute (see [Section 2:4.Y1.4.1.2.3.1] (#24y141231-image-references-in-observation)), the Sender shall add a hyperlink using the HTML anchor element (i.e. `<a>`), with the display text for the hyperlink being the corresponding value[x] in a clinically relevant textual representation. The value for href for this hyperlink shall be constructed based on the endpoint(s) defined in the referenced [IMR ImagingStudy]((StructureDefinition-imr-imagingstudy.html)) Resource.
 
 For inline image references in Observation.valueString, the Sender shall substitute each `<IMRRef>`...`</IMRRef>` markup with an HTML anchor element. The href attribute shall be set to the concatenation of the ImagingStudy.endpoint.address with the valueString from the matching Observation.component.id entry. The resulting URL shall be a valid URL according to the contentType.
 
 The Sender shall construct the resulting URLs such that the content returned upon invocation shall be contents that are ready to be presented, rather than contents that required download and additional tools to present. For example, using a WADO-RS URL with rendered image is appropriate while a plain WADO-RS URL to retrieve a DICOM object is not.
 
 > In other words, the Sender shall not presume that the Receiver can download and render the linked content.
-
-The Sender shall encode the rendered report that is referenced by DiagnosticReport.presentedForm in one of the following ways:
-- Encode the rendered report as a base64Binary in DiagnosticReport.presentedForm.data
-- Encode the rendered report as a base64Binary in a [Binary Resource](https://www.hl7.org/fhir/binary.html) and this Binary Resource is referenced in DiagnosticReport.presentedForm.url.
-  - The Binary Resource shall be in the Bundle. See FHIR Resolving references in Bundles at [http://hl7.org/fhir/bundle.html#references](http://hl7.org/fhir/bundle.html#references). 
-- Host the rendered report somewhere and provide the url in DiagnosticReport.presentedForm.url.
-
-The Sender shall populate accurate .hash and .size for the rendered report content in presentedForm: 
-* Where the presentedForm is a Binary Resource instance, the .hash and .size measure the raw artifact that has been base64encoded in the Binary.data element.  
-* Where the presentedForm is hosted elsewhere, not as a Binary Resource, the .hash and the .size shall represent the rendered report content that would be retrieved using the mime-type specified in contentType element. 
-
-For all rendered reports, the Sender shall set the presentedForm.contentType with a value corresponding to the rendered report format.
-
-A Sender that supports the **PDF Report Option**, if configured, shall also attach a semantically equivalent diagnostic report in PDF format in the presentedForm attribute. The presentedForm.contentType shall have the value "application/pdf". The Sender shall include in the PDF report all text and linked contents as in the HTML report. The Sender may preserve the linked contents as hyperlinks, or substitute the linked contents with the actual rendered contents and embedded them in the PDF file.
 
 ###### 2:4.Y1.4.1.2.3 IMR Observation Resource
 
@@ -188,13 +189,15 @@ The Sender may encode code-able content in findings or impressions using the app
 
 ###### 2:4.Y1.4.1.2.3.1 Image References in Observation
 
-The Sender shall encode the study in which this observation is derived from, if available, in Observation.derivedFrom using an [IMR ImagingStudy](StructureDefinition-imr-imagingstudy.html) resource. This attribute shall include the study and series references. IMR ImagingStudy may include image references.
+The Sender shall encode the study in which this observation is derived from, if available, in Observation.derivedFrom using an [IMR ImagingStudy](StructureDefinition-imr-imagingstudy.html) Resource. This attribute shall include the study and series references. IMR ImagingStudy may include image references.
 
 For narrative content, the Sender can directly embed one or more image references inline the text.
 
-> Note: IMR currently focus on image references only. Reference to other DICOM objects such as segmentation objects, parametric maps or other non-DICOM objects are out of scope of IMR.
+
 
 The Sender shall specify each inline image reference using the `<IMRRef>` XML element and the corresponding `</IMRRef>` end element. This `<IMRRef>` element shall have the attributes as defined in Table 2:4.Y1.4.1.3.1-1.
+
+> Note: IMR currently requires image references only. References to other DICOM objects such as segmentation objects, parametric maps or other non-DICOM objects are out of scope of IMR.
 
 **Table 2:4.Y1.4.1.2.3.1-1: Attributes for the `<IMRRef>` element**
 
