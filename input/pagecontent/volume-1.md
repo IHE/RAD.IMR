@@ -131,7 +131,7 @@ An Image Display retrieves images from Image Manager / Image Archives, displays 
 
 An Image Display that is grouped with a Report Reader shall follow the [DICOM Instance Retrieve Option](#xx25-dicom-instance-retrieve-option).
 
-An Image Display that is invoked by an IID Image Display Invoker grouped with a Report Reader shall follow the [External Image Display Retrieve Option](#xx24-external-image-display-retrieve-option).
+An Image Display that is invoked by an IID Image Display Invoker grouped with a Report Reader shall implement the [External IID Image Display Retrieve Option](#1xx24-external-iid-image-display-retrieve-option).
 
 ## XX.2 IMR Actor Options
 
