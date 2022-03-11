@@ -53,32 +53,39 @@ The behaviors in this section are specified as baseline capabilities. Displays m
 
 This transaction does not specify particular SOP classes that must be displayed.
 
-Displays shall be able to display images from SOP classes with the following characteristics:
-- Pixel Data (7FE0,0010) data element present
-- Bits Allocated (0028,0100) of 8 or 16
-- Bits Stored (0028,0101) values of 1 or 8 for Bits Allocated (0028,0100) of 8
-- Bits Stored (0028,0101) values of 9 to 16 inclusive, for Bits Allocated (0028,0100) of
-16
-- High Bit (0028,0102) of one less than Bits Stored (0028,0101) (i.e., in the low bits of
-600 the word, without packing)
-- Samples Per Pixel (0028,0002) of 1 or 3
-- Photometric Interpretation (0028,0004) of MONOCHROME1, MONOCHROME2, RGB, PALETTE COLOR, and any appropriate value for any multi-component compressed transfer syntaxes that are supported (e.g., YBR_FULL_422 for JPEG)
-- Planar Configuration (0028,0006) of 0 or 1 for RGB Photometric Interpretation (0028,0004) (i.e. color-by-pixel or  color-by-plane)
-- Pixel Representation (0028,0103) of 0 or 1 for MONOCHROME1 and MONOCHROME2 Photometric Interpretation (0028,0004) (i.e. signed or unsigned)
-- Number of Frames (0028,0008) absent or with any value (i.e., single or multi-frame images)
+The Image Display shall display all requested DICOM objects for which it claims compliance in any IHE Content or Workflow profile or DICOM Conformance Statement. This includes images (single frame and multi-frame), DICOM SR (including Evidence Documents and Key Image Notes), and Presentation State objects with their referenced images. All supported DICOM information objects included in the selected studies shall be displayable, except images identified as “for processing”, raw data instances, and instances of private SOP Classes. It is permissible to display “for processing”, raw data instances, and instances of private SOP Classes. There are no specific requirements placed on the manner in which non-image objects are displayed.
 
-The Display shall support the following subset of image viewing capabilities as defined in [Basic Image Review (BIR)](https://www.ihe.net/uploadedFiles/Documents/Radiology/IHE_RAD_Suppl_BIR.pdf) Profile, Section 4.16.4.2.2.5 when showing the images:
-- Windowing and Rendering (Section 4.16.4.2.2.5.4)
-- Zooming and Panning (Section 4.16.4.2.2.5.6)
-- Annotation (Section 4.16.4.2.2.5.8)
-- Measurements (Section 4.16.4.2.2.5.10)
+> Note: Grouping with other profiles, such as CPI, SINR, and KIN, may require more specific behavior for non-image objects.
+
+The Display shall support image viewing capabilities as defined in [Basic Image Review (BIR)](https://www.ihe.net/uploadedFiles/Documents/Radiology/IHE_RAD_Suppl_BIR.pdf) Profile, Section 4.16.4.2.2.5 as defined in the Table 2:4.Y5.4.1.3-1:
+
+Table 2:4.Y5.4.1.3-1: Image Viewing Capability Required in IMR
+| Capability | BIR Reference | Requirement |
+|------------|---------------|-------------|
+| Simple Restricted Feature Set | Section 4.16.5.2.2.5.1 | Not Required |
+| Layout, Tiling, Selection, Rotation and Flipping | Section 4.16.5.2.2.5.2 | Required only Rotation and Flipping |
+| Navigation | Section 4.16.5.2.2.5.3 | Not Required |
+| Windowing and Rendering | Section 4.16.4.2.2.5.4 | Required |
+| Scrolling | Section 4.16.4.2.2.5.5 | Required if IMR Series/Study Navigation Option is supported |
+| Zooming and Panning | Section 4.16.4.2.2.5.6 | Required |
+| Laterality and Spatial Cross-Referencing | Section 4.16.4.2.2.5.7 | Required only Laterality |
+| Annotation | Section 4.16.4.2.2.5.8 | Required |
+| Cine | Section 4.16.4.2.2.5.9 | Required if the Display supports sop classes that cine is applicable |
+| Measurements | Section 4.16.4.2.2.5.10 | Required |
+| Viewport and Tool Section | Section 4.16.4.2.2.5.11 | Not Required |
+| Report Display | Section 4.16.4.2.2.5.12 | Not Required |
+| Tool Icons and Actions | Section 4.16.4.2.2.5.13 | Not Required |
+{: .grid}
 
 The Display may provide basic viewing tools for the user to interactive with the images.
 
-If the Display supports the Series/Study Navigation Option, the Display shall support the following additional interactive behavior:
-- Scrolling (Section 4.16.4.2.2.5.5)
-
-> Note that the Display is only required to display objects specifically referenced in the DiagnosticReport resource. If display of images from a plane (e.g. coronal or sagittal) other than the plane used during acquisition (e.g. axial) is necessary, then images on these other planes should be reconstructed (e.g. using multiplanar reconstruction), created as separate set of images and referenced in the DiagnosticReport resource. The Display is not required to support reconstruction.
+> Note that the Display is only required to display objects specifically referenced in the DiagnosticReport resource.
+>
+> Multiplanar reconstruction, or MPR, involves the process of converting data from an imaging modality acquired in a certain plane, usually axial, into another plane such as coronal or sagittal or oblique. It is most commonly performed with thin-slice data from volumetric CT in the axial plane, but it may be accomplished with scanning in any plane and whichever modality capable of cross-sectional imaging, including magnetic resonance imaging (MRI).
+>
+> Although MPR is a feature available in many PACS implementations, it is a advanced operation that is computational intensive. For the interactive image viewing capability on interactive multimedia report, MPR is not expected to be available. If viewing of the images from different planes is desirable, then the acquired data should be reconstructed to other planes and then be saved as separate set of images. These new set of reconstructed images can then be referenced in the DiagnosticReport resource.
+>
+> The Display is not required to support reconstruction.
 
 ### 2:4.Y5.5 Security Considerations
 
