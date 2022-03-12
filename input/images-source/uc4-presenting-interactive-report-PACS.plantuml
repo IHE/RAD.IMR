@@ -2,24 +2,25 @@
 
 actor Radiologist as Radiologist
 
+participant "Report Creator" as RCreator
+
 box Grouped Actors
-participant "Image Display /\nImaging Document Consumer" as Display
+participant "Image Display" as Display
 participant "Report Reader" as Reader
+end box
+
 participant "Report Repository" as Repo
-end box
-
-box Grouped Actors
-participant "Imaging Document\nSource" as WADO
 participant "Image Manager/\nImage Archive" as Archive
-end box
 
-Radiologist->>Display: //View prior study with//\n//multimedia report//
+Radiologist->>RCreator: //Dictate study//
+Radiologist->>Display: //View current study with prior studies and//\n//associated multimedia reports//
 Display->>Archive: //Retrieve current and prior studies//
 Display->>Display: //Display study//
 
-group IMR Interactive Viewing of Multimedia Content in Report
-Reader->Repo: [RAD-Y3] Find Multimedia Report\nfor prior studies
-Reader->Reader: [RAD-Y2] Display Multimedia Report
+group IMR Interactive Viewing of Multimedia Content in Report for Prior Studies
+note over Reader: Show prior multimedia report
+Reader->Repo: Find Multimedia Report\nfor prior studies [RAD-Y3]
+Reader->Reader: Display Multimedia Report [RAD-Y2]
 
 note over Reader
 Present report, including multimedia contents
@@ -27,17 +28,25 @@ such as measurements and image references.
 end note
 
 Radiologist->>Reader: //Click on image references in Report//
-Reader->>Display: //View series//\n//(internal communication)//
+Reader->>Display: //View series in prior study//\n//(internal communication)//
+note over Display
+Since the Image Display is the more feature-rich radiology workstation,
+the Image Display has more capability to display the referenced images
+in the multimedia report than RAD-Y5.
+end note
 
 loop Retrieve images, presentation states, window levelling
 alt Using WADO-RS Retrieve
-Display->WADO: [RAD-107] WADO-RS Retrieve
+Display->Archive: WADO-RS Retrieve [RAD-107]
 else Using DIMSE Retrieve
-Display->Archive: [RAD-16] Retrieve Images, [RAD-31] Retrieve Key Image Notes, [RAD-45] Retrieve Evidence Documents
+Display->Archive: Retrieve Images [RAD-16], Retrieve Presentation States [RAD-17],\nRetrieve Key Image Notes [RAD-31], Retrieve Evidence Documents [RAD-45]
 end
 
 Radiologist->>Display: //Interact with images and/or series//\n//such as scrolling, re-measure//
 end loop
+
+Radiologist->>RCreator: //End Dictation//
+RCreator->>RCreator: //Generate new multimedia report for current study//\n//following Use Case 1//
 
 end
 

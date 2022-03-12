@@ -10,21 +10,22 @@ end box
 box Grouped Actors
 participant "Image Display" as Display
 participant "Report Reader" as Reader
-participant "Report Repository" as Repo
 end box
 
+participant "Report Repository" as Repo
 participant "Image Manager/\nImage Archive" as Archive
 
 Clinician->>EMR: //Navigate patient's study//
 EMR->>Invoker: //Navigate study//
 
-Invoker->Display: [RAD-106] Invoke Image Display
+Invoker->Display: Invoke Image Display [RAD-106]
 Display->>Archive: //Retrieve study//
 Display->>Display: //Display study//
+Display->>Reader: //Show associated multimedia report//
 
 group IMR Interactive Viewing of Multimedia Content in Report
-Reader->Repo: [RAD-Y3] Find Multimedia Report
-Reader->Reader: [RAD-Y2] Display Multimedia Report
+Reader->Repo: Find Multimedia Report [RAD-Y3]
+Reader->Reader: Display Multimedia Report [RAD-Y2]
 
 note over Reader
 Present report, including multimedia contents
@@ -34,6 +35,7 @@ end note
 Clinician->>Reader: Click on image references in Report
 Reader->>Display: //View series//\n//(internal communication)//
 Display->>Archive: //Retrieve series//
+Display->Display: Display Images [RAD-Y5]
 
 Clinician->>Display: //Interact with image and/or series//
 end
