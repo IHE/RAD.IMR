@@ -3,7 +3,7 @@
     "id": "IHE.IMR.ReportReader",
     "text": {
       "status": "additional",
-      "div": "<div xmlns=\"http://www.w3.org/1999/xhtml\">\n\tThis Requirements CapabilityStatement describes the <a href=\"volume-1.html#ReportReader\">Report Reader actor</a>.\n\t</div>"
+      "div": "<div xmlns=\"http://www.w3.org/1999/xhtml\">\n\tThis Requirements CapabilityStatement describes the <a href=\"volume-1.html#1xx113-report-reader\">Report Reader actor</a>.\n\t</div>"
     },
     "url": "http://profiles.ihe.net/RAD/IMR/CapabilityStatement/IHE.IMR.ReportReader",
     "name": "IHE_IMR_ReportReader",
