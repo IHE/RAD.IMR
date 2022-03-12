@@ -95,11 +95,12 @@ A Report Reader with the Rendered Instance Retrieve Option can handle retrieve a
 
 See [Rendered Instance Retrieve Option](#1xx23-rendered-instance-retrieve-option) for details.
 
-##### 1:XX.1.1.3.2 Report Reader with External Image Display Retrieve Option
 
-A Report Reader with the External Image Display Retrieve Option delegates the image viewing capabilities to an external Image Display that is invoked by an integrated IID / Image Display Invoker actor. When triggered to view images, the Report Reader translates the embedded image references and endpoints in the DiagnosticReport resource into corresponding Invoke Image Display URLs.
+##### 1:XX.1.1.3.2 Report Reader with External IID Image Display Retrieve Option
 
-See [External IID Image Display Retrieve Option](##1xx24-external-iid-image-display-retrieve-option) for details.
+A Report Reader with the External IID Image Display Retrieve Option delegates the image viewing capabilities to an external Image Display that is invoked by an integrated IID / Image Display Invoker actor. When triggered to view images, the Report Reader translates the embedded image references and endpoints in the DiagnosticReport resource into corresponding Invoke Image Display URLs.
+
+See [External IID Image Display Retrieve Option](#1xx24-external-iid-image-display-retrieve-option) for details.
 
 ##### 1:XX.1.1.3.3 Report Reader with DICOM Instance Retrieve Option
 
@@ -131,7 +132,7 @@ An Image Display retrieves images from Image Manager / Image Archives, displays 
 
 An Image Display that is grouped with a Report Reader shall follow the [DICOM Instance Retrieve Option](#1xx25-dicom-instance-retrieve-option).
 
-An Image Display that is invoked by an IID Image Display Invoker grouped with a Report Reader shall follow the [External IID Image Display Retrieve Option](#1xx24-external-iid-image-display-retrieve-option).
+An Image Display that is invoked by an IID Image Display Invoker grouped with a Report Reader shall implement the [External IID Image Display Retrieve Option](#1xx24-external-iid-image-display-retrieve-option).
 
 ## 1:XX.2 IMR Actor Options
 
@@ -142,16 +143,16 @@ between options when applicable are specified in notes.
 
 | Actor   | Option Name | Reference |
 |---------|-------------|-----------|
-| Report Creator | PDF Report | [Section 1:XX.2.1](#1xx21-pdf-report-option) | 
-|                | HL7 Text Report | [Section 1:XX.2.2](#1xx22-hl7-text-report-option) |
-| Report Repository | *No options defined* | -- |
-| Report Reader | Rendered Instance Retrieve (Note 1) | [Section 1:XX.2.3](#1xx23-rendered-instance-retrieve-option) |
-|               | External Image Display Retrieve (Note 1) | Section 1:XX.2.4 |
-|               | DICOM Instance Retrieve (Note 1) | [Section 1:XX.2.5](#1xx25-dicom-instance-retrieve-option) |
-|               | Series/Study Navigation | [Section 1:XX.2.6](#1xx26-seriesstudy-navigation-option) |
-| Rendered Report Reader | PDF Report | [Section 1:XX.2.1](#1xx21-pdf-report-option) |
-| Image Manager / Image Archive | *No options defined* | -- |
-| Image Display | IID Invoke Option | Section 1:XX.2.7 |
+| Report Creator | PDF Report | Section XX.2.1 | 
+|                | HL7 Text Report | Section XX.2.2 |
+| Report Repository | No options defined | -- |
+| Report Reader | Rendered Instance Retrieve (Note 1) | Section XX.2.3 |
+|               | External IID Image Display Retrieve (Note 1) | [Section 1:XX.2.4](#1xx24-external-iid-image-display-retrieve-option) |
+|               | DICOM Instance Retrieve (Note 1) | Section XX.2.5 |
+|               | Series/Study Navigation | Section XX.2.6 |
+| Rendered Report Reader | PDF Report | Section XX.2.1 |
+| Image Manager / Image Archive | No options defined | -- |
+| Image Display | External IID Image Display Retrieve | [Section 1:XX.2.4](#1xx24-external-iid-image-display-retrieve-option) |
 {: .grid}
 
 > Note 1: The Report Reader shall support at least one of the options to retrieve images.
@@ -186,19 +187,21 @@ The requests shall use the information in DiagnosticReport.result.derivedFrom.en
 
 A Report Reader that also supports the Series/Study Navigation Option shall be able to construct WADO-RS URLs that confirm to the RetrieveSeries and RetrieveStudy semantics.
 
-### 1:XX.2.4 External Image Display Retrieve Option
+### 1:XX.2.4 External IID Image Display Retrieve Option
 
-The External Image Display Retrieve Option enables actors to display images via an external Image Display actor. See [Use Case #3](#1xx423-use-case-3-consume-and-interact-with-multimedia-report-by-report-reader-with-integrated-invoker-image-display).
+The External IID Image Display Retrieve Option utilizes the Invoke Image Display (IID) Profile to enable the Report Reader to display images via an external Image Display actor. See [Use Case #3] (#xx423-use-case-3-consume-and-interact-with-multimedia-report-by-report-reader-with-integrated-invoker-image-display).
 
-A Report Reader that supports this option shall use Invoke Image Display [RAD-106] to invoke an Image Display which in turn retrieves images from an Image Manager / Image Archive. Report Readers shall translate the embedded image references and endpoints in the DiagnosticReport resource into corresponding Invoke Image Display URLs.
+A Report Reader that supports this option is grouped with an IID Image Display Invoker and shall use the Invoke Image Display [RAD-106] transaction to invoke an external Image Display.  The Report Reader shall translate the embedded image references and endpoints in the DiagnosticReport resource into corresponding Invoke Image Display [RAD-106] URLs.
 
-> Note: For this option to work, the Image Display also needs to support the [IID Invoke Option](#xx27-iid-invoke-option).
+An Image Display that supports this option shall support the Invoke Image Display [RAD-106] transaction as an Image Display.  <<TO DO:  IS THIS TRUE?>>  When the Image Display receives a [RAD-106] request, it retrieves the requested images from an Image Manager / Image Archive.
+
+> Note that the Retrieve Display of Series Images functionality and IHE-IMR viewer type are available in CP-RAD-xxx.
 
 The Invoke Image Display requests shall have the same semantics as Retrieve Display of Series Images or Retrieve Display of Study Images in Invoke Image Display [RAD-106].
 
 > Note: [RAD-106] currently does not support invoking an Image Display at the series level nor the IHE-IMR viewer type. Retrieve Display of Series Images functionality and IHE-IMR viewer type are available in CP-RAD-xxx.
 
-> Note: A Report Reader that supports this Option can also supports the Series/Study Navigation Option as the Image Display Invoker always invokes the Image Display at the series or study level.
+> Note: A Report Reader that supports this Option can also support the Series/Study Navigation Option, as the Image Display Invoker always invokes the Image Display at the series or study level.
 
 ### 1:XX.2.5 DICOM Instance Retrieve Option
 
@@ -225,14 +228,6 @@ The Series/Study Navigation Option enables actors to scroll through images in th
 
 A Report Reader that supports this option shall initially display the referenced image, and shall enable the user to scroll through the other images in the same series (and optionally study) as the referenced image.
 
-### XX.2.7 IID Invoke Option
-
-The IID Invoke Option enables an Image Display to be invoked by the Image Display Invoker.
-
-An Image Display that supports this option shall support the Invoke Image Display [RAD-106] transaction as an Image Display.
-
-> Note that the Retrieve Display of Series Images functionality and IHE-IMR viewer type are available in CP-RAD-xxx.
-
 ## 1:XX.3 IMR Required Actor Groupings
 
 An actor from this profile (Column 1) shall implement all of the required transactions and/or
@@ -249,8 +244,8 @@ considerations and Section 1:XX.6 describes some optional groupings in other rel
 |-----------|--------------------|-----------------------------|-----------|
 | Report Creator | Required | ITI CT / Time Client | ITI TF-1: 7.1 |
 | Report Repository | -- | None | -- |
-| Report Reader | With the External Image Display Retrieve Option | RAD IID / Image Display Invoker | RAD IID 1:35.1.1.2 |
-|               | With the DICOM Instance Retrieve Option | RAD IMR / Image Display | [Section 1:XX.2.5](#1xx25-dicom-instance-retrieve-option) |
+| Report Reader | With the External IID Image Display Retrieve Option | RAD IID / Image Display Invoker | RAD IID: 35.1.1.2 |
+|               | With the DICOM Instance Retrieve Option | RAD IMR / Image Display | Section XX.1.1.6 |
 | Rendered Report Reader | -- | None | -- |
 | Image Manager / Image Archive | -- | None | -- |
 | Image Display | -- | None | -- |
