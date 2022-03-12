@@ -76,7 +76,7 @@ For complete information on constructing a FHIR Bundle Resource, see [http://hl7
 
 The FHIR Bundle.meta.profile shall have the following value: `http://profiles.ihe.net/RAD/IMR/StructureDefinition/imr-bundle`
 
-The [IMR Bundle](StructureDefinition-imr-bundle.html): 
+The [IMR Bundle](StructureDefinition-imr-store-multimedia-report-bundle.html): 
   - shall be a [Transaction Bundle](http://hl7.org/fhir/http.html#transaction)
   - shall create one [IMR DiagnosticReport](StructureDefinition-imr-diagnosticreport.html)
   - may create/update/read one or more [IMR ServiceRequest](StructureDefinition-imr-servicerequest.html)
@@ -164,15 +164,11 @@ The Sender shall populate accurate values for hash and size for the rendered rep
 * Where the presentedForm is a Binary Resource instance, the .hash and .size shall represent the raw artifact that has been base64encoded in the Binary.data element.  
 * Where the presentedForm is hosted elsewhere, not as a Binary Resource, the .hash and the .size shall represent the rendered report content that would be retrieved using the mime-type specified in DiagnosticReport.presentedForm.contentType. 
 
-A Sender that supports the **PDF Report Option**, if configured, shall also include a semantically equivalent diagnostic report in PDF format in the DiagnosticReport.presentedForm attribute. The presentedForm.contentType shall have the value "application/pdf". The Sender shall include in the PDF report all text and linked contents as in the HTML report. The Sender may preserve the linked contents as hyperlinks, or substitute the linked contents with the actual rendered contents and embedded them in the PDF file.
+###### 2:4.Y1.4.1.2.2.2.1 Image References in Rendered Report
 
-###### TO DO: Create the right subsection heading (eg. Image References in Diagnostic Reports???) or, Find the right home for this content
+This section contains requirements for the Sender that needs to include image references in the rendered report in HTML format in DiagnosticReport.presentedForm 
 
-TO DO: Does this belong, instead, in a subsection under :4.Y1.4.1.2.3 IMR Observation Resource??
-
-TO DO: <we need a lead-in sentence; is this accurate??> This section contains requirements for the Sender that needs to include image references in the rendered report in HTML format in DiagnosticReport.presentedForm 
-
-For IMR Observations that have image references using Observation.derivedFrom attribute (see [Section 2:4.Y1.4.1.2.3.1](#24y141231-image-references-in-observation)), the Sender shall add a hyperlink using the HTML anchor element (i.e. `<a>`), with the display text for the hyperlink being the corresponding value[x] in a clinically relevant textual representation. The value for href for this hyperlink shall be constructed based on the endpoint(s) defined in the referenced [IMR ImagingStudy]((StructureDefinition-imr-imagingstudy.html)) Resource.
+For IMR Observations that have image references using Observation.derivedFrom attribute (see [Section 2:4.Y1.4.1.2.3.1](#24y141231-image-references-in-an-imr-observation-resource), the Sender shall add a hyperlink using the HTML anchor element (i.e. `<a>`), with the display text for the hyperlink being the corresponding value[x] in a clinically relevant textual representation. The value for href for this hyperlink shall be constructed based on the endpoint(s) defined in the referenced [IMR ImagingStudy](StructureDefinition-imr-imagingstudy.html) Resource.
 
 For inline image references in Observation.valueString, the Sender shall substitute each `<IMRRef>`...`</IMRRef>` markup with an HTML anchor element. The href attribute shall be set to the concatenation of the ImagingStudy.endpoint.address with the valueString from the matching Observation.component.id entry. The resulting URL shall be a valid URL according to the contentType.
 
@@ -180,11 +176,15 @@ The Sender shall construct the resulting URLs such that the contents returned up
 
 > In other words, the Sender shall not presume that the Receiver can download and render the linked content.
 
+###### 2:4.Y1.4.1.2.2.2.2 Rendered Report in PDF Format
+
+A Sender that supports the **PDF Report Option**, if configured, shall also include a semantically equivalent diagnostic report in PDF format in the DiagnosticReport.presentedForm attribute. The presentedForm.contentType shall have the value "application/pdf". The Sender shall include in the PDF report all text and linked contents as in the HTML report. The Sender may preserve the linked contents as hyperlinks, or substitute the linked contents with the actual rendered contents and embedded them in the PDF file.
+
 ###### 2:4.Y1.4.1.2.3 IMR Observation Resource
 
 The Sender shall encode all clinical finding(s), impressions(s) or other observation(s) using IMR Observation Resources.
 
-> See [Section 1:XX.4.1.1](#1xx411-structure-in-radiology-reporting) "Structure in Radiology Reporting" for discussions regarding different *structures* applicable to radiology reporting.
+> See [Section 1:XX.4.1.1](volume-1.html#1xx411-structure-in-radiology-reporting) "Structure in Radiology Reporting" for discussions regarding different *structures* applicable to radiology reporting.
 
 The Sender shall set the `code` attribute according to the [IMR Observation](StructureDefinition-imr-observation.html) resource profile indicating whether the IMR Observation Resource represents finding(s), impression(s), or some other type of observations.
 
@@ -193,7 +193,7 @@ For clinical findings, the Sender shall either:
 - include all findings in a single IMR Observation Resource as narrative content in Observation.valueString. See [IMR Observation Examples](StructureDefinition-imr-observation-examples.html) for an example that encodes multiple findings in paragraph form in a single IMR Observation Resource.
 
 For clinical impressions, the Sender shall either:
-- enclode each impression as a separate [IMR Observation](StructureDefinition-imr-observation.html) Resource, **or**
+- include each impression as a separate [IMR Observation](StructureDefinition-imr-observation.html) Resource, **or**
 - include all impressions a single IMR Observation Resource as a narrative content in Observation.valueString. See [IMR Observation Examples](StructureDefinition-imr-observation-examples.html) for examples that encode different impression as different IMR Observation Resources.
 
 The Sender shall encode narrative content in findings or impressions using Observation.valueString.

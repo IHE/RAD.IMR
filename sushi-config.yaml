@@ -1,9 +1,9 @@
 # sushi-config.yaml is documented https://fshschool.org/docs/sushi/configuration/
 # ───────────────────────────────────────────────────
-id: ihe.radiology.imr
-canonical: http://profiles.ihe.net/Radiology/IMR
-version: 0.1.0
-name: IHE_Radiology_IMR
+id: ihe.rad.imr
+canonical: https://profiles.ihe.net/RAD/IMR
+version: 1.0.0-comment
+name: IHE_RAD_IMR
 title: "Interactive Multimedia Report"
 status: active
 publisher:
@@ -82,16 +82,16 @@ menu:
   Volume 1:
     Introduction: volume-1.html
     Actors and Transactions: volume-1.html#1x1-imr-actors-transactions-and-content-modules
-    Actor Options: volume-1.html#xx2-imr-actor-options
-    Required Groupings: volume-1.html#xx3-imr-required-actor-groupings
-    Overview: volume-1.html#xx4-interactive-multimedia-report-overview
-    Security Considerations: volume-1.html#xx5-imr-security-considerations
-    Cross-Profile Considerations: volume-1.html#xx6-imr-cross-profile-considerations
+    Actor Options: volume-1.html#1xx2-imr-actor-options
+    Required Groupings: volume-1.html#1xx3-imr-required-actor-groupings
+    Overview: volume-1.html#1xx4-interactive-multimedia-report-overview
+    Security Considerations: volume-1.html#1xx5-imr-security-considerations
+    Cross-Profile Considerations: volume-1.html#1xx6-imr-cross-profile-considerations
   Volume 2:
     "Store Multimedia Report [RAD-Y1]": RAD-Y1.html
     "Display Multimedia Report [RAD-Y2]": RAD-Y2.html
     "Find Multimedia Report [RAD-Y3]": RAD-Y3.html
     "Retrieve Rendered Multimedia Report [RAD-Y4]": RAD-Y4.html
-    "Display Images [RAD-Y5]": RAD-Y5.html
+    "Display Referenced Images in Multimedia Report [RAD-Y5]": RAD-Y5.html
   Test Plan: testplan.html
   Artifacts: artifacts.html

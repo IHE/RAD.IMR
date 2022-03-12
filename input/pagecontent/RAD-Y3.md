@@ -56,7 +56,7 @@ The Requester shall construct the URL according to following constraints:
 
 - The `[base]` shall be configurable
 
-- The `<query>` shall contain a series of encoded name-value pairs representing the filter for the query, as specified in Section [Query Search Parameters](#23y34121-query-search-parameters)
+- The `<query>` shall contain a series of encoded name-value pairs representing the filter for the query, as specified in Section [Query Search Parameters](#24y34121-query-search-parameters)
 
 - The `<query>` may contain additional search result parameters to request modified behavior of the Responder such as response format, pagination, summary, subset of elements, etc.. See [FHIR Search](https://www.hl7.org/fhir/search.html#Summary) for details.
 

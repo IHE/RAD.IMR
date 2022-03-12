@@ -108,14 +108,10 @@ In the DiagnosticReport.presentedForm, the .hash and .size, when populated, repr
 
 **TODO**
 
-Document Responders implementing this transaction shall provide a CapabilityStatement Resource as described in [ITI TF-2: Appendix Z.3](https://profiles.ihe.net/ITI/TF/Volume2/ch-Z.html#z.3-capabilitystatement-resource) indicating the transaction has been implemented. 
-* Requirements CapabilityStatement for [Document Consumer](CapabilityStatement-IHE.MHD.DocumentConsumer.html)
-* Requirements CapabilityStatement for [Document Responder](CapabilityStatement-IHE.MHD.DocumentResponder.html)
-
 ### 2:4.Y4.5 Security Considerations
 
 The rendered report is available via an external URLs in presentedForm.url. The Requester should consider validating the URL to ensure that it is a valid URL referencing a known legitimate host to avoid phishing attack.
 
 #### 2:4.Y4.5.1 Security Audit Considerations
 
-This transaction is associated with a 'Patient-ecord-event' ATNA Trigger Event on both the Requester and the Responder. See [ITI TF-2: 3.20.4.1.1.1](https://profiles.ihe.net/ITI/TF/Volume2/ITI-20.html#3.20.4.1.1.1).
+This transaction is associated with a 'Patient-record-event' ATNA Trigger Event on both the Requester and the Responder. See [ITI TF-2: 3.20.4.1.1.1](https://profiles.ihe.net/ITI/TF/Volume2/ITI-20.html#3.20.4.1.1.1).

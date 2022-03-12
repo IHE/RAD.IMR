@@ -68,7 +68,7 @@ The Display shall support the display requirements as defined in Table 2:4.Y2.4.
 
 ###### 2:4.Y2.4.1.3.1 Display of Attributes in DiagnosticReport
 
-The Display shall be capable of presenting the attributes in the IMR DiagnosticReport Resource and referenced resources as defined in Store Multimedia Report [RAD-Y1] [Table 2:4.Y1.4.1.2-1](RAD-Y1.html#24y1412-1-attributes-in-diagnostic-report).  TO DO: If the RAD-Y1 branch is merged, this reference will change.
+The Display shall be capable of presenting the attributes in the IMR DiagnosticReport Resource and referenced resources as defined in Store Multimedia Report [RAD-Y1] [Table 2:4.Y1.4.1.2-1](RAD-Y1.html#24y141221-mapping-of-attributes-in-a-diagnostic-report).  TO DO: If the RAD-Y1 branch is merged, this reference will change.
 
 ###### 2:4.Y2.4.1.3.2 Display of Observation
 
@@ -103,7 +103,7 @@ For inline image references in narrative content, the Display:
 
 > For example, the Display may retrieve a rendered JPEG or a thumbnail of the image instead of the DICOM object.
 
-Refer to [RAD-Y1] [Section 2:4.Y1.4.1.2.2.1](RAD-Y1.html#24y141221-image-references-in-observation) for details about inline image reference encoding.   TO DO: If the RAD-Y1 branch is merged, this reference may change.
+Refer to [RAD-Y1] [Section 2:4.Y1.4.1.2.3.1](RAD-Y1.html#24y141231-image-references-in-an-imr-observation-resource) for details about inline image reference encoding.
 
 This transaction does not prescribe any specific presentation when presenting hyperlinks. For example, the Displays may display the hyperlinks as text or as thumbnail images.
 
