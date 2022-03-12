@@ -495,8 +495,12 @@ The Rendered Report Readers should verify if these URLs are legitimate and from 
 
 ## 1:XX.6 IMR Cross-Profile Considerations
 
-**Scheduled Workflow (SWF.b)**: An Image Display can be grouped with an IMR Report Reader to enhance the report viewing capability for prior studies.
+**Scheduled Workflow (SWF.b)**: An Image Display may be grouped with an IMR Report Reader to enhance the report viewing capability for prior studies.
 
 **Results Distribution (RD)**: A Report Creator that supports the HL7 Text Report Option can use Result Distribution to send the text report to other consumers.
 
-**Basic Image Review (BIR)**: A Report Reader can be grouped with an Image Display in BIR to provide the required image display functionality.
+**Basic Image Review (BIR)**: A Report Reader may be grouped with an Image Display in BIR to provide the required image display functionality.
+
+**Management of Radiology Report Templates (MRRT)**: A Report Creator in MRRT may be grouped with a Report Creator in IMR. As a result, the grouped Report Creator can use the report templates to assist the radiologist in creating the diagnostic report, and capture the final report in the IMR DiagnosticReport format.
+
+**AI Result (AIR)**: An Evidence Creator may be grouped with an IMR Report Creator to include AI results in the diagnostic report. An Image Display in AIR may be grouped with an IMR Image Display or Report Reader to show the interactive AI results.
