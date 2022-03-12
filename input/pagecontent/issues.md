@@ -23,6 +23,7 @@ These issues were known as part of the publication, and IHE invites comments.
 |15|Q: For query in RAD-Y3, should IMR require the Responder to support both HTTP GET and HTTP POST request?|
 |16|Q: Does IMR require to support *draft* status for the DiagnosticReport? If so, should *draft* be coded as `partial`, or a new status is required?|
 |17|Q: To query report, is it important to support query by anatomic region / body part?|
+|18|Q: Should RAD-Y5 be merged with the existing Display Images transaction (CP-RAD-189)|
 {: .grid}
 
 

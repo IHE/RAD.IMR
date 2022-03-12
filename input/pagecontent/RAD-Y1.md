@@ -47,7 +47,14 @@ The Sender determines that a multimedia report is ready to be sent. e.g. a radio
 
 This message is an HTTP POST request. The Sender is the User Agent. The Receiver is the Origin Server.
 
-The Sender shall initiate a FHIR “transaction” using a “create” action by sending an HTTP POST request method composed of an IMR Bundle Resource as defined in [Section 2:4.Y1.4.1.2.1](#24y14121-imr-bundle-resource).
+The Sender shall initiate a FHIR “transaction” using a “create” action by sending an HTTP POST request method composed of an IMR Bundle Resource containing the following:
+- one DiagnosticReport Resource
+- one or more ServiceRequest Resources
+- one Patient Resource
+- one or more Organization Resources
+- one or more Practitioner Resources
+- one or more Observation Resources
+- one or more ImagingStudy Resources
 
 The media type of the HTTP body shall be either `application/fhir+json` or `application/fhir+xml`.
 
@@ -103,33 +110,41 @@ There is a common set of attributes included in radiology diagnostic reports. Ta
 
 **Table 2:4.Y1.4.1.2.2.1-1: Mapping of Attributes in DiagnosticReport**
 
-| Report Attribute | FHIR Resource Mapping | Cardinality | Additional Constraint | Note |
-|------------------|-----------------------|-------------|-----------------------|------|
-| Organization     | DiagnosticReport.performer | 1..* | See [IMR DiagnosticReport](StructureDefinition-imr-diagnosticreport.html) for details | The organization which is responsible for the diagnostic report. <br><br> See Note 1 |
-| Results Interpreter | DiagnosticReport.resultsInterpreter | 1..* | Can be either Practitioner or PractitionerRole <br><br> See [IMR DiagnosticReport](StructureDefinition-imr-diagnosticreport.html) for details | | The primary result interpreter(s) <br><br> See Note 1 |
-| Patient Name     | DiagnosticReport.subject.name -> Patient.name | 0..* |See [IMR DiagnosticReport](StructureDefinition-imr-diagnosticreport.html) for details | See Note 1 |
-| Patient ID       | DiagnosticReport.subject.identifier -> Patient.identifier | 0..* | See [IMR DiagnosticReport](StructureDefinition-imr-diagnosticreport.html) for details | See Note 1 |
-| Accession Number | DiagnosticReport.basedOn.identifier -> IMRServiceRequest.identifier | 1..* | See [IMR DiagnosticReport](StructureDefinition-imr-diagnosticreport.html) and [IMR ServiceRequest](StructureDefinition-imr-servicerequest.html) for details | Identified by the identifier.type |
-| Study Date       | DiagnosticReport.imagingStudy.started -> IMRImagingStudy.started | 1..1 | See [IMR ImagingStudy](StructureDefinition-imr-imagingstudy.html) for details | |
-| Study Type       | DiagnosticReport.imagingStudy.procedureCode -> IMRImagingStudy.procedureCode | 1..1 | See [IMR ImagingStudy](StructureDefinition-imr-imagingstudy.html) for details | |
-| Report Status    | DiagnosticReport.status | 1..1 | partial, preliminary, final, amended, corrected, appended, cancelled <br><br> See [IMR DiagnosticReport](StructureDefinition-imr-diagnosticreport.html) for details | A subset from what is defined in FHIR |
-| Examination      | DiagnosticReport.code | 1..1 | See [IMR DiagnosticReport](StructureDefinition-imr-diagnosticreport.html) for details | Code for the type of diagnostic report, may be the same as the study procedure code |
-| Indication       | DiagnosticReport.extension[indication] | 0..* | See [IMR DiagnosticReport](StructureDefinition-imr-diagnosticreport.html) for details | Each value can be either a string or a CodeableConcept |
-| Technique        | DiagnosticReport.result.method -> IMRObservation.method | 0..1 | Technique details is set in the same observation  resource that captures the finding. i.e. IMRObservation.code = LOINC#59776-5 "Procedure Findings" <br><br> See [IMR DiagnosticReport](StructureDefinition-imr-diagnosticreport.html) and [IMR Observation](StructureDefinition-imr-observation.html) for details | |
-| Comparison       | DiagnosticReport.extension[comparisonStudy] | 0..* | Can be either an IMRImagingStudy or IMRDiagnosticReport <br><br> See [IMR DiagnosticReport](StructureDefinition-imr-diagnosticreport.html) for details | |
-| Report Section   | DiagnosticReport.result.valueString -> IMRObservation.valueString | 1..* | Identified by IMRObservation.code. See [IMR DiagnosticReport](StructureDefinition-imr-diagnosticreport.html) and [IMR Observation](StructureDefinition-imr-observation.html) for details | The code is used to identify what *section* the observation belongs to. For example, LOINC code __59776-5__ represents a procedure finding and LOINC code __19005-8__ represents a narrative impression. <br><br> Highly recommended to encode a single finding or impression per IMR Observation, but permitted to encode all findings as a single string and all impressions as a single string to bridge existing applications. <br><br> Also See Note 2 |
-| Referring Physician | DiagnosticReport.imagingStudy -> IMRImagingStudy.referrer | 0..* | |
-| Reason For Study | DiagnosticReport.imagingStudy -> IMRImagingStudy.reasonCode | 0..* | |
-| Study Description | DiagnosticReport.imagingStudy -> IMRImagingStudy.description | 0..* | |
-| Body Part | DiagnosticReport.result -> IMRObservation.bodySite | 0..1 | |
-| Relationship between findings and impressions | DiagnosticReport.result -> IMRObservation.hasMember | 0..* | Specify related observations, e.g. linking impression to finding, or finding to another finding |
+| Report Attribute | FHIR Resource Mapping | Additional Constraint | Note |
+|------------------|-----------------------|-----------------------|------|
+| Organization     | DiagnosticReport.performer | See [IMR DiagnosticReport](StructureDefinition-imr-diagnosticreport.html) for details | The organization which is responsible for the diagnostic report. <br><br> See Note 1 |
+| Results Interpreter | DiagnosticReport.resultsInterpreter | Can be either Practitioner or PractitionerRole <br><br> See [IMR DiagnosticReport](StructureDefinition-imr-diagnosticreport.html) for details | | The primary result interpreter(s) <br><br> See Note 1 |
+| Patient Name     | DiagnosticReport.subject.name -> Patient.name | See [IMR DiagnosticReport](StructureDefinition-imr-diagnosticreport.html) for details | See Note 1 |
+| Patient ID       | DiagnosticReport.subject.identifier -> Patient.identifier | See [IMR DiagnosticReport](StructureDefinition-imr-diagnosticreport.html) for details | See Note 1 |
+| Accession Number | DiagnosticReport.basedOn.identifier -> IMRServiceRequest.identifier | See [IMR DiagnosticReport](StructureDefinition-imr-diagnosticreport.html) and [IMR ServiceRequest](StructureDefinition-imr-servicerequest.html) for details | Identified by the identifier.type |
+| Study Date       | DiagnosticReport.imagingStudy.started -> IMRImagingStudy.started | See [IMR ImagingStudy](StructureDefinition-imr-imagingstudy.html) for details | |
+| Study Type       | DiagnosticReport.imagingStudy.procedureCode -> IMRImagingStudy.procedureCode | See [IMR ImagingStudy](StructureDefinition-imr-imagingstudy.html) for details | |
+| Report Status    | DiagnosticReport.status | partial, preliminary, final, amended, corrected, appended, cancelled <br><br> See [IMR DiagnosticReport](StructureDefinition-imr-diagnosticreport.html) for details | A subset from what is defined in FHIR |
+| Examination      | DiagnosticReport.code | See [IMR DiagnosticReport](StructureDefinition-imr-diagnosticreport.html) for details | Code for the type of diagnostic report, may be the same as the study procedure code |
+| Indication       | DiagnosticReport.extension[indication] | See [IMR DiagnosticReport](StructureDefinition-imr-diagnosticreport.html) for details | Each value can be either a string or a CodeableConcept |
+| Technique        | DiagnosticReport.result.method -> IMRObservation.method | Technique details is set in the same observation  resource that captures the finding. i.e. IMRObservation.code = LOINC#59776-5 "Procedure Findings" <br><br> See [IMR DiagnosticReport](StructureDefinition-imr-diagnosticreport.html) and [IMR Observation](StructureDefinition-imr-observation.html) for details | |
+| Comparison       | DiagnosticReport.extension[comparisonStudy] | Can be either an IMRImagingStudy or IMRDiagnosticReport <br><br> See [IMR DiagnosticReport](StructureDefinition-imr-diagnosticreport.html) for details | |
+| Report Section   | DiagnosticReport.result.valueString -> IMRObservation.valueString | Identified by IMRObservation.code. See [IMR DiagnosticReport](StructureDefinition-imr-diagnosticreport.html) and [IMR Observation](StructureDefinition-imr-observation.html) for details | The code is used to identify what *section* the observation belongs to. For example, LOINC code __59776-5__ represents a procedure finding and LOINC code __19005-8__ represents a narrative impression. <br><br> Highly recommended to encode a single finding or impression per IMR Observation, but permitted to encode all findings as a single string and all impressions as a single string to bridge existing applications. <br><br> Also See Note 2 |
 {: .grid}
 
 > Note 1: There is no IMR-defined FHIR resource profile for the resource. An implementation may use other FHIR resource profiles applicable for their deployment.
 
 > Note 2: In common cases, there is no direct association between findings and impressions except that they are associated with the same DiagnosticReport Resource. 
 
-> See [HIMSS-SIIM Whitepaper: The Importance of Body Part Labeling to Enable Enterprise Imaging](https://link.springer.com/article/10.1007/s10278-020-00415-0) for the importance of body part labelling.
+In addition to the common set above, there are also a number of useful optional attributes that the Sender may included.
+
+**Table 2:4.Y1.4.1.2.1-2: Useful Optional Attributes in Radiology Diagnostic Report**
+
+| Report Attribute | FHIR Resource Mapping | Additional Constraint | Note |
+|------------------|-----------------------|-----------------------|------|
+| Referring Physician | DiagnosticReport.imagingStudy -> IMRImagingStudy.referrer | |
+| Reason For Study | DiagnosticReport.imagingStudy -> IMRImagingStudy.reasonCode | |
+| Study Description | DiagnosticReport.imagingStudy -> IMRImagingStudy.description | |
+| Body Part | DiagnosticReport.result -> IMRObservation.bodySite | Note 3 |
+| Relationship between findings and impressions | DiagnosticReport.result -> IMRObservation.hasMember | | Specify related observations, e.g. linking impression to finding, or finding to another finding |
+{: .grid}
+
+> Note 3: See [HIMSS-SIIM Whitepaper: The Importance of Body Part Labeling to Enable Enterprise Imaging](https://link.springer.com/article/10.1007/s10278-020-00415-0) for the importance of body part labelling.
 
 ###### 2:4.Y1.4.1.2.2.2 Rendered Report in IMR DiagnosticReport Resource
 

@@ -15,7 +15,7 @@ Both appendices are located at <http://ihe.net/Technical_Frameworks/#GenIntro>.
 Figure 1:XX.1-1 shows the actors directly involved in the IMR Profile and the relevant transactions
 between them. If needed for context, other actors that may be indirectly involved due to their participation
 in other related profiles are shown in dotted lines. Actors which have a required
-grouping are shown in conjoined boxes (see Section 1:XX.3).
+grouping are shown in conjoined boxes (see [Section 1:XX.3[(#1xx3-imr-required-actor-groupings)).
 
 <div>
     <img src="IHE_IMR_actor.drawio.png">
@@ -142,15 +142,15 @@ between options when applicable are specified in notes.
 
 | Actor   | Option Name | Reference |
 |---------|-------------|-----------|
-| Report Creator | PDF Report | Section 1:XX.2.1 | 
-|                | HL7 Text Report | Section 1:XX.2.2 |
-| Report Repository | No options defined | -- |
-| Report Reader | Rendered Instance Retrieve (Note 1) | Section 1:XX.2.3 |
+| Report Creator | PDF Report | [Section 1:XX.2.1](#1xx21-pdf-report-option) | 
+|                | HL7 Text Report | [Section 1:XX.2.2](#1xx22-hl7-text-report-option) |
+| Report Repository | *No options defined* | -- |
+| Report Reader | Rendered Instance Retrieve (Note 1) | [Section 1:XX.2.3](#1xx23-rendered-instance-retrieve-option) |
 |               | External Image Display Retrieve (Note 1) | Section 1:XX.2.4 |
-|               | DICOM Instance Retrieve (Note 1) | Section 1:XX.2.5 |
-|               | Series/Study Navigation | Section 1:XX.2.6 |
-| Rendered Report Reader | PDF Report | Section 1:XX.2.1 |
-| Image Manager / Image Archive | No options defined | -- |
+|               | DICOM Instance Retrieve (Note 1) | [Section 1:XX.2.5](#1xx25-dicom-instance-retrieve-option) |
+|               | Series/Study Navigation | [Section 1:XX.2.6](#1xx26-seriesstudy-navigation-option) |
+| Rendered Report Reader | PDF Report | [Section 1:XX.2.1](#1xx21-pdf-report-option) |
+| Image Manager / Image Archive | *No options defined* | -- |
 | Image Display | IID Invoke Option | Section 1:XX.2.7 |
 {: .grid}
 
@@ -178,7 +178,7 @@ A Report Creator shall use this text-only report to communicate the report with 
 
 ### 1:XX.2.3 Rendered Instance Retrieve Option
 
-The Rendered Instance Retrieve Option enables a Report Reader to retrieve rendered images from Image Manager / Image Archive using WADO-RS.  See [Use Case #2] (#1xx422-use-case-2-consume-and-interact-with-multimedia-report-by-standalone-report-reader).
+The Rendered Instance Retrieve Option enables a Report Reader to retrieve rendered images from Image Manager / Image Archive using WADO-RS.  See [Use Case #2](#1xx422-use-case-2-consume-and-interact-with-multimedia-report-by-standalone-report-reader).
 
 A Report Reader that supports this option shall use WADO-RS Retrieve [RAD-107] to retrieve rendered images from an Image Manager / Image Archive.
 
@@ -188,7 +188,7 @@ A Report Reader that also supports the Series/Study Navigation Option shall be a
 
 ### 1:XX.2.4 External Image Display Retrieve Option
 
-The External Image Display Retrieve Option enables actors to display images via an external Image Display actor. See [Use Case #3] (#1xx423-use-case-3-consume-and-interact-with-multimedia-report-by-report-reader-with-integrated-invoker-image-display).
+The External Image Display Retrieve Option enables actors to display images via an external Image Display actor. See [Use Case #3](#1xx423-use-case-3-consume-and-interact-with-multimedia-report-by-report-reader-with-integrated-invoker-image-display).
 
 A Report Reader that supports this option shall use Invoke Image Display [RAD-106] to invoke an Image Display which in turn retrieves images from an Image Manager / Image Archive. Report Readers shall translate the embedded image references and endpoints in the DiagnosticReport resource into corresponding Invoke Image Display URLs.
 
@@ -250,7 +250,7 @@ considerations and Section 1:XX.6 describes some optional groupings in other rel
 | Report Creator | Required | ITI CT / Time Client | ITI TF-1: 7.1 |
 | Report Repository | -- | None | -- |
 | Report Reader | With the External Image Display Retrieve Option | RAD IID / Image Display Invoker | RAD IID 1:35.1.1.2 |
-|               | With the DICOM Instance Retrieve Option | RAD IMR / Image Display | RAD IMR 1:XX.1.1.6 |
+|               | With the DICOM Instance Retrieve Option | RAD IMR / Image Display | [Section 1:XX.2.5](#1xx25-dicom-instance-retrieve-option) |
 | Rendered Report Reader | -- | None | -- |
 | Image Manager / Image Archive | -- | None | -- |
 | Image Display | -- | None | -- |
@@ -353,21 +353,13 @@ Level 3: Advanced interactivity
 
 The Report Reader can display not only the image referenced directly, but also the full series that contain the image. The Report Reader may provide other tools (e.g. measurements, more advanced image visualization, etc.) as well as support other advanced DICOM objects such as segmentation objects or parametric map objects.
 
-#### 1:XX.4.1.7 Multiplanar Reconstruction
-
-Multiplanar reconstruction, or MPR, involves the process of converting data from an imaging modality acquired in a certain plane, usually axial, into another plane such as coronal or sagittal or oblique. It is most commonly performed with thin-slice data from volumetric CT in the axial plane, but it may be accomplished with scanning in any plane and whichever modality capable of cross-sectional imaging, including magnetic resonance imaging (MRI).
-
-Although MPR is a feature available in many PACS implementations, it is a advanced operation that is computational intensive. For the interactive image viewing capability on interactive multimedia report, MPR is not expected to be available. If viewing of the images from different planes is desirable, then the acquired data should be reconstructed to other planes and then be saved as separate set of images. These new set of reconstructed images can then be referenced in the DiagnosticReport resource.
-
-#### 1:XX.4.1.8 Query Payload
-
-A DiagnosticReport resource includes many references to other resources, such as Patient, IMR Observation, IMR ImagingStudy, etc. By default, a FHIR server returns query responses with references to other resources. The requester is expected to retrieve these referenced resources separately afterwards.
-
-Optionally, a FHIR server may support the [_include](http://hl7.org/fhir/search.html#include) search result parameters. If the requester specifies this parameter in the search request, then the FHIR Server will include all referenced resources in the same response. The advantage is that the requester only needs to issue a single query result and the result will contain all the necessary data. The disadvantages are (1) the payload size may increase significantly, (2) the server will need to perform more work and may return the response slower, (3) it is an optional capability of the server.
-
-#### 1:XX.4.1.9 Referenced FHIR Resource vs Contained FHIR Resource
+#### 1:XX.4.1.7 Referenced FHIR Resource vs Contained FHIR Resource
 
 A DiagnosticReport resource includes many references to other resources. Technically it is possible for the Report Creator to include these other resources as [contained](https://www.hl7.org/fhir/references.html#contained) resources, these contained resources are not independently accessible and they cannot be searched. Therefore in IMR, when storing a DiagnosticReport resource, all referenced resources are actual resources and are referenced accordingly.
+
+Since a DiagnosticReport resource includes many references to other resources, such as Patient, IMR Observation, IMR ImagingStudy, etc. with FHIR [Search]((http://hl7.org/fhir/search.html)) capability, by default, a FHIR server returns query responses with references to other resources. The requester is expected to retrieve these referenced resources separately afterwards.
+
+Optionally, a FHIR server may support the [_include](http://hl7.org/fhir/search.html#include) search result parameters. If the requester specifies this parameter in the search request, then the FHIR Server will include all referenced resources in the same response. The advantage is that the requester only needs to issue a single query result and the result will contain all the necessary data. The disadvantages are (1) the payload size may increase significantly, (2) the server will need to perform more work and may return the response slower, (3) it is an optional capability of the server.
 
 ### 1:XX.4.2 Use Cases
 

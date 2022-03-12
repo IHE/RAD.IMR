@@ -43,22 +43,22 @@ A user or an automated function determines that one or more multimedia reports s
 
 The report is encoded in a FHIR [IMR DiagnosticReport](StructureDefinition-imr-diagnosticreport.html) resource.
 
-Displays shall present the IMR DiagnosticReport in one of two methods:
+The Display shall present the IMR DiagnosticReport in one of two methods:
 
 - Assemble from Content Elements
-    - In this method, Displays examine the attributes available in the DiagnosticReport, assemble a report and present it
+    - In this method, the Display examines the attributes available in the DiagnosticReport, assembles a report, and presents it
 - Display Rendered Report
-    - In this method, Displays extract the rendered report in DiagnosticReport.presentedForm and present it
+    - In this method, the Display extracts the rendered report in DiagnosticReport.presentedForm and presents it
 
-This transaction does not depend on how the IMR DiagnosticReport resources were transferred to the Display. If the Display receives the reports by a profiled mechanism such as Find Multimedia Report [RAD-Y3], the messaging protocol is specified in that corresponding transaction. If reports are accessed by being grouped with another actor such as Report Repository, there is no messaging protocol involved.
+This transaction does not depend on how the IMR DiagnosticReport Resources were transferred to the Display. If the Display receives the reports by a profiled mechanism such as Find Multimedia Report [RAD-Y3], the messaging protocol is specified in that corresponding transaction. If reports are accessed by being grouped with another actor such as Report Repository, there is no messaging protocol involved.
 
 ##### 2:4.Y2.4.1.3 Expected Actions (i.e. Display Requirements)
 
-The behaviors in this section are specified as baseline capabilities. Displays may have additional or alternative capabilities that may be invoked or configured.
+The behaviors in this section are specified as baseline capabilities. The Display may have additional or alternative capabilities that may be invoked or configured.
 
-Displays shall support the display requirements as defined in Table 2:4.Y2.4.1.3-1 according to the actor.
+The Display shall support the display requirements as defined in Table 2:4.Y2.4.1.3-1, according to the actor.
 
-Table 2:4.Y2.4.1.3-1 Actor Display Requirements
+**Table 2:4.Y2.4.1.3-1 Actor Display Requirements**
 
 | Actor | Display Requirements |
 |-------|----------------------|
@@ -68,46 +68,46 @@ Table 2:4.Y2.4.1.3-1 Actor Display Requirements
 
 ###### 2:4.Y2.4.1.3.1 Display of Attributes in DiagnosticReport
 
-The Display shall be capable of presenting the attributes in the IMR DiagnosticReport resource and referenced resources as defined in Store Multimedia Report [RAD-Y1] [Table 2:4.Y1.4.1.2-1](RAD-Y1.html#24y1412-1-attributes-in-diagnostic-report).
+The Display shall be capable of presenting the attributes in the IMR DiagnosticReport Resource and referenced resources as defined in Store Multimedia Report [RAD-Y1] [Table 2:4.Y1.4.1.2-1](RAD-Y1.html#24y1412-1-attributes-in-diagnostic-report).  TO DO: If the RAD-Y1 branch is merged, this reference will change.
 
 ###### 2:4.Y2.4.1.3.2 Display of Observation
 
 The Display:
 
-- shall group the observations by Observation.code and display each group separately
+- shall group the observations by Observation.code, and display each group separately
 
 - shall display narrative content in Observation.valueString
 
 - shall display coded content in Observation.value[x] in a clinically meaningful representation
 
 - shall be able to display the provenance details (who, when and how):
-    - Who made the observation is available in Observation.performer or DiagnosticReport.resultInterpreter
-    - When the observation is made is available in Observation.effectiveDateTime or DiagnosticReport.effectiveDateTime
-    - How the observation is made may be available in Observation.method
+    - Who made the observation in Observation.performer or DiagnosticReport.resultInterpreter
+    - When the observation in Observation.effectiveDateTime or DiagnosticReport.effectiveDateTime
+    - How the observation is made in Observation.method, if available
 
-- may display any other attributes available in the DiagnosticReport resource and referenced resources
+- may display any other attributes available in the DiagnosticReport Resource and referenced resources
 
-> Note: Some implementations may allow users to modify or supplement observations in a displayed report. For example, the user may re-measure an observed feature. The implementation might allow saving the new measurements as an addendum. Existing report should not be modified.
+> Note: Some implementations may allow users to modify or supplement observations in a displayed report. For example, the user may re-measure an observed feature. The implementation might allow saving the new measurements as an addendum. The existing report should not be modified.
 
 ###### 2:4.Y2.4.1.3.2.1 Display of Image References in Observation
 
-For inline image references in narrative content, the Display
+For inline image references in narrative content, the Display:
 
 - shall substitute each `<IMRRef>`...`</IMRRef>` element with a hyperlink
 
 - shall use the text enclosed by the `<IMRRef>` element as the display text for the hyperlink
 
-- the URL for this hyperlink shall be set to the concatenation of the Observation.derivedFrom.endpoint.address with the valueString from the matching Observation.component.id entry. The resulting URL shall be a valid URL according to the contentType
+- the URL for this hyperlink shall be set to the concatenation of the Observation.derivedFrom.endpoint.address with the valueString from the matching Observation.component.id entry. The resulting URL shall be a valid URL according to the contentType.
 
 - may add additional parameters to the URL to invoke specific functions provided by the Image Manager / Image Archive
 
 > For example, the Display may retrieve a rendered JPEG or a thumbnail of the image instead of the DICOM object.
 
-Refer to [RAD-Y1] [Section 2:4.Y1.4.1.2.2.1](RAD-Y1.html#24y141221-image-references-in-observation) for details about inline image reference encoding.
+Refer to [RAD-Y1] [Section 2:4.Y1.4.1.2.2.1](RAD-Y1.html#24y141221-image-references-in-observation) for details about inline image reference encoding.   TO DO: If the RAD-Y1 branch is merged, this reference may change.
 
 This transaction does not prescribe any specific presentation when presenting hyperlinks. For example, the Displays may display the hyperlinks as text or as thumbnail images.
 
-Displays that supports the Series/Study Navigation Option shall be capable of adjusting the URL to reference the series or study level accordingly to its configuration
+A Display that supports the **Series/Study Navigation Option** shall be capable of adjusting the URL to reference the series or study level accordingly to its configuration.
 
 > Note: The Display may choose to display the full study or only the referenced series, based on the current usage context or configuration.
 
@@ -115,15 +115,15 @@ Displays that supports the Series/Study Navigation Option shall be capable of ad
 
 The Display:
 
-- shall be capable of presenting the rendered report in DiagnosticReport.presentedForm.data with contentType "text/html"
+- shall be capable of presenting the rendered report in DiagnosticReport.presentedForm.data with contentType "text/html".
 
 - shall be capable of retrieving and presenting the rendered report specified in DiagnosticReport.presentedForm.url. See Retrieve Rendered Multimedia Report [RAD-Y4] for details.
 
-- shall be capable of presenting all hyperlinks in the rendered report
+- shall be capable of presenting all hyperlinks in the rendered report.
 
 > Note: The Display may not be able to access the content referenced by the hyperlinks due to network and content access permission.
 
-Displays that support the PDF Report Option shall be capable of presenting the rendered report with contentType "application/pdf".
+Displays that support the **PDF Report Option** shall be capable of presenting the rendered report with contentType "application/pdf".
 
 Displays may be capable of presenting rendered reports in other contentType.
 
