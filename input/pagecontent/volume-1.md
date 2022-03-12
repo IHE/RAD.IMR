@@ -261,29 +261,29 @@ considerations and Section 1:XX.6 describes some optional groupings in other rel
 
 In reporting, structure can significantly improve usability, both for machine consumption and human consumption. Structure can refer to several aspects within a report as follows:
 
-##### Message Structure
-
-In the most basic form, the clinical report is conveyed between the sender and the receiver using some kind of message format. The message format defines a structure for the overall payload, including the metadata and the actual report content. For example, HL7 v2 ORU messages or FHIR DiagnosticReport resources define such a message structure that governs where different content should be placed, such as patient, order, report content, etc.
-
-The [Results Distribution](https://www.ihe.net/uploadedFiles/Documents/Radiology/IHE_RAD_Suppl_RD.pdf) Profile specifies using HL7 v2 ORU as the message structure while this Interactive Multimedia Report profile specifies using FHIR DiagnosticReport resource as the message structure.
-
-##### Report Content Structure
+##### Report Content Organization 
 
 In a radiology report, although they are many variations of what information a report should contain depending on the procedure and specialty, there are general common sections in a report such as Indication, Methods, Findings, Impressions, etc.
 
 The [Results Distribution](https://www.ihe.net/uploadedFiles/Documents/Radiology/IHE_RAD_Suppl_RD.pdf) profile specifies using different OBX segments for different sections while this Interactive Multimedia Report profile specifies using different FHIR DiagnosticReport.result which are referenced Observation resources for different sections.
 
-##### Report Content Encoding Structure
+##### Report Content Encoding
 
 Also known as 'structured reporting' or 'synoptic reporting', encoding structure refers to the use of fully coded values in pre-coordinated form or post-coordinated form, in which the values are drawn from some value sets such as LOINC or SNOMED-CT, in order to represent the full concept.
 
 This has been successfully used in certain discipline such as cancer screening, but it is less common in general radiology reporting practice.
 
-##### Presentation Structure
+##### Report Presentation
 
 While Report Content Structure and Report Content Encoding Structure focus on imposing structure to data elements, they do not impose any requirements on how these data elements will be presented to the user. FHIR Composition resource is designed for presentation structure using elements like *section*.
 
 > FHIR is currently working on integrating FHIR DiagnosticReport and Composition to enable better presentation structure.
+
+##### Message Structure
+
+In the most basic form, the clinical report is conveyed between the sender and the receiver using some kind of message format. The message format defines a structure for the overall payload, including the metadata and the actual report content. For example, HL7 v2 ORU messages or FHIR DiagnosticReport resources define such a message structure that governs where different content should be placed, such as patient, order, report content, etc.
+
+The [Results Distribution](https://www.ihe.net/uploadedFiles/Documents/Radiology/IHE_RAD_Suppl_RD.pdf) Profile specifies using HL7 v2 ORU as the message structure while this Interactive Multimedia Report profile specifies using FHIR DiagnosticReport resource as the message structure.
 
 The primary goal of this Interactive Multimedia Report Profile is to focus on Message Structure and Report Content Structure, introduce the ability to capture report content with some interactive links that referencing other contents such as the source images in which the measurements are derived from. It is not the intention of this profile to require fully coded content in the report.
 
