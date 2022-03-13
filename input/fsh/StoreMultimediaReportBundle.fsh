@@ -6,7 +6,7 @@ Description:    "IHE Interactive Multimedia Report (IMR) profile on Bundle"
 * meta.profile 1..*
 * type = #transaction
 * entry ^slicing.discriminator.type = #profile
-* entry ^slicing.discriminator.path = "resource"
+* entry ^slicing.discriminator.path = resource
 * entry ^slicing.rules = #closed
 * entry ^slicing.description = "Slicing based on the profile conformance of the entry"
 * entry and entry.resource MS
