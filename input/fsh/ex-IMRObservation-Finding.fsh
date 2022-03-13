@@ -21,8 +21,7 @@ Within the pulmonary parenchyma, there is diffuse peribronchovascular nodular an
  
 The patient is status post median sternotomy with intact sternal wires. No blastic or lytic lesion suspicious for malignancy is present. 
  
-Although this study is not tailored for the evaluation of subdiaphragmatic contents, the imaged upper abdomen demonstrates diffuse hypoattenuation of the liver consistent with hepatic steatosis. 
-"
+Although this study is not tailored for the evaluation of subdiaphragmatic contents, the imaged upper abdomen demonstrates diffuse hypoattenuation of the liver consistent with hepatic steatosis."
 * component[+].code = DICOM#112002 "Series Instance UID"
 * component[=].valueString = "series/2.1/instance/6.1"
 * component[=].id = "1"
@@ -52,3 +51,4 @@ Although this study is not tailored for the evaluation of subdiaphragmatic conte
 * component[+].code = DICOM#113838 "DLP"
 * component[=].valueQuantity.value = 373
 * component[=].valueQuantity.code = UCUM#mGy.cm "mGy.cm"
+* component[=].valueQuantity.system = UCUM

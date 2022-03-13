@@ -23,7 +23,7 @@ Usage: #example
 * presentedForm.data = "VGhpcyBpcyBhIHNhbXBsZQ=="
 * presentedForm.contentType = MIME#text/html "HTML"
 * presentedForm.hash = "25DF2D14B7A81BF0582323E1B337E9EE03C03C10"
-* presentedForm.size = 25
+* presentedForm.size = 16
 
 Instance: ex-Organization
 InstanceOf: Organization
