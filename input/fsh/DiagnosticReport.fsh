@@ -8,7 +8,7 @@ Description:    "IHE Interactive Multimedia Report (IMR) profile on DiagnosticRp
 * basedOn 1..* MS
 
 * basedOn ^slicing.discriminator.type = #type
-* basedOn ^slicing.discriminator.path = DiagnosticReport.basedOn.resolve()
+* basedOn ^slicing.discriminator.path = resolve()
 * basedOn ^slicing.rules = #open
 * basedOn ^slicing.description = "Slice based on the basedOn reference type"
 * basedOn ^slicing.ordered = false
@@ -32,7 +32,7 @@ Description:    "IHE Interactive Multimedia Report (IMR) profile on DiagnosticRp
 * performer 1..*
 
 * performer ^slicing.discriminator.type = #type
-* performer ^slicing.discriminator.path = DiagnosticReport.performer.resolve()
+* performer ^slicing.discriminator.path = resolve()
 * performer ^slicing.rules = #open
 * performer ^slicing.description = "Slice based on the performer reference type"
 * performer ^slicing.ordered = false
@@ -40,17 +40,9 @@ Description:    "IHE Interactive Multimedia Report (IMR) profile on DiagnosticRp
 * performer contains organization 1..1
 * performer[organization] only Reference(Organization)
 
-// At least one resultsInterpreter is a Practitioner
+// At least one resultsInterpreter is a Practitioner or PractitionerRole
 * resultsInterpreter 1..*
-
-* resultsInterpreter ^slicing.discriminator.type = #type
-* resultsInterpreter ^slicing.discriminator.path = DiagnosticReport.resultsInterpreter.resolve()
-* resultsInterpreter ^slicing.rules = #open
-* resultsInterpreter ^slicing.description = "Slice based on the resultsInterpreter reference type"
-* resultsInterpreter ^slicing.ordered = false
-
-* resultsInterpreter contains practitioner 1..*
-* resultsInterpreter[practitioner] only Reference(Practitioner or PractitionerRole)
+* resultsInterpreter only Reference(Practitioner or PractitionerRole)
 
 // May include result which captured measurements
 * result 1..* MS
@@ -66,7 +58,7 @@ Description:    "IHE Interactive Multimedia Report (IMR) profile on DiagnosticRp
 * presentedForm 1..* MS
 
 * presentedForm ^slicing.discriminator.type = #pattern
-* presentedForm ^slicing.discriminator.path = "presentedForm.contentType"
+* presentedForm ^slicing.discriminator.path = contentType
 * presentedForm ^slicing.rules = #open
 * presentedForm ^slicing.description = "Slice based on the presentedForm content type"
 * presentedForm ^slicing.ordered = false

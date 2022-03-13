@@ -9,7 +9,7 @@ Usage: #example
 * partOf = Reference(ImagingStudy/ex-ImagingStudy)
 * status = FHIRObservationStatus#final
 * category.coding = FHIRObservation#imaging "Imaging"
-* code = LOINC#59776-5 "Procedure Findings"
+* code = LOINC#59776-5 "Procedure findings Narrative"
 * subject = Reference(Patient/ex-Patient)
 * effectiveDateTime = 2020-12-31T23:50:50-05:00
 * method.text = "Volumetric, multidetector CT of the chest was performed without intravenous or oral contrast administration. Images are presented for display in the axial plane at 5 mm and 1.25 mm collimation. A series of multiplanar reformation images are also submitted for review."

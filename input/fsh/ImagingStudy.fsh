@@ -8,7 +8,7 @@ Description:    "IHE Interactive Multimedia Report (IMR) profile on ImagingStudy
 * identifier 1..*
 
 * identifier ^slicing.discriminator.type = #pattern
-* identifier ^slicing.discriminator.path = "type.coding"
+* identifier ^slicing.discriminator.path = type.coding
 * identifier ^slicing.rules = #open
 * identifier ^slicing.description = "Slice based on the identifier.type.coding"
 * identifier ^slicing.ordered = false
@@ -28,7 +28,7 @@ Description:    "IHE Interactive Multimedia Report (IMR) profile on ImagingStudy
 * basedOn 0..*
 
 * basedOn ^slicing.discriminator.type = #type
-* basedOn ^slicing.discriminator.path = ImagingStudy.basedOn.resolve()
+* basedOn ^slicing.discriminator.path = resolve()
 * basedOn ^slicing.rules = #open
 * basedOn ^slicing.description = "Slice based on the basedOn reference type"
 * basedOn ^slicing.ordered = false

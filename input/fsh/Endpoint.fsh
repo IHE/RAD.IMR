@@ -7,16 +7,7 @@ Description:    "IHE Interactive Multimedia Report (IMR) profile on Endpoint for
 * connectionType from IMRStudyEndpointConnectionTypeVS (required)
 
 * payloadType 1..1
-
-* payloadType ^slicing.discriminator.type = #pattern
-* payloadType ^slicing.discriminator.path = "coding"
-* payloadType ^slicing.rules = #open
-* payloadType ^slicing.description = "Slice based on the payloadType.coding"
-* payloadType ^slicing.ordered = false
-
-* payloadType contains study 1..1 MS
-* payloadType[study].coding from IMRStudyEndpointPayloadTypeVS (extensible)
-
+* payloadType.coding from IMRStudyEndpointPayloadTypeVS (extensible)
 
 ValueSet: IMRStudyEndpointConnectionTypeVS
 Id: imr-study-endpoint-connectiontype-vs

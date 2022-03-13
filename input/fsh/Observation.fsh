@@ -8,7 +8,7 @@ Description:    "IHE Interactive Multimedia Report (IMR) profile on Observation"
 * basedOn 1..* MS
 
 * basedOn ^slicing.discriminator.type = #type
-* basedOn ^slicing.discriminator.path = Observation.basedOn.resolve()
+* basedOn ^slicing.discriminator.path = resolve()
 * basedOn ^slicing.rules = #open
 * basedOn ^slicing.description = "Slice based on the basedOn reference type"
 * basedOn ^slicing.ordered = false
@@ -45,7 +45,7 @@ Description:    "IHE Interactive Multimedia Report (IMR) profile on Observation"
 * derivedFrom 0..* MS
 
 * derivedFrom ^slicing.discriminator.type = #type
-* derivedFrom ^slicing.discriminator.path = Observation.derivedFrom.resolve()
+* derivedFrom ^slicing.discriminator.path = resolve()
 * derivedFrom ^slicing.rules = #open
 * derivedFrom ^slicing.description = "Slice based on the derivedFrom reference type"
 * derivedFrom ^slicing.ordered = false

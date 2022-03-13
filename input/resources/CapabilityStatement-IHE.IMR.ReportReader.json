@@ -99,12 +99,6 @@
                 "documentation": "Kind of facility where patient was seen"
               },
               {
-                "name": "format",
-                "definition": "http://hl7.org/fhir/SearchParameter/DocumentReference-format",
-                "type": "token",
-                "documentation": "Format/content rules for the document"
-              },
-              {
                 "name": "identifier",
                 "definition": "http://hl7.org/fhir/SearchParameter/clinical-identifier",
                 "type": "token",
@@ -115,42 +109,6 @@
                 "definition": "http://hl7.org/fhir/SearchParameter/clinical-patient",
                 "type": "reference",
                 "documentation": "Who/what is the subject of the document"
-              },
-              {
-                "name": "period",
-                "definition": "http://hl7.org/fhir/SearchParameter/DocumentReference-period",
-                "type": "date",
-                "documentation": "Time of service that is being documented"
-              },
-              {
-                "name": "related",
-                "definition": "http://hl7.org/fhir/SearchParameter/DocumentReference-related",
-                "type": "reference",
-                "documentation": "Related Resource"
-              },
-              {
-                "name": "security-label",
-                "definition": "http://hl7.org/fhir/SearchParameter/DocumentReference-security-label",
-                "type": "token",
-                "documentation": "Document security-tags"
-              },
-              {
-                "name": "setting",
-                "definition": "http://hl7.org/fhir/SearchParameter/DocumentReference-setting",
-                "type": "token",
-                "documentation": "Additional details about where the content was created (e.g. clinical specialty)"
-              },
-              {
-                "name": "status",
-                "definition": "http://hl7.org/fhir/SearchParameter/DocumentReference-status",
-                "type": "token",
-                "documentation": "current | superseded | entered-in-error"
-              },
-              {
-                "name": "type",
-                "definition": "http://hl7.org/fhir/SearchParameter/clinical-patient",
-                "type": "reference",
-                "documentation": "Kind of document (LOINC if possible)"
               }
             ]
           }
