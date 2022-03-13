@@ -10,12 +10,3 @@ Usage: #example
 * intent = FHIRRequestIntent#order
 * category.coding = SCT#363679005 "Imaging"
 * subject = Reference(Patient/ex-Patient)
-* reasonReference = Reference(Condition/ex-Condition)
-
-
-Instance: ex-Condition
-InstanceOf: Condition
-Description: "Sample patient history."
-Usage: #example
-* subject = Reference(Patient/ex-Patient)
-* note.text = "History: 24M with stent placement in the left main bronchus presents with right sided chest pain since 9am"
