@@ -1,0 +1,57 @@
+{
+    "resourceType": "CapabilityStatement",
+    "id": "IHE.IMR.ReportCreator",
+    "text": {
+      "status": "additional",
+      "div": "<div xmlns=\"http://www.w3.org/1999/xhtml\">\n\tThis Requirements CapabilityStatement describes the Report Creator.\n\t</div>"
+    },
+    "url": "http://profiles.ihe.net/RAD/IMR/CapabilityStatement/IHE.IMR.ReportCreator",
+    "name": "IHE_IMR_ReportCreator",
+    "title": "Report Creator",
+    "status": "active",
+    "experimental": false,
+    "date": "2022-02-20T00:00:00-05:00",
+    "publisher": "Integrating the Healthcare Enterprise (IHE)",
+    "contact": [
+      {
+        "name": "IHE",
+        "telecom": [
+          {
+            "system": "url",
+            "value": "http://ihe.net"
+          }
+        ]
+      },
+      {
+        "name": "IHE Radiology Technical Committee",
+        "telecom": [
+          {
+            "system": "email",
+            "value": "radiology@ihe.net"
+          }
+        ]
+      }
+    ],
+    "description": "IHE Radiology Interactive Multimedia Report (IMR) - Report Creator",
+    "copyright": "IHE http://www.ihe.net/Governance/#Intellectual_Property",
+    "kind": "requirements",
+    "fhirVersion": "4.0.0",
+    "format": [
+      "application/fhir+xml",
+      "application/fhir+json"
+    ],
+    "rest": [
+        {
+            "mode": "client",
+            "security": {
+                "description": "Recommend IUA or SMART"
+            },
+            "interaction": [
+                {
+                    "code": "transaction",
+                    "documentation": "https://profiles.ihe.net/RAD/IMR/StructureDefinition/imr-store-multimedia-report-bundle"
+                }
+            ]
+        }
+    ]
+}

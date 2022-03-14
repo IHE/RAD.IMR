@@ -1,13 +1,13 @@
 {
     "resourceType": "CapabilityStatement",
-    "id": "IHE.IMR.ReportReader",
+    "id": "IHE.IMR.RenderedReportReader",
     "text": {
       "status": "additional",
-      "div": "<div xmlns=\"http://www.w3.org/1999/xhtml\">\n\tThis Requirements CapabilityStatement describes the Report Reader.\n\t</div>"
+      "div": "<div xmlns=\"http://www.w3.org/1999/xhtml\">\n\tThis Requirements CapabilityStatement describes the Rendered Report Reader.\n\t</div>"
     },
-    "url": "http://profiles.ihe.net/RAD/IMR/CapabilityStatement/IHE.IMR.ReportReader",
-    "name": "IHE_IMR_ReportReader",
-    "title": "Report Reader",
+    "url": "http://profiles.ihe.net/RAD/IMR/CapabilityStatement/IHE.IMR.RenderedReportReader",
+    "name": "IHE_IMR_RenderedReportReader",
+    "title": "Rendered Report Reader",
     "status": "active",
     "experimental": false,
     "date": "2022-02-20T00:00:00-05:00",
@@ -32,7 +32,7 @@
         ]
       }
     ],
-    "description": "IHE Radiology Interactive Multimedia Report (IMR) - Report Reader",
+    "description": "IHE Radiology Interactive Multimedia Report (IMR) - Rendered Report Reader",
     "copyright": "IHE http://www.ihe.net/Governance/#Intellectual_Property",
     "kind": "requirements",
     "fhirVersion": "4.0.0",
