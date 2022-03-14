@@ -94,21 +94,14 @@
                 "documentation": "The high level category of this report"
               },
               {
-                "name": "effectiveDateTime",
-                "type": "date",
-                "documentation": "Kind of facility where patient was seen"
-              },
-              {
-                "name": "identifier",
-                "definition": "http://hl7.org/fhir/SearchParameter/clinical-identifier",
+                "name": "code",
                 "type": "token",
-                "documentation": "The identifier for this DocumentReference"
+                "documentation": "The type of this report"
               },
               {
-                "name": "patient",
-                "definition": "http://hl7.org/fhir/SearchParameter/clinical-patient",
+                "name": "resultsInterpreter",
                 "type": "reference",
-                "documentation": "Who/what is the subject of the document"
+                "documentation": "The primary result interpreter of this report"
               }
             ]
           }
