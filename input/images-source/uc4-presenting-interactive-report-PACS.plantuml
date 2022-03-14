@@ -12,7 +12,7 @@ end box
 participant "Report Repository" as Repo
 participant "Image Manager/\nImage Archive" as Archive
 
-Radiologist->>RCreator: //Dictate study//
+Radiologist->>RCreator: //Begin Dictation//
 Radiologist->>Display: //View current study with prior studies and//\n//associated multimedia reports//
 Display->>Archive: //Retrieve current and prior studies//
 Display->>Display: //Display study//
@@ -28,7 +28,8 @@ such as measurements and image references.
 end note
 
 Radiologist->>Reader: //Click on image references in Report//
-Reader->>Display: //View series in prior study//\n//(internal communication)//
+Reader->>Display: //Launch images from prior study//\n//(internal communication)//
+Display->>Display: //Display images//
 note over Display
 Since the Image Display is the more feature-rich radiology workstation,
 the Image Display has more capability to display the referenced images
@@ -45,10 +46,10 @@ end
 Radiologist->>Display: //Interact with images and/or series//\n//such as scrolling, re-measure//
 end loop
 
+end
+
 Radiologist->>RCreator: //End Dictation//
 RCreator->>RCreator: //Generate new multimedia report for current study//\n//following Use Case 1//
-
-end
 
 
 @enduml

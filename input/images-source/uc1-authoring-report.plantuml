@@ -7,23 +7,17 @@ participant "Report Repository" as Repo
 participant "Report Reader" as Reader
 participant "Rendered Report Reader" as RenderedReader
 
-Rad->>RCreator: //Dictate study//
-RCreator->>RCreator: //Receive multimedia content//
+Rad->>RCreator: //Dictate study//\n//with multimedia references//
 note over RCreator
 E.g. image references or measurements
 from user or AI
 end note
 Rad->>RCreator: //End dictation//
 
-group IMR Encode Report with embedded Multimedia Content
-RCreator->RCreator: Generate interactive multimedia report
-
-opt Select one or more destinations
+RCreator->>RCreator: //Select report destination(s)//
 RCreator->Repo: Store multimedia report [RAD-Y1]
 RCreator->Reader: Store multimedia report [RAD-Y1]
 RCreator->RenderedReader: Store multimedia report [RAD-Y1]
-end opt
 
-end group
 
 @enduml

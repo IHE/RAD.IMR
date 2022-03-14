@@ -13,7 +13,7 @@ participant "Image Display" as Display
 participant "Image Manager/\nImage Archive" as Archive
 
 Clinician->>EMR: //Request multimedia report//
-group IMR Interactive Viewing of Multimedia Content in Report
+
 EMR->Repo: Find Multimedia Report [RAD-Y3]
 EMR->EMR: Display Multimedia Report [RAD-Y2]
 note over EMR
@@ -34,7 +34,5 @@ Display->Display: Display Images [RAD-Y5]
 
 Clinician->>Display: //Interact with images and/or series//
 end loop
-
-end
 
 @enduml
