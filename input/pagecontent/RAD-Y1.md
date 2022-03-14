@@ -268,7 +268,11 @@ Once the bundle is validated, the Receiver shall store the report and all associ
 
 A Receiver is permitted to coerce resource values that violate IMR requirements.
 
-The Receiver may extract the embedded rendered report(s) in DiagnosticReport.presentedForm.data, store them and substitute the corresponding DiagnosticReport.presentedForm with a URL (i.e. DiagnosticReport.presentedForm.url) instead. The Receiver shall maintain the integrity of the report if the report is extracted.
+The Receiver shall be able to retrieve the hosted rendered report(s) in DiagnosticReport.presentedForm.url and embed them in the corresponding DiagnosticReport.presentedForm.data.
+
+The Receiver may extract the embedded rendered report(s) in DiagnosticReport.presentedForm.data, store them and substitute the corresponding DiagnosticReport.presentedForm with a URL (i.e. DiagnosticReport.presentedForm.url) instead.
+
+The Receiver shall maintain the integrity of the report if the report access method is modified (i.e. from embedded to hosted, or vice versa).
 
 If the Receiver encounters any errors or if any validation fails, the Receiver shall return an appropriate error.
 
