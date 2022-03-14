@@ -27,6 +27,7 @@ Description:    "IHE Interactive Multimedia Report (IMR) profile on DiagnosticRp
 * effectiveDateTime 1..1 MS
 
 * issued 1..1
+* issued ^short = "DateTime that this diagnostic report is signed-off and published."
 
 // At least one performer is an Organization
 * performer 1..*
