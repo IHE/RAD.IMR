@@ -191,9 +191,9 @@ The Requester may show the attributes in the query response to the user.
 
 #### 2:4.Y3.4.4 CapabilityStatement Resource
 
-Responders implementing this transaction shall provide a CapabilityStatement Resource as described in [ITI TF-2: Appendix Z.3](https://profiles.ihe.net/ITI/TF/Volume2/ch-Z.html#z.3-capabilitystatement-resource) indicating the transaction has been implemented. 
+Requesters and Responders implementing this transaction shall provide a CapabilityStatement Resource as described in [ITI TF-2: Appendix Z.3](https://profiles.ihe.net/ITI/TF/Volume2/ch-Z.html#z.3-capabilitystatement-resource) indicating the transaction has been implemented. 
 
-TODO: Create the capability statements
+- Requirements CapabilityStatement for the [Requester](CapabilityStatement-IHE.IMR.ReportReader.html).
 
 ### 2:4.Y3.5 Security Considerations
 
