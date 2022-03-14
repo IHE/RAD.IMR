@@ -84,12 +84,12 @@ Description: "A ValueSet that allows read or write actions. Where the resource w
 
 
 
-Profile:        IMRProvideReportBundleResponse
+Profile:        IMRStoreMultimediaReportBundleResponse
 Parent:         Bundle
-Id:             imr-provide-report-bundle-response
-Title:          "IMR Provide Report Bundle Response"
+Id:             imr-store-multimedia-report-bundle-response
+Title:          "IMR Store Multimedia Report Bundle Response"
 Description:    """
-A profile on the Bundle transaction-response for [RAD-Y3] Query Multimedia Report Bundle response.
+A profile on the Bundle transaction-response for [RAD-Y1] Store Multimedia Report Response.
 
 - shall be a transaction response
 - shall have at least 1 entry for each entry in the request, in the same order as received in the request
