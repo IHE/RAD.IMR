@@ -183,6 +183,8 @@ The Rendered Instance Retrieve Option enables a Report Reader to retrieve render
 
 A Report Reader that supports this option shall use WADO-RS Retrieve [RAD-107] to retrieve rendered images from an Image Manager / Image Archive.
 
+> Note that the retrieve rendered images functionality is available in CP-RAD-475.
+
 The requests shall use the information in DiagnosticReport.result.derivedFrom.endpoint.address and DiagnosticReport.result.component.valueString to construct valid WADO-RS URLs that conform to the semantics as RetrieveInstance or RetrieveFrames as defined in WADO-RS Retrieve [RAD-107], retrieve the corresponding rendered images.
 
 A Report Reader that also supports the Series/Study Navigation Option shall be able to construct WADO-RS URLs that confirm to the RetrieveSeries and RetrieveStudy semantics.
@@ -193,13 +195,13 @@ The External IID Image Display Retrieve Option utilizes the Invoke Image Display
 
 A Report Reader that supports this option is grouped with an IID Image Display Invoker and shall use the Invoke Image Display [RAD-106] transaction to invoke an external Image Display.  The Report Reader shall translate the embedded image references and endpoints in the DiagnosticReport resource into corresponding Invoke Image Display [RAD-106] URLs.
 
-An Image Display that supports this option shall support the Invoke Image Display [RAD-106] transaction as an Image Display.  <<TO DO:  IS THIS TRUE?>>  When the Image Display receives a [RAD-106] request, it retrieves the requested images from an Image Manager / Image Archive.
+An Image Display that supports this option shall support the Invoke Image Display [RAD-106] transaction as an Image Display. When the Image Display receives a [RAD-106] request, it retrieves the requested images from an Image Manager / Image Archive.
 
-> Note that the Retrieve Display of Series Images functionality and IHE-IMR viewer type are available in CP-RAD-xxx.
+> Note that the Retrieve Display of Series Images functionality and IHE-IMR viewer type are available in CP-RAD-474.
 
 The Invoke Image Display requests shall have the same semantics as Retrieve Display of Series Images or Retrieve Display of Study Images in Invoke Image Display [RAD-106].
 
-> Note: [RAD-106] currently does not support invoking an Image Display at the series level nor the IHE-IMR viewer type. Retrieve Display of Series Images functionality and IHE-IMR viewer type are available in CP-RAD-xxx.
+> Note: [RAD-106] currently does not support invoking an Image Display at the series level nor the IHE-IMR viewer type. Retrieve Display of Series Images functionality and IHE-IMR viewer type are available in CP-RAD-474.
 
 > Note: A Report Reader that supports this Option can also support the Series/Study Navigation Option, as the Image Display Invoker always invokes the Image Display at the series or study level.
 
