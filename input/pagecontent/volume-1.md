@@ -300,13 +300,9 @@ These contents should be available to the report authoring system so that it can
 
 #### 1:XX.4.1.3 Real Time Communication between Image Display / Evidence Creator and Report Creator
 
-A key element for an IMR is the ability to include clinical findings such as measurements, ROI, etc. with interactive links to the source images. Traditionally, these annotations, markups, presentation states, and key images could be captured as DICOM objects such as GSPS, SR, or KOS. These objects are designed to capture evidence for long-term reference instead of real-time communication or composition. Most PACS will create these evidence objects at the end of a session in order to capture all the data points created by the image-centric specialist in one object, rather than create multiple evidence objects resulting in one per data point. As a result, these evidence objects in DICOM are good resources for subsequent interactive access when viewing an IMR, but not good candidates as the payload for real-time communication during a reporting session. As the image-centric specialist captures measurements, regions of interest, and other data points, the PACS should provide those data points to the reporting system in real-time without introducing any unnecessary interruptions, or adding transitory content to the permanent record.
+A key element for an IMR is the ability to include clinical findings such as measurements, ROI, etc. with interactive links to the source images. Traditionally, these annotations, markups, presentation states, and key images could be captured as DICOM objects such as GSPS, SR, or KOS. These objects are designed to capture evidence for long-term reference instead of real-time communication or composition. Most PACS will create these evidence objects at the end of a session in order to capture all the data points created by the image-centric specialist in one object, rather than create multiple evidence objects resulting in one per data point. As a result, these evidence objects in DICOM are good resources for subsequent interactive access when viewing an IMR, but not good candidates as the payload for real-time communication during a reporting session. As the image-centric specialist captures measurements, regions of interest, and other data points, ideally the PACS can provide those data points to the reporting system in real-time without introducing any unnecessary interruptions, or adding transitory content to the permanent record.
 
-Several technologies could be used to implement such communication channels. For example, HL7’s [FHIRcast](https://fhircast.org/) uses the publish/subscribe model. It uses the WebSub W3C standard and originated as an application context synchronization standard that extends the SMART on FHIR authentication pattern. When applying FHIRcast in the context of IMR, the PACS can publish messages regarding the exam (e.g. identifier of a radiology exam) as well as granular context sharing of specific images and measurements (e.g., measurement details and referenced images), and one or more systems can subscribe to this notification and respond accordingly; in particular, a dictation system might launch in exam context, as well as insert the measurements or image references during dictation. The message payload, or event, in FHIRcast is a FHIR resource, such as an Observation. 
-
-For scenarios when both the image viewing system and report authoring system are webapps, FHIRcast may be too heavyweight due to the need for a mediator. The proposed [SMART Web Messaging](https://github.com/HL7/smart-web-messaging) standard is a lightweight alternative that can transmit the same event payloads as FHIRcast, over HTML5 web messaging. This enables two systems to communicate in the same browser process using the same payloads that FHIRcast integration uses, thereby enabling the developers to integrate rapidly, then progressively enhance the solution towards FHIRcast without modifying the event payloads.
-
-It is important to note that this real-time communication is not limited to IMR but generally applicable to many contexts. A realtime mechanism to share granular context from an image viewing system could create a plug-in architecture for decision support systems to extend the image analysis and reporting process. In our prior example, an AI system might be notified of a new measurement, pull the measurement source image and automatically identify the anatomic location and Lung-Rads score that could then be transmitted to the reporting system.
+Note that this real time communication is currently out of scope of IMR.
 
 #### 1:XX.4.1.4 Placement of Multimedia Content
 
@@ -319,14 +315,14 @@ This sophisticated placement of multimedia contents requires a more complex inte
 #### 1:XX.4.1.5 Image References in Report 
 
 Each image reference may references
-- a single image (e.g. Object 10)
-- a range of images (e.g. Object 10-12)
-- a discrete set of images (e.g. Object 10,14,17)
-- a combination of the above (e.g. Object 10-12,14,17-20)
+- a single image (e.g. Frame 10)
+- a range of images across multiple single-frame objects (e.g. Object 3-5) or within a multi-frame object (e.g. Frame 10-12)
+- a discrete set of images (e.g. Frame 10,14,17)
+- a combination of the above (e.g. Frame 10-12,14,17-20)
 
 In most cases, the image references refer to the same study context as the study being reported on. Occasionally, the image references may refer to a comparison study that is used during reporting.
 
-In addition to reference an object as a whole, sometimes the reference is specific to a region of interest in the object. The region of interest (ROI) can be one or more points, a line or a segmented line (e.g. polyline), a geometric shape (e.g. ellipse, polygon), or a volume (e.g. ellipsoid).
+In addition to referencing a frame as a whole, sometimes the reference is specific to a region of interest in the frame. The region of interest (ROI) can be one or more points, a line or a segmented line (e.g. polyline), a geometric shape (e.g. ellipse, polygon), or a volume (e.g. ellipsoid).
 
 #### 1:XX.4.1.6 Level of Interactivity
 
@@ -356,6 +352,25 @@ Since a DiagnosticReport resource includes many references to other resources, s
 
 Optionally, a FHIR server may support the [_include](http://hl7.org/fhir/search.html#include) search result parameters. If the requester specifies this parameter in the search request, then the FHIR Server will include all referenced resources in the same response. The advantage is that the requester only needs to issue a single query result and the result will contain all the necessary data. The disadvantages are (1) the payload size may increase significantly, (2) the server will need to perform more work and may return the response slower, (3) it is an optional capability of the server.
 
+#### 1:XX.4.1.8 Deployment Considerations of IMR
+
+IMR uses FHIR for defining the format of the diagnostic report as well as the protocol to communicate the report with other systems. Since FHIR is an emerging technology in many existing deployments, several considerations should be taken when deploying IMR in an existing environment:
+
+##### Deploying IMR in environment with existing FHIR infrastructure
+
+IMR can be deployed in an existing FHIR infrastructure. The existing FHIR Server can act as the Report Repository with some additional IMR specific support (e.g. handling of the DiagnosticReport.presentedForm). New Report Creator, Report Reader and Rendered Report Reader are introduced and they interact with the Report Repository.
+
+In this case, many of the *organizational* level resources such as `Patient`, `Organization`, `Practitioner` and `PractitionerRole` may already exist in the Report Repository. Therefore the Report Creator may discover these existing resources prior to create the report. When the Report Creator eventually stores the multimedia report to the Report Repository, the FHIR bundle request can reference these existing organizational resources while creating the new IMR DiagnosticReport resource in the same transaction.
+
+##### Deploying IMR in environment without existing FHIR infrastructure
+
+IMR can be deployed in an environment without an existing FHIR infrastructure, or in an environment in which the existing FHIR infrastructure cannot be used. In this case, a new FHIR infrastructure is required.
+
+Note that in this situation, although the *organizational* level resources such as `Patient`, `Organization`, `Practitioner` and `PractitionerRole` may already exist somewhere (e.g. in EMR), but they may not exist in the new FHIR infrastructure used for IMR. There are two general approaches to address this situation:
+
+- Backfill the new FHIR infrastructure with these existing *organizational* level resources, and introduce a new method for ongoing synchronization. This is out of scope of IMR.
+- When the Report Creator stores the multimedia report to the Report Repository, it uses the `ifNoneExist` attribute in [Bundle.request](https://www.hl7.org/fhir/bundle.html) to specify conditional create. A separate method is still required for ongoing synchronization.
+
 ### 1:XX.4.2 Use Cases
 
 This profile is focused on encoding multimedia contents in diagnostic reports such that later the user can interact with the embedded multimedia contents in the reports.
@@ -382,6 +397,10 @@ Figure 1:XX.4.2.1.2-1 shows the dictation session as background context, and the
 #### 1:XX.4.2.2 Use Case 2: Consume and Interact with Multimedia Report by Standalone Report Reader
 
 ##### 1:XX.4.2.2.1 Consume and Interact with Multimedia Report by Standalone Report Reader Use Case Description
+
+A clinician wants to review studies and associated diagnostic reports for a patient. She searches the EMR for the patient. The EMR searches for available procedures and studies for the patient as well as any reports available for each procedure and/or study found based on accession number. As a result, the EMR returns a list of studies and associated diagnostic reports for the patient.
+
+> Note that in some cases, for example a group case in which a requested procedure resulted in multiple performed procedures (e.g. chest, abdomen, pelvis). In this case, multiple diagnostic reports for each performed procedure may be created.
 
 Upon reviewing reports for a patient in the EMR which natively supports as an IMR Report Reader, the EMR encounters an IMR multimedia report. It processes the report content and displays the reports with interactive links. The Clinician clicks on the interactive links. The EMR / Report Reader retrieves the rendered images from the Image Manager / Image Archive and displays the images with interactive tools. The Clinicians can navigate the series and see the measurements with annotations as described in the report.
 
