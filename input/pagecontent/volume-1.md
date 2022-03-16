@@ -15,7 +15,7 @@ Both appendices are located at <http://ihe.net/Technical_Frameworks/#GenIntro>.
 Figure 1:XX.1-1 shows the actors directly involved in the IMR Profile and the relevant transactions
 between them. If needed for context, other actors that may be indirectly involved due to their participation
 in other related profiles are shown in dotted lines. Actors which have a required
-grouping are shown in conjoined boxes (see [Section 1:XX.3[(#1xx3-imr-required-actor-groupings)).
+grouping are shown in conjoined boxes (see [Section 1:XX.3](#1xx3-imr-required-actor-groupings)).
 
 <div>
 {%include IHE_IMR_actor.drawio.png%}
