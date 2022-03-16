@@ -76,6 +76,9 @@ pages:
   issues.md:
     title: Open and Closed issues
     generation: markdown
+  other.md:
+    title: Changes to Other Documents
+    generation: markdown
 
 menu:
   IMR Home: index.html
@@ -95,3 +98,4 @@ menu:
     "Display Referenced Images in Multimedia Report [RAD-Y5]": RAD-Y5.html
   Test Plan: testplan.html
   Artifacts: artifacts.html
+  Other: other.html
