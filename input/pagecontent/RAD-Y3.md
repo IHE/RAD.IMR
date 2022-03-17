@@ -72,7 +72,7 @@ The Requester shall be capable of providing the parameters attributes and query 
 
 The Responder shall support the parameters attributes and query types as indicated by Responder Optionality 'R' in Table 2:4.Y3.4.1.2.1-1 below.
 
-Table 2:4.Y3.4.1.2.1-1 Find Multimedia Report Query Search Parameters
+**Table 2:4.Y3.4.1.2.1-1 Find Multimedia Report Query Search Parameters**
 
 | Domain   | Attribute | Search Parameters <br> See Note 3 | Query Type <br> See Note 1, 2 and 4 | Requester Optionality | Responder Optionality |
 |----------|-----------|-------------------|------------|-----------------------|-----------------------|
@@ -171,7 +171,7 @@ The Responder shall return the query results in the encoding (XML or JSON) speci
 
 The response shall adhere to any FHIR Bundle constraints specified in [ITI TF-2: Appendix Z.1](https://profiles.ihe.net/ITI/TF/Volume2/ch-Z.html#z.1-resource-bundles).
 
-The Responder shall return the full content of matching DiagnosticReport resources in the returned bundle. The Responder may support additional search result parameters (e.g. _summary, _elements, _include, etc.) and return the modified results accordingly.
+The Responder shall return the full content of matching DiagnosticReport resources in the returned bundle. The Responder may support additional search result parameters (e.g., _summary, _elements, _include, etc.) and return the modified results accordingly.
 
 ###### 2:4.Y3.4.2.2.1 DiagnosticReport Resource Contents
 
