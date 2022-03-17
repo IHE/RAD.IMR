@@ -10,7 +10,7 @@ This profile defines content for data encoding, transactions for communicating t
 This section defines the actors, transactions, and/or content modules in this profile. General
 definitions of actors are given in the Technical Frameworks General Introduction Appendix A.
 IHE Transactions can be found in the Technical Frameworks General Introduction Appendix B.
-Both appendices are located at <http://ihe.net/Technical_Frameworks/#GenIntro>.
+Both appendices are located at <https://profiles.ihe.net/GeneralIntro/>.
 
 Figure 1:XX.1-1 shows the actors directly involved in the IMR Profile and the relevant transactions
 between them. If needed for context, other actors that may be indirectly involved due to their participation
@@ -116,7 +116,7 @@ A Rendered Report Reader receives multimedia reports directly from Report Creato
 
 A Rendered Report Reader provides [Level 1 Interactivity](#1xx416-level-of-interactivity) as discussed in Section 1:XX.4.1.6.
 
-> Note that there are no additional image viewing capabilities required for Rendered Report Readers. In other words, the image viewing capabilities presented by the Rendered Report Readers is limited by how the Report Creator created the rendered report. For example, for image references, one Report Creator may render them using WADO-RS links which will show a static rendered image, while another Report Creator may render them using IID Invoke Image Display links which will launch a viewer to show the referenced image with additional interactivity such as scrolling, zooming, etc..
+> Note that there are no additional image viewing capabilities required for Rendered Report Readers. In other words, the image viewing capabilities presented by the Rendered Report Readers is limited by how the Report Creator created the rendered report. For example, for image references, one Report Creator may render them using WADO-RS links which will show a static rendered image, while another Report Creator may render them using IID Invoke Image Display links which will launch a viewer to show the referenced image with additional interactivity such as scrolling, zooming, etc.
 
 #### 1.XX.1.1.5 Image Manager / Image Archive
 
