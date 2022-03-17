@@ -10,7 +10,7 @@ The specification is about the baseline display behaviors required for image ref
 
 The roles in this transaction are defined in the following table and may be played by the actors shown here:
 
-**Table: Actor Roles**
+**Table 2:4.Y5.2-1: Actor Roles**
 
 **Introduce Display role**
 
@@ -47,7 +47,7 @@ The images are encoded as DICOM SOP instances.
 
 Display of images does not depend on how the images were obtained by the Display.
 
-#### 2:4.Y5.4.1.3 Expected Actions (i.e. Display Requirements)
+#### 2:4.Y5.4.1.3 Expected Actions (i.e., Display Requirements)
 
 The behaviors in this section are specified as baseline capabilities. Displays may have additional or alternative capabilities that may be invoked or configured.
 
@@ -57,9 +57,10 @@ The Image Display shall display all requested DICOM objects for which it claims 
 
 > Note: Grouping with other profiles, such as CPI, SINR, and KIN, may require more specific behavior for non-image objects.
 
-The Display shall support image viewing capabilities as defined in [Basic Image Review (BIR)](https://www.ihe.net/uploadedFiles/Documents/Radiology/IHE_RAD_Suppl_BIR.pdf) Profile, Section 4.16.4.2.2.5 as defined in the Table 2:4.Y5.4.1.3-1:
+The Display shall support image viewing capabilities as defined in [Basic Image Review (BIR)](https://www.ihe.net/uploadedFiles/Documents/Radiology/IHE_RAD_Suppl_BIR.pdf) Profile, Section 4.16.4.2.2.5 as defined in Table 2:4.Y5.4.1.3-1:
 
-Table 2:4.Y5.4.1.3-1: Image Viewing Capability Required in IMR
+**Table 2:4.Y5.4.1.3-1: Image Viewing Capability Required in IMR**
+
 | Capability | BIR Reference | Requirement |
 |------------|---------------|-------------|
 | Simple Restricted Feature Set | Section 4.16.5.2.2.5.1 | Not Required |
