@@ -10,7 +10,18 @@
   "path" : "http://build.fhir.org/ig/IHE/RAD.IMR",
   "status" : "ci-build",
   "current" : true
- },{
+ },
+ {
+  "version" : "1.0.0-comment",  
+  "date" : "2022-03-12", 
+  "desc" : "Public Comment release for first IG authored version",   
+  "path" : "https://profiles.ihe.net/RAD/IMR/0.1.1-comment",   
+  "status" : "ballot",
+  "fhirversion" : "4.0.1",
+  "sequence" : "Public Comment",
+  "current" : true
+ },
+ {
   "version" : "0.1.0",  
   "date" : "2022-03-12", 
   "desc" : "Public Comment release for first IG authored version",   
@@ -18,6 +29,6 @@
   "status" : "ballot",
   "fhirversion" : "4.0.1",
   "sequence" : "Public Comment",
-  "current" : true
+  "current" : false
  }]
 }
