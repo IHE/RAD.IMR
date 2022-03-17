@@ -3,7 +3,7 @@ InstanceOf: IMRStoreMultimediaReportBundleResponse
 Title: "Store Multimedia Report Bundle Response example"
 Description: "Sample Store Multimedia Report Bundle Response in IMR"
 Usage: #example
-* meta.profile = "https://profiles.ihe.net/RAD/IMR/StructureDefinition/imr-store-multimedia-report-bundle-response"
+//* meta.profile = "https://profiles.ihe.net/RAD/IMR/StructureDefinition/imr-store-multimedia-report-bundle-response"
 * meta.security = http://terminology.hl7.org/CodeSystem/v3-ActReason#HTEST
 * type = #transaction-response
 * link[0].relation = "self"
