@@ -2,7 +2,11 @@
 # ───────────────────────────────────────────────────
 id: ihe.rad.imr
 canonical: https://profiles.ihe.net/RAD/IMR
-version: 1.0.0-comment
+version: 0.1.0
+#releaseLabel: ci-build
+releaseLabel: ballot
+#releaseLabel: Trial-Implementation
+date: 2022-03-18
 name: IHE_RAD_IMR
 title: "Interactive Multimedia Report"
 status: active
@@ -21,7 +25,7 @@ fhirVersion: 4.0.1
 jurisdiction: 'http://unstats.un.org/unsd/methods/m49/m49.htm#001'
 copyright: IHE http://www.ihe.net/Governance/#Intellectual_Property
 copyrightYear: 2021+
-releaseLabel: ci-build
+
 
 
 parameters:  # see https://confluence.hl7.org/display/FHIR/Implementation+Guide+Parameters
