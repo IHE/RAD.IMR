@@ -74,7 +74,7 @@ The Responder receives a Retrieve Rendered Report request from the Requester.
 
 The message is an HTTP GET response. The Requester is the User Agent. The Responder is the Origin Server.
 
-The Responser shall return an HTTP GET response as specified by RFC2616.
+The Responder shall return an HTTP GET response as specified by RFC2616.
 
 The Responder shall respond with an HTTP Status Code 200 when it successfully returns the requested rendered report to the Requester. The HTTP message-body shall be the content of the requested document.
 
@@ -94,7 +94,7 @@ In case of an error, the Responder shall return an HTTP Error Response Code for 
 
 The Responder may return other HTTP Status Codes. Guidance on handling Access Denied related to use of 200, 403 and 404 can be found in [ITI TF-2x: Appendix Z.7](https://profiles.ihe.net/ITI/TF/Volume2/ch-Z.html#z.8-mobile-security-considerations).
 
-When the Responder needs to report an error, it shall use HTTP error response codes and should include a FHIR OperationOutcome with more details on the failure. See FHIR [http://hl7.org/fhir/http.html](http://hl7.org/fhir/http.html) and [http://hl7.org/fhir/operationoutcome.html](http://hl7.org/fhir/operationoutcome.html) 
+When the Responder needs to report an error, it shall use HTTP error response codes and should include a FHIR OperationOutcome with more details on the failure. See FHIR [http://hl7.org/fhir/http.html](http://hl7.org/fhir/http.html) and [http://hl7.org/fhir/operationoutcome.html](http://hl7.org/fhir/operationoutcome.html). 
 
 ##### 2:4.Y4.4.2.3 Expected Actions
 
