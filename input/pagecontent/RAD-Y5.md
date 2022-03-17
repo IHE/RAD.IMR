@@ -12,8 +12,6 @@ The roles in this transaction are defined in the following table and may be play
 
 **Table 2:4.Y5.2-1: Actor Roles**
 
-**Introduce Display role**
-
 | Role      | Description                                   | Actor(s)          |
 |-----------|-----------------------------------------------|-------------------|
 | Display | Presents images to a user, such as a radiologist    | Report Reader <br> Image Display |
