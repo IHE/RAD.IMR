@@ -2,11 +2,11 @@
 # ───────────────────────────────────────────────────
 id: ihe.rad.imr
 canonical: https://profiles.ihe.net/RAD/IMR
-version: 1.0.0-comment
-#releaseLabel: ci-build
-releaseLabel: ballot
+version: 1.0.0-current
+releaseLabel: ci-build
+#releaseLabel: ballot
 #releaseLabel: Trial-Implementation
-date: 2022-03-18
+#date: 2022-03-18
 name: IHE_RAD_IMR
 title: "Interactive Multimedia Report (IMR)"
 status: active
