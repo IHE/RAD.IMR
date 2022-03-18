@@ -8,7 +8,7 @@ releaseLabel: ballot
 #releaseLabel: Trial-Implementation
 date: 2022-03-18
 name: IHE_RAD_IMR
-title: "Interactive Multimedia Report"
+title: "Interactive Multimedia Report (IMR)"
 status: active
 publisher:
   - name: IHE Radiology Technical Committee
@@ -60,19 +60,19 @@ pages:
     title: 1:XX Interactive Multimedia Report (IMR)
     generation: markdown
   RAD-Y1.md:
-    title: 2:3.Y1 Store Multimedia Report [RAD-Y1]
+    title: 2:4.Y1 Store Multimedia Report [RAD-Y1]
     generation: markdown
   RAD-Y2.md:
-    title: 2:3.Y2 Display Multimedia Report [RAD-Y2]
+    title: 2:4.Y2 Display Multimedia Report [RAD-Y2]
     generation: markdown
   RAD-Y3.md:
-    title: 2:3.Y3 Find Multimedia Report [RAD-Y3]
+    title: 2:4.Y3 Find Multimedia Report [RAD-Y3]
     generation: markdown
   RAD-Y4.md:
-    title: 2:3.Y4 Retrieve Rendered Multimedia Report [RAD-Y4]
+    title: 2:4.Y4 Retrieve Rendered Multimedia Report [RAD-Y4]
     generation: markdown
   RAD-Y5.md:
-    title: 2:3.Y5 Display Images [RAD-Y5]
+    title: 2:4.Y5 Display Images [RAD-Y5]
     generation: markdown
   testplan.md:
     title: "Test Plan"

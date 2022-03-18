@@ -1,6 +1,6 @@
 {
  "package-id" : "ihe.rad.imr",
- "title" : "Interactive Multimedia Report",
+ "title" : "Interactive Multimedia Report (IMR)",
  "canonical" : "https://profiles.ihe.net/RAD/IMR", 
  "introduction" : "Encoding and Presentation of an Interactive Multimedia Report",
  "category": "Imaging",
@@ -15,7 +15,7 @@
   "version" : "1.0.0-comment",  
   "date" : "2022-03-12", 
   "desc" : "Public Comment release for first IG authored version",   
-  "path" : "https://profiles.ihe.net/RAD/IMR/0.1.1-comment",   
+  "path" : "https://profiles.ihe.net/RAD/IMR/1.0.0-comment",   
   "status" : "ballot",
   "fhirversion" : "4.0.1",
   "sequence" : "Public Comment",
