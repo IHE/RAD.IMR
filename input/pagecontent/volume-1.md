@@ -316,7 +316,7 @@ This sophisticated placement of multimedia contents requires a more complex inte
 
 #### 1:XX.4.1.5 Image References in Report 
 
-Each image reference may references
+Each image reference in a report may reference:
 - a single image (e.g., Frame 10)
 - a range of images across multiple single-frame objects (e.g., Object 3-5) or within a multi-frame object (e.g., Frame 10-12)
 - a discrete set of images (e.g., Frame 10,14,17)
@@ -330,19 +330,19 @@ In addition to referencing a frame as a whole, sometimes the reference is specif
 
 When interacting with multimedia reports, there are different levels of sophistication:
 
-Level 0: No interactivity
+##### Level 0: No interactivity
 
 The Report Reader can display the static content in the report, but provides no interactivity with the content for the user.
 
-Level 1: Basic interactivity
+##### Level 1: Basic interactivity
 
 The Report Reader can display that static content in the report, including hyperlinks to different multimedia contents in the report (e.g., measurements). The user can click on these links to access a basic view of the source image(s) in which the findings are derived from.
 
-Level 2: Intermediate interactivity
+##### Level 2: Intermediate interactivity
 
-The Report Reader can provide not only a basic view of the source image(s), but also provide other essential features such as zoom, pan, window levelling, etc. If annotations are available, then the annotations (markup, ROI, etc.) are displayed as well and able to toggle them.
+The Report Reader can provide not only a basic view of the source image(s), but also provide other essential features such as zoom, pan, window levelling, etc. If annotations (markup, ROI, etc.) are available, the Report Reader displays them as well and enables the user to toggle them.
 
-Level 3: Advanced interactivity
+##### Level 3: Advanced interactivity
 
 The Report Reader can display not only the image referenced directly, but also the full series that contain the image. The Report Reader may provide other tools (e.g., measurements, more advanced image visualization, etc.) as well as support other advanced DICOM objects such as segmentation objects or parametric map objects.
 
