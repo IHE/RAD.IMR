@@ -402,9 +402,9 @@ Figure 1:XX.4.2.1.2-1 shows the dictation session as background context, and the
 
 A clinician wants to review studies and associated diagnostic reports for a patient. She searches the EMR for the patient. The EMR searches for available procedures and studies for the patient as well as any reports available for each procedure and/or study found based on accession number. As a result, the EMR returns a list of studies and associated diagnostic reports for the patient.
 
-> Note that in some cases, for example a group case in which a requested procedure resulted in multiple performed procedures (e.g., chest, abdomen, pelvis). In this case, multiple diagnostic reports for each performed procedure may be created.
+> Note that in some cases, a requested procedure may result in multiple performed procedures (e.g., chest, abdomen, pelvis). In this case, multiple diagnostic reports may be created, one for each performed procedure.
 
-Upon reviewing reports for a patient in the EMR which natively supports as an IMR Report Reader, the EMR encounters an IMR multimedia report. It processes the report content and displays the reports with interactive links. The Clinician clicks on the interactive links. The EMR / Report Reader retrieves the rendered images from the Image Manager / Image Archive and displays the images with interactive tools. The Clinicians can navigate the series and see the measurements with annotations as described in the report.
+Upon reviewing reports for a patient in the EMR which natively supports as an IMR Report Reader, the EMR encounters an IMR multimedia report. It processes the report content and displays the reports with interactive links. The Clinician clicks on the interactive links. The EMR / Report Reader retrieves the rendered images from the Image Manager / Image Archive and displays the images with interactive tools. The Clinician can navigate the series and see the measurements with annotations as described in the report.
 
 ##### 1:XX.4.2.2.2 Consume and Interact with Multimedia Report by Standalone Report Reader Process Flow
 
