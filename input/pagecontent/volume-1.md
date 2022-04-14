@@ -375,9 +375,9 @@ In this situation, although the *organizational* level resources such as `Patien
 
 ### 1:XX.4.2 Use Cases
 
-The IMR Profile is focused on encoding multimedia contents in diagnostic reports such that later the user can interact with the embedded multimedia contents in the reports.
+The IMR Profile is focused on encoding multimedia content in diagnostic reports such that later the user can interact with the embedded multimedia content in the reports.
 
-Note that the IMR Profile is currently focused on intra-enterprise use cases. Other inter-enterprise use cases may be supported in future updates. With this said, the design of the current IMR should not prohibit extending the use cases to inter-enterprise in the future.
+Note that the IMR Profile is currently focused on intra-enterprise use cases. Other inter-enterprise use cases may be supported in future updates. The design of the current IMR should not prohibit addressing inter-enterprise use cases in the future.
 
 #### 1:XX.4.2.1 Use Case 1: Encode and Transmit Multimedia Report
 
