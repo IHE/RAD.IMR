@@ -191,7 +191,7 @@ A Report Reader that also supports the Series/Study Navigation Option shall be a
 
 ### 1:XX.2.4 External IID Image Display Retrieve Option
 
-The External IID Image Display Retrieve Option utilizes the Invoke Image Display (IID) Profile to enable the Report Reader to display images via an external Image Display. See [Use Case #3] (#xx423-use-case-3-consume-and-interact-with-multimedia-report-by-report-reader-with-integrated-invoker-image-display).
+The External IID Image Display Retrieve Option utilizes the Invoke Image Display (IID) Profile to enable the Report Reader to display images via an external Image Display. See [Use Case #3](#xx423-use-case-3-consume-and-interact-with-multimedia-report-by-report-reader-with-integrated-invoker-image-display).
 
 A Report Reader that supports this option is grouped with an IID Image Display Invoker and shall use the Invoke Image Display [RAD-106] transaction to invoke an external Image Display.  The Report Reader shall translate the embedded image references and endpoints in the DiagnosticReport resource into corresponding Invoke Image Display [RAD-106] URLs.
 
@@ -246,7 +246,7 @@ considerations and Section 1:XX.6 describes some optional groupings in other rel
 |-----------|--------------------|-----------------------------|-----------|
 | Report Creator | Required | ITI CT / Time Client | ITI TF-1: 7.1 |
 | Report Repository | -- | None | -- |
-| Report Reader | With the External IID Image Display Retrieve Option | RAD IID / Image Display Invoker | RAD IID: 35.1.1.2 |
+| Report Reader | With the External IID Image Display Retrieve Option | RAD IID / Image Display Invoker | RAD IID: TF-1:35.1.1.2 |
 |               | With the DICOM Instance Retrieve Option | RAD IMR / Image Display | Section XX.1.1.6 |
 | Rendered Report Reader | -- | None | -- |
 | Image Manager / Image Archive | -- | None | -- |
