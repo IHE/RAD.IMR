@@ -108,7 +108,7 @@ A Report Reader with the DICOM Instance Retrieve Option integrates with an Image
 
 See [DICOM Instance Retrieve Option](#1xx25-dicom-instance-retrieve-option) for details.
 
-#### 1:XX.1.1.4 Rendered Report Readers
+#### 1:XX.1.1.4 Rendered Report Reader
 
 A Rendered Report Reader presents to the user the rendered report that is embedded in the DiagnosticReport resource, including the multimedia content embedded in the report as well as all hyperlinks. When the user clicks on the hyperlinks, the Rendered Report Reader launches the rendered references images to the user.
 
@@ -120,11 +120,11 @@ A Rendered Report Reader provides [Level 1 Interactivity](#1xx416-level-of-inter
 
 #### 1.XX.1.1.5 Image Manager / Image Archive
 
-An Image Managers / Image Archive provides the images and related objects to the Report Readers or Image Displays.
+An Image Manager / Image Archive provides the images and related objects to the Report Readers or Image Displays.
 
-An Image Managers / Image Archive shall support WADO-RS Retrieve [RAD-107] as well as DICOM DIMSE Services in [RAD-16], [RAD-17], [RAD-31] and [RAD-45]. This enables different types of Image Displays to retrieve objects.
+An Image Manager / Image Archive shall support WADO-RS Retrieve [RAD-107] as well as DICOM DIMSE Services in [RAD-16], [RAD-17], [RAD-31] and [RAD-45]. This enables different types of Image Displays to retrieve objects.
 
-An Image Managers / Image Archive shall also support returning images in the requested rendered media type as defined in DICOM PS3.18 Section 9.5 [Retrieve Rendered Instance Transaction](https://dicom.nema.org/medical/dicom/current/output/html/part18.html#sect_9.5).
+An Image Manager / Image Archive shall also support returning images in the requested rendered media type as defined in DICOM PS3.18 Section 9.5 [Retrieve Rendered Instance Transaction](https://dicom.nema.org/medical/dicom/current/output/html/part18.html#sect_9.5).
 
 #### 1.XX.1.1.6 Image Display
 
