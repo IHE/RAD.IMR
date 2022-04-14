@@ -228,7 +228,7 @@ The integrated Image Display may provide additional functions that the user can 
 
 The Series/Study Navigation Option enables actors to scroll through images in the same series or study.
 
-A Report Reader that supports this option shall initially display the referenced image, and shall enable the user to scroll through the other images in the same series (and optionally study) as the referenced image.
+A Report Reader that supports this option shall initially display the referenced image, and shall enable the user to scroll through the other images in the same series (and, optionally, in the same study) as the referenced image.
 
 ## 1:XX.3 IMR Required Actor Groupings
 
