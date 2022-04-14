@@ -125,7 +125,7 @@ There is a common set of attributes included in radiology diagnostic reports. Ta
 | Indication       | DiagnosticReport.extension[indication] | See [IMR DiagnosticReport](StructureDefinition-imr-diagnosticreport.html) for details | Each value can be either a string or a CodeableConcept |
 | Technique        | DiagnosticReport.result.method -> IMRObservation.method | Technique details is set in the same observation  resource that captures the finding. i.e., IMRObservation.code = LOINC#59776-5 "Procedure Findings" <br><br> See [IMR DiagnosticReport](StructureDefinition-imr-diagnosticreport.html) and [IMR Observation](StructureDefinition-imr-observation.html) for details | |
 | Comparison       | DiagnosticReport.extension[comparisonStudy] | Can be either an IMRImagingStudy or IMRDiagnosticReport <br><br> See [IMR DiagnosticReport](StructureDefinition-imr-diagnosticreport.html) for details | |
-| Report Section   | DiagnosticReport.result.valueString -> IMRObservation.valueString | Identified by IMRObservation.code. See [IMR DiagnosticReport](StructureDefinition-imr-diagnosticreport.html) and [IMR Observation](StructureDefinition-imr-observation.html) for details | The code is used to identify what *section* the observation belongs to. For example, LOINC code __59776-5__ represents a procedure finding and LOINC code __19005-8__ represents a narrative impression. <br><br> Highly recommended to encode a single finding or impression per IMR Observation, but permitted to encode all findings as a single string and all impressions as a single string to bridge existing applications. <br><br> Also See Note 2 |
+| Report Section   | DiagnosticReport.result.valueString -> IMRObservation.valueString | Identified by IMRObservation.code. See [IMR DiagnosticReport](StructureDefinition-imr-diagnosticreport.html) and [IMR Observation](StructureDefinition-imr-observation.html) for details | The code is used to identify what *section* the observation belongs to. For example, LOINC code __59776-5__ represents a procedure finding and LOINC code __19005-8__ represents a narrative impression. <br><br> Highly recommended to encode a single finding or impression per IMR Observation, but permitted to encode all findings as a single string and all impressions as a single string to bridge existing applications. <br><br> See Note 2 |
 {: .grid}
 
 > Note 1: There is no IMR-defined FHIR resource profile for the resource. An implementation may use other FHIR resource profiles applicable for their deployment.
@@ -141,11 +141,11 @@ In addition to the common set above, there are also a number of useful optional 
 | Referring Physician | DiagnosticReport.imagingStudy -> IMRImagingStudy.referrer | |
 | Reason For Study | DiagnosticReport.imagingStudy -> IMRImagingStudy.reasonCode | |
 | Study Description | DiagnosticReport.imagingStudy -> IMRImagingStudy.description | |
-| Body Part | DiagnosticReport.result -> IMRObservation.bodySite | Note 3 |
+| Body Part | DiagnosticReport.result -> IMRObservation.bodySite | Note 1 |
 | Relationship between findings and impressions | DiagnosticReport.result -> IMRObservation.hasMember | | Specify related observations, e.g., linking impression to finding, or finding to another finding |
 {: .grid}
 
-> Note 3: See [HIMSS-SIIM Whitepaper: The Importance of Body Part Labeling to Enable Enterprise Imaging](https://link.springer.com/article/10.1007/s10278-020-00415-0) for the importance of body part labelling.
+> Note 1: See [HIMSS-SIIM Whitepaper: The Importance of Body Part Labeling to Enable Enterprise Imaging](https://link.springer.com/article/10.1007/s10278-020-00415-0) for the importance of body part labelling.
 
 ###### 2:4.Y1.4.1.2.2.2 Rendered Report in IMR DiagnosticReport Resource
 
