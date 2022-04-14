@@ -124,7 +124,7 @@ An Image Manager / Image Archive provides the images and related objects to the 
 
 An Image Manager / Image Archive shall support WADO-RS Retrieve [RAD-107] as well as DICOM DIMSE Services in [RAD-16], [RAD-17], [RAD-31] and [RAD-45]. This enables different types of Image Displays to retrieve objects.
 
-An Image Manager / Image Archive shall also support returning images in the requested rendered media type as defined in DICOM PS3.18 Section 9.5 [Retrieve Rendered Instance Transaction](https://dicom.nema.org/medical/dicom/current/output/html/part18.html#sect_9.5).
+An Image Manager / Image Archive shall also support returning images in the requested rendered media type as defined in DICOM [PS3.18 Section 9.5](https://dicom.nema.org/medical/dicom/current/output/html/part18.html#sect_9.5) "Retrieve Rendered Instance Transaction".
 
 #### 1.XX.1.1.6 Image Display
 
