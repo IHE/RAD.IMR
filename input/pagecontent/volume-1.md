@@ -244,7 +244,7 @@ considerations and Section 1:XX.6 describes some optional groupings in other rel
 
 | IMR Actor | Grouping Condition | Actor(s) to be grouped with | Reference |
 |-----------|--------------------|-----------------------------|-----------|
-| Report Creator | Required | ITI CT / Time Client | ITI TF-1: 7.1 |
+| Report Creator | Required | ITI CT / Time Client | [ITI TF-1: 7.1](https://profiles.ihe.net/ITI/TF/Volume1/ch-7.html#7.1) |
 | Report Repository | -- | None | -- |
 | Report Reader | With the External IID Image Display Retrieve Option | RAD IID / Image Display Invoker | RAD IID: TF-1:35.1.1.2 |
 |               | With the DICOM Instance Retrieve Option | RAD IMR / Image Display | Section XX.1.1.6 |
@@ -498,12 +498,12 @@ This profile strongly recommends all actors group with an ITI ATNA Secure Applic
 Secure Node Actor using the Radiology Audit Trail Option.
 
 The ATNA Profile requires actors to implement:
-- Record Audit Event [ITI-20] transaction which would record when and where analysis
+- [Record Audit Event](https://profiles.ihe.net/ITI/TF/Volume2/ITI-20.html) [ITI-20] transaction which would record when and where analysis
 785 results are distributed and displayed.
-- Authenticate Node [ITI-19] transaction to further ensure the integrity of transactions via
+- [Authenticate Node](https://profiles.ihe.net/ITI/TF/Volume2/ITI-19.html) [ITI-19] transaction to further ensure the integrity of transactions via
 node authentication and communication encryption.
 
-Furthermore, for the FHIR-based transactions, this profile strongly recommends the use of ITI Internet User Authroization (IUA) to ensure that communications are only allowed for authenticated and authorized users and/or systems.
+Furthermore, for the FHIR-based transactions, this profile strongly recommends the use of ITI [Internet User Authorization](https://profiles.ihe.net/ITI/TF/Volume1/ch-34.html) (IUA) Profile to ensure that communications are only allowed for authenticated and authorized users and/or systems.
 
 ### 1:XX.5.2 Security Considerations for Multimedia Reports
 
