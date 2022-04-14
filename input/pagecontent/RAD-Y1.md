@@ -128,7 +128,7 @@ There is a common set of attributes included in radiology diagnostic reports. Ta
 | Report Section   | DiagnosticReport.result.valueString -> IMRObservation.valueString | Identified by IMRObservation.code. See [IMR DiagnosticReport](StructureDefinition-imr-diagnosticreport.html) and [IMR Observation](StructureDefinition-imr-observation.html) for details | The code is used to identify what *section* the observation belongs to. For example, LOINC code __59776-5__ represents a procedure finding and LOINC code __19005-8__ represents a narrative impression. <br><br> Highly recommended to encode a single finding or impression per IMR Observation, but permitted to encode all findings as a single string and all impressions as a single string to bridge existing applications. <br><br> See Note 2 |
 {: .grid}
 
-> Note 1: There is no IMR-defined FHIR resource profile for the resource. An implementation may use other FHIR resource profiles applicable for their deployment.
+> Note 1: This transaction does not define a FHIR resource profile for the resource. An implementation may use other FHIR resource profiles applicable for their deployment.
 
 > Note 2: In common cases, there is no direct association between findings and impressions except that they are associated with the same DiagnosticReport Resource. 
 
