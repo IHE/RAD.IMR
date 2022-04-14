@@ -362,20 +362,20 @@ IMR uses FHIR for defining the format of the diagnostic report as well as the pr
 
 IMR can be deployed in an existing FHIR infrastructure. The existing FHIR Server can act as the Report Repository with some additional IMR specific support (e.g., handling of the DiagnosticReport.presentedForm). New Report Creator, Report Reader and Rendered Report Reader are introduced and they interact with the Report Repository.
 
-In this case, many of the *organizational* level resources such as `Patient`, `Organization`, `Practitioner` and `PractitionerRole` may already exist in the Report Repository. Therefore the Report Creator may discover these existing resources prior to create the report. When the Report Creator eventually stores the multimedia report to the Report Repository, the FHIR bundle request can reference these existing organizational resources while creating the new IMR DiagnosticReport resource in the same transaction.
+In this case, many of the *organizational* level resources such as `Patient`, `Organization`, `Practitioner` and `PractitionerRole` may already exist in the Report Repository. Therefore the Report Creator may search for these existing resources prior to creating the report. When the Report Creator eventually stores the multimedia report to the Report Repository, the FHIR bundle request would reference these existing organizational resources in the new IMR DiagnosticReport resource.
 
 ##### Deploying IMR in environment without existing FHIR infrastructure
 
 IMR can be deployed in an environment without an existing FHIR infrastructure, or in an environment in which the existing FHIR infrastructure cannot be used. In this case, a new FHIR infrastructure is required.
 
-Note that in this situation, although the *organizational* level resources such as `Patient`, `Organization`, `Practitioner` and `PractitionerRole` may already exist somewhere (e.g., in EMR), but they may not exist in the new FHIR infrastructure used for IMR. There are two general approaches to address this situation:
+In this situation, although the *organizational* level resources such as `Patient`, `Organization`, `Practitioner` and `PractitionerRole` may already exist somewhere (e.g., in EMR), they may not exist in the new FHIR infrastructure used for IMR. There are two general approaches to address this situation:
 
 - Backfill the new FHIR infrastructure with these existing *organizational* level resources, and introduce a new method for ongoing synchronization. This is out of scope of IMR.
-- When the Report Creator stores the multimedia report to the Report Repository, it uses the `ifNoneExist` attribute in [Bundle.request](https://www.hl7.org/fhir/bundle.html) to specify conditional create. A separate method is still required for ongoing synchronization.
+- When the Report Creator stores the multimedia report to the Report Repository, it would use the `ifNoneExist` attribute in [Bundle.request](https://www.hl7.org/fhir/bundle.html) to specify conditional create. A separate method is still required for ongoing synchronization.
 
 ### 1:XX.4.2 Use Cases
 
-This profile is focused on encoding multimedia contents in diagnostic reports such that later the user can interact with the embedded multimedia contents in the reports.
+The IMR Profile is focused on encoding multimedia contents in diagnostic reports such that later the user can interact with the embedded multimedia contents in the reports.
 
 Note that the IMR Profile is currently focused on intra-enterprise use cases. Other inter-enterprise use cases may be supported in future updates. With this said, the design of the current IMR should not prohibit extending the use cases to inter-enterprise in the future.
 
