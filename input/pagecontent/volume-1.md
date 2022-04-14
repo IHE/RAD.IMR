@@ -203,7 +203,7 @@ The Invoke Image Display requests shall have the same semantics as Retrieve Disp
 
 > Note: [RAD-106] currently does not support invoking an Image Display at the series level nor the IHE-IMR viewer type. Retrieve Display of Series Images functionality and IHE-IMR viewer type are available in CP-RAD-474.
 
-> Note: A Report Reader that supports this option can also support the Series/Study Navigation Option, as the Image Display Invoker always invokes the Image Display at the series or study level.
+> Note: A Report Reader that supports this option can also support the [Series/Study Navigation Option](#1xx25-dicom-instance-retrieve-option), as the Image Display Invoker always invokes the Image Display at the series or study level.
 
 ### 1:XX.2.5 DICOM Instance Retrieve Option
 
