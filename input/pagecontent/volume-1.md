@@ -453,9 +453,9 @@ Figure 1:XX.4.2.3.2-1 shows how the Clinician can use the EMR that supports IMR 
 
 #### 1:XX.4.2.4 Use Case 4: Consume and Interact with Multimedia Report for Prior Study by Radiologist
 
-##### XX.4.2.4.1 Consume and Interact with Multimedia Report for Prior Study by Radiologist Use Case Description
+##### 1:XX.4.2.4.1 Consume and Interact with Multimedia Report for Prior Study by Radiologist Use Case Description
 
-A radiologist is in the process of dictating a study. Relevant prior studies are displayed along with the current study. The prior studies have associated multimedia reports. The Report Reader integrated with an Image Display displays the multimedia reports to the radiologist with interactive links. When the Radiologist clicks on the links, the Report Reader triggers the viewport in the Image Display currently showing the prior study to show the specific image in which the measurements are derived from. The Radiologist can continue and re-measure to confirm the data submitted by the resident.
+A radiologist is in the process of dictating a study. Relevant prior studies are displayed along with the current study. The prior studies have associated multimedia reports. The Report Reader integrated with an Image Display displays the multimedia reports to the radiologist with interactive links. When the Radiologist clicks on the links, the Report Reader triggers the viewport in the Image Display currently showing the prior study to show the specific image which the measurements are derived from. The Radiologist can continue and re-measure to confirm the data submitted by the resident.
 
 ##### 1:XX.4.2.4.2 Consume and Interact with Multimedia Report for Prior Study by Radiologist Process Flow
 
