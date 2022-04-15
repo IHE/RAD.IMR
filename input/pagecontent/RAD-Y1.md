@@ -190,24 +190,24 @@ The Sender shall encode all clinical finding(s), impressions(s) or other observa
 The Sender shall set the `code` attribute according to the [IMR Observation](StructureDefinition-imr-observation.html) resource profile indicating whether the IMR Observation Resource represents finding(s), impression(s), or some other type of observations.
 
 For clinical findings, the Sender shall either: 
-- encode each finding as a separate [IMR Observation] (StructureDefinition-imr-observation.html) Resource, **or** 
+- encode each finding as a separate [IMR Observation](StructureDefinition-imr-observation.html) Resource, **or** 
 - include all findings in a single IMR Observation Resource as narrative content in Observation.valueString. See [IMR Observation Examples](StructureDefinition-imr-observation-examples.html) for an example that encodes multiple findings in paragraph form in a single IMR Observation Resource.
 
 For clinical impressions, the Sender shall either:
 - include each impression as a separate [IMR Observation](StructureDefinition-imr-observation.html) Resource, **or**
-- include all impressions a single IMR Observation Resource as a narrative content in Observation.valueString. See [IMR Observation Examples](StructureDefinition-imr-observation-examples.html) for examples that encode different impression as different IMR Observation Resources.
+- include all impressions a single IMR Observation Resource as a narrative content in Observation.valueString. See [IMR Observation Examples](StructureDefinition-imr-observation-examples.html) for examples that encode different impressions as different IMR Observation Resources.
 
 The Sender shall encode narrative content in findings or impressions using Observation.valueString.
 
-The Sender may encode code-able content in findings or impressions using the appropriate data type available in Observation.value[x].
+The Sender may encode codeable content in findings or impressions using the appropriate data type available in Observation.value[x].
 
 ###### 2:4.Y1.4.1.2.3.1 Image References in an IMR Observation Resource
 
-The Sender shall encode the study in which this observation is derived from, if available, in Observation.derivedFrom using an [IMR ImagingStudy](StructureDefinition-imr-imagingstudy.html) Resource. This attribute shall include the study and series references. IMR ImagingStudy may include image references.
+The Sender shall encode the study which this observation is derived from, if available, in Observation.derivedFrom using an [IMR ImagingStudy](StructureDefinition-imr-imagingstudy.html) Resource. This attribute shall include the study and series references. IMR ImagingStudy may include image references.
 
-For narrative content, the Sender may directly embed one or more image references inline the text.  TO DO:  Does this sentence belong under IMR DiagnosticReport ?? 
+For narrative content, the Sender may directly embed one or more image references inline within the text.  TO DO:  Does this sentence belong under IMR DiagnosticReport ?? 
 
-The Sender shall specify each inline image reference using the `<IMRRef>` XML element and the corresponding `</IMRRef>` end element. This `<IMRRef>` element shall have the attributes as defined in Table 2:4.Y1.4.1.3.1-1.
+The Sender shall specify each inline image reference using the `<IMRRef>` XML element and the corresponding `</IMRRef>` end element. This `<IMRRef>` element shall have the attributes as defined in Table 2:4.Y1.4.1.2.3.1-1.
 
 > Note: IMR currently requires image references only. References to other DICOM objects such as segmentation objects, parametric maps or other non-DICOM objects are out of scope of IMR.
 
@@ -223,7 +223,7 @@ This `<IMRRef>` represents a *placeholder* for the image reference details. The 
 
 The Sender shall encode the corresponding image reference details in the same Observation Resource using Observation.component as follows:
 - Observation.component.id shall match the `id` attribute in the `<IMRRef>` tag
-- Observation.component.valueString shall have the value for the series instance UID and SOP Instance UID in the format `/series/{seriesUID}/instance/{sopInstanceUID}`,
+- Observation.component.valueString shall have the value for the Series Instance UID and SOP Instance UID in the format `/series/{seriesUID}/instance/{sopInstanceUID}`,
 - Observation.component.code shall have the coded value (55113-5, "http://loinc.org", "Key Images")
 
 Example 1: The image references are specified inline with the corresponding measurements
