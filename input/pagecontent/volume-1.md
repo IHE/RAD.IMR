@@ -211,7 +211,7 @@ The Invoke Image Display requests shall have the same semantics as Retrieve Disp
 
 The DICOM Instance Retrieve Option enables actors to retrieve and display images via an integrated Image Display.
 
-A Report Reader that supports this option shall launch an Image Display to display the referenced image first. The integrated Image Display may use DICOM C-Move request or WADO-RS retrieve request to retrieve images from an Image Manager / Image Archive.
+A Report Reader that supports this option shall launch an Image Display to display the referenced image. The integrated Image Display may use DICOM C-Move request or WADO-RS retrieve request to retrieve images from an Image Manager / Image Archive.
 
 To retrieve images using DICOM DIMSE services, the integrated Image Display shall support one or more of the following transactions as an Image Display:
 
