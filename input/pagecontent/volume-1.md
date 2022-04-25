@@ -143,14 +143,14 @@ between options when applicable are specified in notes.
 
 | Actor   | Option Name | Reference |
 |---------|-------------|-----------|
-| Report Creator | PDF Report | Section XX.2.1 | 
-|                | HL7 Text Report | Section XX.2.2 |
+| Report Creator | PDF Report | [Section 1:XX.2.1](#1xx21-pdf-report-option) | 
+|                | HL7 Text Report | [Section 1:XX.2.2](#1xx22-hl7-text-report-option) |
 | Report Repository | No options defined | -- |
-| Report Reader | Rendered Instance Retrieve (Note 1) | Section XX.2.3 |
+| Report Reader | Rendered Instance Retrieve (Note 1) | [Section 1:XX.2.3](#1xx23-rendered-instance-retrieve-option) |
 |               | External IID Image Display Retrieve (Note 1) | [Section 1:XX.2.4](#1xx24-external-iid-image-display-retrieve-option) |
-|               | DICOM Instance Retrieve (Note 1) | Section XX.2.5 |
-|               | Series/Study Navigation | Section XX.2.6 |
-| Rendered Report Reader | PDF Report | Section XX.2.1 |
+|               | DICOM Instance Retrieve (Note 1) | [Section 1:XX.2.5](#1xx25-dicom-instance-retrieve-option) |
+|               | Series/Study Navigation | [Section 1:XX.2.6](#1xx26-seriesstudy-navigation-option) |
+| Rendered Report Reader | PDF Report | [Section 1:XX.2.1](#1xx21-pdf-report-option) |
 | Image Manager / Image Archive | No options defined | -- |
 | Image Display | External IID Image Display Retrieve | [Section 1:XX.2.4](#1xx24-external-iid-image-display-retrieve-option) |
 {: .grid}
