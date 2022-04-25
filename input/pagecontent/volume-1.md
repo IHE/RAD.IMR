@@ -2,10 +2,10 @@
 
 The Interactive Multimedia Report (IMR) Profile specifies how a diagnostic report with interactive multimedia content can be reliably encoded, communicated and presented.
 
-This profile defines content for data encoding, transactions for communicating the content between systems, and behaviors for displaying the content.
+This profile defines content encoding, transactions for communicating the content between systems, and behaviors for displaying the content.
 
 
-## 1:X.1 IMR Actors, Transactions, and Content Modules
+## 1:XX.1 IMR Actors, Transactions, and Content Modules
 
 This section defines the actors, transactions, and/or content modules in this profile. General
 definitions of actors are given in the Technical Frameworks General Introduction Appendix A.
