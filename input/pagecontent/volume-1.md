@@ -163,13 +163,15 @@ The PDF Report Option enables actors to handle rendered reports with multimedia 
 
 A Report Creator that supports this option shall generate a rendered multimedia report, preserving the image references as either hyperlinks or embedded static images in the rendered PDF file, and embed the rendered report in DiagnosticReport.presentedForm. A Report Creator shall preserve the readability of the report in the PDF format.
 
+A Report Creator that supports this option shall generate a rendered multimedia report, preserving the image references as either hyperlinks or embedded static images in the rendered PDF file, and embed the rendered report in DiagnosticReport.presentedForm in the Store Multimedia Reports [RAD-Y1] transaction. See [Rendered Report In PDF](RAD-Y1.html#24y1412222-rendered-report-in-pdf-format) for details.
+
 > Note that how the Report Creator renders the report into PDF is out of scope of IMR, provided that the rendered report preserves the readability of the report. For example, if there are multiple measurements in the same paragraph, each has its separate image reference(s), then if the image references are rendered as inline static images, the resulting paragraph may be broken up and become hard to read.
 
 A Rendered Report Reader that supports this option shall support retrieving and displaying the rendered report in PDF format.
 
 ### 1:XX.2.2 HL7 Text Report Option
 
-The HL7 Text Report Option enable actors to render a text-only version of the report.
+The HL7 Text Report Option produces a text-only version of the report for consumption by non-IMR actors.
 
 A Report Creator that supports this option shall create a text-only rendition of the report, including the textual representation of all measurements, and may include textual representation of image references. A Report Creator shall preserve the readability of the report in the text-only format.
 
@@ -523,3 +525,5 @@ The Rendered Report Readers should verify if these URLs are legitimate and from 
 **Management of Radiology Report Templates (MRRT)**: A Report Creator in MRRT may be grouped with a Report Creator in IMR. As a result, the grouped Report Creator can use the report templates to assist the radiologist in creating the diagnostic report, and capture the final report in the IMR DiagnosticReport format.
 
 **AI Result (AIR)**: An Evidence Creator may be grouped with an IMR Report Creator to include AI results in the diagnostic report. An Image Display in AIR may be grouped with an IMR Image Display or Report Reader to show the interactive AI results.
+
+**Internet User Authorization (IUA)**: TODO
