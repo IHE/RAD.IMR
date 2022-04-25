@@ -205,7 +205,7 @@ The Sender may encode code-able content in findings or impressions using the app
 
 The Sender shall encode the study in which this observation is derived from, if available, in Observation.derivedFrom using an [IMR ImagingStudy](StructureDefinition-imr-imagingstudy.html) Resource. This attribute shall include the study and series references. IMR ImagingStudy may include image references.
 
-For narrative content, the Sender may directly embed one or more image references inline the text.  TO DO:  Does this sentence belong under IMR DiagnosticReport ?? 
+For narrative content, the Sender may directly embed one or more image references inline the text.
 
 The Sender shall specify each inline image reference using the `<IMRRef>` XML element and the corresponding `</IMRRef>` end element. This `<IMRRef>` element shall have the attributes as defined in Table 2:4.Y1.4.1.3.1-1.
 
@@ -254,7 +254,7 @@ The Patient, Organization, Practitioner or PractitionerRole Resources are requir
 
 The Receiver shall accept both media types `application/fhir+json` and `application/fhir+xml`.
 
-On receipt of the request message, the Receiver shall validate the resources and respond with one of the HTTP codes defined in the response [Message Semantics](#24y1412-message-semantics). 
+On receipt of the request message, the Receiver shall validate the resources and respond with one of the HTTP codes defined in the response [Message Semantics](#24y1412-message-semantics).
 
 The Receiver shall process the transaction bundle atomically as specified in [http://hl7.org/fhir/http.html#transaction](http://hl7.org/fhir/http.html#transaction). 
 
