@@ -191,7 +191,7 @@ A Report Reader that also supports the Series/Study Navigation Option shall be a
 
 ### 1:XX.2.4 External IID Image Display Retrieve Option
 
-The External IID Image Display Retrieve Option utilizes the Invoke Image Display (IID) Profile to enable the Report Reader to display images via an external Image Display. See [Use Case #3] (#xx423-use-case-3-consume-and-interact-with-multimedia-report-by-report-reader-with-integrated-invoker-image-display).
+The External IID Image Display Retrieve Option utilizes the Invoke Image Display (IID) Profile to enable the Report Reader to display images via an external Image Display. See [Use Case #3](#1xx423-use-case-3-consume-and-interact-with-multimedia-report-by-report-reader-with-integrated-image-display-invoker).
 
 A Report Reader that supports this option is grouped with an IID Image Display Invoker and shall use the Invoke Image Display [RAD-106] transaction to invoke an external Image Display.  The Report Reader shall translate the embedded image references and endpoints in the DiagnosticReport resource into corresponding Invoke Image Display [RAD-106] URLs.
 
