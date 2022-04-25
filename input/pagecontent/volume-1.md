@@ -65,7 +65,7 @@ Most requirements are documented in RAD TF-2 Transactions. This section document
 
 A Report Creator encodes diagnostic reports with multimedia content using FHIR DiagnosticReport resources. Each resulting DiagnosticReport resource also includes a default rendered report in the same DiagnosticReport resource, either as base64 encoded binary, or by reference using a URL.
 
-A Report Creator may support creating multiple renditions of the same multimedia report for different consumers (e.g., simple consumers that do not render the detailed multimedia contents on its own, or external consumers that do not have access to studies inside the enterprise firewall).
+A Report Creator may support creating multiple renditions of the same multimedia report for different consumers (e.g., consumers that do not render the detailed multimedia contents on its own, or external consumers that do not have access to studies inside the enterprise firewall).
 
 A Report Creator stores the DiagnosticReport resources to Report Repositories, Report Readers, or Rendered Report Readers. 
 
@@ -267,11 +267,11 @@ In reporting, structure can significantly improve usability, both for machine co
 
 In a radiology report, although there are many variations of what information a report should contain depending on the procedure and specialty, there are general common sections in a report such as Indication, Methods, Findings, Impressions, etc.
 
-The [Results Distribution](https://www.ihe.net/uploadedFiles/Documents/Radiology/IHE_RAD_Suppl_RD.pdf) Profile specifies using different OBX segments for different sections while this Interactive Multimedia Report Profile specifies using different FHIR DiagnosticReport.result which are referenced Observation resources for different sections.
+The [Results Distribution](https://www.ihe.net/uploadedFiles/Documents/Radiology/IHE_RAD_Suppl_RD.pdf) Profile specifies using multiple OBX segments for different sections while this Interactive Multimedia Report Profile specifies using multiple FHIR DiagnosticReport.result which are referenced Observation resources for different sections.
 
 ##### Report Content Encoding
 
-Also known as 'structured reporting' or 'synoptic reporting', encoding structure refers to the use of fully coded values in pre-coordinated form or post-coordinated form, in which the values are drawn from some value sets such as LOINC or SNOMED-CT, in order to represent the full concept.
+Also known as 'structured reporting' or 'synoptic reporting', encoding structure refers to the use of fully coded values in pre-coordinated form or post-coordinated form, in which the values are drawn from some value sets or standardized nomenclature / coded values such as LOINC or SNOMED-CT, in order to represent the full concept.
 
 This has been successfully used in certain discipline such as cancer screening, but it is less common in general radiology reporting practice.
 
@@ -332,11 +332,11 @@ When interacting with multimedia reports, there are different levels of sophisti
 
 Level 0: No interactivity
 
-The Report Reader can display the static content in the report, but provides no interactivity with the content for the user.
+The Report Reader can display the static content (text and may include static images) in the report, but provides no interactivity with the content for the user.
 
 Level 1: Basic interactivity
 
-The Report Reader can display that static content in the report, including hyperlinks to different multimedia contents in the report (e.g., measurements). The user can click on these links to access a basic view of the source image(s) in which the findings are derived from.
+The Report Reader can display that static content (text and may include static images) in the report, including hyperlinks to different multimedia contents in the report (e.g., measurements). The user can click on these links to access a basic view of the source image(s) in which the findings are derived from.
 
 Level 2: Intermediate interactivity
 
