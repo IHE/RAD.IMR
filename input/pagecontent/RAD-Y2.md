@@ -68,7 +68,7 @@ The Display shall support the display requirements as defined in Table 2:4.Y2.4.
 
 ###### 2:4.Y2.4.1.3.1 Display of Attributes in DiagnosticReport
 
-The Display shall be capable of presenting the attributes in the IMR DiagnosticReport Resource and referenced resources as defined in Store Multimedia Report [RAD-Y1] [Table 2:4.Y1.4.1.2-1](RAD-Y1.html#24y141221-mapping-of-attributes-in-a-diagnostic-report).  TO DO: If the [RAD-Y1] branch is merged, this reference will change.
+The Display shall be capable of presenting the attributes in the IMR DiagnosticReport Resource and referenced resources as defined in Store Multimedia Report [RAD-Y1] [Table 2:4.Y1.4.1.2-1](RAD-Y1.html#24y141221-mapping-of-attributes-in-a-diagnostic-report).
 
 ###### 2:4.Y2.4.1.3.2 Display of Observation
 
