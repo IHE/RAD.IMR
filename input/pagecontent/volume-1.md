@@ -37,7 +37,7 @@ grouping are shown in conjoined boxes (see [Section 1:XX.3](#1xx3-imr-required-a
 |               | Find Multimedia Report \[RAD-Y3\] | Initiator | O (Note 1) | RAD TF-2: 4.Y3 |
 |               | Display Images \[RAD-Y5\] | N/A | R | RAD TF-2: 4.Y5 |
 |               | WADO-RS Retrieve \[RAD-107\] | Initiator | O | RAD TF-2: 4.107 |
-| Rendered Report Reader | Store Multimedia Report \[RAD-Y1\] | Responder | O (Note 1) | RAD TF-2: 4.107 |
+| Rendered Report Reader | Store Multimedia Report \[RAD-Y1\] | Responder | O (Note 1) | RAD TF-2: 4.Y1 |
 |                        | Find Multimedia Report \[RAD-Y3\] | Initiator | O (Note 1) | RAD TF-2: 4.Y3 |
 |                        | Retrieve Rendered Multimedia Report \[RAD-Y4\] | Initiator | R | RAD TF-2: 4.Y4 |
 | Image Manager / Image Archive | Retrieve Images \[RAD-16\] | Responder | R | RAD TF-2: 4.16 |
