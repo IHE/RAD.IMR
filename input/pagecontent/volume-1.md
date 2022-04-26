@@ -161,11 +161,9 @@ considerations and Section 1:XX.6 describes some optional groupings in other rel
 |-----------|--------------------|-----------------------------|-----------|
 | Report Creator | Required | ITI CT / Time Client | ITI TF-1: 7.1 |
 | Report Repository | -- | None | -- |
-| Report Reader | With the External IID Image Display Retrieve Option | RAD IID / Image Display Invoker | RAD IID: 35.1.1.2 |
-|               | With the DICOM Instance Retrieve Option | RAD IMR / Image Display | Section XX.1.1.6 |
+| Report Reader | -- | None | -- |
 | Rendered Report Reader | -- | None | -- |
 | Image Manager / Image Archive | -- | None | -- |
-| Image Display | -- | None | -- |
 {: .grid}
 
 ## 1:XX.4 Interactive Multimedia Report Overview
