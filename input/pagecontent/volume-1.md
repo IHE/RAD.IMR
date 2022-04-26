@@ -24,6 +24,8 @@ grouping are shown in conjoined boxes (see [Section 1:XX.3](#1xx3-imr-required-a
 
 **Figure 1:XX.1-1: IMR Actor Diagram**
 
+Table 1:XX.1-1 lists the transactions for each actor directly involved in the IMR Profile. To claim compliance with this profile, an actor shall support all required transactions (labeled “R”) and may support the optional transactions (labeled “O”).
+
 **Table 1:XX.1-1: IMR Profile - Actors and Transactions**
 
 | Actors  | Transactions  | Initiator or Responder | Optionality     | Reference                         |
