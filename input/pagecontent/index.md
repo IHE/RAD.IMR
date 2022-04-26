@@ -7,7 +7,7 @@ This profile defines content for data encoding, transactions for communicating t
 ### Organization of This Guide
 This guide is organized into five main sections:
 
-1. Volume 1: [Overview](volume-1.html)
+1. Volume 1: [Introduction](volume-1.html)
    1. [Actors and Transactions](volume-1.html#1xx1-imr-actors-transactions-and-content-modules)
    1. [Actor Options](volume-1.html#1xx2-imr-actor-options)
    1. [Actor Required Groupings](volume-1.html#1xx3-imr-required-actor-groupings)
