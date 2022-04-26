@@ -56,7 +56,7 @@ A Report Creator may support creating multiple renditions of the same multimedia
 
 A Report Creator stores the DiagnosticReport resources to Report Repositories, Report Readers, or Rendered Report Readers. 
 
-> Note that in IMR, the Report Creator is the actor responsible for authoring the report. How the Report Creator receives the multimedia content in the report is out of scope for this release of IMR. In practice, a Report Creator may be grouped with an Image Display, or a Report Creator may be integrated with an Image Display via proprietary APIs or standard context sharing mechanism such as FHIRcast.
+> Note: In IMR, the Report Creator is the actor responsible for authoring the report. How the Report Creator receives the multimedia content in the report is out of scope for this release of IMR. For instance, a Report Creator may be grouped with an Image Display, or a Report Creator may be integrated with an Image Display via proprietary APIs or standard context sharing mechanism such as FHIRcast.
 
 #### 1:XX.1.1.2 Report Repository
 
