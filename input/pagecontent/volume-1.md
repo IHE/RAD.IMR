@@ -82,7 +82,7 @@ A Report Reader shall use the information in DiagnosticReport.result.derivedFrom
 
 A Report Reader that supports the Series/Study Navigation Option shall be able to construct WADO-RS URLs that confirm to the RetrieveSeries and RetrieveStudy semantics.
 
-#### 1:XX.1.1.4 Rendered Report Readers
+#### 1:XX.1.1.4 Rendered Report Reader
 
 A Rendered Report Reader presents to the user the rendered report that is embedded in the DiagnosticReport resource, including the multimedia content embedded in the report as well as all hyperlinks. When the user clicks on the hyperlinks, the Rendered Report Reader launches the rendered references images to the user.
 
@@ -94,11 +94,11 @@ A Rendered Report Reader provides [Level 1 Interactivity](#1xx416-level-of-inter
 
 #### 1.XX.1.1.5 Image Manager / Image Archive
 
-An Image Managers / Image Archive provides the images and related objects to the Report Readers or Image Displays.
+An Image Manager / Image Archive provides the images and related objects to the Report Readers or Image Displays.
 
-An Image Managers / Image Archive shall support WADO-RS Retrieve [RAD-107].
+An Image Manager / Image Archive shall support WADO-RS Retrieve [RAD-107].
 
-An Image Managers / Image Archive shall also support returning images in the requested rendered media type as defined in DICOM PS3.18 Section 9.5 [Retrieve Rendered Instance Transaction](https://dicom.nema.org/medical/dicom/current/output/html/part18.html#sect_9.5).
+An Image Manager / Image Archive shall also support returning images in the requested rendered media type as defined in DICOM [PS3.18 Section 9.5](https://dicom.nema.org/medical/dicom/current/output/html/part18.html#sect_9.5) "Retrieve Rendered Instance Transaction".
 
 ## 1:XX.2 IMR Actor Options
 
@@ -137,13 +137,13 @@ A Report Creator that supports this option shall create a text-only rendition of
 
 > For example, a textual representation of image references may look like (2,16) which means series 2 instance 16. The specific textual representation of image references is out of scope of IMR.
 
-A Report Creator shall use this text-only report to communicate the report with existing non-IMR Report Readers, for example, using HL7 v2 ORU messages, or Send Imaging Result [RAD-128] in the IHE [Results Distribution](https://www.ihe.net/uploadedFiles/Documents/Radiology/IHE_RAD_Suppl_RD.pdf) Profile as a Report Creator.
+A Report Creator shall be able to use this text-only report to communicate the report with existing non-IMR Report Readers, for example, using HL7 v2 ORU messages, or Send Imaging Result [RAD-128] in the IHE [Results Distribution](https://www.ihe.net/uploadedFiles/Documents/Radiology/IHE_RAD_Suppl_RD.pdf) Profile as a Report Creator.
 
 ### 1:XX.2.3 Series/Study Navigation Option
 
 The Series/Study Navigation Option enables users to scroll through images in the same series or study.
 
-A Report Reader that supports this option shall initially display the referenced image, and shall enable the user to scroll through the other images in the same series (and optionally study) as the referenced image.
+A Report Reader that supports this option shall initially display the referenced image, and shall enable the user to scroll through the other images in the same series (and, optionally, in the same study) as the referenced image.
 
 ## 1:XX.3 IMR Required Actor Groupings
 
@@ -159,7 +159,7 @@ considerations and Section 1:XX.6 describes some optional groupings in other rel
 
 | IMR Actor | Grouping Condition | Actor(s) to be grouped with | Reference |
 |-----------|--------------------|-----------------------------|-----------|
-| Report Creator | Required | ITI CT / Time Client | ITI TF-1: 7.1 |
+| Report Creator | Required | ITI CT / Time Client | [ITI TF-1: 7.1](https://profiles.ihe.net/ITI/TF/Volume1/ch-7.html#7.1) |
 | Report Repository | -- | None | -- |
 | Report Reader | -- | None | -- |
 | Rendered Report Reader | -- | None | -- |
@@ -190,7 +190,7 @@ This has been successfully used in certain discipline such as cancer screening, 
 
 ##### Report Presentation
 
-While Report Content Structure and Report Content Encoding Structure focus on imposing structure to data elements, they do not impose any requirements on how these data elements will be presented to the user. FHIR Composition resource is designed for presentation structure using elements like *section*.
+While Report Content Structure and Report Content Encoding Structure focus on imposing structure to data elements, they do not impose any requirements on how these data elements will be presented to the user. The FHIR Composition resource is designed for presentation structure using elements like *section*.
 
 > FHIR is currently working on integrating FHIR DiagnosticReport and Composition to enable better presentation structure.
 
@@ -209,13 +209,13 @@ There are two sources of multimedia content for radiology reporting:
 - User-defined
     - These are the contents provided by the user. This includes, but not limited to, annotations, measurements, image references, etc.
 - System-defined
-    - These are the contents provided by a system. For example, parametric map generated by the modality or region of interest generated by an AI model
+    - These are the content provided by a system. For example, a parametric map generated by the modality or region of interest generated by an AI model.
 
 These contents should be available to the report authoring system so that it can incorporate the details automatically.
 
 #### 1:XX.4.1.3 Real Time Communication between Image Display / Evidence Creator and Report Creator
 
-A key element for an IMR is the ability to include clinical findings such as measurements, ROI, etc. with interactive links to the source images. Traditionally, these annotations, markups, presentation states, and key images could be captured as DICOM objects such as GSPS, SR, or KOS. These objects are designed to capture evidence for long-term reference instead of real-time communication or composition. Most PACS will create these evidence objects at the end of a session in order to capture all the data points created by the image-centric specialist in one object, rather than create multiple evidence objects resulting in one per data point. As a result, these evidence objects in DICOM are good resources for subsequent interactive access when viewing an IMR, but not good candidates as the payload for real-time communication during a reporting session. As the image-centric specialist captures measurements, regions of interest, and other data points, ideally the PACS can provide those data points to the reporting system in real-time without introducing any unnecessary interruptions, or adding transitory content to the permanent record.
+A key element for an interactive multimedia report is the ability to include clinical findings such as measurements, ROI, etc. with interactive links to the source images. Traditionally, these annotations, markups, presentation states, and key images could be captured as DICOM objects such as GSPS, SR, or KOS. These objects are designed to capture evidence for long-term reference instead of real-time communication or composition. Most PACS will create these evidence objects at the end of a session in order to capture all the data points created by the image-centric specialist in one object, rather than create multiple evidence objects resulting in one per data point. As a result, these evidence objects in DICOM are good resources for subsequent interactive access when viewing an IMR, but not good candidates as the payload for real-time communication during a reporting session. As the image-centric specialist captures measurements, regions of interest, and other data points, ideally the PACS can provide those data points to the reporting system in real-time without introducing any unnecessary interruptions, or adding transitory content to the permanent record.
 
 Note that this real time communication is currently out of scope of IMR.
 
@@ -229,7 +229,7 @@ This sophisticated placement of multimedia contents requires a more complex inte
 
 #### 1:XX.4.1.5 Image References in Report 
 
-Each image reference may references
+Each image reference in a report may reference:
 - a single image (e.g., Frame 10)
 - a range of images across multiple single-frame objects (e.g., Object 3-5) or within a multi-frame object (e.g., Frame 10-12)
 - a discrete set of images (e.g., Frame 10,14,17)
@@ -243,19 +243,19 @@ In addition to referencing a frame as a whole, sometimes the reference is specif
 
 When interacting with multimedia reports, there are different levels of sophistication:
 
-Level 0: No interactivity
+##### Level 0: No interactivity
 
 The Report Reader can display the static content (text and may include static images) in the report, but provides no interactivity with the content for the user.
 
-Level 1: Basic interactivity
+##### Level 1: Basic interactivity
 
 The Report Reader can display that static content (text and may include static images) in the report, including hyperlinks to different multimedia contents in the report (e.g., measurements). The user can click on these links to access a basic view of the source image(s) in which the findings are derived from.
 
-Level 2: Intermediate interactivity
+##### Level 2: Intermediate interactivity
 
-The Report Reader can provide not only a basic view of the source image(s), but also provide other essential features such as zoom, pan, window levelling, etc. If annotations are available, then the annotations (markup, ROI, etc.) are displayed as well and able to toggle them.
+The Report Reader can provide not only a basic view of the source image(s), but also provide other essential features such as zoom, pan, window levelling, etc. If annotations (markup, ROI, etc.) are available, the Report Reader displays them as well and enables the user to toggle them.
 
-Level 3: Advanced interactivity
+##### Level 3: Advanced interactivity
 
 The Report Reader can display not only the image referenced directly, but also the full series that contain the image. The Report Reader may provide other tools (e.g., measurements, more advanced image visualization, etc.) as well as support other advanced DICOM objects such as segmentation objects or parametric map objects.
 
@@ -275,22 +275,22 @@ IMR uses FHIR for defining the format of the diagnostic report as well as the pr
 
 IMR can be deployed in an existing FHIR infrastructure. The existing FHIR Server can act as the Report Repository with some additional IMR specific support (e.g., handling of the DiagnosticReport.presentedForm). New Report Creator, Report Reader and Rendered Report Reader are introduced and they interact with the Report Repository.
 
-In this case, many of the *organizational* level resources such as `Patient`, `Organization`, `Practitioner` and `PractitionerRole` may already exist in the Report Repository. Therefore the Report Creator may discover these existing resources prior to create the report. When the Report Creator eventually stores the multimedia report to the Report Repository, the FHIR bundle request can reference these existing organizational resources while creating the new IMR DiagnosticReport resource in the same transaction.
+In this case, many of the *organizational* level resources such as `Patient`, `Organization`, `Practitioner` and `PractitionerRole` may already exist in the Report Repository. Therefore the Report Creator may search for these existing resources prior to creating the report. When the Report Creator eventually stores the multimedia report to the Report Repository, the FHIR bundle request would reference these existing organizational resources in the new IMR DiagnosticReport resource.
 
 ##### Deploying IMR in environment without existing FHIR infrastructure
 
 IMR can be deployed in an environment without an existing FHIR infrastructure, or in an environment in which the existing FHIR infrastructure cannot be used. In this case, a new FHIR infrastructure is required.
 
-Note that in this situation, although the *organizational* level resources such as `Patient`, `Organization`, `Practitioner` and `PractitionerRole` may already exist somewhere (e.g., in EMR), but they may not exist in the new FHIR infrastructure used for IMR. There are two general approaches to address this situation:
+In this situation, although the *organizational* level resources such as `Patient`, `Organization`, `Practitioner` and `PractitionerRole` may already exist somewhere (e.g., in EMR), they may not exist in the new FHIR infrastructure used for IMR. There are two general approaches to address this situation:
 
 - Backfill the new FHIR infrastructure with these existing *organizational* level resources, and introduce a new method for ongoing synchronization. This is out of scope of IMR.
-- When the Report Creator stores the multimedia report to the Report Repository, it uses the `ifNoneExist` attribute in [Bundle.request](https://www.hl7.org/fhir/bundle.html) to specify conditional create. A separate method is still required for ongoing synchronization.
+- When the Report Creator stores the multimedia report to the Report Repository, it would use the `ifNoneExist` attribute in [Bundle.request](https://www.hl7.org/fhir/bundle.html) to specify conditional create. A separate method is still required for ongoing synchronization.
 
 ### 1:XX.4.2 Use Cases
 
-This profile is focused on encoding multimedia contents in diagnostic reports such that later the user can interact with the embedded multimedia contents in the reports.
+The IMR Profile is focused on encoding multimedia content in diagnostic reports such that later the user can interact with the embedded multimedia content in the reports.
 
-Note that the IMR Profile is currently focused on intra-enterprise use cases. Other inter-enterprise use cases may be supported in future updates. With this said, the design of the current IMR should not prohibit extending the use cases to inter-enterprise in the future.
+Note that the IMR Profile is currently focused on intra-enterprise use cases. Other inter-enterprise use cases may be supported in future updates. The design of the current IMR should not prohibit addressing inter-enterprise use cases in the future.
 
 #### 1:XX.4.2.1 Use Case 1: Encode and Transmit Multimedia Report
 
@@ -400,10 +400,12 @@ This profile strongly recommends all actors group with an ITI ATNA Secure Applic
 Secure Node Actor using the Radiology Audit Trail Option.
 
 The ATNA Profile requires actors to implement:
-- Record Audit Event [ITI-20] transaction which would record when and where analysis results are distributed and displayed.
-- Authenticate Node [ITI-19] transaction to further ensure the integrity of transactions via node authentication and communication encryption.
+- [Record Audit Event](https://profiles.ihe.net/ITI/TF/Volume2/ITI-20.html) [ITI-20] transaction which would record when and where analysis
+785 results are distributed and displayed.
+- [Authenticate Node](https://profiles.ihe.net/ITI/TF/Volume2/ITI-19.html) [ITI-19] transaction to further ensure the integrity of transactions via
+node authentication and communication encryption.
 
-Furthermore, for the FHIR-based transactions, this profile strongly recommends the use of ITI Internet User Authorization (IUA) to ensure that communications are only allowed for authenticated and authorized users and/or systems.
+Furthermore, for the FHIR-based transactions, this profile strongly recommends the use of ITI [Internet User Authorization](https://profiles.ihe.net/ITI/TF/Volume1/ch-34.html) (IUA) Profile to ensure that communications are only allowed for authenticated and authorized users and/or systems.
 
 ### 1:XX.5.2 Security Considerations for Multimedia Reports
 
