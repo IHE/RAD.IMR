@@ -239,7 +239,7 @@ In addition to referencing a frame as a whole, sometimes the reference is specif
 
 #### 1:XX.4.1.6 Level of Interactivity
 
-When interacting with multimedia reports, there are different levels of sophistication:
+This profile introduces different levels of interactivity that describe levels of sophistication when interacting with contents of multimedia reports:
 
 ##### Level 0: No interactivity
 
