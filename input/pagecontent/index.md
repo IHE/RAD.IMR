@@ -5,10 +5,10 @@ This profile defines content for data encoding, transactions for communicating t
 [Open and Closed Issues](issues.html)
 
 ### Organization of This Guide
-This guide is organized into four main sections:
+This guide is organized into five main sections:
 
 1. Volume 1: [Overview](volume-1.html)
-   1. [Actors and Transactions](volume-1.html#1x1-imr-actors-transactions-and-content-modules)
+   1. [Actors and Transactions](volume-1.html#1xx1-imr-actors-transactions-and-content-modules)
    1. [Actor Options](volume-1.html#1xx2-imr-actor-options)
    1. [Actor Required Groupings](volume-1.html#1xx3-imr-required-actor-groupings)
    1. [Overview](volume-1.html#1xx4-interactive-multimedia-report-overview)
@@ -33,7 +33,7 @@ This guide is organized into four main sections:
 
 
 Click on any of the links above, head on over the [table of contents](toc.html), or
-if you are looking for a specific artifact, check out the [index](artifacts.html).
+if you are looking for a specific artifact, check out the [Artifacts Summary](artifacts.html).
 
 You can also download:
 

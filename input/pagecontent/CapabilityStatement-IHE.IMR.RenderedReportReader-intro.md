@@ -1,3 +1,3 @@
-This is the **Requirements** CapabilityStatement for a [Report Reader](volume-1.html#1xx113-report-reader). The Report Reader shall declared the [Rendered Instance Retrieve Option](volume-1.html#1xx23-rendered-instance-retrieve-option), the [External IID Image Display Option](volume-1.html#1xx24-external-iid-image-display-retrieve-option), and/or the [DICOM Instance Retrieve Option](volume-1.html#1xx25-dicom-instance-retrieve-option).
+This is the **Requirements** CapabilityStatement for a [Report Reader](volume-1.html#1xx113-report-reader).
 
 This Actor uses [Display Multimedia Report \[RAD-Y2\]](RAD-Y2.html), [Find Multimedia Report \[RAD-Y3\]](RAD-Y3.html), and [Display Referenced Images in Multimedia Report \[RAD-Y5\]](RAD-Y5.html) transactions.
