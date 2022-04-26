@@ -46,6 +46,7 @@ Table 1:XX.1-1 lists the transactions for each actor directly involved in the IM
 {: .grid}
 
 > Note 1: The actor shall support at least one of [RAD-Y1] or [RAD-Y3].
+> 
 > Note 2: The [RAD-107] transaction is currently in the [WIA Trial Implementation Supplement](https://www.ihe.net/uploadedFiles/Documents/Radiology/IHE_RAD_Suppl_WIA.pdf)
 
 ### 1:XX.1.1 Actors Description and Actor Profile Requirements
