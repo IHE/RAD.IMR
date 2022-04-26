@@ -225,15 +225,15 @@ Although this can be useful, a more sophisticated placement of multimedia conten
 
 This sophisticated placement of multimedia contents requires a more complex interaction between the PACS and the Reporting System because both systems need to know the current context and be able to mark their respective data accordingly. This also requires a low latency communication because any pause required by the radiologist to synchronize the two systems during a reporting session will cause significant distraction to the radiologist.
 
-#### 1:XX.4.1.5 Image References in Report 
+#### 1:XX.4.1.5 References to Image Context in Report 
 
-Each image reference in a report may reference:
+Each reference in a report may be to:
 - a single image (e.g., Frame 10)
 - a range of images across multiple single-frame objects (e.g., Object 3-5) or within a multi-frame object (e.g., Frame 10-12)
 - a discrete set of images (e.g., Frame 10,14,17)
 - a combination of the above (e.g., Frame 10-12,14,17-20)
 
-In most cases, the image references refer to the same study context as the study being reported on. Occasionally, the image references may refer to a comparison study that is used during reporting.
+In most cases, these refer to the same study context as the study being reported on. Occasionally, the reference may be to a comparison study that is used during reporting.
 
 In addition to referencing a frame as a whole, sometimes the reference is specific to a region of interest in the frame. The region of interest (ROI) can be one or more points, a line or a segmented line (e.g., polyline), a geometric shape (e.g., ellipse, polygon), or a volume (e.g., ellipsoid).
 
