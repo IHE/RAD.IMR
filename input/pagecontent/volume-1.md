@@ -38,14 +38,15 @@ Table 1:XX.1-1 lists the transactions for each actor directly involved in the IM
 |               | Display Multimedia Report \[RAD-Y2\] | N/A | R | [RAD TF-2: 4.Y2](RAD-Y2.html) |
 |               | Find Multimedia Report \[RAD-Y3\] | Initiator | O (Note 1) | [RAD TF-2: 4.Y3](RAD-Y3.html) |
 |               | Display Images \[RAD-Y5\] | N/A | R | [RAD TF-2: 4.Y5](RAD-Y5.html) |
-|               | WADO-RS Retrieve \[RAD-107\] | Initiator | O | RAD TF-2: 4.107 |
+|               | WADO-RS Retrieve \[RAD-107\] | Initiator | O | RAD TF-2: 4.107 (Note 2)|
 | Rendered Report Reader | Store Multimedia Report \[RAD-Y1\] | Responder | O (Note 1) | [RAD TF-2: 4.Y1](RAD-Y1.html) |
 |                        | Find Multimedia Report \[RAD-Y3\] | Initiator | O (Note 1) | [RAD TF-2: 4.Y3](RAD-Y3.html) |
 |                        | Retrieve Rendered Multimedia Report \[RAD-Y4\] | Initiator | R | [RAD TF-2: 4.Y4](RAD-Y4.html) |
-| Image Manager / Image Archive | WADO-RS Retrieve \[RAD-107\] | Responder | R | RAD TF-2: 4.107 |
+| Image Manager / Image Archive | WADO-RS Retrieve \[RAD-107\] | Responder | R | RAD TF-2: 4.107 (Note 2) |
 {: .grid}
 
 > Note 1: The actor shall support at least one of [RAD-Y1] or [RAD-Y3].
+> Note 2: The [RAD-107] transaction is currently in the [WIA Trial Implementation Supplement](https://www.ihe.net/uploadedFiles/Documents/Radiology/IHE_RAD_Suppl_WIA.pdf)
 
 ### 1:XX.1.1 Actors Description and Actor Profile Requirements
 Most requirements are documented in RAD TF-2 Transactions. This section documents any additional requirements on this profile's actors.
