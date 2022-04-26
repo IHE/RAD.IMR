@@ -98,10 +98,6 @@ A Rendered Report Reader provides [Level 1 Interactivity](#1xx416-level-of-inter
 
 An Image Manager / Image Archive provides the images and related objects to the Report Readers or Image Displays.
 
-An Image Manager / Image Archive shall support WADO-RS Retrieve [RAD-107].
-
-An Image Manager / Image Archive shall also support returning images in the requested rendered media type as defined in DICOM [PS3.18 Section 9.5](https://dicom.nema.org/medical/dicom/current/output/html/part18.html#sect_9.5) "Retrieve Rendered Instance Transaction".
-
 ## 1:XX.2 IMR Actor Options
 
 Options that may be selected for each actor in this implementation guide, are listed in Table 1:XX.2-1 below. Dependencies 
