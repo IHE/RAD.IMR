@@ -112,7 +112,7 @@ between options when applicable are specified in notes.
 | Report Creator | PDF Report | [Section 1:XX.2.1](#1xx21-pdf-report-option) | 
 |                | HL7 Text Report | [Section 1:XX.2.2](#1xx22-hl7-text-report-option) |
 | Report Repository | No options defined | -- |
-| Report Reader | Series/Study Navigation | [Section 1:XX.2.6](#1xx26-seriesstudy-navigation-option) |
+| Report Reader | Series/Study Navigation | [Section 1:XX.2.6](#1xx23-seriesstudy-navigation-option) |
 | Rendered Report Reader | PDF Report | [Section 1:XX.2.1](#1xx21-pdf-report-option) |
 | Image Manager / Image Archive | No options defined | -- |
 {: .grid}
@@ -309,17 +309,17 @@ Figure 1:XX.4.2.1.2-1 shows the dictation session as background context, and the
 
 **Figure 1:XX.4.2.1.2-1: Encode and Transmit Process Flow in IMR Profile**
 
-#### 1:XX.4.2.2 Use Case 2: Consume and Interact with Multimedia Report by Report Reader
+#### 1:XX.4.2.2 Use Case 2: Consume and Interact with Multimedia Report by Advanced Consumers
 
-##### 1:XX.4.2.2.1 Consume and Interact with Multimedia Report by Report Reader Use Case Description
+##### 1:XX.4.2.2.1 Consume and Interact with Multimedia Report by Advanced Consumers Use Case Description
 
 A clinician wants to review studies and associated diagnostic reports for a patient. She searches the EMR for the patient. The EMR searches for available procedures and studies for the patient as well as any reports available for each procedure and/or study found based on accession number. As a result, the EMR returns a list of studies and associated diagnostic reports for the patient.
 
 > Note that in some cases, for example a group case in which a requested procedure resulted in multiple performed procedures (e.g., chest, abdomen, pelvis), multiple diagnostic reports for each performed procedure may be created.
 
-Upon reviewing reports for a patient in the EMR, it encounters an IMR multimedia report. As an IMR Report Reader, the EMR processes the report content and displays the reports with interactive links. The Clinician clicks on the interactive links. The EMR / Report Reader retrieves the rendered images from the Image Manager / Image Archive and displays the images with interactive tools. The Clinicians can navigate the series and see the measurements with annotations as described in the report.
+Upon reviewing reports for a patient in the EMR, it encounters an IMR multimedia report. As an IMR Report Reader, the EMR processes the report content according to its rendering configuration and displays the reports with interactive links. The Clinician clicks on the interactive links. The EMR / Report Reader retrieves the rendered images from the Image Manager / Image Archive and displays the images with interactive tools. The Clinicians can navigate the series and see the measurements with annotations as described in the report.
 
-##### 1:XX.4.2.2.2 Consume and Interact with Multimedia Report by Report Reader Process Flow
+##### 1:XX.4.2.2.2 Consume and Interact with Multimedia Report by Advanced Consumers Process Flow
 
 Figure 1:XX.4.2.2.2-1 shows how the Clinician can use the EMR with native IMR Report Reader support to interact with the multimedia content available in the report.
 
@@ -328,56 +328,60 @@ Figure 1:XX.4.2.2.2-1 shows how the Clinician can use the EMR with native IMR Re
 </div>
 <br clear="all">
 
-**Figure 1:XX.4.2.2.2-1: Consume and Interact with Multimedia Report by Report Reader Process Flow in IMR Profile**
+**Figure 1:XX.4.2.2.2-1: Consume and Interact with Multimedia Report by Advanced Consumers Process Flow in IMR Profile**
 
-##### 1:XX.4.2.2.3 Consume and Interact with Multimedia Report by Rendered Report Reader Use Case Description
+#### 1:XX.4.2.3 Use Case 3: Consume and Interact with Multimedia Report by Basic Consumers
 
-Alternatively, the EMR supports the IMR Rendered Report Reader. In this case, the EMR extracts and displays the rendered report already embedded in the IMR multimedia report. The Clinician clicks on the interactive links. The EMR / Rendered Report Reader invokes the links and displays the rendered content.
+##### 1:XX.4.2.3.1 Consume and Interact with Multimedia Report by Basic Consumers Use Case Description
 
-##### 1:XX.4.2.2.4 Consume and Interact with Multimedia Report by Rendered Report Reader Process Flow
+Similar to Use Case #2, but instead of processing the report content according to its own rendering configuration, the EMR supports the IMR Rendered Report Reader. In this case, the EMR extracts and displays the rendered report already embedded in the IMR multimedia report. The Clinician clicks on the interactive links. The EMR / Rendered Report Reader invokes the links and displays the rendered content.
 
-Figure 1:XX.4.2.2.4-1 shows how the Clinician can use the EMR with a native IMR Rendered Report Reader support to interact with the multimedia content available in the report.
+##### 1:XX.4.2.3.2 Consume and Interact with Multimedia Report by Basic Consumers Process Flow
+
+Figure 1:XX.4.2.3.2-1 shows how the Clinician can use the EMR with a native IMR Rendered Report Reader support to interact with the multimedia content available in the report.
 
 <div>
-{%include uc2a-presenting-interactive-report-presentedform.svg%}
+{%include uc3-presenting-interactive-report-presentedform.svg%}
 </div>
 <br clear="all">
 
-**Figure 1:XX.4.2.2.4-1: Consume and Interact with Multimedia Report by Rendered Report Reader Process Flow in IMR Profile**
+**Figure 1:XX.4.2.3.2-1: Consume and Interact with Multimedia Report by Basic Consumers Process Flow in IMR Profile**
 
-##### 1:XX.4.2.2.5 Consume and Interact with Multimedia Report by Report Reader with Integrated Image Display Invoker Use Case Description
+#### 1:XX.4.2.4 Use Case 4: Consume and Interact with Multimedia Report by Advanced Consumers with Integrated Image Display Invoker
 
-If the EMR delegates image viewing responsibility to an external Image Display by implementing Image Display Invoker in IID, then the EMR can implement the Report Reader to support displaying the multimedia report content. Furthermore, the Report Reader capability is integrated with the Image Display Invoker capability to display the referenced images embedded in IMR multimedia reports. 
+##### 1:XX.4.2.4.1 Consume and Interact with Multimedia Report by Advanced Consumers with Integrated Image Display Invoker Use Case Description
+
+If the EMR delegates image viewing responsibility to an external Image Display by implementing Image Display Invoker in IID, then the EMR can implement the Report Reader to support displaying the multimedia report content according to its rendering configuration as in Use Case #2. Furthermore, the Report Reader capability is integrated with the Image Display Invoker capability to display the referenced images embedded in IMR multimedia reports.
 
 In this case, when viewing IMR multimedia reports for a patient in the EMR, it displays the reports with interactive links to the multimedia content. The Clinician clicks on the interactive links. The EMR / Report Reader launches the integrated Image Display Invoker which in turn invokes the configured Image Display in context based on the information in the link. The Image Display retrieves and displays the images with interactive tools. The Clinicians can navigate the series and see the measurements with annotations as described in the report.
 
-##### 1:XX.4.2.2.6 Consume and Interact with Multimedia Report by Report Reader with Integrated Image Display Invoker Process Flow
+##### 1:XX.4.2.4.2 Consume and Interact with Multimedia Report by Advanced Consumers with Integrated Image Display Invoker Process Flow
 
-Figure 1:XX.4.2.2.6 shows how the Clinician can use the EMR that supports IMR Report Reader with integrated Image Display Invoker to interact with the multimedia content available in the report.
+Figure 1:XX.4.2.4.2-1 shows how the Clinician can use the EMR that supports IMR Report Reader with integrated Image Display Invoker to interact with the multimedia content available in the report.
 
 <div>
-{%include uc2b-presenting-interactive-report-EMR.svg%}
+{%include uc4-presenting-interactive-report-EMR.svg%}
 </div>
 <br clear="all">
 
-**Figure 1:XX.4.2.2.6-1: Consume and Interact with Multimedia Report by Report Reader with Integrated Image Display Invoker Process Flow in IMR Profile**
+**Figure 1:XX.4.2.4.2-1: Consume and Interact with Multimedia Report by Advanced Consumers with Integrated Image Display Invoker Process Flow in IMR Profile**
 
-#### 1:XX.4.2.3 Use Case 3: Consume and Interact with Multimedia Report for Comparison Study by Radiologist
+#### 1:XX.4.2.5 Use Case 5: Consume and Interact with Multimedia Report for Comparison Study in PACS
 
-##### XX.4.2.3.1 Consume and Interact with Multimedia Report for Prior Study by Radiologist Use Case Description
+##### 1:XX.4.2.5.1 Consume and Interact with Multimedia Report for Comparison Study in PACS Use Case Description
 
 A radiologist is in the process of dictating a study. Comparison studies are displayed along with the current study. The comparison studies have associated multimedia reports. The Report Reader integrated with an Image Display displays the multimedia reports to the radiologist with interactive links. When the Radiologist clicks on the links, the Report Reader triggers the viewport in the Image Display currently showing the comparison study to show the specific image in which the measurements are derived from. If needed, the Radiologist can redo the measurements on the comparison studies to confirm the data submitted.
 
-##### 1:XX.4.2.3.2 Consume and Interact with Multimedia Report for Comparison Study by Radiologist Process Flow
+##### 1:XX.4.2.5.2 Consume and Interact with Multimedia Report for Comparison Study in PACS Process Flow
 
-Figure 1:XX.4.2.3.2-1 shows how the Radiologist can use the PACS workstation (Image Display) that is integrated with IMR Report Reader to interact with the multimedia content available in the report.
+Figure 1:XX.4.2.5.2-1 shows how the Radiologist can use the PACS workstation (Image Display) that is integrated with IMR Report Reader to interact with the multimedia content available in the report.
 
 <div>
-{%include uc3-presenting-interactive-report-PACS.svg%}
+{%include uc5-presenting-interactive-report-PACS.svg%}
 </div>
 <br clear="all">
 
-**Figure 1:XX.4.2.3.2-1: Consume and Interact with Multimedia Report for Comparison Study by Radiologist Process Flow in IMR Profile**
+**Figure 1:XX.4.2.5.2-1: Consume and Interact with Multimedia Report for Comparison Study in PACS Process Flow in IMR Profile**
 
 ## 1:XX.5 IMR Security Considerations
 
