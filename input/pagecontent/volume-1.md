@@ -28,18 +28,18 @@ grouping are shown in conjoined boxes (see [Section 1:XX.3](#1xx3-imr-required-a
 
 | Actors  | Transactions  | Initiator or Responder | Optionality     | Reference                         |
 |---------|---------------|------------------------|-----------------|-----------------------------------|
-| Report Creator | Store Multimedia Report \[RAD-Y1\] | Initiator | R | RAD TF-2: 4.Y1 |
-| Report Repository | Store Multimedia Report \[RAD-Y1\] | Responder | R | RAD TF-2: 4.Y1 |
-|                   | Find Multimedia Report  \[RAD-Y3\]| Responder | R | RAD TF-2: 4.Y3 |
-|                   | Retrieve Rendered Multimedia Report \[RAD-Y4\] | Responder | R | RAD TF-2: 4.Y4 |
-| Report Reader | Store Multimedia Report \[RAD-Y1\]| Responder | O (Note 1) | RAD TF-2: 4.Y1 |
-|               | Display Multimedia Report \[RAD-Y2\] | N/A | R | RAD TF-2: 4.Y2 |
-|               | Find Multimedia Report \[RAD-Y3\] | Initiator | O (Note 1) | RAD TF-2: 4.Y3 |
-|               | Display Images \[RAD-Y5\] | N/A | R | RAD TF-2: 4.Y5 |
+| Report Creator | Store Multimedia Report \[RAD-Y1\] | Initiator | R | [RAD TF-2: 4.Y1](RAD-Y1.html) |
+| Report Repository | Store Multimedia Report \[RAD-Y1\] | Responder | R | [RAD TF-2: 4.Y1](RAD-Y1.html) |
+|                   | Find Multimedia Report  \[RAD-Y3\]| Responder | R | [RAD TF-2: 4.Y3](RAD-Y3.html) |
+|                   | Retrieve Rendered Multimedia Report \[RAD-Y4\] | Responder | R | [RAD TF-2: 4.Y4](RAD-Y4.html) |
+| Report Reader | Store Multimedia Report \[RAD-Y1\]| Responder | O (Note 1) | [RAD TF-2: 4.Y1](RAD-Y1.html) |
+|               | Display Multimedia Report \[RAD-Y2\] | N/A | R | [RAD TF-2: 4.Y2](RAD-Y2.html) |
+|               | Find Multimedia Report \[RAD-Y3\] | Initiator | O (Note 1) | [RAD TF-2: 4.Y3](RAD-Y3.html) |
+|               | Display Images \[RAD-Y5\] | N/A | R | [RAD TF-2: 4.Y5](RAD-Y5.html) |
 |               | WADO-RS Retrieve \[RAD-107\] | Initiator | O | RAD TF-2: 4.107 |
-| Rendered Report Reader | Store Multimedia Report \[RAD-Y1\] | Responder | O (Note 1) | RAD TF-2: 4.Y1 |
-|                        | Find Multimedia Report \[RAD-Y3\] | Initiator | O (Note 1) | RAD TF-2: 4.Y3 |
-|                        | Retrieve Rendered Multimedia Report \[RAD-Y4\] | Initiator | R | RAD TF-2: 4.Y4 |
+| Rendered Report Reader | Store Multimedia Report \[RAD-Y1\] | Responder | O (Note 1) | [RAD TF-2: 4.Y1](RAD-Y1.html) |
+|                        | Find Multimedia Report \[RAD-Y3\] | Initiator | O (Note 1) | [RAD TF-2: 4.Y3](RAD-Y3.html) |
+|                        | Retrieve Rendered Multimedia Report \[RAD-Y4\] | Initiator | R | [RAD TF-2: 4.Y4](RAD-Y4.html) |
 | Image Manager / Image Archive | WADO-RS Retrieve \[RAD-107\] | Responder | R | RAD TF-2: 4.107 |
 {: .grid}
 
