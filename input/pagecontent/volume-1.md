@@ -121,7 +121,7 @@ between options when applicable are specified in notes.
 
 The PDF Report Option enables actors to handle rendered reports with multimedia contents in the PDF format.
 
-A Report Creator that supports this option shall generate a rendered multimedia report, preserving the image references as either hyperlinks or embedded static images in the rendered PDF file, and embed the rendered report in DiagnosticReport.presentedForm. A Report Creator shall preserve the readability of the report in the PDF format.
+A Report Creator that supports this option shall generate a rendered multimedia report, preserving the image references as either hyperlinks or embedded static images in the rendered PDF file, and embed the rendered report in DiagnosticReport.presentedForm. 
 
 A Report Creator that supports this option shall generate a rendered multimedia report, preserving the image references as either hyperlinks or embedded static images in the rendered PDF file, and embed the rendered report in DiagnosticReport.presentedForm in the Store Multimedia Reports [RAD-Y1] transaction. See [Rendered Report In PDF](RAD-Y1.html#24y1412222-rendered-report-in-pdf-format) for details.
 
