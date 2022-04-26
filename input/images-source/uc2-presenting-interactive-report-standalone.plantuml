@@ -2,27 +2,27 @@
 
 actor Clinician as Clinician
 
-participant "Report Reader\n(EMR)" as EMR
+participant "Report Reader\n(EMR)" as Reader
 participant "Report Repository" as Repo
 
 participant "Image Manager/\nImage Archive" as Archive
 
-Clinician->>EMR: //Request multimedia report//
+Clinician->>Reader: //Request multimedia report//
 
-EMR->Repo: Find Multimedia Report [RAD-Y3]
-EMR->EMR: Display Multimedia Report [RAD-Y2]
-note over EMR
+Reader->Repo: Find Multimedia Report [RAD-Y3]
+Reader->Reader: Display Multimedia Report [RAD-Y2]
+note over Reader
 Show report, including multimedia contents
 such as measurements and/or image references as hyperlinks.
 end note
 
-Clinician->>EMR: //Click on hyperlinked measurements//
+Clinician->>Reader: //Click on hyperlinked measurements//
 
-loop Retrieve rendered images with / without additional presentation, window levelling
-EMR->Archive: Retrieve rendered images in series\nWADO-RS Retrieve [RAD-107]
-EMR->EMR: Display Images [RAD-Y5]
+loop Retrieve DICOM objets and/or rendered images with / without additional presentation, window levelling
+Reader->Archive: Retrieve images in series\nWADO-RS Retrieve [RAD-107]
+Reader->Reader: Display Images [RAD-Y5]
 
-Clinician->>EMR: //Interact with images and/or series//\n//such as scrolling or window levelling//
+Clinician->>Reader: //Interact with images and/or series//\n//such as scrolling or window levelling//
 end loop
 
 @enduml
