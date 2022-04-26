@@ -33,7 +33,7 @@ This guide is organized into five main sections:
 
 
 Click on any of the links above, head on over the [table of contents](toc.html), or
-if you are looking for a specific artifact, check out the [index](artifacts.html).
+if you are looking for a specific artifact, check out the [Artifacts Summary](artifacts.html).
 
 You can also download:
 
