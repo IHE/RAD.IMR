@@ -150,8 +150,6 @@ A Report Reader that supports this option shall initially display the referenced
 An actor from this profile (Column 1) shall implement all of the required transactions and/or
 content modules in this profile ***in addition to all*** of the requirements for the grouped actor (Column 3).
 
-In some cases, required groupings are defined as at least one of an enumerated set of possible actors; this is designated by merging column one into a single cell spanning multiple potential grouped actors. Notes are used to highlight this situation.
-
 Section 1:XX.5 describes some optional groupings that may be of interest for security
 considerations and Section 1:XX.6 describes some optional groupings in other related profiles.
 
