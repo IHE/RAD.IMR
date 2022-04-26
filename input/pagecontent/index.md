@@ -5,7 +5,7 @@ This profile defines content for data encoding, transactions for communicating t
 [Open and Closed Issues](issues.html)
 
 ### Organization of This Guide
-This guide is organized into four main sections:
+This guide is organized into five main sections:
 
 1. Volume 1: [Overview](volume-1.html)
    1. [Actors and Transactions](volume-1.html#1x1-imr-actors-transactions-and-content-modules)
