@@ -161,6 +161,8 @@ The message is an HTTP GET or HTTP POST response. The Requester is the User Agen
 
 The Responder returns an HTTP Status code appropriate to the processing as well as a Bundle of the matching DiagnosticReport Resources.
 
+The Responder may refuse or impose reasonable limits if a query is overly broad. The Responder may restrict results based on the authorization of the Requester, or based on other server implementation decisions.
+
 Based on the query results, the Responder shall either return an error or success. Guidance on handling Access Denied related to use of 200, 403 and 404 can be found in [ITI TF-2: Appendix Z.7](https://profiles.ihe.net/ITI/TF/Volume2/ch-Z.html#z.8-mobile-security-considerations). 
 
 When the Responder needs to report an error, it shall use HTTP error response codes and should include a FHIR OperationOutcome with more details on the failure. See FHIR [http://hl7.org/fhir/http.html](http://hl7.org/fhir/http.html) and [http://hl7.org/fhir/operationoutcome.html](http://hl7.org/fhir/operationoutcome.html).
