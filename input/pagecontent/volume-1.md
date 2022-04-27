@@ -123,11 +123,11 @@ between options when applicable are specified in notes.
 
 The PDF Report Option enables actors to handle rendered reports with multimedia contents in the PDF format.
 
-A Report Creator that supports this option shall generate a rendered multimedia report, preserving the image references as either hyperlinks or embedded static images in the rendered PDF file, and embed the rendered report in DiagnosticReport.presentedForm. A Report Creator shall preserve the readability of the report in the PDF format.
+A Report Creator that supports this option shall generate a rendered multimedia report, preserving the image references as either hyperlinks or embedded static images in the rendered PDF file, and embed the rendered report in DiagnosticReport.presentedForm. The Report Creator shall preserve the readability of the report in the PDF format.
 
 A Report Creator that supports this option shall generate a rendered multimedia report, preserving the image references as either hyperlinks or embedded static images in the rendered PDF file, and embed the rendered report in DiagnosticReport.presentedForm in the Store Multimedia Reports [RAD-Y1] transaction. See [Rendered Report In PDF](RAD-Y1.html#24y1412222-rendered-report-in-pdf-format) for details.
 
-> Note that how the Report Creator renders the report into PDF is out of scope of IMR, provided that the rendered report preserves the readability of the report. For example, if there are multiple measurements in the same paragraph, each has its separate image reference(s), then if the image references are rendered as inline static images, the resulting paragraph may be broken up and become hard to read.
+> Note that how the Report Creator lays out the report into PDF is out of scope of IMR, provided that the rendered report preserves the readability of the report. For example, if there are multiple measurements in the same paragraph, each has its separate image reference(s), then if the image references are rendered as inline static images, the resulting paragraph may be broken up and become hard to read.
 
 A Rendered Report Reader that supports this option shall support retrieving and displaying the rendered report in PDF format.
 
@@ -143,7 +143,7 @@ A Report Creator shall be able to use this text-only report to communicate the r
 
 ### 1:XX.2.3 Series/Study Navigation Option
 
-The Series/Study Navigation Option enables users to scroll through images in the same series or study.
+The Series/Study Navigation Option involves the user being able to navigate through images in the same series or study as the image initially displayed.
 
 A Report Reader that supports this option shall initially display the referenced image, and shall enable the user to scroll through the other images in the same series (and, optionally, in the same study) as the referenced image.
 
