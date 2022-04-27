@@ -276,6 +276,8 @@ The Receiver may extract the embedded rendered report(s) in DiagnosticReport.pre
 
 The Receiver shall maintain the integrity of the report if the report access method is modified (i.e., from embedded to hosted, or vice versa).
 
+The Receiver shall not send a success response until the multimedia report is completely processed and persisted as appropriate to the Receiver configuration.
+
 If the Receiver encounters any errors or if any validation fails, the Receiver shall return an appropriate error.
 
 #### 2:4.Y1.4.2 Store Multimedia Report Bundle Response Message
@@ -297,8 +299,6 @@ The Receiver shall construct a Bundle, with `type` set to `transaction-response`
 To indicate success, the Receiver shall return an HTTP status `200`. The Receiver shall include in the HTTP response header the `location` element, and the `etag` element if the Receiver supports FHIR resource versioning.
 
 The `Bundle.entry.response.status` shall be `201` to indicate the Resource has been created. 
-
-The Receiver shall not send a success response until the multimedia report is completely processed and persisted as appropriate to the Receiver configuration.
 
 An informative StructureDefinition is found at [IMR Store Multimedia Report Bundle Message](StructureDefinition-imr-store-multimedia-report-bundle.html).
 
