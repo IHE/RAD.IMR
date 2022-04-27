@@ -12,13 +12,13 @@ participant "Report Repository" as Repo
 participant "Image Display" as Display
 participant "Image Manager/\nImage Archive" as Archive
 
-Clinician->>EMR: //Request multimedia report//
+Clinician->>EMR: //Select report entry//
 
 EMR->Repo: Find Multimedia Report [RAD-Y3]
+Repo-->EMR: Returned multimedia report
 EMR->EMR: Display Multimedia Report [RAD-Y2]
 note over EMR
-Show report, including multimedia contents
-such as measurements and/or image references as hyperlinks.
+Show report, including hyperlinked references to measurements and/or images.
 end note
 
 Clinician->>EMR: //Click on image references//

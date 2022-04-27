@@ -15,16 +15,17 @@ participant "Image Manager/\nImage Archive" as Archive
 Radiologist->>RCreator: //Begin Dictation//
 Radiologist->>Display: //View current study with prior studies and//\n//associated multimedia reports//
 Display->>Archive: //Retrieve current and prior studies//
-Display->>Display: //Display study//
+Archive-->>Display: //Return studies//
+Display->>Display: //Display studies//
 
 group IMR Interactive Viewing of Multimedia Content in Report for Prior Studies
-note over Reader: Show prior multimedia report
+Display->>Reader: //Select report entry//
 Reader->Repo: Find Multimedia Report\nfor prior studies [RAD-Y3]
+Repo-->Reader: Returned multimedia report
 Reader->Reader: Display Multimedia Report [RAD-Y2]
 
 note over Reader
-Present report, including multimedia contents
-such as measurements and image references.
+Present report, including hyperlinked references to measurements and/or images.
 end note
 
 Radiologist->>Reader: //Click on image references in Report//

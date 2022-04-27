@@ -7,7 +7,7 @@ participant "Report Repository" as Repo
 
 participant "Image Manager/\nImage Archive" as Archive
 
-Clinician->>EMR: //Request multimedia report//
+Clinician->>EMR: //Select report entry//
 
 EMR->Repo: Find Multimedia Report [RAD-Y3]
 Repo-->EMR: Returned multimedia report

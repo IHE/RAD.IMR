@@ -20,16 +20,17 @@ EMR->>Invoker: //Navigate study//
 
 Invoker->Display: Invoke Image Display [RAD-106]
 Display->>Archive: //Retrieve study//
+Archive-->>Display: //Return study//
 Display->>Display: //Display study//
 Display->>Reader: //Show associated multimedia report//
 
 group IMR Interactive Viewing of Multimedia Content in Report
 Reader->Repo: Find Multimedia Report [RAD-Y3]
+Repo-->Reader: Return multimedia report
 Reader->Reader: Display Multimedia Report [RAD-Y2]
 
 note over Reader
-Present report, including multimedia contents
-such as measurements and image references.
+Present report, including hyperlinked references to measurements and/or images.
 end note
 
 Clinician->>Reader: Click on image references in Report
