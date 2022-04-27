@@ -160,7 +160,7 @@ The Sender shall encode the rendered report that is referenced by DiagnosticRepo
 - host the rendered report somewhere and provide the url in DiagnosticReport.presentedForm.url
 
 The Sender shall populate accurate values for hash and size for the rendered report content in DiagnosticReport.presentedForm.hash and DiagnosticReport.presentedForm.size: 
-* Where the presentedForm is a Binary Resource instance, the .hash and .size shall represent the raw artifact that has been base64encoded in the Binary.data element.  
+* Where the presentedForm is a Binary Resource instance, the .hash and .size shall represent the raw artifact prior to base64 encoding in the Binary.data element.  
 * Where the presentedForm is hosted elsewhere, not as a Binary Resource, the .hash and the .size shall represent the rendered report content that would be retrieved using the mime-type specified in DiagnosticReport.presentedForm.contentType. 
 
 ###### 2:4.Y1.4.1.2.2.2.1 Image References in Rendered Report
