@@ -13,13 +13,12 @@ Reader->Repo: Find Multimedia Report [RAD-Y3]
 Repo-->Reader: Returned multimedia report
 Reader->Reader: Display Multimedia Report [RAD-Y2]
 note over Reader
-Show report, including multimedia contents
-such as measurements and/or image references as hyperlinks.
+Show report, including hyperlinked references to measurements and/or images.
 end note
 
 Clinician->>Reader: //Click on hyperlinked measurements//
 
-loop Retrieve DICOM objets and/or rendered images with / without additional presentation, window levelling
+loop Retrieve DICOM objects and/or rendered images with / without additional presentation, window levelling
 Reader->Archive: Retrieve images in series\nWADO-RS Retrieve [RAD-107]
 Reader->Reader: Display Images [RAD-Y5]
 
