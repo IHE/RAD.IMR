@@ -2,7 +2,7 @@
 
 #### Open Issues
 
-These issues were known as part of the publication, and IHE invites comments.
+IHE invites comments on the following issues.
 
 |#|Question|
 |-|--------|
