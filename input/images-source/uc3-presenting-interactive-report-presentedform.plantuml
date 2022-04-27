@@ -10,6 +10,7 @@ participant "Image Manager/\nImage Archive" as Archive
 Clinician->>EMR: //Request multimedia report//
 
 EMR->Repo: Find Multimedia Report [RAD-Y3]
+Repo-->EMR: Returned multimedia report
 EMR->EMR: Display Multimedia Report [RAD-Y2]
 note over EMR
 Extract the rendered report from the retrieved multimedia report.
@@ -20,15 +21,15 @@ EMR->Repo: Retrieve Rendered Multimedia Report [RAD-Y4]
 Repo-->EMR: Return rendered multimedia report
 end
 
-Clinician->>EMR: //Click on hyperlinked measurements//
-
-EMR->Archive: Retrieve rendered images in series
 note over EMR
 The Report Creator embedded links for
 rendered image references in the rendered report. These links
 may be standard based links such as WADO-RS rendered instances,
 or other URLs are possible.
 end note
+Clinician->>EMR: //Click on hyperlinked measurements//
+
+EMR->Archive: Retrieve rendered images in series
 EMR->EMR: Display Images [RAD-Y5]
 
 Clinician->>EMR: //Interact with images and/or series//\n//such as scrolling or window levelling//
