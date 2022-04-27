@@ -15,7 +15,7 @@ Description:    "IHE Interactive Multimedia Report (IMR) profile on ImagingStudy
 
 * identifier contains studyUID 1..1 MS
 * identifier[studyUID].type 1..1 MS
-* identifier[studyUID].type.coding = DICOM#110180 "Study Instance UID"
+* identifier[studyUID].type.coding = DICOMUID#110180 "Study Instance UID"
 * identifier[studyUID].value 1..1 MS
 
 * modality 1..*

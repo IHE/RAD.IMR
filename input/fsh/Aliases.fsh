@@ -15,5 +15,6 @@ Alias: FHIRDiagnosticReportStatus = http://hl7.org/fhir/diagnostic-report-status
 Alias: FHIRDiagnosticService = http://terminology.hl7.org/CodeSystem/v2-0074
 
 Alias: DICOM = http://dicom.nema.org/resources/ontology/DCM
+Alias: DICOMUID = urn:dicom:uid
 
 Alias: MIME = urn:ietf:bcp:13
