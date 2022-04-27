@@ -338,7 +338,7 @@ Figure 1:XX.4.2.2.2-1 shows how the Clinician can use the EMR with native IMR Re
 
 ##### 1:XX.4.2.3.1 Consume and Interact with Multimedia Report by Basic Consumers Use Case Description
 
-Similar to Use Case #2, but instead of processing the report content according to its own rendering configuration, the EMR supports the IMR Rendered Report Reader. In this case, the EMR extracts and displays the rendered report already embedded in the IMR multimedia report. The Clinician clicks on the interactive links. The EMR / Rendered Report Reader invokes the links and displays the rendered content.
+This use case is similar to Use Case #2, but instead of processing the report content according to its own rendering configuration, the EMR supports the IMR Rendered Report Reader. In this case, the EMR presents a pre-rendered copy of the report that has been included in the multimedia report object.
 
 ##### 1:XX.4.2.3.2 Consume and Interact with Multimedia Report by Basic Consumers Process Flow
 
