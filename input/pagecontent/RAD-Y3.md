@@ -113,12 +113,12 @@ The examples belows omitted some http headers such as the security headers for s
 
 ###### 2:4.Y3.4.1.2.2.1 Example GET
 ```
-GET test.fhir.net/fhir/DiagnosticReport?subject=9876&status=final&code=http://loinc.org|1234-5
+GET test.fhir.net/fhir/DiagnosticReport?subject=Patient/9876&status=final&code=http://loinc.org|1234-5
 ```
 
 ###### 2:4.Y3.4.1.2.2.2 Example POST
 ```
-POST test.fhir.net/fhir/DiagnosticReport/_search?subject=9876&status=final&code=http://loinc.org|1234-5
+POST test.fhir.net/fhir/DiagnosticReport/_search?subject=Patient/9876&status=final&code=http://loinc.org|1234-5
 ```
 
 ###### 2:4.Y3.4.1.2.2.3 Example POST body
@@ -128,7 +128,7 @@ Host test.fhir.net
 Content-Type: application/x-www-form-urlencoded
 Accept: application/fhir+json; fhirVersion=4.0										  
 
-subject=9876&status=final&code=http://loinc.org|1234-5
+subject=Patient/9876&status=final&code=http://loinc.org|1234-5
 ```
 
 ##### 2:4.Y3.4.1.3 Expected Actions
