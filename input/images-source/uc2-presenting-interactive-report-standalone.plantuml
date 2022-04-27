@@ -10,6 +10,7 @@ participant "Image Manager/\nImage Archive" as Archive
 Clinician->>Reader: //Request multimedia report//
 
 Reader->Repo: Find Multimedia Report [RAD-Y3]
+Repo-->Reader: Returned multimedia report
 Reader->Reader: Display Multimedia Report [RAD-Y2]
 note over Reader
 Show report, including multimedia contents
