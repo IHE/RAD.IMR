@@ -265,7 +265,7 @@ The Report Reader can display not only the image referenced directly, but also t
 
 A DiagnosticReport resource incorporates other resources. According to FHIR, those other resources can be incorporated as either referenced FHIR resources or contained FHIR resources. In IMR, when storing a DiagnosticReport resource, all incorporated resources are included as referenced. Contained resources are not permitted in IMR because they cannot be retrieved as independent resources. 
 
-TODO - Rewrite: Contained resources are not used when resources have independent identity from the containing resource. They cannot be reused across multiple resources. If the same content is included multiple times, it creates a possible integrity problem.
+Contained resources are not preferred when resources have independent identity from the containing resource. This is because contained resources cannot be reused across multiple resources. If the same content is included multiple times, such duplication can lead to possible integrity problems.
 
 A FHIR server that provides the FHIR [Search](http://hl7.org/fhir/search.html) capability returns query responses with references to other resources, such as Patient, IMR Observation, IMR ImagingStudy, etc. To access the content of referenced resources, the requester will have to retrieve them separately.
 
