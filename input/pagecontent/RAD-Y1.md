@@ -175,7 +175,7 @@ For IMR Observations that have image references using Observation.derivedFrom at
 
 For inline image references in Observation.valueString, the Sender shall substitute each `<IMRRef>`...`</IMRRef>` markup with an HTML anchor element. The href attribute shall be set to the concatenation of the ImagingStudy.endpoint.address with the valueString from the matching Observation.component.id entry. The resulting URL shall be a valid URL according to the contentType.
 
-The Sender shall construct the resulting URLs such that the contents returned upon invocation are ready to be presented, rather than contents that would require download and additional tools in order to present. For example, using a WADO-RS URL with a rendered image is appropriate, whereas a plain WADO-RS URL to retrieve a DICOM object is not.
+The Sender shall construct the resulting URLs such that the contents returned to the Receiver upon invocation are ready to be presented, rather than contents that would require the Receiver to download content or to have and additional tools in order to present the content. For example, using a WADO-RS URL with a rendered image meets this requirement, whereas a plain WADO-RS URL to retrieve a DICOM object does not. In other words, the Sender shall not presume that the Receiver can download and render the linked content.
 
 > In other words, the Sender shall not presume that the Receiver can download and render the linked content.
 
