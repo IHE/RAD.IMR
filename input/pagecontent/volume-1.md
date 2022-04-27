@@ -231,10 +231,10 @@ This sophisticated placement of multimedia contents requires a more complex inte
 
 #### 1:XX.4.1.5 Image Context in Report 
 
-Each image reference in a report may reference:
+Each image reference in a report may point to:
 - a single image (e.g., Frame 10)
 - a range of images across multiple single-frame objects (e.g., Object 3-5) or within a multi-frame object (e.g., Frame 10-12)
-- a discrete set of images (e.g., Frame 10,14,17)
+- a discrete list of images (e.g., Frame 10,14,17)
 - a combination of the above (e.g., Frame 10-12,14,17-20)
 
 In most cases, the image references refer to the same study context as the study being reported on. Occasionally, the image references may refer to a comparison study that is used during reporting.
