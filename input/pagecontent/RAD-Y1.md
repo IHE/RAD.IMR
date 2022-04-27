@@ -20,6 +20,8 @@ Transaction text specifies behavior for each role. The behavior of specific acto
 
 **FHIR-R4**: [HL7 FHIR Release 4.0](http://www.hl7.org/FHIR/R4)
 
+**DICOM WADO-RS**: [DICOM Studies Service Retrieve Transaction](https://dicom.nema.org/medical/dicom/current/output/html/part18.html#sect_10)
+
 **HTML 5**: [HTML Living Standard](https://html.spec.whatwg.org/multipage/)
 
 **PDF/A**: [ISO 19005-1:2005](https://www.iso.org/standard/38920.html)
