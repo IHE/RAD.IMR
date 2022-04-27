@@ -53,6 +53,7 @@ The Sender shall initiate a FHIR “transaction” using a “create” action b
 - one Patient Resource
 - one or more Organization Resources
 - one or more Practitioner Resources
+- one or more PractitionerRole Resources
 - one or more Observation Resources
 - one or more ImagingStudy Resources
 
@@ -83,6 +84,7 @@ The [IMR Bundle](StructureDefinition-imr-store-multimedia-report-bundle.html):
   - may create/update/read one [Patient](http://hl7.org/fhir/patient.html)
   - may create/read one or more [Organization](http://hl7.org/fhir/organization.html)
   - may create/read one or more [Practitioner](http://hl7.org/fhir/practitioner.html)
+  - may create/read one or more [PractitionerRole](http://hl7.org/fhir/practitionerrole.html)
   - may create/read one or more [IMR Observation](StructureDefinition-imr-observation.html)
   - may create/read one or more [IMR ImagingStudy](StructureDefinition-imr-imagingstudy.html)
 
@@ -246,7 +248,7 @@ In Example 2, the display text for the hyperlink is the simple text **image** ad
 
 Informative examples are available at [IMR Observation Examples](StructureDefinition-imr-observation-examples.html) to demonstrate the possible encoding of different kinds of observations.
 
-###### 2:4.Y1.4.1.2.4 Patient, Organization, Practitioner, PractitionerRole Rescources
+###### 2:4.Y1.4.1.2.4 Patient, Organization, Practitioner, PractitionerRole Resources
 
 The Patient, Organization, Practitioner or PractitionerRole Resources are required resources. However, IMR does not specify any FHIR resource profiles on these resources. These resources are not radiology or imaging specific. Real world deployment may specify constraints on these resources.
 
