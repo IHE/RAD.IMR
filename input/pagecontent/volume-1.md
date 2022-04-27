@@ -416,7 +416,7 @@ Furthermore, for the FHIR-based transactions, this profile strongly recommends t
 Multimedia report instances as defined in this profile contain personal demographic information
 and clinical information. It is appropriate for products implementing the Interactive Multimedia Report Profile to include appropriate PHI controls. Specifying such mechanisms and features is outside the scope of this profile.
 
-The rendered report attached in the DiagnosticReport resource may be referenced by a URL. Furthermore, the rendered report may includes hyperlinks for image references. It is recommended for any deployment to have network configurations that only allow trusted known clients (e.g., by IP address or subnet) to access, and block unknown clients. In addition, the requests to these hyperlinks should be authorized. Unauthorized access should be rejected.
+The rendered report included in the DiagnosticReport resource may be referenced by a URL. The rendered report itself may also include hyperlinks for image references. It is recommended for any deployment to have network configurations that only allow trusted known clients (e.g., by IP address or subnet) to access, and block unknown clients. In addition, the requests to these hyperlinks should be authorized. Unauthorized access should be rejected.
 
 The Rendered Report Readers should verify if these URLs are legitimate and from a trusted source, minimizing the chance of phishing attack and executing malicious script embedded inside a report.
 
