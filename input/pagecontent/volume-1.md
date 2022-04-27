@@ -321,7 +321,7 @@ A Clinician wants to review studies and associated diagnostic reports for a pati
 
 > Note that in some cases, for example a group case in which a requested procedure resulted in multiple performed procedures (e.g., chest, abdomen, pelvis), multiple diagnostic reports for each performed procedure may be created.
 
-Upon reviewing reports for a patient in the EMR, the Clinician encounters an IMR multimedia report. As an IMR Report Reader, the EMR processes the report content according to its rendering configuration and displays the reports with interactive links. The Clinician clicks on the interactive links. The EMR / Report Reader retrieves the rendered images from the Image Manager / Image Archive and displays the images with interactive tools. The Clinicians can navigate the series and see the measurements with annotations as described in the report.
+The Clinician selects a multimedia report and the EMR, as a Report Reader, processes the report content according to its rendering configuration and displays the reports with interactive links. The Clinician clicks on the interactive links. The EMR / Report Reader retrieves the rendered images from the Image Manager / Image Archive and displays the images with interactive tools. The Clinicians can navigate the series and see the measurements with annotations as described in the report.
 
 ##### 1:XX.4.2.2.2 Consume and Interact with Multimedia Report by Advanced Consumers Process Flow
 
