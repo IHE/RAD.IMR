@@ -66,7 +66,7 @@ A Report Repository stores multimedia reports received from Report Creators and 
 
 A Report Repository supports query/retrieve of multimedia reports by Report Readers and Rendered Report Readers.
 
-A Report Repository shall not modify the DiagnosticReport content, but it may modify how the embedded rendered report can be accessed, if necessary. For example, a Report Repository may adjust an internal URL to an externally accessible URL, or it may retrieve the rendered report referenced by a URL and embed it directly in the DiagnosticReport resource as base64 encoded in query responses. How a Report Repository may adjust the accessibility of the rendered report is out of scope of IMR.
+A Report Repository may modify how the embedded rendered report can be accessed, if necessary. For example, a Report Repository may adjust an internal URL to an externally accessible URL, or it may retrieve the rendered report referenced by a URL and embed it directly in the DiagnosticReport resource as base64 encoded in query responses. How a Report Repository may adjust the accessibility of the rendered report is out of scope of IMR.
 
 #### 1:XX.1.1.3 Report Reader
 
@@ -215,7 +215,7 @@ There are two sources of multimedia content for radiology reporting:
 
 These contents should be available to the report authoring system so that it can incorporate the details automatically.
 
-#### 1:XX.4.1.3 Real Time Communication between Image Display / Evidence Creator and Report Creator
+#### 1:XX.4.1.3 Creation and Usage of Multimedia Content
 
 A key element for an interactive multimedia report is the ability to include clinical findings such as measurements, ROI, etc. with interactive links to the source images. Traditionally, these annotations, markups, presentation states, and key images could be captured as DICOM objects such as GSPS, SR, or KOS. These objects are designed to capture evidence for long-term reference instead of real-time communication or composition. Most PACS will create these evidence objects at the end of a session in order to capture all the data points created by the image-centric specialist in one object, rather than create multiple evidence objects resulting in one per data point. As a result, these evidence objects in DICOM are good resources for subsequent interactive access when viewing an IMR, but not good candidates as the payload for real-time communication during a reporting session. As the image-centric specialist captures measurements, regions of interest, and other data points, ideally the PACS can provide those data points to the reporting system in real-time without introducing any unnecessary interruptions, or adding transitory content to the permanent record.
 
@@ -229,7 +229,7 @@ Although this can be useful, a more sophisticated placement of multimedia conten
 
 This sophisticated placement of multimedia contents requires a more complex interaction between the PACS and the Reporting System because both systems need to know the current context and be able to mark their respective data accordingly. This also requires a low latency communication because any pause required by the radiologist to synchronize the two systems during a reporting session will cause significant distraction to the radiologist.
 
-#### 1:XX.4.1.5 Image References in Report 
+#### 1:XX.4.1.5 Image Context in Report 
 
 Each image reference in a report may reference:
 - a single image (e.g., Frame 10)
@@ -263,11 +263,13 @@ The Report Reader can display not only the image referenced directly, but also t
 
 #### 1:XX.4.1.7 Referenced FHIR Resource vs Contained FHIR Resource
 
-A DiagnosticReport resource includes many references to other resources. Technically it is possible for the Report Creator to include these other resources as [contained](https://www.hl7.org/fhir/references.html#contained) resources, these contained resources are not independently accessible and they cannot be searched. Therefore in IMR, when storing a DiagnosticReport resource, all referenced resources are actual resources and are referenced accordingly.
+A DiagnosticReport resource incorporates other resources. According to FHIR, those other resources can be incorporated as either referenced FHIR resources or contained FHIR resources. In IMR, when storing a DiagnosticReport resource, all incorporated resources are included as referenced. Contained resources are not permitted in IMR because they cannot be retrieved as independent resources. 
 
-Since a DiagnosticReport resource includes many references to other resources, such as Patient, IMR Observation, IMR ImagingStudy, etc. with FHIR [Search](http://hl7.org/fhir/search.html) capability, by default, a FHIR server returns query responses with references to other resources. The requester is expected to retrieve these referenced resources separately afterwards.
+TODO - Rewrite: Contained resources are not used when resources have independent identity from the containing resource. They cannot be reused across multiple resources. If the same content is included multiple times, it creates a possible integrity problem.
 
-Optionally, a FHIR server may support the [_include](http://hl7.org/fhir/search.html#include) search result parameters. If the requester specifies this parameter in the search request, then the FHIR Server will include all referenced resources in the same response. The advantage is that the requester only needs to issue a single query result and the result will contain all the necessary data. The disadvantages are (1) the payload size may increase significantly, (2) the server will need to perform more work and may return the response slower, (3) it is an optional capability of the server.
+A FHIR server that provides the FHIR [Search](http://hl7.org/fhir/search.html) capability returns query responses with references to other resources, such as Patient, IMR Observation, IMR ImagingStudy, etc. To access the content of referenced resources, the requester will have to retrieve them separately.
+
+Optionally, a FHIR server may support the [_include](http://hl7.org/fhir/search.html#include) search result parameter. If the requester specifies this parameter in the search request, then the FHIR Server will include the specified referenced resources in the same response. The advantage is that the requester only needs to issue a single query request and the result will contain all the necessary data. The disadvantages are (1) the payload size may increase significantly, (2) the server will need to perform more work and may return the response slower, (3) it is an optional capability of the server so the requester cannot depend on it being available.
 
 #### 1:XX.4.1.8 Deployment Considerations of IMR
 
