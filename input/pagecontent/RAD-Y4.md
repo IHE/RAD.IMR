@@ -34,7 +34,7 @@ The roles in this transaction are defined in the following table and may be play
 
 #### 2:4.Y4.4.1 Retrieve Rendered Report Message
 
-The Requester retrieves a rendered report from the Responder.  The Requester shall support sending such messages to more than one Responder.
+The Requester retrieves a rendered report from the Responder.
 
 The Responder shall support handling such messages from more than one Sender. 
 
