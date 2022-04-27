@@ -268,7 +268,7 @@ The Receiver shall validate the bundle first against the FHIR specification. Gui
 
 Once the bundle is validated, the Receiver shall store the report and all associated resources.
 
-A Receiver is permitted to coerce resource values that violate IMR requirements.
+A Receiver is permitted to coerce non-compliant values in the FHIR Bundle Resource.
 
 The Receiver shall be able to retrieve the hosted rendered report(s) in DiagnosticReport.presentedForm.url and embed them in the corresponding DiagnosticReport.presentedForm.data.
 
