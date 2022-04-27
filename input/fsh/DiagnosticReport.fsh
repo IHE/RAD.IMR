@@ -2,7 +2,7 @@ Profile:        IMRDiagnosticReport
 Parent:         DiagnosticReport
 Id:             imr-diagnosticreport
 Title:          "IMR DiagnosticReport"
-Description:    "IHE Interactive Multimedia Report (IMR) profile on DiagnosticRpoert"
+Description:    "IHE Interactive Multimedia Report (IMR) profile on DiagnosticReport"
 
 // Shall reference one ServiceRequest
 * basedOn 1..* MS
