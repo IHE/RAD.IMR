@@ -106,7 +106,10 @@ In the DiagnosticReport.presentedForm, the .hash and .size, when populated, repr
 
 #### 2:4.Y4.4.3 CapabilityStatement Resource
 
-**TODO**
+Requesters and Responders implementing this transaction shall provide a CapabilityStatement Resource as described in [ITI TF-2: Appendix Z.3](https://profiles.ihe.net/ITI/TF/Volume2/ch-Z.html#z.3-capabilitystatement-resource) indicating the transaction has been implemented. 
+
+- Requirements CapabilityStatement for the [Requester](CapabilityStatement-IHE.IMR.ReportReader.html).
+- Requirements CapabilityStatement for the [Responder](CapabilityStatement-IHE.IMR.ReportRepository.html).
 
 ### 2:4.Y4.5 Security Considerations
 
