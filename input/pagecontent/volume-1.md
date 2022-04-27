@@ -243,7 +243,7 @@ In addition to referencing a frame as a whole, sometimes the reference is specif
 
 #### 1:XX.4.1.6 Level of Interactivity
 
-When interacting with multimedia reports, there are different levels of sophistication:
+When interacting with multimedia reports, there are different levels of sophistication. This profile introduces the following levels of interactivity:
 
 ##### Level 0: No interactivity
 
@@ -251,15 +251,15 @@ The Report Reader can display the static content (text and may include static im
 
 ##### Level 1: Basic interactivity
 
-The Report Reader can display that static content (text and may include static images) in the report, including hyperlinks to different multimedia contents in the report (e.g., measurements). The user can click on these links to access a basic view of the source image(s) in which the findings are derived from.
+The Report Reader can display that static content (text and may include static images) in the report, including hyperlinks to different multimedia contents in the report (e.g., measurements). The user can click on these links to access a basic view of the source image(s) from which the findings are derived.
 
 ##### Level 2: Intermediate interactivity
 
-The Report Reader can provide not only a basic view of the source image(s), but also provide other essential features such as zoom, pan, window levelling, etc. If annotations (markup, ROI, etc.) are available, the Report Reader displays them as well and enables the user to toggle them.
+The Report Reader can provide not only a basic view of the source image(s), but also provide other essential features such as zoom, pan, window levelling, etc. If annotations (markup, ROI, etc.) are available, the Report Reader displays them as well and can be toggled.
 
 ##### Level 3: Advanced interactivity
 
-The Report Reader can display not only the image referenced directly, but also the full series that contain the image. The Report Reader may provide other tools (e.g., measurements, more advanced image visualization, etc.) as well as support other advanced DICOM objects such as segmentation objects or parametric map objects.
+The Report Reader can display not only the image referenced directly, but also the full series to which the image belongs. The Report Reader may provide other tools (e.g., measurements, more advanced image visualization, etc.) as well as support other advanced DICOM objects such as segmentation objects or parametric map objects.
 
 #### 1:XX.4.1.7 Referenced FHIR Resource vs Contained FHIR Resource
 
