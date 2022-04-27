@@ -40,7 +40,7 @@ The Responder shall support handling such messages from more than one Sender.
 
 ##### 2:4.Y4.4.1.1 Trigger Events
 
-The Requester wants to retrieve the rendered report identified in the query response.
+The Requester wants to retrieve a rendered report identified in the response to an Find Multimedia Report [RAD-Y3] search request.
 
 ##### 2:4.Y4.4.1.2 Message Semantics
 
