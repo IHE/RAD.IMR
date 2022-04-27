@@ -7,11 +7,7 @@ participant "Report Repository" as Repo
 participant "Report Reader" as Reader
 participant "Rendered Report Reader" as RenderedReader
 
-Rad->>RCreator: //Dictate study//\n//with multimedia references//
-note over RCreator
-E.g. image references or measurements
-from user or AI
-end note
+Rad->>RCreator: //Dictate study with multimedia references//\n//including image references or measurements//
 Rad->>RCreator: //End dictation//
 
 RCreator->>RCreator: //Select report destination(s)//
