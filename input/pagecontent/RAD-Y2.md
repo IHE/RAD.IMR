@@ -97,7 +97,7 @@ For inline image references in narrative content, the Display:
 
 - shall use the text enclosed by the `<IMRRef>` element as the display text for the hyperlink
 
-- the URL for this hyperlink shall be set to the concatenation of the Observation.derivedFrom.endpoint.address with the valueString from the matching Observation.component.id entry. The resulting URL shall be a valid URL according to the contentType.
+- shall construct the URL for this hyperlink by concatenating Observation.derivedFrom.endpoint.address with the valueString from the matching Observation.component.id entry. The resulting URL shall be a valid URL according to the contentType.
 
 - may add additional parameters to the URL to invoke specific functions provided by the Image Manager / Image Archive
 
