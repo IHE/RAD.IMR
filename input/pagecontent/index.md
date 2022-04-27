@@ -32,7 +32,7 @@ This guide is organized into five main sections:
    1. [Test Plan](testplan.html)
 
 
-Click on any of the links above, head on over the [table of contents](toc.html), or
+Click on any of the links above, navigate the contents using the [table of contents](toc.html), or
 if you are looking for a specific artifact, check out the [Artifacts Summary](artifacts.html).
 
 You can also download:
