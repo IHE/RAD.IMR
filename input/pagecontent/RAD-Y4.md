@@ -48,9 +48,9 @@ The message is an HTTP GET request. The Requester is the User Agent. The Respond
 
 The Requester shall select one or more rendered reports to retrieve based on the DiagnosticReport.presentedForm.contentType returned in the query response [RAD-Y3].
 
-The Requester shall obtain the URL of the identified rendered report(s) in DiagnosticReport.presentedForm.url.
+The Requester shall obtain the URL of the selected rendered report(s) in DiagnosticReport.presentedForm.url.
 
-The Requester shall execute an HTTP GET request for each identified URL to the Responder.
+The Requester shall execute an HTTP GET request to the Responder for each URL of the selected rendered report(s).
 
 The Requester may provide HTTP Accept header, according to the semantics of the HTTP protocols (see RFC2616, Section 14.1).  This enables the Requester to indicate preferred mime-types such that the Responder could provide the report requested in an encoding other than the encoding indicated in the DiagnosticReport.presentedForm.
 
