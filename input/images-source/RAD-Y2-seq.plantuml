@@ -2,7 +2,7 @@
 
 hide footbox
 
-participant "Requester" as Reader
+participant "Display" as Reader
 participant "//'User'//" as User
 
 activate Reader
