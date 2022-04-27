@@ -115,7 +115,7 @@ There is a common set of attributes included in radiology diagnostic reports. Ta
 | Report Attribute | FHIR Resource Mapping | Additional Constraint | Note |
 |------------------|-----------------------|-----------------------|------|
 | Organization     | `DiagnosticReport.performer` | See [IMR DiagnosticReport](StructureDefinition-imr-diagnosticreport.html) for details | The organization which is responsible for the diagnostic report. <br><br> See Note 1 |
-| Results Interpreter | `DiagnosticReport.resultsInterpreter` | Can be either Practitioner or PractitionerRole <br><br> See [IMR DiagnosticReport](StructureDefinition-imr-diagnosticreport.html) for details | | The primary result interpreter(s) <br><br> See Note 1 |
+| Results Interpreter | `DiagnosticReport.resultsInterpreter` | Can be either Practitioner or PractitionerRole <br><br> See [IMR DiagnosticReport](StructureDefinition-imr-diagnosticreport.html) for details | The primary result interpreter(s) <br><br> See Note 1 |
 | Patient Name     | `DiagnosticReport.subject.name -> Patient.name` | See [IMR DiagnosticReport](StructureDefinition-imr-diagnosticreport.html) for details | See Note 1 |
 | Patient ID       | `DiagnosticReport.subject.identifier -> Patient.identifier` | See [IMR DiagnosticReport](StructureDefinition-imr-diagnosticreport.html) for details | See Note 1 |
 | Accession Number | `DiagnosticReport.basedOn.identifier -> IMRServiceRequest.identifier` | See [IMR DiagnosticReport](StructureDefinition-imr-diagnosticreport.html) and [IMR ServiceRequest](StructureDefinition-imr-servicerequest.html) for details | Identified by the identifier.type |
