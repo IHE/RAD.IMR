@@ -223,11 +223,25 @@ Note that this real time communication is currently out of scope of IMR.
 
 #### 1:XX.4.1.4 Placement of Multimedia Content
 
-At a basic level, multimedia content can be placed at the end of the report. This can be achieved with low level of communications between the PACS and the Reporting System as long as these multimedia contents (or their corresponding references) are known at some point by the Reporting System, which can then insert these contents towards the end of the report.
+A rudimentary approach is to place all references/multimedia content at the bottom of the report.
 
-Although this can be useful, a more sophisticated placement of multimedia contents is the ability to insert them in context of the findings and impressions. For example, when a description such as "Prominent or mildly enlarged mediastinal and bilateral hilar lymph nodes measure up to 1.2 x 0.8 cm in the right paratracheal station" is recorded as a finding, the corresponding image reference with the matching markup if available are injected in the same context as hyperlink, such that subsequently upon viewing the report, a user can access the matching multimedia content in context while reading the report.
+Although this can be useful, a more sophisticated placement of multimedia contents is the ability to insert them in context of the findings and impressions. Consider this sample finding statement
+
+```
+Prominent or mildly enlarged mediastinal and bilateral hilar lymph nodes measure up to 1.2 x 0.8 cm in the right paratracheal station
+```
+
+References to measurements and/or images can be added as hyperlinks in context as follow:
+
+```
+<a data-imr-series="1.2.3" data-imr-object="1.2.3.1">Prominent or mildly enlarged mediastinal and bilateral hilar lymph nodes measure up to 1.2 x 0.8 cm in the right paratracheal station</a>
+```
+
+As a result, a user can access the matching multimedia content in context while reading the report.
 
 This sophisticated placement of multimedia contents requires a more complex interaction between the PACS and the Reporting System because both systems need to know the current context and be able to mark their respective data accordingly. This also requires a low latency communication because any pause required by the radiologist to synchronize the two systems during a reporting session will cause significant distraction to the radiologist.
+
+Report Creators in IMR are required to support placing image references in context of the findings and impressions.
 
 #### 1:XX.4.1.5 Image Context in Report 
 
