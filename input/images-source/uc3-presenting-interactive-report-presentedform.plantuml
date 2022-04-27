@@ -11,16 +11,17 @@ Clinician->>EMR: //Request multimedia report//
 
 EMR->Repo: Find Multimedia Report [RAD-Y3]
 Repo-->EMR: Returned multimedia report
-EMR->EMR: Display Multimedia Report [RAD-Y2]
-note over EMR
-Extract the rendered report from the retrieved multimedia report.
-end note
 
-opt If report is referenced by a URL
+EMR->>EMR: //Extract rendered report from retrieved multimedia report//
+
+alt Report contains embedded rendered report
+EMR->>EMR: //Extract and decode embedded report//
+else Report contains URL for rendered report
 EMR->Repo: Retrieve Rendered Multimedia Report [RAD-Y4]
 Repo-->EMR: Return rendered multimedia report
 end
 
+EMR->EMR: Display Multimedia Report [RAD-Y2]
 note over EMR
 The Report Creator embedded links for
 rendered image references in the rendered report. These links
