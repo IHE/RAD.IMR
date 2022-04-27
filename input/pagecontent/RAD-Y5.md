@@ -76,13 +76,13 @@ The Display shall support image viewing capabilities as defined in [Basic Image 
 | Tool Icons and Actions | Section 4.16.4.2.2.5.13 | Not Required |
 {: .grid}
 
-The Display may provide basic viewing tools for the user to interactive with the images.
+The Display may provide basic viewing tools for the user to interact with the images.
 
 > Note that the Display is only required to display objects specifically referenced in the DiagnosticReport resource.
 >
 > Multiplanar reconstruction, or MPR, involves the process of converting data from an imaging modality acquired in a certain plane, usually axial, into another plane such as coronal or sagittal or oblique. It is most commonly performed with thin-slice data from volumetric CT in the axial plane, but it may be accomplished with scanning in any plane and whichever modality capable of cross-sectional imaging, including magnetic resonance imaging (MRI).
 >
-> Although MPR is a feature available in many PACS implementations, it is a advanced operation that is computational intensive. For the interactive image viewing capability on interactive multimedia report, MPR is not expected to be available. If viewing of the images from different planes is desirable, then the acquired data should be reconstructed to other planes and then be saved as separate set of images. These new set of reconstructed images can then be referenced in the DiagnosticReport resource.
+> Although MPR is a feature available in many PACS implementations, it is an advanced operation that is computationally intensive. For the interactive image viewing capability on interactive multimedia report, MPR is not expected to be available. If viewing of the images from different planes is desirable, then the acquired data should be reconstructed to other planes and then be saved as separate set of images. These new set of reconstructed images can then be referenced in the DiagnosticReport resource.
 >
 > The Display is not required to support reconstruction.
 
