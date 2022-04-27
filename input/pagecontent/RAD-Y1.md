@@ -61,13 +61,7 @@ The media type of the HTTP body shall be either `application/fhir+json` or `appl
 
 See [http://hl7.org/fhir/http.html#transaction](http://hl7.org/fhir/http.html#transaction) for complete requirements of a FHIR transaction. See [http://hl7.org/fhir/bundle-transaction.html](http://hl7.org/fhir/bundle-transaction.html) for an example of a transaction bundle.
 
-The Sender shall send the message to the following URL:
-```
-[base]/Bundle
-```
-This URL is configurable by the Responder and is subject to the following constraints: 
-
-The `[base]` is the [Service Base URL](https://www.hl7.org/fhir/http.html#root), which is the address where all of the resources defined by this interface are found.
+The Sender shall send the message to the base URL as defined in FHIR. See http://hl7.org/fhir/R4/http.html for the definition of “HTTP” access methods and “base”.
 
 The following subsections contain additional constraints on the contents of the IMR Bundle.
 
