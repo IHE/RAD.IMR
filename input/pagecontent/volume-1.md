@@ -86,11 +86,9 @@ A Report Reader that supports the Series/Study Navigation Option shall be able t
 
 #### 1:XX.1.1.4 Rendered Report Reader
 
-A Rendered Report Reader presents to the user the rendered report that is embedded in the DiagnosticReport resource, including the multimedia content embedded in the report as well as all hyperlinks. When the user clicks on the hyperlinks, the Rendered Report Reader launches the rendered references images to the user.
+A Rendered Report Reader presents to the user the rendered report that is embedded in the DiagnosticReport resource, including the multimedia content embedded in the report as well as all hyperlinks. When the user clicks on the hyperlinks, the Rendered Report Reader retrieves the referenced images and display them to the user.
 
-A Rendered Report Reader receives multimedia reports directly from Report Creators or query/retrieves them from Report Repositories.
-
-A Rendered Report Reader provides [Level 1 Interactivity](#1xx416-level-of-interactivity) as discussed in Section 1:XX.4.1.6.
+A Rendered Report Reader shall provide [Level 1 Interactivity](#1xx416-level-of-interactivity) as discussed in Section 1:XX.4.1.6.
 
 > Note that there are no additional image viewing capabilities required for Rendered Report Readers. In other words, the image viewing capabilities presented by the Rendered Report Readers is limited by how the Report Creator created the rendered report. For example, for image references, one Report Creator may render them using WADO-RS links which will show a static rendered image, while another Report Creator may render them using IID Invoke Image Display links which will launch a viewer to show the referenced image with additional interactivity such as scrolling, zooming, etc.
 
@@ -98,14 +96,13 @@ A Rendered Report Reader provides [Level 1 Interactivity](#1xx416-level-of-inter
 
 An Image Manager / Image Archive provides the images and related objects to the Report Readers or Image Displays.
 
-An Image Manager / Image Archive shall support WADO-RS Retrieve [RAD-107].
+An Image Manager / Image Archive is able to support both DICOMweb and DIMSE clients.
 
-An Image Manager / Image Archive shall also support returning images in the requested rendered media type as defined in DICOM [PS3.18 Section 9.5](https://dicom.nema.org/medical/dicom/current/output/html/part18.html#sect_9.5) "Retrieve Rendered Instance Transaction".
+An Image Manager / Image Archive shall support returning images in the requested rendered media type as defined in DICOM [PS3.18 Section 9.5](https://dicom.nema.org/medical/dicom/current/output/html/part18.html#sect_9.5) "Retrieve Rendered Instance Transaction".
 
 ## 1:XX.2 IMR Actor Options
 
-Options that may be selected for each actor in this implementation guide, are listed in Table 1:XX.2-1 below. Dependencies 
-between options when applicable are specified in notes.
+Options that may be selected for each actor in this implementation guide, are listed in Table 1:XX.2-1 below. Dependencies between options, when applicable, are specified in notes.
 
 **Table 1:XX.2-1: IMR - Actors and Options**
 
