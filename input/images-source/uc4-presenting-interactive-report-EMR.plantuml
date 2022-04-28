@@ -14,9 +14,9 @@ participant "Image Manager/\nImage Archive" as Archive
 
 Clinician->>EMR: //Select report entry//
 
-EMR->Repo: Find Multimedia Report [RAD-Y3]
+EMR->Repo: Find Multimedia Report [RAD-143]
 Repo-->EMR: Returned multimedia report
-EMR->EMR: Display Multimedia Report [RAD-Y2]
+EMR->EMR: Display Multimedia Report [RAD-142]
 note over EMR
 Show report, including hyperlinked references to measurements and/or images.
 end note
@@ -30,7 +30,7 @@ end note
 
 loop Retrieve images, presentation states, window levelling
 Display->>Archive: //Retrieve series//
-Display->Display: Display Images [RAD-Y5]
+Display->Display: Display Images [RAD-145]
 
 Clinician->>Display: //Interact with images and/or series//
 end loop

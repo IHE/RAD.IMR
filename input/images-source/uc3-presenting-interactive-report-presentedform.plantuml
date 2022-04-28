@@ -9,7 +9,7 @@ participant "Image Manager/\nImage Archive" as Archive
 
 Clinician->>EMR: //Select report entry//
 
-EMR->Repo: Find Multimedia Report [RAD-Y3]
+EMR->Repo: Find Multimedia Report [RAD-143]
 Repo-->EMR: Returned multimedia report
 
 EMR->>EMR: //Extract rendered report from retrieved multimedia report//
@@ -17,11 +17,11 @@ EMR->>EMR: //Extract rendered report from retrieved multimedia report//
 alt Report contains embedded rendered report
 EMR->>EMR: //Extract and decode embedded report//
 else Report contains URL for rendered report
-EMR->Repo: Retrieve Rendered Multimedia Report [RAD-Y4]
+EMR->Repo: Retrieve Rendered Multimedia Report [RAD-144]
 Repo-->EMR: Return rendered multimedia report
 end
 
-EMR->EMR: Display Multimedia Report [RAD-Y2]
+EMR->EMR: Display Multimedia Report [RAD-142]
 note over EMR
 The Report Creator embedded links for
 rendered image references in the rendered report. These links
@@ -31,7 +31,7 @@ end note
 Clinician->>EMR: //Click on hyperlinked measurements//
 
 EMR->Archive: Retrieve rendered images in series
-EMR->EMR: Display Images [RAD-Y5]
+EMR->EMR: Display Images [RAD-145]
 
 Clinician->>EMR: //Interact with images and/or series//\n//such as scrolling or window levelling//
 

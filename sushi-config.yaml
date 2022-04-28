@@ -54,25 +54,25 @@ resources:
 pages:
 # itemize here each narrative page. Include assigned section numbers when appropriate
   index.md:
-    title: 1:XX. IMR Home
+    title: 1:52. IMR Home
     generation: markdown
   volume-1.md:
-    title: 1:XX Interactive Multimedia Report (IMR)
+    title: 1:52 Interactive Multimedia Report (IMR)
     generation: markdown
-  RAD-Y1.md:
-    title: 2:4.Y1 Store Multimedia Report [RAD-Y1]
+  RAD-141.md:
+    title: 2:4.141 Store Multimedia Report [RAD-141]
     generation: markdown
-  RAD-Y2.md:
-    title: 2:4.Y2 Display Multimedia Report [RAD-Y2]
+  RAD-142.md:
+    title: 2:4.142 Display Multimedia Report [RAD-142]
     generation: markdown
-  RAD-Y3.md:
-    title: 2:4.Y3 Find Multimedia Report [RAD-Y3]
+  RAD-143.md:
+    title: 2:4.143 Find Multimedia Report [RAD-143]
     generation: markdown
-  RAD-Y4.md:
-    title: 2:4.Y4 Retrieve Rendered Multimedia Report [RAD-Y4]
+  RAD-144.md:
+    title: 2:4.144 Retrieve Rendered Multimedia Report [RAD-144]
     generation: markdown
-  RAD-Y5.md:
-    title: 2:4.Y5 Display Images [RAD-Y5]
+  RAD-145.md:
+    title: 2:4.145 Display Images [RAD-145]
     generation: markdown
   testplan.md:
     title: "Test Plan"
@@ -88,18 +88,18 @@ menu:
   IMR Home: index.html
   Volume 1:
     Introduction: volume-1.html
-    Actors and Transactions: volume-1.html#1xx1-imr-actors-transactions-and-content-modules
-    Actor Options: volume-1.html#1xx2-imr-actor-options
-    Required Groupings: volume-1.html#1xx3-imr-required-actor-groupings
-    Overview: volume-1.html#1xx4-interactive-multimedia-report-overview
-    Security Considerations: volume-1.html#1xx5-imr-security-considerations
-    Cross-Profile Considerations: volume-1.html#1xx6-imr-cross-profile-considerations
+    Actors and Transactions: volume-1.html#1521-imr-actors-transactions-and-content-modules
+    Actor Options: volume-1.html#1522-imr-actor-options
+    Required Groupings: volume-1.html#1523-imr-required-actor-groupings
+    Overview: volume-1.html#1524-interactive-multimedia-report-overview
+    Security Considerations: volume-1.html#1525-imr-security-considerations
+    Cross-Profile Considerations: volume-1.html#1526-imr-cross-profile-considerations
   Volume 2:
-    "Store Multimedia Report [RAD-Y1]": RAD-Y1.html
-    "Display Multimedia Report [RAD-Y2]": RAD-Y2.html
-    "Find Multimedia Report [RAD-Y3]": RAD-Y3.html
-    "Retrieve Rendered Multimedia Report [RAD-Y4]": RAD-Y4.html
-    "Display Referenced Images in Multimedia Report [RAD-Y5]": RAD-Y5.html
+    "Store Multimedia Report [RAD-141]": RAD-141.html
+    "Display Multimedia Report [RAD-142]": RAD-142.html
+    "Find Multimedia Report [RAD-143]": RAD-143.html
+    "Retrieve Rendered Multimedia Report [RAD-144]": RAD-144.html
+    "Display Referenced Images in Multimedia Report [RAD-145]": RAD-145.html
   Test Plan: testplan.html
   Artifacts: artifacts.html
   Other: other.html

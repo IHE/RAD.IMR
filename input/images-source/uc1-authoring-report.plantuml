@@ -11,9 +11,9 @@ Rad->>RCreator: //Dictate study with multimedia references//\n//including image 
 Rad->>RCreator: //End dictation//
 
 RCreator->>RCreator: //Select report destination(s)//
-RCreator->Repo: Store multimedia report [RAD-Y1]
-RCreator->Reader: Store multimedia report [RAD-Y1]
-RCreator->RenderedReader: Store multimedia report [RAD-Y1]
+RCreator->Repo: Store multimedia report [RAD-141]
+RCreator->Reader: Store multimedia report [RAD-141]
+RCreator->RenderedReader: Store multimedia report [RAD-141]
 
 
 @enduml

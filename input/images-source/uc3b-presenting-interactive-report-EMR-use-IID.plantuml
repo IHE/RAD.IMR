@@ -25,9 +25,9 @@ Display->>Display: //Display study//
 Display->>Reader: //Show associated multimedia report//
 
 group IMR Interactive Viewing of Multimedia Content in Report
-Reader->Repo: Find Multimedia Report [RAD-Y3]
+Reader->Repo: Find Multimedia Report [RAD-143]
 Repo-->Reader: Return multimedia report
-Reader->Reader: Display Multimedia Report [RAD-Y2]
+Reader->Reader: Display Multimedia Report [RAD-142]
 
 note over Reader
 Present report, including hyperlinked references to measurements and/or images.
@@ -36,7 +36,7 @@ end note
 Clinician->>Reader: Click on image references in Report
 Reader->>Display: //View series//\n//(internal communication)//
 Display->>Archive: //Retrieve series//
-Display->Display: Display Images [RAD-Y5]
+Display->Display: Display Images [RAD-145]
 
 Clinician->>Display: //Interact with image and/or series//
 end

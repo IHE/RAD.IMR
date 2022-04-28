@@ -89,7 +89,7 @@ Parent:         Bundle
 Id:             imr-store-multimedia-report-bundle-response
 Title:          "IMR Store Multimedia Report Bundle Response"
 Description:    """
-A profile on the Bundle transaction-response for [RAD-Y1] Store Multimedia Report Response.
+A profile on the Bundle transaction-response for [RAD-141] Store Multimedia Report Response.
 
 - shall be a transaction response
 - shall have at least 1 entry for each entry in the request, in the same order as received in the request
