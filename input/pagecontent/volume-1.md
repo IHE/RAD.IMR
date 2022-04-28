@@ -8,8 +8,8 @@ This profile defines content encoding, transactions for communicating the conten
 ## 1:XX.1 IMR Actors, Transactions, and Content Modules
 
 This section defines the actors, transactions, and/or content modules in this profile. General
-definitions of actors are given in the Technical Frameworks General Introduction Appendix A.
-IHE Transactions can be found in the Technical Frameworks General Introduction Appendix B.
+definitions of actors are given in the Technical Frameworks General Introduction [Appendix A](https://profiles.ihe.net/GeneralIntro/ch-A.html).
+IHE Transactions can be found in the Technical Frameworks General Introduction [Appendix B](https://profiles.ihe.net/GeneralIntro/ch-B.html).
 Both appendices are located at <https://profiles.ihe.net/GeneralIntro/>.
 
 Figure 1:XX.1-1 shows the actors directly involved in the IMR Profile and the relevant transactions
@@ -35,9 +35,9 @@ Table 1:XX.1-1 lists the transactions for each actor directly involved in the IM
 |                   | Find Multimedia Report  \[RAD-Y3\]| Responder | R | [RAD TF-2: 4.Y3](RAD-Y3.html) |
 |                   | Retrieve Rendered Multimedia Report \[RAD-Y4\] | Responder | R | [RAD TF-2: 4.Y4](RAD-Y4.html) |
 | Report Reader | Store Multimedia Report \[RAD-Y1\]| Responder | O (Note 1) | [RAD TF-2: 4.Y1](RAD-Y1.html) |
-|               | Display Multimedia Report \[RAD-Y2\] | N/A | R | [RAD TF-2: 4.Y2](RAD-Y2.html) |
+|               | Display Multimedia Report \[RAD-Y2\] | N/A (Note 2) | R | [RAD TF-2: 4.Y2](RAD-Y2.html) |
 |               | Find Multimedia Report \[RAD-Y3\] | Initiator | O (Note 1) | [RAD TF-2: 4.Y3](RAD-Y3.html) |
-|               | Display Images \[RAD-Y5\] | N/A | R | [RAD TF-2: 4.Y5](RAD-Y5.html) |
+|               | Display Images \[RAD-Y5\] | N/A (Note 2) | R (Note 3) | [RAD TF-2: 4.Y5](RAD-Y5.html) |
 |               | WADO-RS Retrieve \[RAD-107\] | Initiator | O | RAD TF-2: 4.107 |
 | Rendered Report Reader | Store Multimedia Report \[RAD-Y1\] | Responder | O (Note 1) | [RAD TF-2: 4.Y1](RAD-Y1.html) |
 |                        | Find Multimedia Report \[RAD-Y3\] | Initiator | O (Note 1) | [RAD TF-2: 4.Y3](RAD-Y3.html) |
@@ -46,6 +46,10 @@ Table 1:XX.1-1 lists the transactions for each actor directly involved in the IM
 {: .grid}
 
 > Note 1: The actor shall support at least one of [RAD-Y1] or [RAD-Y3].
+
+> Note 2: These transactions are not typical IHE transactions between two devices; the primary focus is on the required behavior of the display rather than messaging between two actors. Therefore the notion of Initiator or Responder is not applicable (N/A) for the actor on the transaction.
+
+> Note 3: A Report Reader is required to support the Display Images [RAD-Y5] transaction which defines the display behavior of images. This requirement can be satisfied by either implementing the required behaviors, or grouping with another actor (e.g. Image Display Invoker in IID) that provides the required behaviors.
 
 ### 1:XX.1.1 Actors Description and Actor Profile Requirements
 Most requirements are documented in RAD TF-2 Transactions. This section documents any additional requirements on this profile's actors.
@@ -62,19 +66,15 @@ A Report Creator stores the DiagnosticReport resources to Report Repositories, R
 
 #### 1:XX.1.1.2 Report Repository
 
-A Report Repository stores multimedia reports received from Report Creators and makes the reports available for other consumers.
-
-A Report Repository supports query/retrieve of multimedia reports by Report Readers and Rendered Report Readers.
+A Report Repository stores multimedia reports received from Report Creators and makes the reports available for other consumers through query/retrieve.
 
 A Report Repository may modify how the embedded rendered report can be accessed, if necessary. For example, a Report Repository may adjust an internal URL to an externally accessible URL, or it may retrieve the rendered report referenced by a URL and embed it directly in the DiagnosticReport resource as base64 encoded in query responses. How a Report Repository may adjust the accessibility of the rendered report is out of scope of IMR.
 
 #### 1:XX.1.1.3 Report Reader
 
-A Report Reader receives multimedia reports directly from Report Creators or query/retrieves them from Report Repositories.
+When users click on the hyperlinks, the Report Reader presents the referenced images to the user in a way that the user can interact with the images (e.g., windowing, zooming, panning, toggle annotations, etc.).
 
-A Report Reader presents reports to the user, including the multimedia content embedded in the report as hyperlinks. When users click on the hyperlinks, the Report Reader presents the referenced images to the user in a way that the user can interact with the images (e.g., windowing, zooming, panning, toggle annotations, etc.).
-
-A Report Reader shall provide baseline image viewing capabilities, i.e., [Level 2 Interactivity](#1xx416-level-of-interactivity) as discussed in Section 1:XX.4.1.6. A Report Reader may support additional advanced behavior. 
+A Report Reader shall provide [Level 2 Interactivity](#1xx416-level-of-interactivity), i.e., intermediate image viewing capabilities, as discussed in Section 1:XX.4.1.6. A Report Reader may support additional advanced behavior. 
 
 > Note: The Report Reader may satisfy the baseline image viewing capabilities by retrieving DICOM objects and rendered by itself, or retrieve rendering of DICOM objects using WADO-RS Retrieve [RAD-107], or a combination of both.
 >
