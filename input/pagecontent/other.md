@@ -11,7 +11,7 @@ This section contains modifications to other IHE publications and profiles, and 
 
 | Actor                            | Definition                                                                                                                                                                                                                                                                                |
 | -------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| Rendered Report Reader | A Rendered Report Reader receives multimedia reports directly from Report Creators or query/retrieves them from Report Repositories, and presents to the user the rendered report that is embedded in the DiagnosticReport resource, including the multimedia content embedded in the report as well as all hyperlinks. |
+| Rendered Report Reader | Presents pre-rendered reports (including multimedia content and hyperlinks) to a user. |
 {:.grid .table-striped}
 
 
