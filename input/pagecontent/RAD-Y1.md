@@ -86,7 +86,7 @@ The [IMR Bundle](StructureDefinition-imr-store-multimedia-report-bundle.html):
 
 The Sender may set `meta.profile` of each resource to be the corresponding IMR Profile. This enables a Receiver to validate the received resource against the IMR resource profile specification.
 
-> Note that a Sender may choose not to set meta.profile to a specific profile, or may set it to multiple profiles.
+> Note: A Sender may choose not to set meta.profile to a specific profile, or may set it to multiple profiles.
 
 The Sender shall create corresponding properly identifiable resources unless the proper record keys or absolute identification information is not available. Identifiable resources are preferred because each resource in the bundle is valuable as a standalone resource outside the context of the IMR DiagnosticReport Resource (e.g., independently searchable, and the same resource can be referenced multiple times).
 

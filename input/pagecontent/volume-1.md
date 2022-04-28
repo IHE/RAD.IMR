@@ -77,8 +77,8 @@ When users click on the hyperlinks, the Report Reader presents the referenced im
 A Report Reader shall provide [Level 2 Interactivity](#1xx416-level-of-interactivity), i.e., intermediate image viewing capabilities, as discussed in Section 1:XX.4.1.6. A Report Reader may support additional advanced behavior. 
 
 > Note: The Report Reader may satisfy the baseline image viewing capabilities by retrieving DICOM objects and rendered by itself, or retrieve rendering of DICOM objects using WADO-RS Retrieve [RAD-107], or a combination of both.
->
-> Note that the retrieve rendered images functionality of WADO-RS Retrieve [RAD-107] is available in CP-RAD-475.
+
+> Note: The retrieve rendered images functionality of WADO-RS Retrieve [RAD-107] is available in CP-RAD-475.
 
 A Report Reader shall use the information in DiagnosticReport.result.derivedFrom.endpoint.address and DiagnosticReport.result.component.valueString to construct valid WADO-RS URLs that conform to the semantics as RetrieveInstance or RetrieveFrames as defined in WADO-RS Retrieve [RAD-107] to retrieve the corresponding original DICOM objects or rendered images.
 
@@ -90,7 +90,7 @@ A Rendered Report Reader presents to the user the rendered report that is embedd
 
 A Rendered Report Reader shall provide [Level 1 Interactivity](#1xx416-level-of-interactivity) as discussed in Section 1:XX.4.1.6.
 
-> Note that there are no additional image viewing capabilities required for Rendered Report Readers. In other words, the image viewing capabilities presented by the Rendered Report Readers is limited by how the Report Creator created the rendered report. For example, for image references, one Report Creator may render them using WADO-RS links which will show a static rendered image, while another Report Creator may render them using IID Invoke Image Display links which will launch a viewer to show the referenced image with additional interactivity such as scrolling, zooming, etc.
+> Note: There are no additional image viewing capabilities required for Rendered Report Readers. In other words, the image viewing capabilities presented by the Rendered Report Readers is limited by how the Report Creator created the rendered report. For example, for image references, one Report Creator may render them using WADO-RS links which will show a static rendered image, while another Report Creator may render them using IID Invoke Image Display links which will launch a viewer to show the referenced image with additional interactivity such as scrolling, zooming, etc.
 
 #### 1.XX.1.1.5 Image Manager / Image Archive
 
@@ -124,7 +124,7 @@ A Report Creator that supports this option shall generate a rendered multimedia 
 
 A Report Creator that supports this option shall generate a rendered multimedia report, preserving the image references as either hyperlinks or embedded static images in the rendered PDF file, and embed the rendered report in DiagnosticReport.presentedForm in the Store Multimedia Reports [RAD-Y1] transaction. See [Rendered Report In PDF](RAD-Y1.html#24y1412222-rendered-report-in-pdf-format) for details.
 
-> Note that how the Report Creator lays out the report into PDF is out of scope of IMR, provided that the rendered report preserves the readability of the report. For example, if there are multiple measurements in the same paragraph, each has its separate image reference(s), then if the image references are rendered as inline static images, the resulting paragraph may be broken up and become hard to read.
+> Note: How the Report Creator lays out the report into PDF is out of scope of IMR, provided that the rendered report preserves the readability of the report. For example, if there are multiple measurements in the same paragraph, each has its separate image reference(s), then if the image references are rendered as inline static images, the resulting paragraph may be broken up and become hard to read.
 
 A Rendered Report Reader that supports this option shall support retrieving and displaying the rendered report in PDF format.
 
