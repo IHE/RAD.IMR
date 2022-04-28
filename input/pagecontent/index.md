@@ -1,7 +1,5 @@
 The Interactive Multimedia Report (IMR) Profile specifies how a diagnostic report with interactive multimedia content can be reliably encoded, communicated and presented.
 
-This profile defines content for data encoding, transactions for communicating the content between systems, and behaviors for displaying the content.
-
 [Open and Closed Issues](issues.html)
 
 ### Organization of This Guide
