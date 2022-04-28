@@ -90,7 +90,7 @@ Description: "Indication that provides contextual information used during the re
 ValueSet: IMRDiagnosticReportStatusVS
 Id: imr-diagnosticreport-status-vs
 Title: "IMR DiagnosticReport Status Value Set"
-Description: "Status codes that are applicable to imaging diagnostic report lifecycle."
+Description: "Status codes that are applicable to the imaging diagnostic report resource."
 * FHIRDiagnosticReportStatus#partial "Partial"
 * FHIRDiagnosticReportStatus#preliminary "Preliminary"
 * FHIRDiagnosticReportStatus#final "Final"
