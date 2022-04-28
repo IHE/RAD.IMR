@@ -26,7 +26,7 @@ Description:    "IHE Interactive Multimedia Report (IMR) profile on Observation"
 * category ^slicing.ordered = false
 
 * category contains imaging 1..1 MS
-* category[imaging].coding = FHIRObservation#imaging "Imaging"
+* category[imaging].coding from IMRObservationCategoryVS (extensible)
 
 // Shall reference on Patient
 * subject 1..1
@@ -57,12 +57,10 @@ Description:    "IHE Interactive Multimedia Report (IMR) profile on Observation"
 * component.id 0..1 MS
 * component.value[x] 1..1 MS
 
-* code MS
-* code from IMRObservationCodeVS (extensible)
 
-ValueSet:  IMRObservationCodeVS
-Id: imr-observation-code-vs
-Title: "IMR Study Endpoint PayloadType Value Set"
+ValueSet:  IMRObservationCategoryVS
+Id: imr-observation-category-vs
+Title: "IMR Observation Category Value Set"
 Description: "Codes representing the different kinds of findings in radiology report."
 * LOINC#59776-5 "Procedure Findings"
 * LOINC#19005-8 "Radiology Imaging study [Impression] (narrative)"
