@@ -25,22 +25,103 @@ Table 1:52.1-1 lists the transactions for each actor directly involved in the IM
 
 **Table 1:52.1-1: IMR Profile - Actors and Transactions**
 
-| Actors  | Transactions  | Initiator or Responder | Optionality     | Reference                         |
-|---------|---------------|------------------------|-----------------|-----------------------------------|
-| Report Creator | Store Multimedia Report \[RAD-141\] | Initiator | R | [RAD TF-2: 4.141](RAD-141.html) |
-| Report Repository | Store Multimedia Report \[RAD-141\] | Responder | R | [RAD TF-2: 4.141](RAD-141.html) |
-|                   | Find Multimedia Report  \[RAD-143\]| Responder | R | [RAD TF-2: 4.143](RAD-143.html) |
-|                   | Retrieve Rendered Multimedia Report \[RAD-144\] | Responder | R | [RAD TF-2: 4.144](RAD-144.html) |
-| Report Reader | Store Multimedia Report \[RAD-141\]| Responder | O (Note 1) | [RAD TF-2: 4.141](RAD-141.html) |
-|               | Display Multimedia Report \[RAD-142\] | N/A (Note 2) | R | [RAD TF-2: 4.142](RAD-142.html) |
-|               | Find Multimedia Report \[RAD-143\] | Initiator | O (Note 1) | [RAD TF-2: 4.143](RAD-143.html) |
-|               | Display Images \[RAD-145\] | N/A (Note 2) | R (Note 3) | [RAD TF-2: 4.145](RAD-145.html) |
-|               | WADO-RS Retrieve \[RAD-107\] | Initiator | O | RAD TF-2: 4.107 |
-| Rendered Report Reader | Store Multimedia Report \[RAD-141\] | Responder | O (Note 1) | [RAD TF-2: 4.141](RAD-141.html) |
-|                        | Find Multimedia Report \[RAD-143\] | Initiator | O (Note 1) | [RAD TF-2: 4.143](RAD-143.html) |
-|                        | Retrieve Rendered Multimedia Report \[RAD-144\] | Initiator | R | [RAD TF-2: 4.144](RAD-144.html) |
-| Image Manager / Image Archive | WADO-RS Retrieve \[RAD-107\] | Responder | R | RAD TF-2: 4.107 |
-{: .grid}
+<table class="grid">
+  <thead>
+    <tr>
+      <th>Actors</th>
+      <th>Transactions</th>
+      <th>Initiator or Responder</th>
+      <th>Optionality</th>
+      <th>Reference</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>Report Creator</td>
+      <td>Store Multimedia Report [RAD-141]</td>
+      <td>Initiator</td>
+      <td>R</td>
+      <td><a href="RAD-141.html">RAD TF-2: 4.141</a></td>
+    </tr>
+    <tr>
+      <td rowspan="3">Report Repository</td>
+      <td>Store Multimedia Report [RAD-141]</td>
+      <td>Responder</td>
+      <td>R</td>
+      <td><a href="RAD-141.html">RAD TF-2: 4.141</a></td>
+    </tr>
+    <tr>
+      <td>Find Multimedia Report  [RAD-143]</td>
+      <td>Responder</td>
+      <td>R</td>
+      <td><a href="RAD-143.html">RAD TF-2: 4.143</a></td>
+    </tr>
+    <tr>
+      <td>Retrieve Rendered Multimedia Report [RAD-144]</td>
+      <td>Responder</td>
+      <td>R</td>
+      <td><a href="RAD-144.html">RAD TF-2: 4.144</a></td>
+    </tr>
+    <tr>
+      <td rowspan="5">Report Reader</td>
+      <td>Store Multimedia Report [RAD-141]</td>
+      <td>Responder</td>
+      <td>O (Note 1)</td>
+      <td><a href="RAD-141.html">RAD TF-2: 4.141</a></td>
+    </tr>
+    <tr>
+      <td>Display Multimedia Report [RAD-142]</td>
+      <td>N/A (Note 2)</td>
+      <td>R</td>
+      <td><a href="RAD-142.html">RAD TF-2: 4.142</a></td>
+    </tr>
+    <tr>
+      <td>Find Multimedia Report [RAD-143]</td>
+      <td>Initiator</td>
+      <td>O (Note 1)</td>
+      <td><a href="RAD-143.html">RAD TF-2: 4.143</a></td>
+    </tr>
+    <tr>
+      <td>Display Images [RAD-145]</td>
+      <td>N/A (Note 2)</td>
+      <td>R (Note 3)</td>
+      <td><a href="RAD-145.html">RAD TF-2: 4.145</a></td>
+    </tr>
+    <tr>
+      <td>WADO-RS Retrieve [RAD-107]</td>
+      <td>Initiator</td>
+      <td>O</td>
+      <td>RAD TF-2: 4.107</td>
+    </tr>
+    <tr>
+      <td rowspan="3">Rendered Report Reader</td>
+      <td>Store Multimedia Report [RAD-141]</td>
+      <td>Responder</td>
+      <td>O (Note 1)</td>
+      <td><a href="RAD-141.html">RAD TF-2: 4.141</a></td>
+    </tr>
+    <tr>
+      <td>Find Multimedia Report [RAD-143]</td>
+      <td>Initiator</td>
+      <td>O (Note 1)</td>
+      <td><a href="RAD-143.html">RAD TF-2: 4.143</a></td>
+    </tr>
+    <tr>
+      <td>Retrieve Rendered Multimedia Report [RAD-144]</td>
+      <td>Initiator</td>
+      <td>R</td>
+      <td><a href="RAD-144.html">RAD TF-2: 4.144</a></td>
+    </tr>
+    <tr>
+      <td>Image Manager / Image Archive</td>
+      <td>WADO-RS Retrieve [RAD-107]</td>
+      <td>Responder</td>
+      <td>R</td>
+      <td>RAD TF-2: 4.107</td>
+    </tr>
+  </tbody>
+</table>
+
 
 > Note 1: The actor shall support at least one of [RAD-141] or [RAD-143].
 
@@ -103,15 +184,46 @@ Options that may be selected for each actor in this implementation guide, are li
 
 **Table 1:52.2-1: IMR - Actors and Options**
 
-| Actor   | Option Name | Reference |
-|---------|-------------|-----------|
-| Report Creator | PDF Report | [Section 1:52.2.1](#15221-pdf-report-option) | 
-|                | HL7 Text Report | [Section 1:52.2.2](#15222-hl7-text-report-option) |
-| Report Repository | No options defined | -- |
-| Report Reader | Series/Study Navigation | [Section 1:52.2.6](#15223-seriesstudy-navigation-option) |
-| Rendered Report Reader | PDF Report | [Section 1:52.2.1](#15221-pdf-report-option) |
-| Image Manager / Image Archive | No options defined | -- |
-{: .grid}
+<table class="grid">
+  <thead>
+    <tr>
+      <th>Actor</th>
+      <th>Option Name</th>
+      <th>Reference</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td rowspan="2">Report Creator</td>
+      <td>PDF Report</td>
+      <td><a href="#15221-pdf-report-option">Section 1:52.2.1</a></td>
+    </tr>
+    <tr>
+      <td>HL7 Text Report</td>
+      <td><a href="#15222-hl7-text-report-option">Section 1:52.2.2</a></td>
+    </tr>
+    <tr>
+      <td>Report Repository</td>
+      <td>No options defined</td>
+      <td>–</td>
+    </tr>
+    <tr>
+      <td>Report Reader</td>
+      <td>Series/Study Navigation</td>
+      <td><a href="#15223-seriesstudy-navigation-option">Section 1:52.2.6</a></td>
+    </tr>
+    <tr>
+      <td>Rendered Report Reader</td>
+      <td>PDF Report</td>
+      <td><a href="#15221-pdf-report-option">Section 1:52.2.1</a></td>
+    </tr>
+    <tr>
+      <td>Image Manager / Image Archive</td>
+      <td>No options defined</td>
+      <td>–</td>
+    </tr>
+  </tbody>
+</table>
 
 ### 1:52.2.1 PDF Report Option
 
