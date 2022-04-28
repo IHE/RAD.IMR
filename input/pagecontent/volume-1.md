@@ -405,7 +405,7 @@ Optionally, a FHIR server may support the [_include](http://hl7.org/fhir/search.
 
 #### 1:52.4.1.8 Deployment Considerations of IMR
 
-IMR uses FHIR for defining the format of the diagnostic report as well as the protocol to communicate the report with other systems. Since FHIR is an emerging technology in many existing deployments, several considerations should be taken when deploying IMR in an existing environment:
+Since FHIR is an emerging technology in many existing deployments and IMR is built on FHIR, several considerations should be taken when deploying IMR in an existing environment:
 
 ##### Deploying IMR in environment with existing FHIR infrastructure
 
