@@ -168,6 +168,10 @@ A Rendered Report Reader presents to the user the rendered report that is embedd
 
 A Rendered Report Reader shall provide [Level 1 Interactivity](#152416-level-of-interactivity) as discussed in Section 1:52.4.1.6.
 
+A Rendered Report Reader shall retrieve and display the HTML report specified in DiagnosticReport.presentedForm.
+
+A Rendered Report Reader that supports the PDF Report Option shall also be able to retrieve and display the PDF report specified in DiagnosticReport.presentedForm. See [PDF Report Option](#15221-pdf-report-option) for details.
+
 > Note: There are no additional image viewing capabilities required for Rendered Report Readers. In other words, the image viewing capabilities presented by the Rendered Report Readers is limited by how the Report Creator created the rendered report. For example, for image references, one Report Creator may render them using WADO-RS links which will show a static rendered image, while another Report Creator may render them using IID Invoke Image Display links which will launch a viewer to show the referenced image with additional interactivity such as scrolling, zooming, etc.
 
 #### 1.52.1.1.5 Image Manager / Image Archive
@@ -227,15 +231,19 @@ Options that may be selected for each actor in this implementation guide, are li
 
 ### 1:52.2.1 PDF Report Option
 
-The PDF Report Option enables actors to handle rendered reports with multimedia contents in the PDF format.
+The PDF Report Option involves rendering and presenting multimedia reports in PDF format.
 
 A Report Creator that supports this option shall generate a rendered multimedia report, preserving the image references as either hyperlinks or embedded static images in the rendered PDF file, and embed the rendered report in DiagnosticReport.presentedForm. The Report Creator shall preserve the readability of the report in the PDF format.
 
 A Report Creator that supports this option shall generate a rendered multimedia report, preserving the image references as either hyperlinks or embedded static images in the rendered PDF file, and embed the rendered report in DiagnosticReport.presentedForm in the Store Multimedia Reports [RAD-141] transaction. See [Rendered Report In PDF](RAD-141.html#24141412222-rendered-report-in-pdf-format) for details.
 
-> Note: How the Report Creator lays out the report into PDF is out of scope of IMR, provided that the rendered report preserves the readability of the report. For example, if there are multiple measurements in the same paragraph, each has its separate image reference(s), then if the image references are rendered as inline static images, the resulting paragraph may be broken up and become hard to read.
+> Note: How the Report Creator lays out the report into PDF is out of scope of IMR, provided that the rendered report preserves the readability of the report. For example, consider the case that there are multiple measurements in the same paragraph, each has its separate image reference(s). If the image references are rendered as inline static images, then the resulting paragraph may be broken up and become hard to read.
 
-A Rendered Report Reader that supports this option shall support retrieving and displaying the rendered report in PDF format.
+A Rendered Report Reader that supports this option
+- shall identify the PDF rendered report according to the contentType attribute
+- shall retrieve and display the PDF rendered report specified in either DiagnosticReport.presentedForm.data or DiagnosticReport.presentedForm.url
+- shall be able to launch the hyperlinks included in the PDF report.
+- shall be able to select either the HTML or PDF rendered reports in DiagnosticReport.presentedForm to retrieve and display
 
 ### 1:52.2.2 HL7 Text Report Option
 
