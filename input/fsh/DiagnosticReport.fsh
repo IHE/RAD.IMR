@@ -63,10 +63,10 @@ Description:    "IHE Interactive Multimedia Report (IMR) profile on DiagnosticRe
 * presentedForm[html].contentType = MIME#text/html "HTML"
 * presentedForm[pdf].contentType = MIME#applicatoin/pdf "PDF"
 
-* extension contains ComparisonStudy named comparisonStudy 0..* MS
+* extension contains AssociatedStudy named associatedStudy 0..* MS
 
-Extension: ComparisonStudy
-Title: "IMR DiagnosticReport Comparison Study"
-Id: comparisonStudy
-Description: "Comparison study used in part of diagnostic reporting"
+Extension: AssociatedStudy
+Title: "IMR DiagnosticReport Associated Study"
+Id: associatedStudy
+Description: "Associated studies used in part of diagnostic reporting"
 * value[x] only Reference(ImagingStudy or DiagnosticReport)
