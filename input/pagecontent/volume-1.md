@@ -260,7 +260,7 @@ A Report Creator shall be able to encode the text-only report in an HL7 ORU mess
 
 The Advanced Image Viewing Option involves the user being able to view images with advanced imaging tools.
 
-A Report Reader that supports this option shall support the advanced image viewing capabilities specified in [RAD-145](RAD-145.html).
+A Report Reader that supports this option shall provide [Level 3 Interactivity](#152416-level-of-interactivity).
 
 ## 1:52.3 IMR Required Actor Groupings
 
@@ -415,7 +415,7 @@ See [RAD-145](RAD-145.html) for specific image viewing requirements for each lev
 
 #### 1:52.4.1.7 DiagnosticReport Referenced Resources
 
-IMR uses FHIR DiagnosticReport resource as the top level resource to capture a multimedia report. Furthermore, DiagosticReport resource incorporates other resources to form a complete report.
+IMR uses FHIR DiagnosticReport resource as the top level resource to capture a multimedia report. Furthermore, DiagnosticReport resource incorporates other resources to form a complete report.
 
 There are three categories of resources:
 
@@ -431,7 +431,7 @@ Although the procedure and imaging study exist in other systems prior to reporti
 
 ##### Organizational Context
 
-A DiagnosticeReport references organizational level resources such as `Patient`, `Organization`, `Practitioner` and `PractitionerRole` to capture essential contextual information associated with the report. However, a Report Creator is not the owner of these contextual information. Therefore, it is a prerequisite that these organizational resources already exist prior to the creation of DiagnosticReport resource. Then a Report Creator will only reference these organizational resources during report creation.
+A DiagnosticReport references organizational level resources such as `Patient`, `Organization`, `Practitioner` and `PractitionerRole` to capture essential contextual information associated with the report. However, a Report Creator is not the owner of these contextual information. Therefore, it is a prerequisite that these organizational resources already exist prior to the creation of DiagnosticReport resource. Then a Report Creator will only reference these organizational resources during report creation.
 
 #### 1:52.4.1.8 Referenced FHIR Resource vs Contained FHIR Resource
 
@@ -445,34 +445,40 @@ Optionally, a FHIR server may support the [_include](http://hl7.org/fhir/search.
 
 ### 1:52.4.2 Use Cases
 
-The IMR Profile is focused on encoding multimedia content in diagnostic reports such that later the user can interact with the embedded multimedia content in the reports.
+The IMR Profile encodes multimedia content in diagnostic reports such that later the user can interact with the embedded multimedia content in the reports.
 
 Note that the IMR Profile is focused on intra-enterprise use cases. Other inter-enterprise use cases may be supported in future updates. The design of the IMR does not prohibit addressing inter-enterprise use cases in the future.
 
-#### 1:52.4.2.1 Use Case 1: Encode and Transmit Multimedia Report
+#### 1:XX.4.2.1 Use Case 1: Rendered Report
 
-##### 1:52.4.2.1.1 Encode and Transmit Multimedia Report Use Case Description
+##### 1:XX.4.2.1.1 Rendered Report Use Case Description
 
-During a report dictation session, the Evidence Creator (not part of IMR) conveys multimedia contents to the Report Creator on demand as instructed by the user. (Note that the interaction between the Evidence Creator and Report Creator is out of scope for IMR.) When a dictation session ends, the Report Creator encodes the diagnostic report along with the collected multimedia content. Once completed, the Report Creator stores the multimedia report to the Report Repository, Report Reader and/or Rendered Report Reader.
+The Report Creator encodes the diagnostic report with multimedia content when saving dictated report. This use case shows the multimedia report being stored in the Report Repository. Alternatively, the Report Creator could send the report directly to one or more Report Readers and/or Rendered Report Readers.
 
-##### 1:52.4.2.1.2 Encode and Transmit Multimedia Report Process Flow
+A Clinician wants to review studies and associated diagnostic reports for a patient. She searches the EMR for the patient. As a result, the EMR returns a list of studies and associated diagnostic reports for the patient from which she selects the report of interest.
 
-Figure 1:52.4.2.1.2-1 shows the dictation session as background context, and the eventual encoding and transmission of the multimedia report by the Report Creator to the Report Repository.
+##### 1:XX.4.2.1.2 Rendered Report Process Flow
 
 <div>
-{%include uc1-authoring-report.svg%}
+{%include uc1-presenting-interactive-report-presentedform.svg%}
 </div>
 <br clear="all">
 
-**Figure 1:52.4.2.1.2-1: Encode and Transmit Process Flow in IMR Profile**
+**Figure 1:XX.4.2.1.2-1: Rendered Report Process Flow in IMR Profile**
 
-#### 1:52.4.2.2 Use Case 2: Consume and Interact with Multimedia Report by Advanced Consumers
+#### 1:XX.4.2.2 Use Case 2: Locally Processed Report
 
-##### 1:52.4.2.2.1 Consume and Interact with Multimedia Report by Advanced Consumers Use Case Description
+##### 1:XX.4.2.2.1 Locally Processed Report Use Case Description
 
-A Clinician wants to review studies and associated diagnostic reports for a patient. She searches the EMR for the patient. As a result, the EMR returns a list of studies and associated diagnostic reports for the patient.
+This use case is similar to Use Case #1, but instead of presenting a pre-rendered copy of the report that has been included in the multimedia report object, the Report Reader processes the multimedia report object according to its own rendering configuration.
 
-The Clinician selects a multimedia report and the EMR, as a Report Reader, processes the report content according to its rendering configuration and displays the reports with interactive links. The Clinician clicks on the interactive links. The EMR / Report Reader retrieves the rendered images from the Image Manager / Image Archive and displays the images with interactive tools. The Clinicians can navigate the series and see the measurements with annotations as described in the report.
+TODO ***
+
+The Clinician clicks on the interactive links.
+
+In this use case, the Report Reader retrieves rendered objects using WADO-RS and display them. Alternatively, the Report Reader retrieves DICOM objects, renders and display them.
+
+The Clinicians can navigate the series and see the measurements with annotations as described in the report.
 
 ##### 1:52.4.2.2.2 Consume and Interact with Multimedia Report by Advanced Consumers Process Flow
 
@@ -485,24 +491,7 @@ Figure 1:52.4.2.2.2-1 shows how the Clinician can use the EMR with native IMR Re
 
 **Figure 1:52.4.2.2.2-1: Consume and Interact with Multimedia Report by Advanced Consumers Process Flow in IMR Profile**
 
-#### 1:52.4.2.3 Use Case 3: Consume and Interact with Multimedia Report by Basic Consumers
-
-##### 1:52.4.2.3.1 Consume and Interact with Multimedia Report by Basic Consumers Use Case Description
-
-This use case is similar to Use Case #2, but instead of processing the report content according to its own rendering configuration, the EMR supports the IMR Rendered Report Reader. In this case, the EMR presents a pre-rendered copy of the report that has been included in the multimedia report object.
-
-##### 1:52.4.2.3.2 Consume and Interact with Multimedia Report by Basic Consumers Process Flow
-
-Figure 1:52.4.2.3.2-1 shows how the Clinician can use the EMR with a native IMR Rendered Report Reader support to interact with the multimedia content available in the report.
-
-<div>
-{%include uc3-presenting-interactive-report-presentedform.svg%}
-</div>
-<br clear="all">
-
-**Figure 1:52.4.2.3.2-1: Consume and Interact with Multimedia Report by Basic Consumers Process Flow in IMR Profile**
-
-#### 1:52.4.2.4 Use Case 4: Consume and Interact with Multimedia Report by Advanced Consumers with Integrated Image Display Invoker
+#### 1:XX.4.2.4 Use Case 4: Consume and Interact with Multimedia Report by Advanced Consumers with Integrated Image Display Invoker
 
 ##### 1:52.4.2.4.1 Consume and Interact with Multimedia Report by Advanced Consumers with Integrated Image Display Invoker Use Case Description
 
