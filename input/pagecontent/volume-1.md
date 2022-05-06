@@ -166,7 +166,7 @@ A Report Reader that supports the Advanced Image Viewing Option shall be able to
 
 A Rendered Report Reader presents to the user the rendered report that is embedded in the DiagnosticReport resource, including the multimedia content embedded in the report as well as all hyperlinks. When the user clicks on the hyperlinks, the Rendered Report Reader retrieves the referenced images and display them to the user.
 
-A Rendered Report Reader shall provide [Level 1 Interactivity](#152416-level-of-interactivity) as discussed in Section 1:52.4.1.6.
+A Rendered Report Reader shall provide [Level 1 Interactivity](#152416-level-of-interactivity) as discussed in Section 1:52.4.1.6. A Rendered Report Reader may support additional advanced behavior.
 
 A Rendered Report Reader shall retrieve and display the HTML report specified in DiagnosticReport.presentedForm.
 
@@ -407,7 +407,11 @@ The Report Reader can provide not only a basic view of the source image(s), but 
 
 ##### Level 3: Advanced interactivity
 
-The Report Reader can display not only the image referenced directly, but also the full series to which the image belongs. The Report Reader may provide other tools (e.g., measurements, more advanced image visualization, etc.) as well as support other advanced DICOM objects such as segmentation objects or parametric map objects.
+In addition to the intermediate interactivity, the Report Reader can also display the full series in which the image belongs.
+
+The Report Reader may provide other tools (e.g., measurements, more advanced image visualization, etc.) as well as support other advanced DICOM objects such as segmentation objects or parametric map objects.
+
+See [RAD-145](RAD-145.html) for specific image viewing requirements for each level of interactivity.
 
 #### 1:52.4.1.7 Referenced FHIR Resource vs Contained FHIR Resource
 
