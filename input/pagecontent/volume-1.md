@@ -366,17 +366,28 @@ This sophisticated placement of multimedia contents requires a more complex inte
 
 Report Creators in IMR are required to support placing image references in context of the findings and impressions.
 
-#### 1:52.4.1.5 Image Context in Report 
+#### 1:52.4.1.5 Imaging Context in Report 
 
-Each image reference in a report may point to:
-- a single image (e.g., Frame 10)
-- a range of images across multiple single-frame objects (e.g., Object 3-5) or within a multi-frame object (e.g., Frame 10-12)
-- a discrete list of images (e.g., Frame 10,14,17)
-- a combination of the above (e.g., Frame 10-12,14,17-20)
+An imaging context in IMR can include image references and non-image references.
+
+##### Image References
+
+Each image reference in a report is in the context of a series. Furthermore, each image reference includes one or more context as follow:
+- a single frame object (e.g. Object 10)
+- a single frame in a multi-frame object (e.g. Object 10 Frame 3)
+- a range of single frame objects (e.g. Object 3-5)
+- a range of frames in a multi-frame object (e.g. Object 10 Frame 3-5)
+- a discrete list of single frame object (e.g., Object 10,14,17)
+- a discrete list of frames in a multi-frame object (e.g., Object 10 Frame 10,14,17)
+- a combination of the above (e.g., Object 5,10-12, Object 15 Frame 14,17-20)
 
 In most cases, the image references refer to the same study context as the study being reported on. Occasionally, the image references may refer to a comparison study that is used during reporting.
 
-In addition to referencing a frame as a whole, sometimes the reference is specific to a region of interest in the frame. The region of interest (ROI) can be one or more points, a line or a segmented line (e.g., polyline), a geometric shape (e.g., ellipse, polygon), or a volume (e.g., ellipsoid).
+##### Non-Image References
+
+In addition to image references, an imaging context may also specify non-image references such as regions, annotations, parametric maps, etc. These non-image references can be captured using various DICOM objects such as Structured Report (SR), different types of Presentation States (PR), Segmentation and Parametric Map. These objects provide additional information that can be presented as overlays on top of the image references.
+
+> Note: See [AI Results](https://www.ihe.net/uploadedFiles/Documents/Radiology/IHE_RAD_Suppl_AIR.pdf) Section 6.5.3.5 and 6.5.3.6 for details regarding how regions and parametric maps are captured as DICOM objects.
 
 #### 1:52.4.1.6 Level of Interactivity
 
