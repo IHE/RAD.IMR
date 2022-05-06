@@ -311,7 +311,7 @@ This aspect of structure involves guiding how the report content is presented to
 
 While Report Content Structure and Report Content Encoding Structure focus on imposing structure to data elements, they do not impose any requirements on how these data elements will be presented to the user. The FHIR Composition resource is designed for presentation structure using elements like *section*.
 
-> In FHIR R4, FHIR DiagnosticReport and Composition are two independent resources with no explicit relationship. HL7 is working on integrating FHIR DiagnosticReport and Composition to enable better presentation structure.
+> As of FHIR R4, FHIR DiagnosticReport and Composition are two independent resources with no explicit relationship. Future versions of FHIR may integrate FHIR DiagnosticReport and Composition to enable better presentation structure.
 
 Report Presentation is out of scope for IMR.
 
@@ -338,7 +338,7 @@ These content should be available to the report authoring system so that it can 
 
 A key element for an interactive multimedia report is the ability to include clinical findings such as measurements, region of interest (ROI), etc. with interactive links to the source images. Traditionally, these annotations, markups, presentation states, and key images could be captured as DICOM objects such as Grayscale Softcopy Presentation State (GSPS), Structured Report (SR), or Key Object Selection Document (KOS). However, these objects are designed to capture evidence for long-term reference instead of real-time communication or composition. Most PACS will create these evidence objects at the end of a session in order to capture all the data points created by the image-centric specialist in one object, rather than create multiple evidence objects resulting in one per data point. As a result, these evidence objects in DICOM are good resources for subsequent interactive access when viewing an IMR, but not good candidates as the payload for real-time communication during a reporting session. As the image-centric specialist captures measurements, regions of interest, and other data points, ideally the PACS can provide those data points to the reporting system in real-time without introducing any unnecessary interruptions, or adding transitory content to the permanent record.
 
-Note that this real time communication is currently out of scope of IMR.
+> Note: Real time communication is out of scope of IMR.
 
 #### 1:52.4.1.4 Placement of Multimedia Content
 
@@ -427,7 +427,7 @@ In this situation, although the *organizational* level resources such as `Patien
 
 The IMR Profile is focused on encoding multimedia content in diagnostic reports such that later the user can interact with the embedded multimedia content in the reports.
 
-Note that the IMR Profile is currently focused on intra-enterprise use cases. Other inter-enterprise use cases may be supported in future updates. The design of the current IMR should not prohibit addressing inter-enterprise use cases in the future.
+Note that the IMR Profile is focused on intra-enterprise use cases. Other inter-enterprise use cases may be supported in future updates. The design of the IMR does not prohibit addressing inter-enterprise use cases in the future.
 
 #### 1:52.4.2.1 Use Case 1: Encode and Transmit Multimedia Report
 
