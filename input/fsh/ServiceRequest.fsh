@@ -1,8 +1,8 @@
 Profile:        IMRServiceRequest
 Parent:         ServiceRequest
 Id:             imr-servicerequest
-Title:          "IMR ServiceRequest"
-Description:    "IHE Interactive Multimedia Report (IMR) profile on ServiceRequest"
+Title:          "Imaging ServiceRequest"
+Description:    "Imaging profile on ServiceRequest"
 
 // Must have an identifier which is the accession number
 * identifier 1..*
@@ -15,26 +15,12 @@ Description:    "IHE Interactive Multimedia Report (IMR) profile on ServiceReque
 
 * identifier contains accession 1..1 MS
 * identifier[accession].type 1..1 MS
-* identifier[accession].type.coding = HL7V2#ACSN "Accession ID"
+* identifier[accession].type.coding = HL7V2#ACSN
 * identifier[accession].value 1..1 MS
 
 * intent from IMRServiceRequestIntentVS (required)
 
-* quantity[x] 0..0
-
 * subject only Reference(Patient)
-
-// Must have a category of Imaging
-* category 0..*
-
-* category ^slicing.discriminator.type = #pattern
-* category ^slicing.discriminator.path = "coding"
-* category ^slicing.rules = #open
-* category ^slicing.description = "Slice based on the category.coding"
-* category ^slicing.ordered = false
-
-* category contains imaging 0..1 MS
-* category[imaging].coding = SCT#363679005 "Imaging"
 
 ValueSet: IMRServiceRequestIntentVS
 Id: imr-servicerequest-intent-vs
