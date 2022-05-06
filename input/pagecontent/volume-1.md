@@ -233,9 +233,7 @@ Options that may be selected for each actor in this implementation guide, are li
 
 The PDF Report Option involves rendering and presenting multimedia reports in PDF format.
 
-A Report Creator that supports this option shall generate a rendered multimedia report, preserving the image references as either hyperlinks or embedded static images in the rendered PDF file, and embed the rendered report in DiagnosticReport.presentedForm. The Report Creator shall preserve the readability of the report in the PDF format.
-
-A Report Creator that supports this option shall generate a rendered multimedia report, preserving the image references as either hyperlinks or embedded static images in the rendered PDF file, and embed the rendered report in DiagnosticReport.presentedForm in the Store Multimedia Reports [RAD-141] transaction. See [Rendered Report In PDF](RAD-141.html#24141412222-rendered-report-in-pdf-format) for details.
+A Report Creator that supports this option shall be able to generate a rendered multimedia report in PDF format, preserving the image references as either hyperlinks or embedded static images in the rendered PDF file, and embed the rendered report in DiagnosticReport.presentedForm in the Store Multimedia Reports [RAD-141] transaction. See [Rendered Report In PDF](RAD-141.html#24141412222-rendered-report-in-pdf-format) for details.
 
 > Note: How the Report Creator lays out the report into PDF is out of scope of IMR, provided that the rendered report preserves the readability of the report. For example, consider the case that there are multiple measurements in the same paragraph, each has its separate image reference(s). If the image references are rendered as inline static images, then the resulting paragraph may be broken up and become hard to read.
 
@@ -249,9 +247,9 @@ A Rendered Report Reader that supports this option
 
 The HL7 Text Report Option produces a text-only version of the report for consumption by non-IMR actors.
 
-A Report Creator that supports this option shall be able to create a text-only rendering of the report, including the textual representation of all measurements, and may include textual representation of image references. A Report Creator shall preserve the readability of the report in the text-only format.
+A Report Creator that supports this option shall be able to create a text-only rendering of the report, including the textual representation of all measurements, and may include textual representation of image references.
 
-> For example, a textual representation of image references may look like (2,16) which means series 2 instance 16. The specific textual representation of image references is out of scope of IMR.
+> Note: How the Report Creator lays out the report into text-only format is out of scope of IMR, provided that that text-only report preserves the readability of the report. For example, a textual representation of image references may look like (2,16) which means series 2 instance 16.
 
 A Report Creator shall be able to encode the text-only report in an HL7 ORU message and transmit the report to non-IMR Report Readers using MLLP. A Report Creator may use Send Imaging Result [RAD-128] in the IHE [Results Distribution](https://www.ihe.net/uploadedFiles/Documents/Radiology/IHE_RAD_Suppl_RD.pdf) Profile.
 
