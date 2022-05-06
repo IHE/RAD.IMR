@@ -4,8 +4,10 @@ Id:             imr-diagnosticreport
 Title:          "IMR DiagnosticReport"
 Description:    "IHE Interactive Multimedia Report (IMR) profile on DiagnosticReport"
 
-// Shall reference one ServiceRequest
-* basedOn 1..* MS
+* text MS
+
+// May reference no ServiceRequest for other -ologies in enterprise imaging
+* basedOn 0..* MS
 
 * basedOn ^slicing.discriminator.type = #type
 * basedOn ^slicing.discriminator.path = resolve()
@@ -13,18 +15,12 @@ Description:    "IHE Interactive Multimedia Report (IMR) profile on DiagnosticRe
 * basedOn ^slicing.description = "Slice based on the basedOn reference type"
 * basedOn ^slicing.ordered = false
 
-* basedOn contains serviceRequest 1..*
+* basedOn contains serviceRequest 0..*
 * basedOn[serviceRequest] only Reference(IMRServiceRequest)
-
-* status from IMRDiagnosticReportStatusVS
-
-* category 1..*
 
 // Shall reference on Patient
 * subject 1..1
 * subject only Reference(Patient)
-
-* effectiveDateTime 1..1 MS
 
 * issued 1..1
 * issued ^short = "DateTime that this diagnostic report is signed-off and published."
@@ -45,13 +41,8 @@ Description:    "IHE Interactive Multimedia Report (IMR) profile on DiagnosticRe
 * resultsInterpreter 1..*
 * resultsInterpreter only Reference(Practitioner or PractitionerRole)
 
-// May include result which captured measurements
-* result 1..* MS
-* result only Reference(IMRObservation)
-
 // Shall include at least one referenced study
 * imagingStudy 1..1 MS
-* imagingStudy only Reference(IMRImagingStudy)
 * imagingStudy ^short = "Study subject to this report"
 * imagingStudy ^definition = "Study subject to this report"
 
@@ -73,28 +64,9 @@ Description:    "IHE Interactive Multimedia Report (IMR) profile on DiagnosticRe
 * presentedForm[pdf].contentType = MIME#applicatoin/pdf "PDF"
 
 * extension contains ComparisonStudy named comparisonStudy 0..* MS
-* extension contains IMRDiagnosticReportIndication named indication 0..* MS
 
 Extension: ComparisonStudy
 Title: "IMR DiagnosticReport Comparison Study"
 Id: comparisonStudy
 Description: "Comparison study used in part of diagnostic reporting"
-* value[x] only Reference(IMRImagingStudy or IMRDiagnosticReport)
-
-Extension: IMRDiagnosticReportIndication
-Title: "IMR DiagnosticReport Indication"
-Id: indication
-Description: "Indication that provides contextual information used during the reporting"
-* value[x] only string or CodeableConcept
-
-ValueSet: IMRDiagnosticReportStatusVS
-Id: imr-diagnosticreport-status-vs
-Title: "IMR DiagnosticReport Status Value Set"
-Description: "Status codes that are applicable to the imaging diagnostic report resource."
-* FHIRDiagnosticReportStatus#partial "Partial"
-* FHIRDiagnosticReportStatus#preliminary "Preliminary"
-* FHIRDiagnosticReportStatus#final "Final"
-* FHIRDiagnosticReportStatus#amended "Amended"
-* FHIRDiagnosticReportStatus#corrected "Corrected"
-* FHIRDiagnosticReportStatus#appended "Appended"
-* FHIRDiagnosticReportStatus#cancelled "Cancelled"
+* value[x] only Reference(ImagingStudy or DiagnosticReport)
