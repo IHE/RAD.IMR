@@ -245,7 +245,7 @@ A Rendered Report Reader that supports this option
 
 ### 1:52.2.2 HL7 Text Report Option
 
-The HL7 Text Report Option produces a text-only version of the report for consumption by non-IMR actors.
+The HL7 Text Report Option involves rendering and presenting multimedia reports in text format. Such text would be suitable for inclusion in HL7 messages for consumption by non-IMR actors.
 
 A Report Creator that supports this option shall be able to create a text-only rendering of the report, including the textual representation of all measurements, and may include textual representation of image references.
 
