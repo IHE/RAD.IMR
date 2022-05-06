@@ -588,3 +588,9 @@ The Rendered Report Readers should verify if these URLs are legitimate and from 
 **AI Result (AIR)**: An Evidence Creator may be grouped with an IMR Report Creator to include AI results in the diagnostic report. An Image Display in AIR may be grouped with an IMR Image Display or Report Reader to show the interactive AI results.
 
 **Internet User Authorization (IUA)**: TODO
+
+**Patient Identifier Cross-reference for Mobile (PIXm)**: TODO
+
+**Patient Demographics Query for Mobile (PDQm)**: TODO
+
+**Mobile Care Services Discovery (mCSD)** TODO
