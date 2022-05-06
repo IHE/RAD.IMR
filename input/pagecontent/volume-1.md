@@ -160,7 +160,7 @@ A Report Reader shall provide [Level 2 Interactivity](#152416-level-of-interacti
 
 A Report Reader shall use the information in DiagnosticReport.result.derivedFrom.endpoint.address and DiagnosticReport.result.component.valueString to construct valid WADO-RS URLs that conform to the semantics as RetrieveInstance or RetrieveFrames as defined in WADO-RS Retrieve [RAD-107] to retrieve the corresponding original DICOM objects or rendered images.
 
-A Report Reader that supports the Series/Study Navigation Option shall be able to construct WADO-RS URLs that confirm to the RetrieveSeries and RetrieveStudy semantics.
+A Report Reader that supports the Advanced Image Viewing Option shall be able to construct WADO-RS URLs that confirm to the RetrieveSeries and RetrieveStudy semantics.
 
 #### 1:52.1.1.4 Rendered Report Reader
 
@@ -213,8 +213,8 @@ Options that may be selected for each actor in this implementation guide, are li
     </tr>
     <tr>
       <td>Report Reader</td>
-      <td>Series/Study Navigation</td>
-      <td><a href="#15223-seriesstudy-navigation-option">Section 1:52.2.6</a></td>
+      <td>Advanced Image Viewing</td>
+      <td><a href="#15223-advanced-image-viewing-option">Section 1:52.2.6</a></td>
     </tr>
     <tr>
       <td>Rendered Report Reader</td>
@@ -256,11 +256,11 @@ A Report Creator that supports this option shall be able to create a text-only r
 A Report Creator shall be able to encode the text-only report in an HL7 ORU message and transmit the report to non-IMR Report Readers using MLLP. A Report Creator may use Send Imaging Result [RAD-128] in the IHE [Results Distribution](https://www.ihe.net/uploadedFiles/Documents/Radiology/IHE_RAD_Suppl_RD.pdf) Profile.
 
 
-### 1:52.2.3 Series/Study Navigation Option
+### 1:52.2.3 Advanced Image Viewing Option
 
-The Series/Study Navigation Option involves the user being able to navigate through images in the same series or study as the image initially displayed.
+The Advanced Image Viewing Option involves the user being able to view images with advanced imaging tools.
 
-A Report Reader that supports this option shall initially display the referenced image, and shall enable the user to scroll through the other images in the same series (and, optionally, in the same study) as the referenced image.
+A Report Reader that supports this option shall support the advanced image viewing capabilities specified in [RAD-145](RAD-145.html).
 
 ## 1:52.3 IMR Required Actor Groupings
 
