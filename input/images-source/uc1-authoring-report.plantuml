@@ -4,16 +4,9 @@ actor "Radiologist" as Rad
 
 participant "Report Creator" as RCreator
 participant "Report Repository" as Repo
-participant "Report Reader" as Reader
-participant "Rendered Report Reader" as RenderedReader
 
-Rad->>RCreator: //Dictate study with multimedia references//\n//including image references or measurements//
-Rad->>RCreator: //End dictation//
+Rad->>RCreator: //End dictation of study//\n//with multimedia references//
 
-RCreator->>RCreator: //Select report destination(s)//
-RCreator->Repo: Store multimedia report [RAD-141]
-RCreator->Reader: Store multimedia report [RAD-141]
-RCreator->RenderedReader: Store multimedia report [RAD-141]
-
+RCreator->Repo: Store multimedia report [RAD-Y1]
 
 @enduml
