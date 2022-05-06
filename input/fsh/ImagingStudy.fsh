@@ -15,7 +15,7 @@ Description:    "IHE Interactive Multimedia Report (IMR) profile on ImagingStudy
 
 * identifier contains studyUID 1..1 MS
 * identifier[studyUID].type 1..1 MS
-* identifier[studyUID].type.coding = DICOMUID#110180 "Study Instance UID"
+* identifier[studyUID].type.coding = DICOMUID#110180
 * identifier[studyUID].value 1..1 MS
 
 * modality 1..*
@@ -23,18 +23,6 @@ Description:    "IHE Interactive Multimedia Report (IMR) profile on ImagingStudy
 * subject only Reference(Patient)
 
 * started 1..1 MS
-
-// Shall reference one ServiceRequest
-* basedOn 0..*
-
-* basedOn ^slicing.discriminator.type = #type
-* basedOn ^slicing.discriminator.path = resolve()
-* basedOn ^slicing.rules = #open
-* basedOn ^slicing.description = "Slice based on the basedOn reference type"
-* basedOn ^slicing.ordered = false
-
-* basedOn contains serviceRequest 0..*
-* basedOn[serviceRequest] only Reference(IMRServiceRequest)
 
 // Must have at least one endpoint at the study level of type IMRStudyEndpoint
 * endpoint 1..*
