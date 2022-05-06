@@ -247,9 +247,11 @@ A Rendered Report Reader that supports this option
 
 The HL7 Text Report Option involves rendering and presenting multimedia reports in text format. Such text would be suitable for inclusion in HL7 messages for consumption by non-IMR actors.
 
-A Report Creator that supports this option shall be able to create a text-only rendering of the report, including the textual representation of all measurements, and may include textual representation of image references.
+A Report Creator that supports this option shall be able to create a text-only rendering of the report, including the textual representation of all measurements, and may include unambiguous textual representation of image references.
 
-> Note: How the Report Creator lays out the report into text-only format is out of scope of IMR, provided that that text-only report preserves the readability of the report. For example, a textual representation of image references may look like (2,16) which means series 2 instance 16.
+> Note: How the Report Creator lays out the report into text-only format is out of scope of IMR, provided that that text-only report preserves the readability of the report.
+
+> Note: A textual representation of image references may look like (2,16) which means series 2 instance 16. Specific format for textual representation of image references is out of scope of IMR. As a result, interpretation of such information, if necessary, requires pre-arranged agreement between the Report Creator and non-IMR actors. The Report Creator may support different formats based on configuration.
 
 A Report Creator shall be able to encode the text-only report in an HL7 ORU message and transmit the report to non-IMR Report Readers using MLLP. A Report Creator may use Send Imaging Result [RAD-128] in the IHE [Results Distribution](https://www.ihe.net/uploadedFiles/Documents/Radiology/IHE_RAD_Suppl_RD.pdf) Profile.
 
