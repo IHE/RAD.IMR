@@ -413,7 +413,27 @@ The Report Reader may provide other tools (e.g., measurements, more advanced ima
 
 See [RAD-145](RAD-145.html) for specific image viewing requirements for each level of interactivity.
 
-#### 1:52.4.1.7 Referenced FHIR Resource vs Contained FHIR Resource
+#### 1:52.4.1.7 DiagnosticReport Referenced Resources
+
+IMR uses FHIR DiagnosticReport resource as the top level resource to capture a multimedia report. Furthermore, DiagosticReport resource incorporates other resources to form a complete report.
+
+There are three categories of resources:
+
+##### Report
+
+Since a DiagnosticReport resource is the top level resource used to capture a multimedia report, therefore every time a multimedia report is created, a DiagnosticReport resource is created.
+
+##### Imaging Context
+
+A DiagnosticReport resource may reference a ServiceRequest resource to capture the procedure information. A DiagnosticReport resource also references one or more ImagingStudy resources to capture the study that is subject of the report as well as other associated studies.
+
+Although the procedure and imaging study exist in other systems prior to reporting, the corresponding ServiceRequest or ImagingStudy resources may not. Therefore a Report Creator may create these dependent resources along with DiagnosticReport during report creation.
+
+##### Organizational Context
+
+A DiagnosticeReport references organizational level resources such as `Patient`, `Organization`, `Practitioner` and `PractitionerRole` to capture essential contextual information associated with the report. However, a Report Creator is not the owner of these contextual information. Therefore, it is a prerequisite that these organizational resources already exist prior to the creation of DiagnosticReport resource. Then a Report Creator will only reference these organizational resources during report creation.
+
+#### 1:52.4.1.8 Referenced FHIR Resource vs Contained FHIR Resource
 
 A DiagnosticReport resource incorporates other resources. According to FHIR, those other resources can be incorporated as either referenced FHIR resources or contained FHIR resources. In IMR, when storing a DiagnosticReport resource, all incorporated resources are included as referenced. Contained resources are not permitted in IMR because they cannot be retrieved as independent resources. 
 
@@ -422,25 +442,6 @@ Contained resources are not preferred when resources have independent identity f
 A FHIR server that provides the FHIR [Search](http://hl7.org/fhir/search.html) capability returns query responses with references to other resources, such as Patient, IMR Observation, IMR ImagingStudy, etc. To access the content of referenced resources, the requester will have to retrieve them separately.
 
 Optionally, a FHIR server may support the [_include](http://hl7.org/fhir/search.html#include) search result parameter. If the requester specifies this parameter in the search request, then the FHIR Server will include the specified referenced resources in the same response. The advantage is that the requester only needs to issue a single query request and the result will contain all the necessary data. The disadvantages are (1) the payload size may increase significantly, (2) the server will need to perform more work and may return the response slower, (3) it is an optional capability of the server so the requester cannot depend on it being available.
-
-#### 1:52.4.1.8 Deployment Considerations of IMR
-
-Since FHIR is an emerging technology in many existing deployments and IMR is built on FHIR, several considerations should be taken when deploying IMR in an existing environment:
-
-##### Deploying IMR in environment with existing FHIR infrastructure
-
-IMR can be deployed in an existing FHIR infrastructure. The existing FHIR Server can act as the Report Repository with some additional IMR specific support (e.g., handling of the DiagnosticReport.presentedForm). New Report Creator, Report Reader and Rendered Report Reader are introduced and they interact with the Report Repository.
-
-In this case, many of the *organizational* level resources such as `Patient`, `Organization`, `Practitioner` and `PractitionerRole` may already exist in the Report Repository. Therefore the Report Creator may search for these existing resources prior to creating the report. When the Report Creator eventually stores the multimedia report to the Report Repository, the FHIR bundle request would reference these existing organizational resources in the new IMR DiagnosticReport resource.
-
-##### Deploying IMR in environment without existing FHIR infrastructure
-
-IMR can be deployed in an environment without an existing FHIR infrastructure, or in an environment in which the existing FHIR infrastructure cannot be used. In this case, a new FHIR infrastructure is required.
-
-In this situation, although the *organizational* level resources such as `Patient`, `Organization`, `Practitioner` and `PractitionerRole` may already exist somewhere (e.g., in EMR), they may not exist in the new FHIR infrastructure used for IMR. There are two general approaches to address this situation:
-
-- Backfill the new FHIR infrastructure with these existing *organizational* level resources, and introduce a new method for ongoing synchronization. This is out of scope of IMR.
-- When the Report Creator stores the multimedia report to the Report Repository, it would use the `ifNoneExist` attribute in [Bundle.request](https://www.hl7.org/fhir/bundle.html) to specify conditional create. A separate method is still required for ongoing synchronization.
 
 ### 1:52.4.2 Use Cases
 
