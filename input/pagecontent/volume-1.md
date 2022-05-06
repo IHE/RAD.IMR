@@ -295,11 +295,15 @@ In reporting, structure can significantly improve usability, both for machine co
 
 ##### Report Content Organization 
 
+This aspect of structure involves organizing the content of the report into labelled sections.
+
 In a radiology report, although there are many variations of what information a report should contain depending on the procedure and specialty, there are general common sections in a report such as Indication, Methods, Findings, Impressions, etc.
 
-The [Results Distribution](https://www.ihe.net/uploadedFiles/Documents/Radiology/IHE_RAD_Suppl_RD.pdf) Profile specifies using multiple OBX segments for different sections while this Interactive Multimedia Report Profile specifies using multiple FHIR DiagnosticReport.result elements which are references to Observation resources for different sections.
+The [Results Distribution](https://www.ihe.net/uploadedFiles/Documents/Radiology/IHE_RAD_Suppl_RD.pdf) Profile specifies using multiple OBX segments for different sections. This Interactive Multimedia Report Profile does not explicitly define sections. A Report Creator may include sections in FHIR DiagnosticReport.text elements and DiagnosticReport.presentedForm pre-rendered reports.
 
 ##### Report Content Encoding
+
+This aspect of structure involves representing certain content items, such as anatomy or findings, using coded values.
 
 Also known as 'structured reporting' or 'synoptic reporting', encoding structure refers to the use of fully coded values in pre-coordinated form or post-coordinated form, in which the values are drawn from some value sets or standardized nomenclature / coded values such as LOINC or SNOMED-CT, in order to represent the full concept.
 
