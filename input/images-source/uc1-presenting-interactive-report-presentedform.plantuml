@@ -31,9 +31,8 @@ end
 EMR->EMR: Display Multimedia Report [RAD-142]
 Clinician->>EMR: //Click on hyperlinked image reference//
 
-EMR->Archive: Retrieve rendered image
+EMR->Archive: WADO-RS Retrieve [RAD-107]\nRetrieve rendered images
+Archive-->EMR: (Rendered images)
 EMR->EMR: Display Images [RAD-145]
-
-Clinician->>EMR: //Interact with images and/or series//\n//such as scrolling or window levelling//
 
 @enduml

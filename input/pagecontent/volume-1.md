@@ -445,26 +445,26 @@ Optionally, a FHIR server may support the [_include](http://hl7.org/fhir/search.
 
 ### 1:52.4.2 Use Cases
 
-The IMR Profile encodes multimedia content in diagnostic reports such that later the user can interact with the embedded multimedia content in the reports.
+The IMR Profile encodes multimedia content in diagnostic reports such that later the user can interact with the linked multimedia content in the reports.
 
 Note that the IMR Profile is focused on intra-enterprise use cases. Other inter-enterprise use cases may be supported in future updates. The design of the IMR does not prohibit addressing inter-enterprise use cases in the future.
 
-#### 1:XX.4.2.1 Use Case 1: Rendered Report
+#### 1:XX.4.2.1 Use Case 1: Access Pre-Rendered Report
 
-##### 1:XX.4.2.1.1 Rendered Report Use Case Description
+##### 1:XX.4.2.1.1 Access Pre-Rendered Report Use Case Description
 
 The Report Creator encodes the diagnostic report with multimedia content when saving dictated report. This use case shows the multimedia report being stored in the Report Repository. Alternatively, the Report Creator could send the report directly to one or more Report Readers and/or Rendered Report Readers.
 
 A Clinician wants to review studies and associated diagnostic reports for a patient. She searches the EMR for the patient. As a result, the EMR returns a list of studies and associated diagnostic reports for the patient from which she selects the report of interest.
 
-##### 1:XX.4.2.1.2 Rendered Report Process Flow
+##### 1:XX.4.2.1.2 Access Pre-Rendered Report Process Flow
 
 <div>
 {%include uc1-presenting-interactive-report-presentedform.svg%}
 </div>
 <br clear="all">
 
-**Figure 1:XX.4.2.1.2-1: Rendered Report Process Flow in IMR Profile**
+**Figure 1:XX.4.2.1.2-1: Access Pre-Rendered Report Process Flow in IMR Profile**
 
 #### 1:XX.4.2.2 Use Case 2: Locally Processed Report
 
