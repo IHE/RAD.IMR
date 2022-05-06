@@ -22,4 +22,3 @@ Id: imr-study-endpoint-payloadtype-vs
 Title: "IMR Study Endpoint PayloadType Value Set"
 Description: "Codes representing the applicable endpoint payloadType to retrieve a study."
 * DICOM#113014 "Study"
-* DICOM#113015 "Series"
