@@ -10,7 +10,7 @@ participant "Image Manager/\nImage Archive" as Archive
 
 actor Clinician as Clinician
 
-Rad->>RCreator: //Save dictated report//\n//with multimedia references//
+Rad->>RCreator: //Finish report with//\n//multimedia references//
 RCreator->RCreator: //Create multimedia report//\n//including the rendered version//\n//of report//\n//(Report X)//
 RCreator->RCreator: //Embed links to rendered//\n//versions of referenced images//
 
