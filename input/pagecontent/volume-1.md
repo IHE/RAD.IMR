@@ -357,7 +357,7 @@ Prominent or mildly enlarged mediastinal and bilateral hilar lymph nodes measure
 References to measurements and/or images can be added as hyperlinks in context as follow:
 
 ```
-<a data-imr-series="1.2.3" data-imr-object="1.2.3.1">Prominent or mildly enlarged mediastinal and bilateral hilar lymph nodes measure up to 1.2 x 0.8 cm in the right paratracheal station</a>
+<imr-ref type='ImagingSelection' imaging-selection='ImagingSelection/12345'>Prominent or mildly enlarged mediastinal and bilateral hilar lymph nodes measure up to 1.2 x 0.8 cm in the right paratracheal station</imr-ref>
 ```
 
 As a result, a user can access the matching multimedia content in context while reading the report.
@@ -370,24 +370,42 @@ Report Creators in IMR are required to support placing image references in conte
 
 An imaging context in IMR can include image references and non-image references.
 
+> Note: IMR focuses on specifying references to imaging context in a report. Other references to external resources (e.g. Lung-RADS, survey) are out of scope of IMR.
+
 ##### Image References
 
-Each image reference in a report is in the context of a series. Furthermore, each image reference includes one or more context as follow:
-- a single frame object (e.g. Object 10)
-- a single frame in a multi-frame object (e.g. Object 10 Frame 3)
-- a range of single frame objects (e.g. Object 3-5)
-- a range of frames in a multi-frame object (e.g. Object 10 Frame 3-5)
-- a discrete list of single frame object (e.g., Object 10,14,17)
-- a discrete list of frames in a multi-frame object (e.g., Object 10 Frame 10,14,17)
-- a combination of the above (e.g., Object 5,10-12, Object 15 Frame 14,17-20)
+An image reference is a reference to an image to which a finding or observation pertains.
 
-In most cases, the image references refer to the same study context as the study being reported on. Occasionally, the image references may refer to a comparison study that is used during reporting.
+Each image reference in a report is in the context of a series. Furthermore, each image reference includes one or more context as follow:
+
+- a single frame in a single-frame object (e.g. object 10)
+- a single frame in a multi-frame object (e.g. object 10 frame 3)
+- a range of frames in a single frame object (e.g. object 3-5)
+- a range of frames in a multi-frame object (e.g. object 10 frame 3-5)
+- a discrete list of frames in a single frame object (e.g. object 10,14,17)
+- a discrete list of frames in a multi-frame object (e.g. object 10 frame 10,14,17)
+- all frames in a multi-frame object (e.g. object 10 frame all)
+- all objects in a series (e.g. object all)
+- all frames in a dimension in a multi-frame object (... not needed?)
+- TODO: concatenation objects (out of scope)
+- a combination of the above (e.g., object 5,10-12, object 15 frame 14,17-20)
+
+> Note: The attribute `frame` is optional for single-frame object.
+
+In most cases, the image references refer to the same study as the study being reported. The image references may also refer to a comparison study that is used during reporting.
 
 ##### Non-Image References
 
-In addition to image references, an imaging context may also specify non-image references such as regions, annotations, parametric maps, etc. These non-image references can be captured using various DICOM objects such as Structured Report (SR), different types of Presentation States (PR), Segmentation and Parametric Map. These objects provide additional information that can be presented as overlays on top of the image references.
+In addition to image references, an imaging context may also specify non-image references such as locations, regions, annotations, parametric maps, etc. These non-image references refers to data encoded using various DICOM objects such as Structured Report (SR), different types of Presentation States (PR), Segmentation and Parametric Map. These objects provide additional information that can be presented in association with referenced images.
 
-> Note: See [AI Results](https://www.ihe.net/uploadedFiles/Documents/Radiology/IHE_RAD_Suppl_AIR.pdf) Section 6.5.3.5 and 6.5.3.6 for details regarding how regions and parametric maps are captured as DICOM objects.
+- a rough location in an image using an presentation state annotation
+- a specific location in an image using a DICOM SR
+- a specific region using a segmentation
+- a specific region using a DICOM SR contour
+- a bounding region using a DICOM SR
+- one or more frames in a parametric map
+
+> Note: See [AI Results](https://www.ihe.net/uploadedFiles/Documents/Radiology/IHE_RAD_Suppl_AIR.pdf) Section 6.5.3.4, 6.5.3.5 and 6.5.3.6 for details regarding how locations, regions and parametric maps are captured as DICOM objects.
 
 #### 1:52.4.1.6 Level of Interactivity
 
@@ -415,15 +433,19 @@ See [RAD-145](RAD-145.html) for specific image viewing requirements for each lev
 
 #### 1:52.4.1.7 DiagnosticReport Referenced Resources
 
-IMR uses FHIR DiagnosticReport resource as the top level resource to capture a multimedia report. Furthermore, DiagnosticReport resource incorporates other resources to form a complete report.
+Multimedia reports are encoded using a FHIR DiagnosticReport resource as the top level resource. The DiagnosticReport resource references other resources that provide additional report content, imaging procedure context, and organizational context. Some of these referenced resources are created and managed by other enterprise systems (e.g. the patient resource is managed by the EMR). Others are created together with the DiagnosticReport.
 
-There are three categories of resources:
+##### Report Content
 
-##### Report
+TODO: Describe how there narrative text and findings and measurements are referenced. All these are created at reporting time by the Report Creator.
+
+A DiagnosticReport resource captures findings and impressions as narrative text.
 
 Since a DiagnosticReport resource is the top level resource used to capture a multimedia report, therefore every time a multimedia report is created, a DiagnosticReport resource is created.
 
-##### Imaging Context
+##### Imaging Procedure Context
+
+TODO: Describe how there is ServiceRequest and ImagingStudy and the imaging data itself those are created prior / during reporting by the ordering / EMR / VNA (i.e. not Report Creator).
 
 A DiagnosticReport resource may reference a ServiceRequest resource to capture the procedure information. A DiagnosticReport resource also references one or more ImagingStudy resources to capture the study that is subject of the report as well as other associated studies.
 
@@ -431,7 +453,9 @@ Although the procedure and imaging study exist in other systems prior to reporti
 
 ##### Organizational Context
 
-A DiagnosticReport references organizational level resources such as `Patient`, `Organization`, `Practitioner` and `PractitionerRole` to capture essential contextual information associated with the report. However, a Report Creator is not the owner of these contextual information. Therefore, it is a prerequisite that these organizational resources already exist prior to the creation of DiagnosticReport resource. Then a Report Creator will only reference these organizational resources during report creation.
+A DiagnosticReport references organizational level resources such as `Patient`, `Organization`, `Practitioner` and `PractitionerRole`. *TODO: State which system(s) are responsible for these resources*. Therefore, it is a prerequisite that these organizational resources already exist prior to the creation of DiagnosticReport resource. Then a Report Creator will only reference these organizational resources during report creation.
+
+TODO: Deployment prerequisite to have these organizational context
 
 #### 1:52.4.1.8 Referenced FHIR Resource vs Contained FHIR Resource
 
@@ -449,22 +473,22 @@ The IMR Profile encodes multimedia content in diagnostic reports such that later
 
 Note that the IMR Profile is focused on intra-enterprise use cases. Other inter-enterprise use cases may be supported in future updates. The design of the IMR does not prohibit addressing inter-enterprise use cases in the future.
 
-#### 1:XX.4.2.1 Use Case 1: Access Pre-Rendered Report
+#### 1:XX.4.2.1 Use Case 1: Pre-Rendered Report
 
-##### 1:XX.4.2.1.1 Access Pre-Rendered Report Use Case Description
+##### 1:XX.4.2.1.1 Pre-Rendered Report Use Case Description
 
 The Report Creator encodes the diagnostic report with multimedia content when saving dictated report. This use case shows the multimedia report being stored in the Report Repository. Alternatively, the Report Creator could send the report directly to one or more Report Readers and/or Rendered Report Readers.
 
 A Clinician wants to review studies and associated diagnostic reports for a patient. She searches the EMR for the patient. As a result, the EMR returns a list of studies and associated diagnostic reports for the patient from which she selects the report of interest.
 
-##### 1:XX.4.2.1.2 Access Pre-Rendered Report Process Flow
+##### 1:XX.4.2.1.2 Pre-Rendered Report Process Flow
 
 <div>
 {%include uc1-presenting-interactive-report-presentedform.svg%}
 </div>
 <br clear="all">
 
-**Figure 1:XX.4.2.1.2-1: Access Pre-Rendered Report Process Flow in IMR Profile**
+**Figure 1:XX.4.2.1.2-1: Pre-Rendered Report Process Flow in IMR Profile**
 
 #### 1:XX.4.2.2 Use Case 2: Locally Processed Report
 
