@@ -384,8 +384,8 @@ Each image reference in a report is in the context of a series. Furthermore, eac
 - a range of frames in a multi-frame object (e.g. object 10 frame 3-5)
 - a discrete list of frames in a single frame object (e.g. object 10,14,17)
 - a discrete list of frames in a multi-frame object (e.g. object 10 frame 10,14,17)
-- all frames in a multi-frame object (e.g. object 10 frame all)
-- all objects in a series (e.g. object all)
+- all frames in a multi-frame object
+- all objects in a series
 - all frames in a dimension in a multi-frame object (... not needed?)
 - TODO: concatenation objects (out of scope)
 - a combination of the above (e.g., object 5,10-12, object 15 frame 14,17-20)
