@@ -63,7 +63,7 @@ Table 1:52.1-1 lists the transactions for each actor directly involved in the IM
       <td><a href="RAD-144.html">RAD TF-2: 4.144</a></td>
     </tr>
     <tr>
-      <td rowspan="4">Report Reader</td>
+      <td rowspan="5">Report Reader</td>
       <td>Store Multimedia Report [RAD-141]</td>
       <td>Responder</td>
       <td>O (Note 1)</td>
@@ -87,6 +87,12 @@ Table 1:52.1-1 lists the transactions for each actor directly involved in the IM
       <td>O</td>
       <td>RAD TF-2: 4.107</td>
     </tr>
+    <tr>
+      <td>Display Analysis Result [RAD-136]</td>
+      <td>N/A (Note 2)</td>
+      <td>O</td>
+      <td>RAD AIR: 4.136</td>
+    </tr>    
     <tr>
       <td rowspan="3">Rendered Report Reader</td>
       <td>Store Multimedia Report [RAD-141]</td>
@@ -156,6 +162,8 @@ A Report Reader shall use the information in DiagnosticReport.result.derivedFrom
 
 A Report Reader that supports the Advanced Image Viewing Option shall be able to construct WADO-RS URLs that confirm to the RetrieveSeries and RetrieveStudy semantics.
 
+A Report Reader that supports the Advanced Measurement Viewing Option shall be able to display measurement objects that are not presentation states.
+
 #### 1:52.1.1.4 Rendered Report Reader
 
 A Rendered Report Reader presents to the user the rendered report that is included in the DiagnosticReport resource, including the multimedia content includes in the rendered report as well as all hyperlinks. When the user clicks on the hyperlinks, the Rendered Report Reader retrieves the linked contents and display them to the user.
@@ -180,9 +188,9 @@ An Image Manager / Image Archive shall support returning images in the requested
 
 This transaction does not specify particular SOP classes that must be displayed.
 
-The actor shall display all requested DICOM objects for which it claims compliance in any IHE Content or Workflow profile or DICOM Conformance Statement. This includes images (single frame and multi-frame), DICOM SR (including Evidence Documents and Key Image Notes), and Presentation State objects with their referenced images. All supported DICOM information objects included in the selected studies shall be displayable, except images identified as “for processing”, raw data instances, and instances of private SOP Classes. It is permissible to display “for processing”, raw data instances, and instances of private SOP Classes. There are no specific requirements placed on the manner in which non-image objects are displayed.
+##### 1.52.1.1.6.1 Image Objects
 
-> Note: Grouping with other profiles, such as CPI, SINR, and KIN, may require more specific behavior for non-image objects.
+The actor shall display all requested DICOM image objects (single frame or multi-frame) for which it claims compliance in any IHE Content or Workflow profile or DICOM Conformance Statement. All supported DICOM image objects included in the selected studies shall be displayable, except images identified as “for processing”, raw data instances, and instances of private SOP Classes. It is permissible to display “for processing”, raw data instances, and instances of private SOP Classes.
 
 The actor shall support image viewing capabilities as defined in [Basic Image Review (BIR)](https://www.ihe.net/uploadedFiles/Documents/Radiology/IHE_RAD_Suppl_BIR.pdf) Profile, Section 4.16.4.2.2.5 as defined in Table 1.52.1.1.6-1. The actor shall support all required display requirements (labeled “R”) and may support the optional display requirements (labeled “O”).
 
@@ -194,15 +202,11 @@ The actor shall support image viewing capabilities as defined in [Basic Image Re
 | Layout, Tiling, Selection, Rotation and Flipping | R Required only Rotation and Flipping | O | Section 4.16.5.2.2.5.2 |
 | Navigation | O | O | Section 4.16.5.2.2.5.3 |
 | Windowing and Rendering | R | O | Section 4.16.4.2.2.5.4 |
-| Scrolling | R<br><br>Required if IMR Advanced Image Viewing Option is supported | O Section 4.16.4.2.2.5.5 |
+| Scrolling | R<br><br>Required if IMR Advanced Image Viewing Option is supported | O | Section 4.16.4.2.2.5.5 |
 | Zooming and Panning | R | O | Section 4.16.4.2.2.5.6 |
-| Laterality and Spatial Cross-Referencing | R Required only Laterality | R | Section 4.16.4.2.2.5.7 |
+| Laterality and Spatial Cross-Referencing | R<br><br>Required only Laterality | R<br><br>Required only Laterality | Section 4.16.4.2.2.5.7 |
 | Annotation | R | O | Section 4.16.4.2.2.5.8 |
 | Cine | R<br><br>Required if the Display supports sop classes that cine is  applicable | O | Section 4.16.4.2.2.5.9 |
-| Measurements | R<br><br>Required if IMR Advanced Image Viewing Option is supported | O | Section 4.16.4.2.2.5.10 |
-| Viewport and Tool Section | O | O | Section 4.16.4.2.2.5.11 |
-| Report Display | O | O | Section 4.16.4.2.2.5.12 |
-| Tool Icons and Actions | O | O | Section 4.16.4.2.2.5.13 |
 {: .grid}
 
 The actor may provide basic viewing tools for the user to interact with the images.
@@ -214,6 +218,10 @@ The actor may provide basic viewing tools for the user to interact with the imag
 > Although MPR is a feature available in many PACS implementations, it is an advanced operation that is computationally intensive. For the interactive image viewing capability on interactive multimedia report, MPR is not expected to be available. If viewing of the images from different planes is desirable, then the acquired data should be reconstructed to other planes and then be saved as separate set of images. These new set of reconstructed images can then be referenced in the DiagnosticReport resource.
 >
 > The actor is not required to support reconstruction.
+
+##### 1.52.1.1.6.2 Non-Image Objects
+
+The Report Reader shall be capable of display Grayscale Softcopy Presentation State objects with their referenced images.
 
 ## 1:52.2 IMR Actor Options
 
@@ -245,9 +253,13 @@ Options that may be selected for each actor in this implementation guide, are li
       <td>–</td>
     </tr>
     <tr>
-      <td>Report Reader</td>
+      <td rowspan="2">Report Reader</td>
       <td>Advanced Image Viewing</td>
-      <td><a href="#15223-advanced-image-viewing-option">Section 1:52.2.6</a></td>
+      <td><a href="#15223-advanced-image-viewing-option">Section 1:52.2.3</a></td>
+    </tr>
+    <tr>
+      <td>Advanced Measurement Viewing</td>
+      <td><a href="#15224-advanced-measurement-viewing-option">Section 1:52.2.4</a></td>
     </tr>
     <tr>
       <td>Rendered Report Reader</td>
@@ -293,7 +305,15 @@ A Report Creator shall be able to encode the text-only report in an HL7 ORU mess
 
 The Advanced Image Viewing Option involves the user being able to view images with advanced imaging tools.
 
-A Report Reader that supports this option shall provide [Level 3 Interactivity](#152416-level-of-interactivity).
+A Report Reader that supports this option shall provide scrolling display requirements (See [Display Requirements](#152116-display-requirements) for details).
+
+### 1:52.2.4 Advanced Measurement Viewing Option
+
+The Advanced Measurement Viewing Option involves the user being able to view measurements that are not presentation states.
+
+A Report Reader that supports this option shall support the Display Analysis Result [RAD-136] transaction.
+
+> Note: The Display Analysis Result [RAD-136] transaction is defined in the [AI Results](https://www.ihe.net/uploadedFiles/Documents/Radiology/IHE_RAD_Suppl_AIR.pdf) Supplement.
 
 ## 1:52.3 IMR Required Actor Groupings
 
@@ -494,7 +514,7 @@ Note that the IMR Profile is focused on intra-enterprise use cases. Other inter-
 
 The Report Creator encodes the diagnostic report with multimedia content when saving dictated report. This use case shows the multimedia report being stored in the Report Repository. Alternatively, the Report Creator could send the report directly to one or more Report Readers and/or Rendered Report Readers.
 
-A Clinician wants to review studies and associated diagnostic reports for a patient. She searches the EMR for the patient. As a result, the EMR returns a list of studies and associated diagnostic reports for the patient from which she selects the report of interest.
+A Clinician wants to review studies and associated diagnostic reports for a patient. She searches the EMR for the patient. As a result, the EMR returns a list of studies and associated diagnostic reports for the patient, from which she selects the report of interest.
 
 ##### 1:XX.4.2.1.2 Pre-Rendered Report Process Flow
 
@@ -613,7 +633,7 @@ The Rendered Report Readers should verify if these URLs are legitimate and from 
 
 **Management of Radiology Report Templates (MRRT)**: A Report Creator in MRRT may be grouped with a Report Creator in IMR. As a result, the grouped Report Creator can use the report templates to assist the radiologist in creating the diagnostic report, and capture the final report in the IMR DiagnosticReport format.
 
-**AI Result (AIR)**: An Evidence Creator may be grouped with an IMR Report Creator to include AI results in the diagnostic report. An Image Display in AIR may be grouped with an IMR Image Display or Report Reader to show the interactive AI results.
+**AI Result (AIR)**: An Evidence Creator may be grouped with an IMR Report Creator to include AI results in the diagnostic report. An Image Display in AIR may be grouped with an IMR Report Reader to show analysis results captured in DICOM Structured Report, Segmentation or Parametric Map objects.
 
 **Internet User Authorization (IUA)**: TODO
 
