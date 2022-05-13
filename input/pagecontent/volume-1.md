@@ -63,7 +63,7 @@ Table 1:52.1-1 lists the transactions for each actor directly involved in the IM
       <td><a href="RAD-144.html">RAD TF-2: 4.144</a></td>
     </tr>
     <tr>
-      <td rowspan="5">Report Reader</td>
+      <td rowspan="4">Report Reader</td>
       <td>Store Multimedia Report [RAD-141]</td>
       <td>Responder</td>
       <td>O (Note 1)</td>
@@ -80,12 +80,6 @@ Table 1:52.1-1 lists the transactions for each actor directly involved in the IM
       <td>Initiator</td>
       <td>O (Note 1)</td>
       <td><a href="RAD-143.html">RAD TF-2: 4.143</a></td>
-    </tr>
-    <tr>
-      <td>Display Images [RAD-145]</td>
-      <td>N/A (Note 2)</td>
-      <td>R (Note 3)</td>
-      <td><a href="RAD-145.html">RAD TF-2: 4.145</a></td>
     </tr>
     <tr>
       <td>WADO-RS Retrieve [RAD-107]</td>
@@ -127,8 +121,6 @@ Table 1:52.1-1 lists the transactions for each actor directly involved in the IM
 
 > Note 2: These transactions are not typical IHE transactions between two devices; the primary focus is on the required behavior of the display rather than messaging between two actors. Therefore the notion of Initiator or Responder is not applicable (N/A) for the actor on the transaction.
 
-> Note 3: A Report Reader is required to support the Display Images [RAD-145] transaction which defines the display behavior of images. This requirement can be satisfied by either implementing the required behaviors, or grouping with another actor (e.g. Image Display Invoker in IID) that provides the required behaviors.
-
 ### 1:52.1.1 Actors Description and Actor Profile Requirements
 Most requirements are documented in RAD TF-2 Transactions. This section documents any additional requirements on this profile's actors.
 
@@ -153,6 +145,8 @@ A Report Repository may modify how the embedded rendered report can be accessed,
 A Report Reader presents to the user the report, including the multimedia content included in the report as well as all hyperlinks. When users click on the hyperlinks, the Report Reader presents the referenced images to the user in a way that the user can interact with the images (e.g., windowing, zooming, panning, toggle annotations, etc.).
 
 A Report Reader shall support the display requirements as defined in [Display Requirements](#152116-display-requirements) A Report Reader may support additional advanced behavior.
+
+> Note: This requirement can be satisfied by either implementing the required behaviors, or grouping with another actor (e.g. Image Display Invoker in IID) that provides the required behaviors.
 
 > Note: The Report Reader may satisfy the baseline image viewing capabilities by retrieving DICOM objects and rendered by itself, or retrieve rendering of DICOM objects using WADO-RS Retrieve [RAD-107], or a combination of both.
 
