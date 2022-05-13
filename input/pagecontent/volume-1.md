@@ -150,9 +150,9 @@ A Report Repository may modify how the embedded rendered report can be accessed,
 
 #### 1:52.1.1.3 Report Reader
 
-When users click on the hyperlinks, the Report Reader presents the referenced images to the user in a way that the user can interact with the images (e.g., windowing, zooming, panning, toggle annotations, etc.).
+A Report Reader presents to the user the report, including the multimedia content included in the report as well as all hyperlinks. When users click on the hyperlinks, the Report Reader presents the referenced images to the user in a way that the user can interact with the images (e.g., windowing, zooming, panning, toggle annotations, etc.).
 
-A Report Reader shall provide [Level 2 Interactivity](#152416-level-of-interactivity), i.e., intermediate image viewing capabilities, as discussed in Section 1:52.4.1.6. A Report Reader may support additional advanced behavior. 
+A Report Reader shall support the display requirements as defined in [Display Requirements](#152116-display-requirements) A Report Reader may support additional advanced behavior.
 
 > Note: The Report Reader may satisfy the baseline image viewing capabilities by retrieving DICOM objects and rendered by itself, or retrieve rendering of DICOM objects using WADO-RS Retrieve [RAD-107], or a combination of both.
 
@@ -164,13 +164,13 @@ A Report Reader that supports the Advanced Image Viewing Option shall be able to
 
 #### 1:52.1.1.4 Rendered Report Reader
 
-A Rendered Report Reader presents to the user the rendered report that is embedded in the DiagnosticReport resource, including the multimedia content embedded in the report as well as all hyperlinks. When the user clicks on the hyperlinks, the Rendered Report Reader retrieves the referenced images and display them to the user.
-
-A Rendered Report Reader shall provide [Level 1 Interactivity](#152416-level-of-interactivity) as discussed in Section 1:52.4.1.6. A Rendered Report Reader may support additional advanced behavior.
+A Rendered Report Reader presents to the user the rendered report that is included in the DiagnosticReport resource, including the multimedia content includes in the rendered report as well as all hyperlinks. When the user clicks on the hyperlinks, the Rendered Report Reader retrieves the linked contents and display them to the user.
 
 A Rendered Report Reader shall retrieve and display the HTML report specified in DiagnosticReport.presentedForm.
 
 A Rendered Report Reader that supports the PDF Report Option shall also be able to retrieve and display the PDF report specified in DiagnosticReport.presentedForm. See [PDF Report Option](#15221-pdf-report-option) for details.
+
+A Rendered Report Reader shall support the display requirements as defined in [Display Requirements](#152116-display-requirements) A Rendered Report Reader may support additional advanced behavior.
 
 > Note: There are no additional image viewing capabilities required for Rendered Report Readers. In other words, the image viewing capabilities presented by the Rendered Report Readers is limited by how the Report Creator created the rendered report. For example, for image references, one Report Creator may render them using WADO-RS links which will show a static rendered image, while another Report Creator may render them using IID Invoke Image Display links which will launch a viewer to show the referenced image with additional interactivity such as scrolling, zooming, etc.
 
@@ -181,6 +181,45 @@ An Image Manager / Image Archive provides the images and related objects to the 
 An Image Manager / Image Archive is able to support both DICOMweb and DIMSE clients.
 
 An Image Manager / Image Archive shall support returning images in the requested rendered media type as defined in DICOM [PS3.18 Section 9.5](https://dicom.nema.org/medical/dicom/current/output/html/part18.html#sect_9.5) "Retrieve Rendered Instance Transaction".
+
+#### 1.52.1.1.6 Display Requirements
+
+This transaction does not specify particular SOP classes that must be displayed.
+
+The actor shall display all requested DICOM objects for which it claims compliance in any IHE Content or Workflow profile or DICOM Conformance Statement. This includes images (single frame and multi-frame), DICOM SR (including Evidence Documents and Key Image Notes), and Presentation State objects with their referenced images. All supported DICOM information objects included in the selected studies shall be displayable, except images identified as “for processing”, raw data instances, and instances of private SOP Classes. It is permissible to display “for processing”, raw data instances, and instances of private SOP Classes. There are no specific requirements placed on the manner in which non-image objects are displayed.
+
+> Note: Grouping with other profiles, such as CPI, SINR, and KIN, may require more specific behavior for non-image objects.
+
+The actor shall support image viewing capabilities as defined in [Basic Image Review (BIR)](https://www.ihe.net/uploadedFiles/Documents/Radiology/IHE_RAD_Suppl_BIR.pdf) Profile, Section 4.16.4.2.2.5 as defined in Table 1.52.1.1.6-1. The actor shall support all required display requirements (labeled “R”) and may support the optional display requirements (labeled “O”).
+
+**Table 1.52.1.1.6-1: Image Viewing Capability Required in IMR**
+
+| Capability | Report Reader | Rendered Report Reader | BIR Reference 
+|------------|----------------|-------------------------|-------------|
+| Simple Restricted Feature Set | O | O | Section 4.16.5.2.2.5.1 |
+| Layout, Tiling, Selection, Rotation and Flipping | R Required only Rotation and Flipping | O | Section 4.16.5.2.2.5.2 |
+| Navigation | O | O | Section 4.16.5.2.2.5.3 |
+| Windowing and Rendering | R | O | Section 4.16.4.2.2.5.4 |
+| Scrolling | R<br><br>Required if IMR Advanced Image Viewing Option is supported | O Section 4.16.4.2.2.5.5 |
+| Zooming and Panning | R | O | Section 4.16.4.2.2.5.6 |
+| Laterality and Spatial Cross-Referencing | R Required only Laterality | R | Section 4.16.4.2.2.5.7 |
+| Annotation | R | O | Section 4.16.4.2.2.5.8 |
+| Cine | R<br><br>Required if the Display supports sop classes that cine is  applicable | O | Section 4.16.4.2.2.5.9 |
+| Measurements | R<br><br>Required if IMR Advanced Image Viewing Option is supported | O | Section 4.16.4.2.2.5.10 |
+| Viewport and Tool Section | O | O | Section 4.16.4.2.2.5.11 |
+| Report Display | O | O | Section 4.16.4.2.2.5.12 |
+| Tool Icons and Actions | O | O | Section 4.16.4.2.2.5.13 |
+{: .grid}
+
+The actor may provide basic viewing tools for the user to interact with the images.
+
+> Note: The actor is only required to display objects specifically referenced in the DiagnosticReport resource.
+>
+> Multiplanar reconstruction, or MPR, involves the process of converting data from an imaging modality acquired in a certain plane, usually axial, into another plane such as coronal or sagittal or oblique. It is most commonly performed with thin-slice data from volumetric CT in the axial plane, but it may be accomplished with scanning in any plane and whichever modality capable of cross-sectional imaging, including magnetic resonance imaging (MRI).
+>
+> Although MPR is a feature available in many PACS implementations, it is an advanced operation that is computationally intensive. For the interactive image viewing capability on interactive multimedia report, MPR is not expected to be available. If viewing of the images from different planes is desirable, then the acquired data should be reconstructed to other planes and then be saved as separate set of images. These new set of reconstructed images can then be referenced in the DiagnosticReport resource.
+>
+> The actor is not required to support reconstruction.
 
 ## 1:52.2 IMR Actor Options
 
@@ -413,31 +452,7 @@ Each non-image reference in a report is in the context of an image reference. Fu
 
 > Note: See [AI Results](https://www.ihe.net/uploadedFiles/Documents/Radiology/IHE_RAD_Suppl_AIR.pdf) Section 6.5.3.4, 6.5.3.5 and 6.5.3.6 for details regarding how locations, regions and parametric maps are captured as DICOM objects.
 
-#### 1:52.4.1.6 Level of Interactivity
-
-When interacting with multimedia reports, there are different levels of sophistication. This profile introduces the following levels of interactivity:
-
-##### Level 0: No interactivity
-
-The Report Reader can display the static content (text and may include static images) in the report, but provides no interactivity with the content for the user.
-
-##### Level 1: Basic interactivity
-
-The Report Reader can display that static content (text and may include static images) in the report, including hyperlinks to different multimedia contents in the report (e.g., measurements). The user can click on these links to access a basic view of the source image(s) from which the findings are derived.
-
-##### Level 2: Intermediate interactivity
-
-The Report Reader can provide not only a basic view of the source image(s), but also provide other essential features such as zoom, pan, window levelling, etc. If annotations (markup, ROI, etc.) are available, the Report Reader displays them as well and can be toggled.
-
-##### Level 3: Advanced interactivity
-
-In addition to the intermediate interactivity, the Report Reader can also display the full series in which the image belongs.
-
-The Report Reader may provide other tools (e.g., measurements, more advanced image visualization, etc.) as well as support other advanced DICOM objects such as segmentation objects or parametric map objects.
-
-See [RAD-145](RAD-145.html) for specific image viewing requirements for each level of interactivity.
-
-#### 1:52.4.1.7 DiagnosticReport Referenced Resources
+#### 1:52.4.1.6 DiagnosticReport Referenced Resources
 
 Multimedia reports are encoded using a FHIR DiagnosticReport resource as the top level resource. The DiagnosticReport resource references other resources that provide additional report content, imaging procedure context, and organizational context. Some of these referenced resources are created and managed by other enterprise systems (e.g. the patient resource is managed by the EMR). Others are created together with the DiagnosticReport.
 
@@ -463,7 +478,7 @@ A DiagnosticReport references organizational level resources such as `Patient`, 
 
 TODO: Deployment prerequisite to have these organizational context
 
-#### 1:52.4.1.8 Referenced FHIR Resource vs Contained FHIR Resource
+#### 1:52.4.1.7 Referenced FHIR Resource vs Contained FHIR Resource
 
 A DiagnosticReport resource incorporates other resources. According to FHIR, those other resources can be incorporated as either referenced FHIR resources or contained FHIR resources. In IMR, when storing a DiagnosticReport resource, all incorporated resources are included as referenced. Contained resources are not permitted in IMR because they cannot be retrieved as independent resources. 
 
