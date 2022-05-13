@@ -374,9 +374,9 @@ An imaging context in IMR can include image references and non-image references.
 
 ##### Image References
 
-An image reference is a reference to an image to which a finding or observation pertains.
+An image reference is a reference to an image to which a finding or observation pertains, or which best presents the finding.
 
-Each image reference in a report is in the context of a series. Furthermore, each image reference includes one or more context as follow:
+Each image reference in a report is in the context of a series. Furthermore, each image reference includes one of the following context detail patterns:
 
 - a single frame in a single-frame object (e.g. object 10)
 - a single frame in a multi-frame object (e.g. object 10 frame 3)
@@ -386,24 +386,30 @@ Each image reference in a report is in the context of a series. Furthermore, eac
 - a discrete list of frames in a multi-frame object (e.g. object 10 frame 10,14,17)
 - all frames in a multi-frame object
 - all objects in a series
-- all frames in a dimension in a multi-frame object (... not needed?)
-- TODO: concatenation objects (out of scope)
-- a combination of the above (e.g., object 5,10-12, object 15 frame 14,17-20)
+- all frames in a dimension in a multi-frame object (as a discrete list of frames)
+- one or more frames in a parametric map
 
 > Note: The attribute `frame` is optional for single-frame object.
+
+> Note: Different references in the same report are permitted to use different context detail patterns.
+
+> Note: DICOM Concatenation is not addressed here since it only appears during transmission, not as a persistently stored object reviewed during reporting.
 
 In most cases, the image references refer to the same study as the study being reported. The image references may also refer to a comparison study that is used during reporting.
 
 ##### Non-Image References
 
-In addition to image references, an imaging context may also specify non-image references such as locations, regions, annotations, parametric maps, etc. These non-image references refers to data encoded using various DICOM objects such as Structured Report (SR), different types of Presentation States (PR), Segmentation and Parametric Map. These objects provide additional information that can be presented in association with referenced images.
+A non-image reference is a reference to an object that references other images and provides additional information that can be presented in association with referenced images. 
 
-- a rough location in an image using an presentation state annotation
-- a specific location in an image using a DICOM SR
-- a specific region using a segmentation
-- a specific region using a DICOM SR contour
-- a bounding region using a DICOM SR
-- one or more frames in a parametric map
+In addition to image references, an imaging context may also specify non-image references such as locations, regions, annotations, etc. These non-image references refers to data encoded using various DICOM objects such as Structured Report (SR), different types of Presentation States (PR) and Segmentation.
+
+Each non-image reference in a report is in the context of an image reference. Furthermore, each non-image reference includes one of the following context detail patterns:
+
+- a rough location (e.g. an arrow pointing to a point of interest)
+- a specific location (e.g. a specific coordinates in an image))
+- a specific region (e.g. a contour of lesion boundary)
+- a bounding region (e.g. a box or circle around a feature of interest)
+- a measurement (e.g. a line segment in an image and the length of the line)
 
 > Note: See [AI Results](https://www.ihe.net/uploadedFiles/Documents/Radiology/IHE_RAD_Suppl_AIR.pdf) Section 6.5.3.4, 6.5.3.5 and 6.5.3.6 for details regarding how locations, regions and parametric maps are captured as DICOM objects.
 
