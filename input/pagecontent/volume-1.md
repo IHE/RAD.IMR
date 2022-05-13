@@ -198,9 +198,7 @@ The actor shall support image viewing capabilities as defined in [Basic Image Re
 
 | Capability | Report Reader | Rendered Report Reader | BIR Reference 
 |------------|----------------|-------------------------|-------------|
-| Simple Restricted Feature Set | O | O | Section 4.16.5.2.2.5.1 |
-| Layout, Tiling, Selection, Rotation and Flipping | R Required only Rotation and Flipping | O | Section 4.16.5.2.2.5.2 |
-| Navigation | O | O | Section 4.16.5.2.2.5.3 |
+| Layout, Tiling, Selection, Rotation and Flipping | R (Note 1) | O | Section 4.16.5.2.2.5.2 |
 | Windowing and Rendering | R | O | Section 4.16.4.2.2.5.4 |
 | Scrolling | R<br><br>Required if IMR Advanced Image Viewing Option is supported | O | Section 4.16.4.2.2.5.5 |
 | Zooming and Panning | R | O | Section 4.16.4.2.2.5.6 |
@@ -208,6 +206,8 @@ The actor shall support image viewing capabilities as defined in [Basic Image Re
 | Annotation | R | O | Section 4.16.4.2.2.5.8 |
 | Cine | R<br><br>Required if the Display supports sop classes that cine is  applicable | O | Section 4.16.4.2.2.5.9 |
 {: .grid}
+
+> Note 1: A Report Reader is permissible to only support a single viewport.
 
 The actor may provide basic viewing tools for the user to interact with the images.
 
