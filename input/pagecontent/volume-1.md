@@ -195,9 +195,7 @@ pre-rendered report includes multimedia content and hyperlinks. When the user cl
 
 A Rendered Report Reader shall retrieve and display the HTML report specified in DiagnosticReport.presentedForm.
 
-A Rendered Report Reader shall support the display requirements as defined in [Display Requirements](#152116-display-requirements) A Rendered Report Reader may support additional advanced behavior.
-
-> Note: There are no additional image viewing capabilities required for Rendered Report Readers. In other words, the image viewing capabilities presented by the Rendered Report Readers is limited by how the Report Creator created the rendered report. For example, for image references, one Report Creator may render them using WADO-RS links which will show a static rendered image, while another Report Creator may render them using IID Invoke Image Display links which will launch a viewer to show the referenced image with additional interactivity such as scrolling, zooming, etc.
+> Note: There are no additional image viewing capabilities required for Rendered Report Readers. In other words, the image viewing capabilities presented by the Rendered Report Readers is defined by how the Report Creator created the rendered report. For example, for image references, one Report Creator may render them using WADO-RS links which will show a static rendered image, while another Report Creator may render them using IID Invoke Image Display links which will launch a viewer to show the referenced image with additional interactivity such as scrolling, zooming, etc. The Rendered Report Reader may provide additional image viewing capabilities.
 
 #### 1.52.1.1.5 Image Manager / Image Archive
 
