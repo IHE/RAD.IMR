@@ -91,7 +91,7 @@ Table 1:52.1-1 lists the transactions for each actor directly involved in the IM
       <td>Display Analysis Result [RAD-136]</td>
       <td>N/A (Note 2)</td>
       <td>O</td>
-      <td>RAD AIR: 4.136</td>
+      <td>RAD TF-2: 4.136 (Note 3)</td>
     </tr>    
     <tr>
       <td rowspan="3">Rendered Report Reader</td>
@@ -127,6 +127,8 @@ Table 1:52.1-1 lists the transactions for each actor directly involved in the IM
 
 > Note 2: These transactions are not typical IHE transactions between two devices; the primary focus is on the required behavior of the display rather than messaging between two actors. Therefore the notion of Initiator or Responder is not applicable (N/A) for the actor on the transaction.
 
+> Note 3: Display Analysis Results [RAD-136] is defined in Supplement [AI Results](https://www.ihe.net/uploadedFiles/Documents/Radiology/IHE_RAD_Suppl_AIR.pdf).
+
 ### 1:52.1.1 Actors Description and Actor Profile Requirements
 Most requirements are documented in RAD TF-2 Transactions. This section documents any additional requirements on this profile's actors.
 
@@ -150,27 +152,48 @@ A Report Repository may modify how the embedded rendered report can be accessed,
 
 A Report Reader presents to the user the report, including the multimedia content included in the report as well as all hyperlinks. When users click on the hyperlinks, the Report Reader presents the referenced images to the user in a way that the user can interact with the images (e.g., windowing, zooming, panning, toggle annotations, etc.).
 
-A Report Reader shall support the display requirements as defined in [Display Requirements](#152116-display-requirements) A Report Reader may support additional advanced behavior.
+A Report Reader shall support the display requirements as defined in [Display Requirements](#1521131-display-requirements) A Report Reader may support additional advanced behavior. This requirement may be satisfied by either implementing the required behaviors, or by grouping with another actor (e.g. Image Display Invoker in IID) that provides the required behaviors. The Report Reader may satisfy the baseline image viewing capabilities either by retrieving DICOM objects and rendering them, or by retrieving rendered DICOM objects using WADO-RS Retrieve [RAD-107], or a combination of both.
 
-> Note: This requirement can be satisfied by either implementing the required behaviors, or grouping with another actor (e.g. Image Display Invoker in IID) that provides the required behaviors.
+> Note: The retrieve rendered images functionality of WADO-RS Retrieve [RAD-107] is defined in CP-RAD-475.
 
-> Note: The Report Reader may satisfy the baseline image viewing capabilities by retrieving DICOM objects and rendered by itself, or retrieve rendering of DICOM objects using WADO-RS Retrieve [RAD-107], or a combination of both.
+##### 1.52.1.1.3.1 Display Requirements
 
-> Note: The retrieve rendered images functionality of WADO-RS Retrieve [RAD-107] is available in CP-RAD-475.
+A Report Reader shall support the display requirements for different object types as defined in the following sections.
 
-A Report Reader shall use the information in DiagnosticReport.result.derivedFrom.endpoint.address and DiagnosticReport.result.component.valueString to construct valid WADO-RS URLs that conform to the semantics as RetrieveInstance or RetrieveFrames as defined in WADO-RS Retrieve [RAD-107] to retrieve the corresponding original DICOM objects or rendered images.
+###### 1.52.1.1.3.1.1 Image Objects
 
-A Report Reader that supports the Advanced Image Viewing Option shall be able to construct WADO-RS URLs that confirm to the RetrieveSeries and RetrieveStudy semantics.
+The actor shall be able to display any referenced DICOM image objects (single frame or multi-frame) for which it claims support in any IHE Content or Workflow profile or DICOM Conformance Statement.
 
-A Report Reader that supports the Advanced Measurement Viewing Option shall be able to display measurement objects that are not presentation states.
+The actor shall support [Basic Image Review (BIR)](https://www.ihe.net/uploadedFiles/Documents/Radiology/IHE_RAD_Suppl_BIR.pdf) capabilities as defined in Table 1.52.1.1.3.1.1-1.
+
+**Table 1.52.1.1.3.1.1-1: Image Viewing Capability Required in IMR**
+
+| Capability | BIR Reference |
+|------------|-------------|
+| Layout, Tiling, Selection, Rotation and Flipping (Note 1) | Section 4.16.5.2.2.5.2 |
+| Windowing and Rendering | Section 4.16.4.2.2.5.4 |
+| Zooming and Panning | Section 4.16.4.2.2.5.6 |
+| Laterality | Section 4.16.4.2.2.5.7 |
+| Annotation | Section 4.16.4.2.2.5.8 |
+| Cine | Section 4.16.4.2.2.5.9 |
+{: .grid}
+
+> Note 1: A Report Reader is permitted to only support a single viewport.
+
+The actor may provide additional tools for the user to interact with the images.
+
+> Note: The actor is only required to display objects referenced in the DiagnosticReport resource.
+
+###### 1.52.1.1.3.1.2 Non-Image Objects
+
+The Report Reader shall be capable of display Grayscale Softcopy Presentation State objects with their referenced images.
 
 #### 1:52.1.1.4 Rendered Report Reader
 
-A Rendered Report Reader presents to the user the rendered report that is included in the DiagnosticReport resource, including the multimedia content includes in the rendered report as well as all hyperlinks. When the user clicks on the hyperlinks, the Rendered Report Reader retrieves the linked contents and display them to the user.
+Rather than render the report content, as the Report Reader does, a Rendered Report Reader presents to the user the pre-rendered version of the report that is included in the DiagnosticReport resource. The 
+pre-rendered report includes multimedia content and hyperlinks. When the user clicks on the hyperlinks, the Rendered Report Reader retrieves the linked contents and display them to the user.
 
 A Rendered Report Reader shall retrieve and display the HTML report specified in DiagnosticReport.presentedForm.
-
-A Rendered Report Reader that supports the PDF Report Option shall also be able to retrieve and display the PDF report specified in DiagnosticReport.presentedForm. See [PDF Report Option](#15221-pdf-report-option) for details.
 
 A Rendered Report Reader shall support the display requirements as defined in [Display Requirements](#152116-display-requirements) A Rendered Report Reader may support additional advanced behavior.
 
@@ -178,50 +201,11 @@ A Rendered Report Reader shall support the display requirements as defined in [D
 
 #### 1.52.1.1.5 Image Manager / Image Archive
 
-An Image Manager / Image Archive provides the images and related objects to the Report Readers or Image Displays.
+An Image Manager / Image Archive provides the images and related objects to the Report Readers.
 
-An Image Manager / Image Archive is able to support both DICOMweb and DIMSE clients.
+An Image Manager / Image Archive is able to support DICOMweb WADO-RS Retrieve.
 
-An Image Manager / Image Archive shall support returning images in the requested rendered media type as defined in DICOM [PS3.18 Section 9.5](https://dicom.nema.org/medical/dicom/current/output/html/part18.html#sect_9.5) "Retrieve Rendered Instance Transaction".
-
-#### 1.52.1.1.6 Display Requirements
-
-This transaction does not specify particular SOP classes that must be displayed.
-
-##### 1.52.1.1.6.1 Image Objects
-
-The actor shall display all requested DICOM image objects (single frame or multi-frame) for which it claims compliance in any IHE Content or Workflow profile or DICOM Conformance Statement. All supported DICOM image objects included in the selected studies shall be displayable, except images identified as “for processing”, raw data instances, and instances of private SOP Classes. It is permissible to display “for processing”, raw data instances, and instances of private SOP Classes.
-
-The actor shall support image viewing capabilities as defined in [Basic Image Review (BIR)](https://www.ihe.net/uploadedFiles/Documents/Radiology/IHE_RAD_Suppl_BIR.pdf) Profile, Section 4.16.4.2.2.5 as defined in Table 1.52.1.1.6-1. The actor shall support all required display requirements (labeled “R”) and may support the optional display requirements (labeled “O”).
-
-**Table 1.52.1.1.6-1: Image Viewing Capability Required in IMR**
-
-| Capability | Report Reader | Rendered Report Reader | BIR Reference 
-|------------|----------------|-------------------------|-------------|
-| Layout, Tiling, Selection, Rotation and Flipping | R (Note 1) | O | Section 4.16.5.2.2.5.2 |
-| Windowing and Rendering | R | O | Section 4.16.4.2.2.5.4 |
-| Scrolling | R<br><br>Required if IMR Advanced Image Viewing Option is supported | O | Section 4.16.4.2.2.5.5 |
-| Zooming and Panning | R | O | Section 4.16.4.2.2.5.6 |
-| Laterality and Spatial Cross-Referencing | R<br><br>Required only Laterality | R<br><br>Required only Laterality | Section 4.16.4.2.2.5.7 |
-| Annotation | R | O | Section 4.16.4.2.2.5.8 |
-| Cine | R<br><br>Required if the Display supports sop classes that cine is  applicable | O | Section 4.16.4.2.2.5.9 |
-{: .grid}
-
-> Note 1: A Report Reader is permissible to only support a single viewport.
-
-The actor may provide basic viewing tools for the user to interact with the images.
-
-> Note: The actor is only required to display objects specifically referenced in the DiagnosticReport resource.
->
-> Multiplanar reconstruction, or MPR, involves the process of converting data from an imaging modality acquired in a certain plane, usually axial, into another plane such as coronal or sagittal or oblique. It is most commonly performed with thin-slice data from volumetric CT in the axial plane, but it may be accomplished with scanning in any plane and whichever modality capable of cross-sectional imaging, including magnetic resonance imaging (MRI).
->
-> Although MPR is a feature available in many PACS implementations, it is an advanced operation that is computationally intensive. For the interactive image viewing capability on interactive multimedia report, MPR is not expected to be available. If viewing of the images from different planes is desirable, then the acquired data should be reconstructed to other planes and then be saved as separate set of images. These new set of reconstructed images can then be referenced in the DiagnosticReport resource.
->
-> The actor is not required to support reconstruction.
-
-##### 1.52.1.1.6.2 Non-Image Objects
-
-The Report Reader shall be capable of display Grayscale Softcopy Presentation State objects with their referenced images.
+An Image Manager / Image Archive returns images in the requested rendered media type as defined in DICOM [PS3.18 Section 9.5](https://dicom.nema.org/medical/dicom/current/output/html/part18.html#sect_9.5) "Retrieve Rendered Instance Transaction".
 
 ## 1:52.2 IMR Actor Options
 
@@ -300,16 +284,21 @@ A Report Creator that supports this option shall be able to create a text-only r
 
 A Report Creator shall be able to encode the text-only report in an HL7 ORU message and transmit the report to non-IMR Report Readers using MLLP. A Report Creator may use Send Imaging Result [RAD-128] in the IHE [Results Distribution](https://www.ihe.net/uploadedFiles/Documents/Radiology/IHE_RAD_Suppl_RD.pdf) Profile.
 
-
 ### 1:52.2.3 Advanced Image Viewing Option
 
 The Advanced Image Viewing Option involves the user being able to view images with advanced imaging tools.
 
-A Report Reader that supports this option shall provide scrolling display requirements (See [Display Requirements](#152116-display-requirements) for details).
+A Report Reader that supports the Advanced Image Viewing option:
+- shall support scrolling display requirements as defined in [Basic Image Review (BIR)](https://www.ihe.net/uploadedFiles/Documents/Radiology/IHE_RAD_Suppl_BIR.pdf) Section 4.16.4.2.2.5.5.
+- shall be able to construct WADO-RS URLs that confirm to the RetrieveSeries and RetrieveStudy semantics.
+
+> Note: Multiplanar Reconstruction (MPR) is available in many PACS implementations, it is an advanced operation that is computationally intensive. For the interactive image viewing capability on interactive multimedia report, MPR is not expected to be available. If viewing of the images from different planes is desirable, then the acquired data should be reconstructed to other planes and then be saved as separate set of images. These new set of reconstructed images can then be referenced in the DiagnosticReport resource.
 
 ### 1:52.2.4 Advanced Measurement Viewing Option
 
 The Advanced Measurement Viewing Option involves the user being able to view measurements that are not presentation states.
+
+A Report Reader that supports the Advanced Measurement Viewing Option shall be able to display measurement objects that are not presentation states.
 
 A Report Reader that supports this option shall support the Display Analysis Result [RAD-136] transaction.
 
