@@ -397,7 +397,7 @@ Prominent or mildly enlarged mediastinal and bilateral hilar lymph nodes measure
 References to measurements and/or images can be added as hyperlinks in context as follow:
 
 ```
-<imr-ref type='ImagingSelection' imaging-selection='ImagingSelection/12345'>Prominent or mildly enlarged mediastinal and bilateral hilar lymph nodes measure up to 1.2 x 0.8 cm in the right paratracheal station</imr-ref>
+<imr-ref data-type='ImagingSelection' data-imaging-selection='ImagingSelection/12345'>Prominent or mildly enlarged mediastinal and bilateral hilar lymph nodes measure up to 1.2 x 0.8 cm in the right paratracheal station</imr-ref>
 ```
 
 As a result, a user can access the matching multimedia content in context while reading the report.
