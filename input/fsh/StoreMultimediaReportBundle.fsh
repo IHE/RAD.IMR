@@ -13,7 +13,7 @@ Description:    "IHE Interactive Multimedia Report (IMR) profile on Bundle"
 * entry contains 
     DiagnosticReport 1..1 and
     ServiceRequest 0..* and
-    Observation 0..* and
+    // ImagingSelection 0..* and
     ImagingStudy 0..*
 * entry[DiagnosticReport].resource only IMRDiagnosticReport 
 * entry[DiagnosticReport] ^short = "the DiagnosticReport"
@@ -29,11 +29,13 @@ Description:    "IHE Interactive Multimedia Report (IMR) profile on Bundle"
 * entry[ServiceRequest].request 1..1
 * entry[ServiceRequest].request.method = #POST
 
-* entry[Observation].resource only IMRObservation
-* entry[Observation] ^short = "the Observation"
-* entry[Observation] ^definition = "the observation (or finding) that is captured in this DiagnosticReport."
-* entry[Observation].resource 1..1
-* entry[Observation].request.method = #POST
+/*
+* entry[ImagingSelection].resource only ImagingSelection
+* entry[ImagingSelection] ^short = "the ImagingSelection"
+* entry[ImagingSelection] ^definition = "the ImagingSelection (or observation imaging context) that is captured in this DiagnosticReport."
+* entry[ImagingSelection].resource 1..1
+* entry[ImagingSelection].request.method = #POST
+*/
 
 * entry[ImagingStudy].resource only IMRImagingStudy
 * entry[ImagingStudy] ^short = "the ImagingStudy"
