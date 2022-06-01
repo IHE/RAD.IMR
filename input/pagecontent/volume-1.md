@@ -85,13 +85,13 @@ Table 1:52.1-1 lists the transactions for each actor directly involved in the IM
       <td>WADO-RS Retrieve [RAD-107]</td>
       <td>Initiator</td>
       <td>O</td>
-      <td>RAD TF-2: 4.107</td>
+      <td>RAD TF-2: 4.107 (Note 3)</td>
     </tr>
     <tr>
       <td>Display Analysis Result [RAD-136]</td>
       <td>N/A (Note 2)</td>
       <td>O</td>
-      <td>RAD TF-2: 4.136 (Note 3)</td>
+      <td>RAD TF-2: 4.136 (Note 4)</td>
     </tr>    
     <tr>
       <td rowspan="3">Rendered Report Reader</td>
@@ -127,7 +127,9 @@ Table 1:52.1-1 lists the transactions for each actor directly involved in the IM
 
 > Note 2: These transactions are not typical IHE transactions between two devices; the primary focus is on the required behavior of the display rather than messaging between two actors. Therefore the notion of Initiator or Responder is not applicable (N/A) for the actor on the transaction.
 
-> Note 3: Display Analysis Results [RAD-136] is defined in Supplement [AI Results](https://www.ihe.net/uploadedFiles/Documents/Radiology/IHE_RAD_Suppl_AIR.pdf).
+> Note 3: WADO-RS Retrieve [RAD-107] is defined in Supplement [Web-based Image Access (WIA)](https://www.ihe.net/uploadedFiles/Documents/Radiology/IHE_RAD_Suppl_WIA.pdf) 
+
+> Note 4: Display Analysis Results [RAD-136] is defined in Supplement [AI Results](https://www.ihe.net/uploadedFiles/Documents/Radiology/IHE_RAD_Suppl_AIR.pdf).
 
 ### 1:52.1.1 Actors Description and Actor Profile Requirements
 Most requirements are documented in RAD TF-2 Transactions. This section documents any additional requirements on this profile's actors.
@@ -140,7 +142,7 @@ A Report Creator may support creating multiple renditions of the same multimedia
 
 A Report Creator stores the DiagnosticReport resources to Report Repositories, Report Readers, or Rendered Report Readers. 
 
-> Note: In IMR, the Report Creator is the actor responsible for authoring the report. How the Report Creator receives the multimedia content in the report is out of scope for this release of IMR. For instance, a Report Creator may be grouped with an Image Display, or a Report Creator may be integrated with an Image Display via proprietary APIs or standard context sharing mechanism such as FHIRcast.
+> Note: How the Report Creator receives the multimedia content in the report is out of scope for this release of IMR. For instance, a Report Creator may be grouped with an Evidence Creator, or a Report Creator may be integrated with an Image Display via proprietary APIs or standard context sharing mechanism such as FHIRcast.
 
 #### 1:52.1.1.2 Report Repository
 
@@ -150,21 +152,25 @@ A Report Repository may modify how the embedded rendered report can be accessed,
 
 #### 1:52.1.1.3 Report Reader
 
-A Report Reader presents to the user the report, including the multimedia content included in the report as well as all hyperlinks. When users click on the hyperlinks, the Report Reader presents the referenced images to the user in a way that the user can interact with the images (e.g., windowing, zooming, panning, toggle annotations, etc.).
-
-A Report Reader shall support the display requirements as defined in [Display Requirements](#1521131-display-requirements) A Report Reader may support additional advanced behavior. This requirement may be satisfied by either implementing the required behaviors, or by grouping with another actor (e.g. Image Display Invoker in IID) that provides the required behaviors. The Report Reader may satisfy the baseline image viewing capabilities either by retrieving DICOM objects and rendering them, or by retrieving rendered DICOM objects using WADO-RS Retrieve [RAD-107], or a combination of both.
-
-> Note: The retrieve rendered images functionality of WADO-RS Retrieve [RAD-107] is defined in CP-RAD-475.
+A Report Reader displays reports, including [observation imaging context](#152415-observation-imaging-context-in-report) referenced in the report. Based on the referenced ImagingSelection resources defined in each observation imaging context, the Report Reader generates corresponding hyperlinks when the report is displayed to the user. When users click on the hyperlinks, the Report Reader presents the initial view of the referenced images to the user, such that the user can interact with the images (e.g., windowing, zooming, panning, toggle annotations, etc.).
 
 ##### 1.52.1.1.3.1 Display Requirements
 
-A Report Reader shall support the display requirements for different object types as defined in the following sections.
+When a user clicks on the hyperlinks, the Report Reader shall display the initial view of the corresponding observation imaging context to the user.
 
-###### 1.52.1.1.3.1.1 Image Objects
+> Note: The observation imaging context is captured in an ImagingSelection resource. See [RAD-141](RAD-141.html#2414141222-observation-imaging-context-in-an-imr-diagnosticreport-resource)
 
-The actor shall be able to display any referenced DICOM image objects (single frame or multi-frame) for which it claims support in any IHE Content or Workflow profile or DICOM Conformance Statement.
+A Report Reader shall support the display requirements for different object types in the observation imaging context as defined in the following sections. A Report Reader may support additional advanced behavior. This requirement may be satisfied by either implementing the required behaviors, or by grouping with another actor (e.g. Image Display Invoker in IID) that provides the required behaviors. The Report Reader may satisfy the baseline image viewing capabilities either by retrieving DICOM objects and rendering them, or by retrieving rendered DICOM objects using WADO-RS Retrieve [RAD-107], or a combination of both.
 
-The actor shall support [Basic Image Review (BIR)](https://www.ihe.net/uploadedFiles/Documents/Radiology/IHE_RAD_Suppl_BIR.pdf) capabilities as defined in Table 1.52.1.1.3.1.1-1.
+> Note: The retrieve rendered images functionality of WADO-RS Retrieve [RAD-107] is defined in CP-RAD-475.
+
+The Report Reader is only required to display objects referenced in the observation imaging context captured in an ImagingSelection resource. The Report Reader may display additional images if it supports the Advanced Image Viewing Option.
+
+###### 1.52.1.1.3.1.1 Image References
+
+The Report Reader shall be able to display any referenced DICOM image objects (single frame or multi-frame) for which it claims support in any IHE Content or Workflow profile or DICOM Conformance Statement.
+
+The Report Reader shall support [Basic Image Review (BIR)](https://www.ihe.net/uploadedFiles/Documents/Radiology/IHE_RAD_Suppl_BIR.pdf) capabilities as defined in Table 1.52.1.1.3.1.1-1.
 
 **Table 1.52.1.1.3.1.1-1: Image Viewing Capability Required in IMR**
 
@@ -180,13 +186,18 @@ The actor shall support [Basic Image Review (BIR)](https://www.ihe.net/uploadedF
 
 > Note 1: A Report Reader is permitted to only support a single viewport.
 
-The actor may provide additional tools for the user to interact with the images.
+The Report Reader may provide additional tools for the user to interact with the images.
 
-> Note: The actor is only required to display objects referenced in the DiagnosticReport resource.
+###### 1.52.1.1.3.1.2 Non-Image References
 
-###### 1.52.1.1.3.1.2 Non-Image Objects
+The Report Reader shall be capable of display Grayscale Softcopy Presentation State (GSPS) objects with their referenced images.
 
-The Report Reader shall be capable of display Grayscale Softcopy Presentation State objects with their referenced images.
+> Note: The Report Reader is permitted to ignore referenced images in the GSPS object that are outside the observation imaging context defined in the ImagingSelection resource unless Advanced Image Viewing Option is supported.
+
+The Report Reader shall be capable of display the following non-image references specified in the ImagingSelection resource:
+- instance.segmentList
+- instance.roiList
+- imageRegion
 
 #### 1:52.1.1.4 Rendered Report Reader
 
@@ -406,11 +417,11 @@ This sophisticated placement of multimedia contents requires a more complex inte
 
 Report Creators in IMR are required to support placing image references in context of the findings and impressions.
 
-#### 1:52.4.1.5 Imaging Context in Report 
+#### 1:52.4.1.5 Observation Imaging Context in Report 
 
-An imaging context in IMR can include image references and non-image references.
+An observation imaging context in IMR can include image references and non-image references.
 
-> Note: IMR focuses on specifying references to imaging context in a report. Other references to external resources (e.g. Lung-RADS, survey) are out of scope of IMR.
+> Note: IMR focuses on specifying references to observation imaging context in a report. Other references to external resources (e.g. Lung-RADS, survey) are out of scope of IMR.
 
 ##### Image References
 
@@ -441,7 +452,7 @@ In most cases, the image references refer to the same study as the study being r
 
 A non-image reference is a reference to an object that references other images and provides additional information that can be presented in association with referenced images. 
 
-In addition to image references, an imaging context may also specify non-image references such as locations, regions, annotations, etc. These non-image references refers to data encoded using various DICOM objects such as Structured Report (SR), different types of Presentation States (PR) and Segmentation.
+In addition to image references, an observation imaging context may also specify non-image references such as locations, regions, annotations, etc. These non-image references refers to data encoded using various DICOM objects such as Structured Report (SR), different types of Presentation States (PR) and Segmentation.
 
 Each non-image reference in a report is in the context of an image reference. Furthermore, each non-image reference includes one of the following context detail patterns:
 
