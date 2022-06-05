@@ -19,7 +19,6 @@ This guide is organized into five main sections:
    1. [Display Multimedia Report [RAD-142]](RAD-142.html)
    1. [Find Multimedia Report [RAD-143]](RAD-143.html)
    1. [Retrieve Rendered Multimedia Report [RAD-144]](RAD-144.html)
-   1. [Display Referenced Images in Multimedia Report [RAD-145]](RAD-145.html)
 
 3. Volume 3: Metadata
    1. N/A for IMR
