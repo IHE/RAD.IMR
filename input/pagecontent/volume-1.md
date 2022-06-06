@@ -389,11 +389,15 @@ There are two sources of multimedia content for radiology reporting:
 
 These content should be available to the report authoring system so that it can incorporate the details automatically.
 
-#### 1:52.4.1.3 Creation and Usage of Multimedia Content
+#### 1:52.4.1.3 Communication of Multimedia Content
 
-A key element for an interactive multimedia report is the ability to include clinical findings such as measurements, region of interest (ROI), etc. with interactive links to the source images. Traditionally, these annotations, markups, presentation states, and key images could be captured as DICOM objects such as Grayscale Softcopy Presentation State (GSPS), Structured Report (SR), or Key Object Selection Document (KOS). However, these objects are designed to capture evidence for long-term reference instead of real-time communication or composition. Most PACS will create these evidence objects at the end of a session in order to capture all the data points created by the image-centric specialist in one object, rather than create multiple evidence objects resulting in one per data point. As a result, these evidence objects in DICOM are good resources for subsequent interactive access when viewing an IMR, but not good candidates as the payload for real-time communication during a reporting session. As the image-centric specialist captures measurements, regions of interest, and other data points, ideally the PACS can provide those data points to the reporting system in real-time without introducing any unnecessary interruptions, or adding transitory content to the permanent record.
+A key element for an interactive multimedia report is the ability to include relevant images and associated clinical findings such as measurements, region of interest (ROI), etc. with interactive links to the source images.
 
-> Note: Real time communication is out of scope of IMR.
+Traditionally, these annotations, markups, presentation states, and key images could be captured as DICOM objects such as Grayscale Softcopy Presentation State (GSPS), Structured Report (SR), or Key Object Selection Document (KOS). However, these objects are designed to capture evidence for long-term reference instead of real-time communication or composition. Some PACS will create these evidence objects at the end of a session in order to capture all the data points created by the image-centric specialist in one object, rather than create multiple evidence objects resulting in one per data point. As a result, these evidence objects in DICOM are good resources for subsequent interactive access when viewing an IMR, but may not be good candidates as as a mean to communication report contents from the PACS to the reporting system during a reporting session.
+
+As the image-centric specialist captures measurements, regions of interest, and other data points, ideally the PACS can provide those data points to the reporting system in real-time without introducing any unnecessary interruptions, or adding transitory content to the permanent record. There is currently no widely adopted standard mechanism to support this real-time communication. Some reporting systems provide proprietary API that the PACS can leverage to achieve this.
+
+> Note: IMR focuses on encoding multimedia content in a report by the Report Creator, and interactive display requirements by the Report Reader. Real time communication is out of scope of IMR and may be addressed in future profiles.
 
 #### 1:52.4.1.4 Placement of Multimedia Content
 
