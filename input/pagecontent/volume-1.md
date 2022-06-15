@@ -142,6 +142,8 @@ A Report Creator may support creating multiple renditions of the same multimedia
 
 A Report Creator stores the DiagnosticReport resources to Report Repositories, Report Readers, or Rendered Report Readers. 
 
+> Note: Storing reports directly to the Report Readers or Rendered Report Reader is to provide a similar integration path which is common using HL7 ORU. This enables a transition path from traditional HL7 ORU report integration to IMR with minimal new infrastructure.
+
 > Note: How the Report Creator receives the multimedia content in the report is out of scope for this release of IMR. For instance, a Report Creator may be grouped with an Evidence Creator, or a Report Creator may be integrated with an Image Display via proprietary APIs or standard context sharing mechanism such as FHIRcast.
 
 #### 1:52.1.1.2 Report Repository
@@ -516,7 +518,7 @@ Note that the IMR Profile is focused on intra-enterprise use cases. Other inter-
 
 The Report Creator encodes the diagnostic report with multimedia content when saving dictated report. This use case shows the multimedia report being stored in the Report Repository. Alternatively, the Report Creator could send the report directly to one or more Report Readers and/or Rendered Report Readers.
 
-A Clinician wants to review studies and associated diagnostic reports for a patient. She searches the EMR for the patient. As a result, the EMR returns a list of studies and associated diagnostic reports for the patient, from which she selects the report of interest.
+Later, a Clinician wants to review studies and associated diagnostic reports for a patient. She searches the EMR for the patient. The EMR returns a list of studies and associated diagnostic reports for the patient, from which she selects the report of interest.
 
 ##### 1:52.4.2.1.2 Pre-Rendered Report Process Flow
 
@@ -531,17 +533,13 @@ A Clinician wants to review studies and associated diagnostic reports for a pati
 
 ##### 1:52.4.2.2.1 Locally Processed Report Use Case Description
 
-This use case is similar to Use Case #1, but instead of presenting a pre-rendered copy of the report that has been included in the multimedia report object, the Report Reader processes the multimedia report object according to its own rendering configuration.
+This use case is similar to Use Case #1, but instead of presenting the pre-rendered report content included in the multimedia report, the Report Reader processes the multimedia report according to its own rendering configuration.
 
-TODO ***
+Later, the Clinician clicks on the interactive links included in the report. The EMR (Report Reader) fetches the images and other related observation imaging context such as measurements and present them to the user. 
 
-The Clinician clicks on the interactive links.
+Furthermore, the EMR presents additional interactive tools to the Clinician. For example, the Clinicians can scroll through the images within the series.
 
-In this use case, the Report Reader retrieves rendered objects using WADO-RS and display them. Alternatively, the Report Reader retrieves DICOM objects, renders and display them.
-
-The Clinicians can navigate the series and see the measurements with annotations as described in the report.
-
-##### 1:52.4.2.2.2 Consume and Interact with Multimedia Report by Advanced Consumers Process Flow
+##### 1:52.4.2.2.2 Locally Processed Report Process Flow
 
 Figure 1:52.4.2.2.2-1 shows how the Clinician can use the EMR with native IMR Report Reader support to interact with the multimedia content available in the report.
 
@@ -550,34 +548,32 @@ Figure 1:52.4.2.2.2-1 shows how the Clinician can use the EMR with native IMR Re
 </div>
 <br clear="all">
 
-**Figure 1:52.4.2.2.2-1: Consume and Interact with Multimedia Report by Advanced Consumers Process Flow in IMR Profile**
+**Figure 1:52.4.2.2.2-1: Locally Processed Report Process Flow in IMR Profile**
 
-#### 1:52.4.2.4 Use Case 4: Consume and Interact with Multimedia Report by Advanced Consumers with Integrated Image Display Invoker
+#### 1:52.4.2.4 Use Case 3: External Image Viewer
 
-##### 1:52.4.2.4.1 Consume and Interact with Multimedia Report by Advanced Consumers with Integrated Image Display Invoker Use Case Description
+##### 1:52.4.2.4.1 External Image Viewer Use Case Description
 
-If the EMR delegates image viewing responsibility to an external Image Display by implementing Image Display Invoker in IID, then the EMR can implement the Report Reader to support displaying the multimedia report content according to its rendering configuration as in Use Case #2. Furthermore, the Report Reader capability is integrated with the Image Display Invoker capability to display the referenced images embedded in IMR multimedia reports.
+This use case is similar to Use Case #2, but instead of locally processing the report content, included in the multimedia report, the EMR locally processes the report content, and invokes an external viewer which handles presenting the images and associated multimedia reports as in Use Case #1.
 
-In this case, when viewing IMR multimedia reports for a patient in the EMR, it displays the reports with interactive links to the multimedia content. The Clinician clicks on the interactive links. The EMR / Report Reader launches the integrated Image Display Invoker which in turn invokes the configured Image Display in context based on the information in the link. The Image Display retrieves and displays the images with interactive tools. The Clinicians can navigate the series and see the measurements with annotations as described in the report.
+##### 1:52.4.2.4.2 External Image Viewer Process Flow
 
-##### 1:52.4.2.4.2 Consume and Interact with Multimedia Report by Advanced Consumers with Integrated Image Display Invoker Process Flow
-
-Figure 1:52.4.2.4.2-1 shows how the Clinician can use the EMR that supports IMR Report Reader with integrated Image Display Invoker to interact with the multimedia content available in the report.
+Figure 1:52.4.2.4.2-1 shows the Clinician using the EMR to show the report content, which in turn invokes an external viewer to enable interactive display of images and other observation imaging context.
 
 <div>
 {%include uc4-presenting-interactive-report-EMR.svg%}
 </div>
 <br clear="all">
 
-**Figure 1:52.4.2.4.2-1: Consume and Interact with Multimedia Report by Advanced Consumers with Integrated Image Display Invoker Process Flow in IMR Profile**
+**Figure 1:52.4.2.4.2-1: External Image Viewer Process Flow in IMR Profile**
 
-#### 1:52.4.2.5 Use Case 5: Consume and Interact with Multimedia Report for Comparison Study in PACS
+#### 1:52.4.2.5 Use Case 4: Comparison Study With Multimedia Report
 
-##### 1:52.4.2.5.1 Consume and Interact with Multimedia Report for Comparison Study in PACS Use Case Description
+##### 1:52.4.2.5.1 Comparison Study With Multimedia Report Use Case Description
 
-A radiologist is in the process of dictating a study. Comparison studies are displayed along with the current study. The comparison studies have associated multimedia reports. The Report Reader integrated with an Image Display displays the multimedia reports to the radiologist with interactive links. When the Radiologist clicks on the links, the Report Reader triggers the viewport in the Image Display currently showing the comparison study to show the specific image in which the measurements are derived from. If needed, the Radiologist can redo the measurements on the comparison studies to confirm the data submitted.
+A radiologist is in the process of dictating a study. Comparison studies are displayed along with the current study. The comparison studies have associated multimedia reports. The Report Reader integrated with an Image Display displays the multimedia reports to the radiologist with interactive links. When the Radiologist clicks on the links, the Report Reader triggers the viewport in the Image Display currently showing the comparison study to show the specific images in which the measurements are derived from, and the annotations and measurements overlay on top of the images.
 
-##### 1:52.4.2.5.2 Consume and Interact with Multimedia Report for Comparison Study in PACS Process Flow
+##### 1:52.4.2.5.2 Comparison Study with Multimedia Report Process Flow
 
 Figure 1:52.4.2.5.2-1 shows how the Radiologist can use the PACS workstation (Image Display) that is integrated with IMR Report Reader to interact with the multimedia content available in the report.
 
@@ -586,16 +582,15 @@ Figure 1:52.4.2.5.2-1 shows how the Radiologist can use the PACS workstation (Im
 </div>
 <br clear="all">
 
-**Figure 1:52.4.2.5.2-1: Consume and Interact with Multimedia Report for Comparison Study in PACS Process Flow in IMR Profile**
+**Figure 1:52.4.2.5.2-1: Comparison Study with Multimedia Report Process Flow in IMR Profile**
 
 ## 1:52.5 IMR Security Considerations
 
 Refer to RAD TF-1x: Appendix F “Security Environment Considerations”.
 
-Protected Healthcare Information (PHI) is present in the DICOM instances being stored,
-retrieved, processed, and displayed, as well as in the API being invoked.
+Protected Healthcare Information (PHI) is present in the DICOM instances being stored, retrieved, processed, and displayed, as well as in the API being invoked.
 
-See ITI TF-2: [Appendix Z.8 “Mobile Security Considerations”](https://profiles.ihe.net/ITI/TF/Volume2/ch-Z.html#z.8-mobile-security-considerations) for FHIR based transactions.
+See ITI TF-2: [Appendix Z.8 “Mobile Security Considerations”](https://profiles.ihe.net/ITI/TF/Volume2/ch-Z.html#z.8-mobile-security-considerations) for security considerations on FHIR based transactions.
 
 General [Security and Privacy guidance](http://hl7.org/fhir/secpriv-module.html) is provided in the FHIR Specification.
 
@@ -605,10 +600,8 @@ This profile strongly recommends all actors group with an ITI ATNA Secure Applic
 Secure Node Actor using the Radiology Audit Trail Option.
 
 The ATNA Profile requires actors to implement:
-- [Record Audit Event](https://profiles.ihe.net/ITI/TF/Volume2/ITI-20.html) [ITI-20] transaction which would record when and where analysis
-785 results are distributed and displayed.
-- [Authenticate Node](https://profiles.ihe.net/ITI/TF/Volume2/ITI-19.html) [ITI-19] transaction to further ensure the integrity of transactions via
-node authentication and communication encryption.
+- [Record Audit Event](https://profiles.ihe.net/ITI/TF/Volume2/ITI-20.html) [ITI-20] transaction which would record when and where analysis results are distributed and displayed.
+- [Authenticate Node](https://profiles.ihe.net/ITI/TF/Volume2/ITI-19.html) [ITI-19] transaction to further ensure the integrity of transactions via node authentication and communication encryption.
 
 Furthermore, for the FHIR-based transactions, this profile strongly recommends the use of ITI [Internet User Authorization](https://profiles.ihe.net/ITI/TF/Volume1/ch-34.html) (IUA) Profile to ensure that communications are only allowed for authenticated and authorized users and/or systems.
 
@@ -617,30 +610,95 @@ Furthermore, for the FHIR-based transactions, this profile strongly recommends t
 Multimedia report instances as defined in this profile contain personal demographic information
 and clinical information. It is appropriate for products implementing the Interactive Multimedia Report Profile to include appropriate PHI controls. Specifying such mechanisms and features is outside the scope of this profile.
 
-The rendered report included in the DiagnosticReport resource may be referenced by a URL. The rendered report itself may also include hyperlinks for image references. It is recommended for any deployment to have network configurations that only allow trusted known clients (e.g., by IP address or subnet).
+The rendered report included in the DiagnosticReport resource may be referenced by a URL. The rendered report itself may also include hyperlinks for image references. It is recommended for any deployment to have network configurations that only allow trusted known clients (e.g., by IP address or subnet) to access the hyperlinks.
 
-The Rendered Report Readers should verify if these URLs are legitimate and from a trusted source, minimizing the chance of phishing attack and executing malicious script embedded inside a report.
+The Rendered Report Readers should verify if these URLs are legitimate and from a trusted source, minimizing the chance of phishing attack and executing malicious scripts embedded inside a report.
 
 ## 1:52.6 IMR Cross-Profile Considerations
 
-**Scheduled Workflow (SWF.b)**: A Report Reader may be grouped with an Image Display in SWF.b to satisfy the image viewing capabilities requirements by retrieving DICOM objects via DIMSE services. The Image Display may provide additional image viewing capabilities. The grouped Image Display may be used to view prior studies as well.
+Table 1:52.6-1 describes various actors in various other profiles that might be useful to group with
+IMR Profile actors.
 
-**Invoke Image Display (IID)**: A Report Reader may be grouped with an Image Display Invoker in IID to satisfy the image viewing capabilities requirements. The invoked Image Display may provide additional image viewing capabilities.
+**Table 1:52.6-1: Interactive Multimedia Report - Optional Actor Groupings**
 
-> Note: The Retrieve Display of Series Images functionality and IHE-IMR viewer type are available in CP-RAD-474.
+<table class="grid">
+  <thead>
+    <tr>
+      <th>IMR Actor</th>
+      <th>Might group with</th>
+      <th>Potential Purpose</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td rowspan="7">Report Creator</td>
+      <td>RD Report Creator</td>
+      <td>To send reports using HL7 ORU if the HL7 Text Report Option is supported</td>
+    </tr>
+    <tr>
+      <td>MRRT Report Creator</td>
+      <td>To use report templates to assist the radiologist in creating the diagnostic report, and capture the final report in the IMR multimedia report format</td>
+    </tr>
+    <tr>
+      <td>AIR Evidence Creator</td>
+      <td>To include AI results in the diagnostic reports</td>
+    </tr>
+    <tr>
+      <td>PIXm Patient Identifier Cross-Reference Consumer</td>
+      <td>To obtain the patient resource reference required in the diagnostic report</td>
+    </tr>
+    <tr>
+      <td>PDQm Patient Demographics Consumer</td>
+      <td>To obtain the patient resource reference that is the subject in the diagnostic report</td>
+    </tr>
+    <tr>
+      <td>mCSD Care Services Selective Consumer</td>
+      <td>To obtain the organization, facilities and practitioner resource references that are required for the diagnostic report</td>
+    </tr>
+    <tr>
+      <td>IUA Authorization Client</td>
+      <td>To provide authorization claims when invoking a request with another actor</td>
+    </tr>
+    <tr>
+      <td rowspan="2">Report Repository</td>
+      <td>RD Report Manager</td>
+      <td>To manage both text reports and multimedia reports. May also support converting reports from one format to another</td>
+    </tr>
+    <tr>
+      <td>IUA Resource Server</td>
+      <td>To enforce only authorized access to the resources stored in the repository</td>
+    </tr>
+    <tr>
+      <td rowspan="6">Report Reader</td>
+      <td>RD Report Consumer</td>
+      <td>To be able to consume both text reports and multimedia reports.</td>
+    </tr>
+    <tr>
+      <td>SWF.b Image Display</td>
+      <td>To support the display requirements for observation imaging context in the multimedia report</td>
+    </tr>
+    <tr>
+      <td>IID Image Display Invoker</td>
+      <td>To delegate the display requirements for observation imaging context to an external Image Display (See Note 1)</td>
+    </tr>
+    <tr>
+      <td>BIR Image Display</td>
+      <td>To support the display requirements for observation imaging context in the multimedia report</td>
+    </tr>
+    <tr>
+      <td>AIR Image Display</td>
+      <td>To show analysis results that are captured in AIR results format</td>
+    </tr>
+    <tr>
+      <td>IUA Authorization Client</td>
+      <td>To provide authorization claims when invoking a request with another actor</td>
+    </tr>
+    <tr>
+      <td>Rendered Report Reader</td>
+      <td>IUA Authorization Client</td>
+      <td>To provide authorization claims when invoking a request with another actor</td>
+    </tr>
+  </tbody>
+</table>
 
-**Results Distribution (RD)**: A Report Creator that supports the HL7 Text Report Option can use Result Distribution to send the text report to other consumers.
-
-**Basic Image Review (BIR)**: A Report Reader may be grouped with an Image Display in BIR to provide the required image display functionality.
-
-**Management of Radiology Report Templates (MRRT)**: A Report Creator in MRRT may be grouped with a Report Creator in IMR. As a result, the grouped Report Creator can use the report templates to assist the radiologist in creating the diagnostic report, and capture the final report in the IMR DiagnosticReport format.
-
-**AI Result (AIR)**: An Evidence Creator may be grouped with an IMR Report Creator to include AI results in the diagnostic report. An Image Display in AIR may be grouped with an IMR Report Reader to show analysis results captured in DICOM Structured Report, Segmentation or Parametric Map objects.
-
-**Internet User Authorization (IUA)**: TODO
-
-**Patient Identifier Cross-reference for Mobile (PIXm)**: TODO
-
-**Patient Demographics Query for Mobile (PDQm)**: TODO
-
-**Mobile Care Services Discovery (mCSD)** TODO
+> Note 1: The Retrieve Display of Series Images functionality and IHE-IMR viewer type are available in CP-RAD-474.
