@@ -18,7 +18,15 @@ end note
 
 Clinician->>Reader: //Click on hyperlinked measurements//
 
-loop Retrieve DICOM objects and/or rendered images with / without additional presentation, window levelling
+Reader->Archive: Retrieve referenced images\nWADO-RS Retrieve [RAD-107]
+Reader->Reader: Display Images [RAD-145]
+note over Reader
+Initial display of the referenced images.
+end note
+
+Clinician->>Reader: //Interact with images and/or series//\n//such as scrolling or window levelling//
+
+loop Scrolling Images in Series
 Reader->Archive: Retrieve images in series\nWADO-RS Retrieve [RAD-107]
 Reader->Reader: Display Images [RAD-145]
 
