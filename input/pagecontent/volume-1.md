@@ -632,70 +632,70 @@ IMR Profile actors.
   <tbody>
     <tr>
       <td rowspan="7">Report Creator</td>
-      <td>RD Report Creator</td>
+      <td><a href="https://www.ihe.net/uploadedFiles/Documents/Radiology/IHE_RAD_Suppl_RD.pdf">RD Report Creator</a></td>
       <td>To send reports using HL7 ORU if the HL7 Text Report Option is supported</td>
     </tr>
     <tr>
-      <td>MRRT Report Creator</td>
+      <td><a href="https://www.ihe.net/uploadedFiles/Documents/Radiology/IHE_RAD_Suppl_MRRT.pdf">MRRT Report Creator</a></td>
       <td>To use report templates to assist the radiologist in creating the diagnostic report, and capture the final report in the IMR multimedia report format</td>
     </tr>
     <tr>
-      <td>AIR Evidence Creator</td>
+      <td><a href="https://www.ihe.net/uploadedFiles/Documents/Radiology/IHE_RAD_Suppl_AIR.pdf">AIR Evidence Creator</a></td>
       <td>To include AI results in the diagnostic reports</td>
     </tr>
     <tr>
-      <td>PIXm Patient Identifier Cross-Reference Consumer</td>
+      <td><a href="https://profiles.ihe.net/ITI/PIXm/index.html">PIXm Patient Identifier Cross-Reference Consumer</a></td>
       <td>To obtain the patient resource reference required in the diagnostic report</td>
     </tr>
     <tr>
-      <td>PDQm Patient Demographics Consumer</td>
+      <td><a href="https://profiles.ihe.net/ITI/PDQm/index.html">PDQm Patient Demographics Consumer</a></td>
       <td>To obtain the patient resource reference that is the subject in the diagnostic report</td>
     </tr>
     <tr>
-      <td>mCSD Care Services Selective Consumer</td>
+      <td><a href="https://profiles.ihe.net/ITI/mCSD/index.html">mCSD Care Services Selective Consumer</a></td>
       <td>To obtain the organization, facilities and practitioner resource references that are required for the diagnostic report</td>
     </tr>
     <tr>
-      <td>IUA Authorization Client</td>
+      <td><a href="https://profiles.ihe.net/ITI/IUA/index.html">IUA Authorization Client</a></td>
       <td>To provide authorization claims when invoking a request with another actor</td>
     </tr>
     <tr>
       <td rowspan="2">Report Repository</td>
-      <td>RD Report Manager</td>
+      <td><a href="https://www.ihe.net/uploadedFiles/Documents/Radiology/IHE_RAD_Suppl_RD.pdf">RD Report Manager</a></td>
       <td>To manage both text reports and multimedia reports. May also support converting reports from one format to another</td>
     </tr>
     <tr>
-      <td>IUA Resource Server</td>
+      <td><a href="https://profiles.ihe.net/ITI/IUA/index.html">IUA Resource Server</a></td>
       <td>To enforce only authorized access to the resources stored in the repository</td>
     </tr>
     <tr>
       <td rowspan="6">Report Reader</td>
-      <td>RD Report Consumer</td>
+      <td><a href="https://www.ihe.net/uploadedFiles/Documents/Radiology/IHE_RAD_Suppl_RD.pdf">RD Report Consumer</a></td>
       <td>To be able to consume both text reports and multimedia reports.</td>
     </tr>
     <tr>
-      <td>SWF.b Image Display</td>
+      <td><a href="https://www.ihe.net/uploadedFiles/Documents/Radiology/IHE_RAD_TF_Vol1.pdf">SWF.b Image Display</a></td>
       <td>To support the display requirements for observation imaging context in the multimedia report</td>
     </tr>
     <tr>
-      <td>IID Image Display Invoker</td>
+      <td><a href="https://www.ihe.net/uploadedFiles/Documents/Radiology/IHE_RAD_Suppl_IID.pdf">IID Image Display Invoker</a></td>
       <td>To delegate the display requirements for observation imaging context to an external Image Display (See Note 1)</td>
     </tr>
     <tr>
-      <td>BIR Image Display</td>
+      <td><a href="https://www.ihe.net/uploadedFiles/Documents/Radiology/IHE_RAD_Suppl_BIR.pdf">BIR Image Display</a></td>
       <td>To support the display requirements for observation imaging context in the multimedia report</td>
     </tr>
     <tr>
-      <td>AIR Image Display</td>
+      <td><a href="https://www.ihe.net/uploadedFiles/Documents/Radiology/IHE_RAD_Suppl_AIR.pdf">AIR Image Display</a></td>
       <td>To show analysis results that are captured in AIR results format</td>
     </tr>
     <tr>
-      <td>IUA Authorization Client</td>
+      <td><a href="https://profiles.ihe.net/ITI/IUA/index.html">IUA Authorization Client</a></td>
       <td>To provide authorization claims when invoking a request with another actor</td>
     </tr>
     <tr>
       <td>Rendered Report Reader</td>
-      <td>IUA Authorization Client</td>
+      <td><a href="https://profiles.ihe.net/ITI/IUA/index.html">IUA Authorization Client</a></td>
       <td>To provide authorization claims when invoking a request with another actor</td>
     </tr>
   </tbody>
