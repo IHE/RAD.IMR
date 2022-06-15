@@ -18,6 +18,8 @@ RCreator->Repo: Store Multimedia Report [RAD-141]\n(Report X)
 
 Clinician->>EMR: //Select accession X//
 
+...
+
 EMR->Repo: Find Multimedia Report [RAD-143]
 Repo-->EMR:(Report X)
 
