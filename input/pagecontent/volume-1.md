@@ -273,7 +273,7 @@ Options that may be selected for each actor in this implementation guide, are li
 
 The PDF Report Option involves rendering and presenting multimedia reports in PDF format.
 
-A Report Creator that supports this option shall be able to generate a rendered multimedia report in PDF format, preserving the image references as either hyperlinks or embedded static images in the rendered PDF file, and embed the rendered report in DiagnosticReport.presentedForm in the Store Multimedia Reports [RAD-141] transaction. See [Rendered Report In PDF](RAD-141.html#24141412232-rendered-report-in-pdf-format) for details.
+A Report Creator that supports this option shall be able to generate a rendered multimedia report in PDF format, preserving the image references as either hyperlinks or embedded static images in the rendered PDF file, and associate the rendered report in DiagnosticReport.presentedForm in the Store Multimedia Reports [RAD-141] transaction. See [Rendered Report In PDF](RAD-141.html#24141412232-rendered-report-in-pdf-format) for details.
 
 > Note: How the Report Creator lays out the report into PDF is out of scope of IMR, provided that the rendered report preserves the readability of the report. For example, consider the case that there are multiple measurements in the same paragraph, each has its separate image reference(s). If the image references are rendered as inline static images, then the resulting paragraph may be broken up and become hard to read.
 
