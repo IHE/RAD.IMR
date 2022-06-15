@@ -476,15 +476,15 @@ Multimedia reports are encoded using a FHIR DiagnosticReport resource as the top
 
 ##### Report Content
 
-TODO: Describe how there narrative text and findings and measurements are referenced. All these are created at reporting time by the Report Creator.
-
-A DiagnosticReport resource captures findings and impressions as narrative text.
+At reporting time, the Report Creator captures the findings and measurements reported by the radiologist as narrative text. These narrative text are stored in FHIR DiagnosticReport.text.
 
 Since a DiagnosticReport resource is the top level resource used to capture a multimedia report, therefore every time a multimedia report is created, a DiagnosticReport resource is created.
 
 ##### Imaging Procedure Context
 
-TODO: Describe how there is ServiceRequest and ImagingStudy and the imaging data itself those are created prior / during reporting by the ordering / EMR / VNA (i.e. not Report Creator).
+Prior to reporting, the EMR creates an order, which provides the procedure context for the report.
+
+During reporting, the radiologist views the study that is the subject for the report, and possibly includes one or more other studies for comparison.
 
 A DiagnosticReport resource may reference a ServiceRequest resource to capture the procedure information. A DiagnosticReport resource also references one or more ImagingStudy resources to capture the study that is subject of the report as well as other associated studies.
 
@@ -492,9 +492,9 @@ Although the procedure and imaging study exist in other systems prior to reporti
 
 ##### Organizational Context
 
-A DiagnosticReport references organizational level resources such as `Patient`, `Organization`, `Practitioner` and `PractitionerRole`. *TODO: State which system(s) are responsible for these resources*. Therefore, it is a prerequisite that these organizational resources already exist prior to the creation of DiagnosticReport resource. Then a Report Creator will only reference these organizational resources during report creation.
+In additional to the imaging procedure context and the report content, a report also captures organizational context such as the patient which is the subject of the report, which organization is responsible for the report, and who is responsible for the report content. Generally the EMR manages the patient records, the organization structure and the pool of practitioners available. 
 
-TODO: Deployment prerequisite to have these organizational context
+A DiagnosticReport references organizational level resources such as `Patient`, `Organization`, `Practitioner` and `PractitionerRole`. Since these organization context exist prior to the report being created and are managed by systems other than the reporting system, it is a prerequisite that these organizational resources already exist prior to the creation of DiagnosticReport resource. As a result, a Report Creator will only reference these organizational resources during report creation.
 
 #### 1:52.4.1.7 Referenced FHIR Resource vs Contained FHIR Resource
 
