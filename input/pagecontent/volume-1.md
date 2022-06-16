@@ -275,9 +275,9 @@ The PDF Report Option involves rendering and presenting multimedia reports in PD
 
 A Report Creator that supports this option shall be able to generate a rendered multimedia report in PDF format, preserving the image references as either hyperlinks or embedded static images in the rendered PDF file, and associate the rendered report in DiagnosticReport.presentedForm in the Store Multimedia Reports [RAD-141] transaction. See [Rendered Report In PDF](RAD-141.html#24141412232-rendered-report-in-pdf-format) for details.
 
-> Note: How the Report Creator lays out the report into PDF is out of scope of IMR, provided that the rendered report preserves the readability of the report. For example, consider the case that there are multiple measurements in the same paragraph, each has its separate image reference(s). If the image references are rendered as inline static images, then the resulting paragraph may be broken up and become hard to read.
+> Note: How the Report Creator lays out the report into PDF is out of scope of IMR, provided that the rendered report preserves the readability of the report. For example, consider the case that there are multiple measurements in the same paragraph, each having a separate image reference(s). If the image references are rendered as inline static images, then the resulting paragraph may be broken up and become hard to read.
 
-A Rendered Report Reader that supports this option
+A Rendered Report Reader that supports this option:
 - shall identify the PDF rendered report according to the contentType attribute
 - shall retrieve and display the PDF rendered report specified in either DiagnosticReport.presentedForm.data or DiagnosticReport.presentedForm.url
 - shall be able to launch the hyperlinks included in the PDF report.
@@ -293,17 +293,17 @@ A Report Creator that supports this option shall be able to create a text-only r
 
 > Note: A textual representation of image references may look like (2,16) which means series 2 instance 16. Specific format for textual representation of image references is out of scope of IMR. As a result, interpretation of such information, if necessary, requires pre-arranged agreement between the Report Creator and non-IMR actors. The Report Creator may support different formats based on configuration.
 
-A Report Creator shall be able to encode the text-only report in an HL7 ORU message and transmit the report to non-IMR Report Readers using MLLP. A Report Creator may use Send Imaging Result [RAD-128] in the IHE [Results Distribution](https://www.ihe.net/uploadedFiles/Documents/Radiology/IHE_RAD_Suppl_RD.pdf) Profile.
+A Report Creator shall be able to encode the text-only report in an HL7 ORU message and transmit the report to non-IMR Report Readers using MLLP. A Report Creator may use the Send Imaging Result [RAD-128] transaction in the IHE [Results Distribution](https://www.ihe.net/uploadedFiles/Documents/Radiology/IHE_RAD_Suppl_RD.pdf) Profile.
 
 ### 1:52.2.3 Advanced Image Viewing Option
 
 The Advanced Image Viewing Option involves the user being able to view images with advanced imaging tools.
 
 A Report Reader that supports the Advanced Image Viewing option:
-- shall support scrolling display requirements as defined in [Basic Image Review (BIR)](https://www.ihe.net/uploadedFiles/Documents/Radiology/IHE_RAD_Suppl_BIR.pdf) Section 4.16.4.2.2.5.5.
+- shall support scrolling display requirements as defined Section 4.16.4.2.2.5.5 in the [Basic Image Review (BIR)](https://www.ihe.net/uploadedFiles/Documents/Radiology/IHE_RAD_Suppl_BIR.pdf) supplement.
 - shall be able to construct WADO-RS URLs that confirm to the RetrieveSeries and RetrieveStudy semantics.
 
-> Note: Multiplanar Reconstruction (MPR) is available in many PACS implementations, it is an advanced operation that is computationally intensive. For the interactive image viewing capability on interactive multimedia report, MPR is not expected to be available. If viewing of the images from different planes is desirable, then the acquired data should be reconstructed to other planes and then be saved as separate set of images. These new set of reconstructed images can then be referenced in the DiagnosticReport resource.
+> Note: Multiplanar Reconstruction (MPR) is available in many PACS implementations; it is an advanced operation that is computationally intensive. For the interactive image viewing capability in an interactive multimedia report, MPR is not expected to be available. If viewing of the images from different planes is desirable, then the acquired data should be reconstructed to other planes and then be saved as separate set of images. These new set of reconstructed images can then be referenced in the DiagnosticReport resource.
 
 ### 1:52.2.4 Advanced Measurement Viewing Option
 
