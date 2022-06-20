@@ -127,9 +127,9 @@ Table 1:52.1-1 lists the transactions for each actor directly involved in the IM
 
 > Note 2: These transactions are not typical IHE transactions between two devices; the primary focus is on the required behavior of the display rather than messaging between two actors. Therefore the notion of Initiator or Responder is not applicable (N/A) for the actor on the transaction.
 
-> Note 3: WADO-RS Retrieve [RAD-107] is defined in Supplement [Web-based Image Access (WIA)](https://www.ihe.net/uploadedFiles/Documents/Radiology/IHE_RAD_Suppl_WIA.pdf) 
+> Note 3: WADO-RS Retrieve [RAD-107] is defined in the [Web-based Image Access (WIA)](https://www.ihe.net/uploadedFiles/Documents/Radiology/IHE_RAD_Suppl_WIA.pdf) Supplement.
 
-> Note 4: Display Analysis Results [RAD-136] is defined in Supplement [AI Results](https://www.ihe.net/uploadedFiles/Documents/Radiology/IHE_RAD_Suppl_AIR.pdf).
+> Note 4: Display Analysis Results [RAD-136] is defined in the [AI Results (AIR)](https://www.ihe.net/uploadedFiles/Documents/Radiology/IHE_RAD_Suppl_AIR.pdf) Supplement.
 
 ### 1:52.1.1 Actors Description and Actor Profile Requirements
 Most requirements are documented in RAD TF-2 Transactions. This section documents any additional requirements on this profile's actors.
@@ -142,15 +142,15 @@ A Report Creator may support creating multiple renditions of the same multimedia
 
 A Report Creator stores the DiagnosticReport resources to Report Repositories, Report Readers, or Rendered Report Readers. 
 
-> Note: Storing reports directly to the Report Readers or Rendered Report Reader is to provide a similar integration path which is common using HL7 ORU. This enables a transition path from traditional HL7 ORU report integration to IMR with minimal new infrastructure.
+> Note: Storing reports directly to the Report Readers or Rendered Report Reader is intended to provide a similar integration path to using HL7 ORU. This enables a transition path from traditional HL7 ORU report integration to IMR with minimal new infrastructure.
 
-> Note: How the Report Creator receives the multimedia content in the report is out of scope for this release of IMR. For instance, a Report Creator may be grouped with an Evidence Creator, or a Report Creator may be integrated with an Image Display via proprietary APIs or standard context sharing mechanism such as FHIRcast.
+> Note: How the Report Creator receives the multimedia content it includes in the report is out of scope for this version of IMR. To obtain multimedia content, a Report Creator may be grouped with an Evidence Creator, or a Report Creator may be integrated with an Image Display via proprietary APIs or standard context sharing mechanism such as FHIRcast.
 
 #### 1:52.1.1.2 Report Repository
 
 A Report Repository stores multimedia reports received from Report Creators and makes the reports available for other consumers through query/retrieve.
 
-A Report Repository may modify how the embedded rendered report can be accessed, if necessary. For example, a Report Repository may adjust an internal URL to an externally accessible URL, or it may retrieve the rendered report referenced by a URL and embed it directly in the DiagnosticReport resource as base64 encoded in query responses. How a Report Repository may adjust the accessibility of the rendered report is out of scope of IMR.
+A Report Repository may modify how the embedded rendered report can be accessed, if necessary. For example, a Report Repository may adjust an internal URL to an externally accessible URL, or it may retrieve the rendered report referenced by a URL and embed it directly, base64 encoded, in the DiagnosticReport resource in a query response. How a Report Repository adjusts the accessibility of the rendered report is out of scope of IMR.
 
 #### 1:52.1.1.3 Report Reader
 
@@ -172,7 +172,7 @@ The Report Reader is only required to display objects referenced in the observat
 
 The Report Reader shall be able to display any referenced DICOM image objects (single frame or multi-frame) for which it claims support in any IHE Content or Workflow profile or DICOM Conformance Statement.
 
-The Report Reader shall support [Basic Image Review (BIR)](https://www.ihe.net/uploadedFiles/Documents/Radiology/IHE_RAD_Suppl_BIR.pdf) capabilities as defined in Table 1.52.1.1.3.1.1-1.
+The Report Reader shall support display capabilities defined in Table 1.52.1.1.3.1.1-1 [Basic Image Review (BIR)](https://www.ihe.net/uploadedFiles/Documents/Radiology/IHE_RAD_Suppl_BIR.pdf) Profile.
 
 **Table 1.52.1.1.3.1.1-1: Image Viewing Capability Required in IMR**
 
@@ -192,7 +192,7 @@ The Report Reader may provide additional tools for the user to interact with the
 
 ###### 1.52.1.1.3.1.2 Non-Image References
 
-The Report Reader shall be capable of display Grayscale Softcopy Presentation State (GSPS) objects with their referenced images.
+The Report Reader shall be capable of displaying Grayscale Softcopy Presentation State (GSPS) objects with their referenced images.
 
 > Note: The Report Reader is permitted to ignore referenced images in the GSPS object that are outside the observation imaging context defined in the ImagingSelection resource unless Advanced Image Viewing Option is supported.
 
@@ -275,9 +275,9 @@ The PDF Report Option involves rendering and presenting multimedia reports in PD
 
 A Report Creator that supports this option shall be able to generate a rendered multimedia report in PDF format, preserving the image references as either hyperlinks or embedded static images in the rendered PDF file, and associate the rendered report in DiagnosticReport.presentedForm in the Store Multimedia Reports [RAD-141] transaction. See [Rendered Report In PDF](RAD-141.html#24141412232-rendered-report-in-pdf-format) for details.
 
-> Note: How the Report Creator lays out the report into PDF is out of scope of IMR, provided that the rendered report preserves the readability of the report. For example, consider the case that there are multiple measurements in the same paragraph, each has its separate image reference(s). If the image references are rendered as inline static images, then the resulting paragraph may be broken up and become hard to read.
+> Note: How the Report Creator lays out the report into PDF is out of scope of IMR, provided that the rendered report preserves the readability of the report. For example, consider the case that there are multiple measurements in the same paragraph, each having a separate image reference(s). If the image references are rendered as inline static images, then the resulting paragraph may be broken up and become hard to read.
 
-A Rendered Report Reader that supports this option
+A Rendered Report Reader that supports this option:
 - shall identify the PDF rendered report according to the contentType attribute
 - shall retrieve and display the PDF rendered report specified in either DiagnosticReport.presentedForm.data or DiagnosticReport.presentedForm.url
 - shall be able to launch the hyperlinks included in the PDF report.
@@ -293,17 +293,17 @@ A Report Creator that supports this option shall be able to create a text-only r
 
 > Note: A textual representation of image references may look like (2,16) which means series 2 instance 16. Specific format for textual representation of image references is out of scope of IMR. As a result, interpretation of such information, if necessary, requires pre-arranged agreement between the Report Creator and non-IMR actors. The Report Creator may support different formats based on configuration.
 
-A Report Creator shall be able to encode the text-only report in an HL7 ORU message and transmit the report to non-IMR Report Readers using MLLP. A Report Creator may use Send Imaging Result [RAD-128] in the IHE [Results Distribution](https://www.ihe.net/uploadedFiles/Documents/Radiology/IHE_RAD_Suppl_RD.pdf) Profile.
+A Report Creator shall be able to encode the text-only report in an HL7 ORU message and transmit the report to non-IMR Report Readers using MLLP. A Report Creator may use the Send Imaging Result [RAD-128] transaction in the IHE [Results Distribution](https://www.ihe.net/uploadedFiles/Documents/Radiology/IHE_RAD_Suppl_RD.pdf) Profile.
 
 ### 1:52.2.3 Advanced Image Viewing Option
 
 The Advanced Image Viewing Option involves the user being able to view images with advanced imaging tools.
 
 A Report Reader that supports the Advanced Image Viewing option:
-- shall support scrolling display requirements as defined in [Basic Image Review (BIR)](https://www.ihe.net/uploadedFiles/Documents/Radiology/IHE_RAD_Suppl_BIR.pdf) Section 4.16.4.2.2.5.5.
+- shall support scrolling display requirements as defined Section 4.16.4.2.2.5.5 in the [Basic Image Review (BIR)](https://www.ihe.net/uploadedFiles/Documents/Radiology/IHE_RAD_Suppl_BIR.pdf) supplement.
 - shall be able to construct WADO-RS URLs that confirm to the RetrieveSeries and RetrieveStudy semantics.
 
-> Note: Multiplanar Reconstruction (MPR) is available in many PACS implementations, it is an advanced operation that is computationally intensive. For the interactive image viewing capability on interactive multimedia report, MPR is not expected to be available. If viewing of the images from different planes is desirable, then the acquired data should be reconstructed to other planes and then be saved as separate set of images. These new set of reconstructed images can then be referenced in the DiagnosticReport resource.
+> Note: Multiplanar Reconstruction (MPR) is available in many PACS implementations; it is an advanced operation that is computationally intensive. For the interactive image viewing capability in an interactive multimedia report, MPR is not expected to be available. If viewing of the images from different planes is desirable, then the acquired data should be reconstructed to other planes and then be saved as separate set of images. These new set of reconstructed images can then be referenced in the DiagnosticReport resource.
 
 ### 1:52.2.4 Advanced Measurement Viewing Option
 
