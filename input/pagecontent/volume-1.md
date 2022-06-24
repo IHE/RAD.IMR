@@ -474,12 +474,6 @@ Each non-image reference in a report is in the context of an image reference. Fu
 
 Multimedia reports are encoded using a FHIR DiagnosticReport resource as the top level resource. The DiagnosticReport resource references other resources that provide additional report content, imaging procedure context, and organizational context. Some of these referenced resources are created and managed by other enterprise systems (e.g. the patient resource is managed by the EMR). Others are created together with the DiagnosticReport.
 
-##### Report Content
-
-At reporting time, the Report Creator captures the findings and measurements reported by the radiologist as narrative text. These narrative text are stored in FHIR DiagnosticReport.text.
-
-Since a DiagnosticReport resource is the top level resource used to capture a multimedia report, every time a multimedia report is created, a DiagnosticReport resource is created.
-
 ##### Imaging Procedure Context
 
 Prior to reporting, the EMR creates an order, which provides the procedure context for the report.
@@ -488,7 +482,15 @@ During reporting, the radiologist views the study to be reported, and possibly o
 
 A DiagnosticReport resource may reference a ServiceRequest resource to capture the procedure information. A DiagnosticReport resource also references one or more ImagingStudy resources to capture the reviewed studies.
 
-Although the procedure and imaging study exist in other systems prior to reporting, the corresponding ServiceRequest or ImagingStudy resources may not. Therefore a Report Creator may create these dependent resources along with DiagnosticReport during report creation.
+Although the procedure and imaging study exist in other systems prior to reporting, the corresponding ServiceRequest or ImagingStudy resources may not. Therefore even though the Report Creator is not the source of truth for the order and imaging studies, the Report Creator may create these dependent resources along with DiagnosticReport during report creation.
+
+##### Report Content
+
+At reporting time, the Report Creator captures the findings and measurements reported by the radiologist as narrative text. These narrative text are stored in FHIR DiagnosticReport.text.
+
+The narrative text may include ImagingSelection resources to capture the observation imaging context so that the user can view the corresponding images and measurements at a later time.
+
+Since a DiagnosticReport resource is the top level resource used to capture a multimedia report, every time a multimedia report is created, a DiagnosticReport resource is created.
 
 ##### Organizational Context
 
