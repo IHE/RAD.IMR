@@ -478,15 +478,15 @@ Multimedia reports are encoded using a FHIR DiagnosticReport resource as the top
 
 At reporting time, the Report Creator captures the findings and measurements reported by the radiologist as narrative text. These narrative text are stored in FHIR DiagnosticReport.text.
 
-Since a DiagnosticReport resource is the top level resource used to capture a multimedia report, therefore every time a multimedia report is created, a DiagnosticReport resource is created.
+Since a DiagnosticReport resource is the top level resource used to capture a multimedia report, every time a multimedia report is created, a DiagnosticReport resource is created.
 
 ##### Imaging Procedure Context
 
 Prior to reporting, the EMR creates an order, which provides the procedure context for the report.
 
-During reporting, the radiologist views the study that is the subject for the report, and possibly includes one or more other studies for comparison.
+During reporting, the radiologist views the study to be reported, and possibly one or more other studies for comparison.
 
-A DiagnosticReport resource may reference a ServiceRequest resource to capture the procedure information. A DiagnosticReport resource also references one or more ImagingStudy resources to capture the study that is subject of the report as well as other associated studies.
+A DiagnosticReport resource may reference a ServiceRequest resource to capture the procedure information. A DiagnosticReport resource also references one or more ImagingStudy resources to capture the reviewed studies.
 
 Although the procedure and imaging study exist in other systems prior to reporting, the corresponding ServiceRequest or ImagingStudy resources may not. Therefore a Report Creator may create these dependent resources along with DiagnosticReport during report creation.
 
@@ -496,7 +496,13 @@ In additional to the imaging procedure context and the report content, a report 
 
 A DiagnosticReport references organizational level resources such as `Patient`, `Organization`, `Practitioner` and `PractitionerRole`. Since these organization context exist prior to the report being created and are managed by systems other than the reporting system, it is a prerequisite that these organizational resources already exist prior to the creation of DiagnosticReport resource. As a result, a Report Creator will only reference these organizational resources during report creation.
 
-#### 1:52.4.1.7 Referenced FHIR Resource vs Contained FHIR Resource
+#### 1:52.4.1.7 Inter-Enterprise Use Cases
+
+Supporting inter-enterprise use cases will involve addressing additional issues such as external users access control, potentially resolving links, potentially including resources such as patient when they may not be known or exist in the receiving hospital, or may need to be reconciled on receipt.
+
+To handle inter-enterprise use cases, the currently profile does not address these issues. Future updates may address them.
+
+#### 1:52.4.1.8 Referenced FHIR Resource vs Contained FHIR Resource
 
 A DiagnosticReport resource incorporates other resources. According to FHIR, those other resources can be incorporated as either referenced FHIR resources or contained FHIR resources. In IMR, when storing a DiagnosticReport resource, all incorporated resources are included as referenced. Contained resources are not permitted in IMR because they cannot be retrieved as independent resources. 
 
@@ -509,8 +515,6 @@ Optionally, a FHIR server may support the [_include](http://hl7.org/fhir/search.
 ### 1:52.4.2 Use Cases
 
 The IMR Profile encodes multimedia content in diagnostic reports such that later the user can interact with the linked multimedia content in the reports.
-
-Note that the IMR Profile is focused on intra-enterprise use cases. Other inter-enterprise use cases may be supported in future updates. The design of the IMR does not prohibit addressing inter-enterprise use cases in the future.
 
 #### 1:52.4.2.1 Use Case 1: Pre-Rendered Report
 
