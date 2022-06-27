@@ -37,14 +37,14 @@ Table 1:52.1-1 lists the transactions for each actor directly involved in the IM
   </thead>
   <tbody>
     <tr>
-      <td>Report Creator</td>
+      <td><a href="#152111-report-creator">Report Creator</a></td>
       <td>Store Multimedia Report [RAD-141]</td>
       <td>Initiator</td>
       <td>R</td>
       <td><a href="RAD-141.html">RAD TF-2: 4.141</a></td>
     </tr>
     <tr>
-      <td rowspan="3">Report Repository</td>
+      <td rowspan="3"><a href="#152112-report-repository">Report Repository</a></td>
       <td>Store Multimedia Report [RAD-141]</td>
       <td>Responder</td>
       <td>R</td>
@@ -63,7 +63,7 @@ Table 1:52.1-1 lists the transactions for each actor directly involved in the IM
       <td><a href="RAD-144.html">RAD TF-2: 4.144</a></td>
     </tr>
     <tr>
-      <td rowspan="5">Report Reader</td>
+      <td rowspan="5"><a href="#152113-report-reader">Report Reader</a></td>
       <td>Store Multimedia Report [RAD-141]</td>
       <td>Responder</td>
       <td>O (Note 1)</td>
@@ -94,7 +94,7 @@ Table 1:52.1-1 lists the transactions for each actor directly involved in the IM
       <td>RAD TF-2: 4.136 (Note 4)</td>
     </tr>    
     <tr>
-      <td rowspan="3">Rendered Report Reader</td>
+      <td rowspan="3"><a href="#152114-rendered-report-reader">Rendered Report Reader</a></td>
       <td>Store Multimedia Report [RAD-141]</td>
       <td>Responder</td>
       <td>O (Note 1)</td>
@@ -113,7 +113,7 @@ Table 1:52.1-1 lists the transactions for each actor directly involved in the IM
       <td><a href="RAD-144.html">RAD TF-2: 4.144</a></td>
     </tr>
     <tr>
-      <td>Image Manager / Image Archive</td>
+      <td><a href="#152115-image-manager--image-archive">Image Manager / Image Archive</a></td>
       <td>WADO-RS Retrieve [RAD-107]</td>
       <td>Responder</td>
       <td>R</td>
@@ -136,7 +136,7 @@ Most requirements are documented in RAD TF-2 Transactions. This section document
 
 #### 1:52.1.1.1 Report Creator
 
-A Report Creator encodes diagnostic reports with multimedia content using FHIR DiagnosticReport resources. Each resulting DiagnosticReport resource also includes a default rendered report in the same DiagnosticReport resource, either as base64 encoded binary, or by reference using a URL.
+A Report Creator encodes diagnostic reports with multimedia content using FHIR DiagnosticReport resources. Each resulting DiagnosticReport resource also includes at least one rendered report in HTML format in the same DiagnosticReport resource, either as base64 encoded binary, or by reference using a URL.
 
 A Report Creator may support creating multiple renditions of the same multimedia report for different consumers (e.g., consumers that do not render the detailed multimedia contents on its own, or external consumers that do not have access to studies inside the enterprise firewall).
 
@@ -348,7 +348,7 @@ In reporting, structure can significantly improve usability, both for machine co
 
 ##### Report Content Organization 
 
-This aspect of structure involves organizing the content of the report into labelled sections.
+This aspect of structure involves organizing the content of the report into labelled sections and subsections.
 
 In a radiology report, although there are many variations of what information a report should contain depending on the procedure and specialty, there are general common sections in a report such as Indication, Methods, Findings, Impressions, etc.
 
@@ -370,7 +370,7 @@ While Report Content Structure and Report Content Encoding Structure focus on im
 
 > As of FHIR R4, FHIR DiagnosticReport and Composition are two independent resources with no explicit relationship. Future versions of FHIR may integrate FHIR DiagnosticReport and Composition to enable better presentation structure.
 
-Report Presentation is out of scope for IMR.
+In IMR, Report Presentation is controlled by the Report Creator for rendered reports, or is controlled by the Report Reader otherwise.
 
 ##### Message Structure
 
@@ -427,7 +427,7 @@ Report Creators in IMR are required to support placing image references in conte
 
 An observation imaging context in IMR can include image references and non-image references.
 
-> Note: IMR focuses on specifying references to observation imaging context in a report. Other references to external resources (e.g. Lung-RADS, survey) are out of scope of IMR.
+> Note: IMR focuses on specifying references to observation imaging context in a report. Other references to external resources (e.g. ACR Lung-RADS website, citations or report reader surveys) are out of scope of IMR.
 
 ##### Image References
 
