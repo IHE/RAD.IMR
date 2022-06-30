@@ -138,7 +138,7 @@ Most requirements are documented in RAD TF-2 Transactions. This section document
 
 A Report Creator encodes diagnostic reports with multimedia content using FHIR DiagnosticReport resources. Each resulting DiagnosticReport resource also includes at least one rendered report in HTML format in the same DiagnosticReport resource, either as base64 encoded binary, or by reference using a URL.
 
-A Report Creator may support creating multiple renditions of the same multimedia report for different consumers (e.g., consumers that do not render the detailed multimedia contents on its own, or external consumers that do not have access to studies inside the enterprise firewall).
+A Report Creator may support creating multiple rendered reports of the same multimedia report for different consumers (e.g., consumers that do not render the detailed multimedia contents on its own, or external consumers that do not have access to studies inside the enterprise firewall).
 
 A Report Creator stores the DiagnosticReport resources to Report Repositories, Report Readers, or Rendered Report Readers. 
 
