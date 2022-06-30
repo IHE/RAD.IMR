@@ -642,6 +642,10 @@ IMR Profile actors.
       <td>To send reports using HL7 ORU if the HL7 Text Report Option is supported</td>
     </tr>
     <tr>
+      <td><a href="https://www.ihe.net/uploadedFiles/Documents/Radiology/IHE_RAD_TF_Vol1.pdf">SWF.b Evidence Creator</a></td>
+      <td>To re-measure the observations in the multimedia report and generate new report (addendum)</td>
+    </tr>
+    <tr>
       <td><a href="https://www.ihe.net/uploadedFiles/Documents/Radiology/IHE_RAD_Suppl_MRRT.pdf">MRRT Report Creator</a></td>
       <td>To use report templates to assist the radiologist in creating the diagnostic report, and capture the final report in the IMR multimedia report format</td>
     </tr>
