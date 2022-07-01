@@ -37,9 +37,7 @@ Description:    "Experimental profile on Observation for Imaging"
 // At least one performer is an Organization
 * performer only Reference(Practitioner or PractitionerRole or Organization)
 
-* value[x] 1..1 MS
-
-* method 0..1 MS
+* value[x] MS
 
 // Maximum one study to be referenced in derivedFrom
 * derivedFrom 0..* MS
