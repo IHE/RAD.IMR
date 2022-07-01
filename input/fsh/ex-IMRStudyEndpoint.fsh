@@ -1,7 +1,7 @@
-Instance: ex-IMRStudyEndpoint-Series
-InstanceOf: IMRStudyEndpoint
-Title: "IMR Endpoint for Series example"
-Description: "Simple IMR Series Endpoint"
+Instance: ex-ImagingStudyEndpoint-Series
+InstanceOf: ImagingStudyEndpoint
+Title: "Imaging Endpoint for Series example"
+Description: "Simple Imaging Series Endpoint"
 Usage: #example
 * connectionType = FHIREndpoint#dicom-wado-rs "DICOM WADO-RS"
 * payloadType.coding = DICOM#113015 "Series"
@@ -9,10 +9,10 @@ Usage: #example
 * status = FHIREndpointStatus#active
 
 
-Instance: ex-IMRStudyEndpoint-Study
-InstanceOf: IMRStudyEndpoint
-Title: "IMR Endpoint for Study example"
-Description: "Simple IMR Study Endpoint"
+Instance: ex-ImagingStudyEndpoint-Study
+InstanceOf: ImagingStudyEndpoint
+Title: "Imagin Endpoint for Study example"
+Description: "Simple Imagin Study Endpoint"
 Usage: #example
 * connectionType = FHIREndpoint#dicom-wado-rs "DICOM WADO-RS"
 * payloadType.coding = DICOM#113014 "Study"
@@ -20,10 +20,10 @@ Usage: #example
 * status = FHIREndpointStatus#active
 
 
-Instance: ex-IMRStudyEndpoint-Study-Comparison
-InstanceOf: IMRStudyEndpoint
-Title: "IMR Endpoint for Study example"
-Description: "Simple IMR Study Endpoint fpr the comparison study"
+Instance: ex-ImagingStudyEndpoint-Study-Comparison
+InstanceOf: ImagingStudyEndpoint
+Title: "Imaging Endpoint for Study example"
+Description: "Simple Imaging Study Endpoint fpr the comparison study"
 Usage: #example
 * connectionType = FHIREndpoint#dicom-wado-rs "DICOM WADO-RS"
 * payloadType.coding = DICOM#113014 "Study"

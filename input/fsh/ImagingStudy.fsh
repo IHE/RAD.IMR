@@ -26,7 +26,4 @@ Description:    "IHE Interactive Multimedia Report (IMR) profile on ImagingStudy
 
 // Must have at least one endpoint at the study level of type IMRStudyEndpoint
 * endpoint 1..*
-* endpoint only Reference(IMRStudyEndpoint)
-
-// At least one series must exist
-* series 1..* MS
+* endpoint only Reference(ImagingStudyEndpoint)

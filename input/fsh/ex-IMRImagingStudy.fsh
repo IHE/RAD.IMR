@@ -9,7 +9,7 @@ Usage: #example
 * modality = DICOM#CT "Computed Tomography"
 * subject = Reference(Patient/ex-Patient)
 * started = 2020-12-31T23:30:50-05:00
-* endpoint = Reference(Endpoint/ex-IMRStudyEndpoint-Study)
+* endpoint = Reference(Endpoint/ex-ImagingStudyEndpoint-Study)
 * procedureCode.coding = LOINC#29252-4 "CT Chest WO Contrast"
 * series.uid = "1.2.3.4.5.1"
 * series.modality = DICOM#CT "Computed Tomography"
@@ -26,7 +26,7 @@ Usage: #example
 * modality = DICOM#CT "Computed Tomography"
 * subject = Reference(Patient/ex-Patient)
 * started = 2020-01-01T23:30:50-05:00
-* endpoint = Reference(Endpoint/ex-IMRStudyEndpoint-Study)
+* endpoint = Reference(Endpoint/ex-ImagingStudyEndpoint-Study)
 * procedureCode.coding = LOINC#29252-4 "CT Chest WO Contrast"
 * series.uid = "5.6.7.8.9.1"
 * series.modality = DICOM#CT "Computed Tomography"

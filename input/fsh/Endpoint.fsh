@@ -1,24 +1,24 @@
-Profile:        IMRStudyEndpoint
+Profile:        ImagingStudyEndpoint
 Parent:         Endpoint
-Id:             imr-study-endpoint
-Title:          "IMR Study Endpoint"
-Description:    "IHE Interactive Multimedia Report (IMR) profile on Endpoint for Study"
+Id:             imaging-study-endpoint
+Title:          "Imaging Study Endpoint"
+Description:    "IHE Radiology profile on Endpoint for Study"
 
-* connectionType from IMRStudyEndpointConnectionTypeVS (required)
+* connectionType from ImagingStudyEndpointConnectionTypeVS (required)
 
 * payloadType 1..1
-* payloadType.coding from IMRStudyEndpointPayloadTypeVS (extensible)
+* payloadType.coding from ImagingStudyEndpointPayloadTypeVS (extensible)
 
-ValueSet: IMRStudyEndpointConnectionTypeVS
-Id: imr-study-endpoint-connectiontype-vs
-Title: "IMR Study Endpoint ConnectionType Value Set"
+ValueSet: ImagingStudyEndpointConnectionTypeVS
+Id: imaging-study-endpoint-connectiontype-vs
+Title: "Imaging Study Endpoint ConnectionType Value Set"
 Description: "Codes representing the applicable endpoint connectionType to retrieve a study."
 * FHIREndpoint#ihe-iid "IHE IDD"
 * FHIREndpoint#dicom-wado-rs "DICOM WADO-RS"
 
 
-ValueSet: IMRStudyEndpointPayloadTypeVS
-Id: imr-study-endpoint-payloadtype-vs
-Title: "IMR Study Endpoint PayloadType Value Set"
+ValueSet: ImagingStudyEndpointPayloadTypeVS
+Id: imaging-study-endpoint-payloadtype-vs
+Title: "Imaging Study Endpoint PayloadType Value Set"
 Description: "Codes representing the applicable endpoint payloadType to retrieve a study."
 * DICOM#113014 "Study"
