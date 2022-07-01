@@ -34,17 +34,19 @@ Description:    "IHE Interactive Multimedia Report (IMR) profile on DiagnosticRe
 * performer ^slicing.description = "Slice based on the performer reference type"
 * performer ^slicing.ordered = false
 
-* performer contains organization 1..1
+* performer contains organization 1..*
 * performer[organization] only Reference(Organization)
 
 // At least one resultsInterpreter is a Practitioner or PractitionerRole
 * resultsInterpreter 1..*
 * resultsInterpreter only Reference(Practitioner or PractitionerRole)
+* resultsInterpreter ^short = "Primary intepreter of results"
+* resultsInterpreter ^definition = "Primary intepreter of results"
 
 // Shall include at least one referenced study
-* imagingStudy 1..1 MS
+* imagingStudy 1..* MS
 * imagingStudy ^short = "Study subject to this report"
-* imagingStudy ^definition = "Study subject to this report"
+* imagingStudy ^definition = "Study subject to this report. Note: Any associated study (e.g. comparison studies) used during reporting should be tracked in the associatedStudy extension."
 
 // Shall include at least one presentedForm which is the text with embedded multimedia content. May include PDF
 * presentedForm 1..* MS
@@ -61,7 +63,11 @@ Description:    "IHE Interactive Multimedia Report (IMR) profile on DiagnosticRe
 * presentedForm.hash 1..1 MS
 * presentedForm contains html 1..* and pdf 0..*
 * presentedForm[html].contentType = MIME#text/html "HTML"
+* presentedForm[html].size 1..1
+* presentedForm[html].hash 1..1
 * presentedForm[pdf].contentType = MIME#applicatoin/pdf "PDF"
+* presentedForm[pdf].size 1..1
+* presentedForm[pdf].hash 1..1
 
 * extension contains AssociatedStudy named associatedStudy 0..* MS
 
