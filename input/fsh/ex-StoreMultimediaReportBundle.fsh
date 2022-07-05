@@ -3,7 +3,7 @@ InstanceOf: IMRStoreMultimediaReportBundle
 Title: "Store Multimedia Report Bundle example"
 Description: "Sample Store Multimedia Report Bundle used to store an IMR"
 Usage: #example
-//* meta.profile = "https://profiles.ihe.net/RAD/IMR/StructureDefinition/imr-store-multimedia-report-bundle"
+* meta.profile = "http://profiles.ihe.net/RAD/IMR/StructureDefinition/imr-store-multimedia-report-bundle"
 * meta.security = http://terminology.hl7.org/CodeSystem/v3-ActReason#HTEST
 * type = #transaction
 * timestamp = 2022-03-13T23:50:50-05:00
