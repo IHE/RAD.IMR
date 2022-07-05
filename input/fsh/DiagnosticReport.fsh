@@ -72,3 +72,16 @@ Title: "IMR DiagnosticReport Associated Study"
 Id: associatedStudy
 Description: "Associated studies used in part of diagnostic reporting"
 * value[x] only Reference(ImagingStudy or DiagnosticReport)
+
+Instance: DiagnosticReport-ImagingStudy
+InstanceOf: SearchParameter
+Title: "Search on the imagingStudy attribute in IMR DiagnosticReport"
+Usage: #definition
+* url = "http://profiles.ihe.net/RAD/IMR/SearchParameter/DiagnosticReport-ImagingStudy"
+* description = "This SearchParameter enables finding DiagnosticReports by ImagingStudy."
+* name = "ImagingStudy"
+* status = #active
+* base = #DiagnosticReport
+* code = #imagingStudy
+* expression = "DiagnosticReport.imagingStudy"
+* type = #reference
