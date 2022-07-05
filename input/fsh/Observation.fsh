@@ -38,6 +38,7 @@ Description:    "Experimental profile on Observation for Imaging"
 * performer only Reference(Practitioner or PractitionerRole or Organization)
 
 * value[x] MS
+* value[x] ^short = "Actual result. Note: If the value is null, an explicit corresponding null value is required rather than leaving the value blank."
 
 // Maximum one study to be referenced in derivedFrom
 * derivedFrom 0..* MS
