@@ -637,7 +637,7 @@ IMR Profile actors.
   </thead>
   <tbody>
     <tr>
-      <td rowspan="7">Report Creator</td>
+      <td rowspan="9">Report Creator</td>
       <td><a href="https://www.ihe.net/uploadedFiles/Documents/Radiology/IHE_RAD_Suppl_RD.pdf">RD Report Creator</a></td>
       <td>To send reports using HL7 ORU if the HL7 Text Report Option is supported</td>
     </tr>
@@ -661,6 +661,10 @@ IMR Profile actors.
       <td><a href="https://profiles.ihe.net/ITI/PDQm/index.html">PDQm Patient Demographics Consumer</a></td>
       <td>To obtain the patient resource reference that is the subject in the diagnostic report</td>
     </tr>
+    <tr>
+      <td><a href="https://profiles.ihe.net/ITI/MHD/index.html">MHD Document Source</a></td>
+      <td>To store a report as a document using FHIR DocumentReference resource as an alternative method for different destinations or recipients.</td>
+    </tr>    
     <tr>
       <td><a href="https://profiles.ihe.net/ITI/mCSD/index.html">mCSD Care Services Selective Consumer</a></td>
       <td>To obtain the organization, facilities and practitioner resource references that are required for the diagnostic report</td>
