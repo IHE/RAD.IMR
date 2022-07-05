@@ -2,7 +2,13 @@ Profile:        IMRServiceRequest
 Parent:         ServiceRequest
 Id:             imr-servicerequest
 Title:          "IMR ServiceRequest"
-Description:    "IHE Interactive Multimedia Report (IMR) profile on ServiceRequest"
+Description:    """
+IHE Interactive Multimedia Report (IMR) profile on ServiceRequest
+
+An IMR ServiceRequest captures the service request (a.k.a. order) for an imaging procedure.
+An IMR ServiceRequest is usually created before an imaging study is acquired (e.g. in radiology)
+while some other departments (e.g. cardiology) may not create an order at all.
+"""
 
 // Must have an identifier which is the accession number
 * identifier 1..*
