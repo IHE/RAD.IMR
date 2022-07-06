@@ -17,5 +17,12 @@ Usage: #example
 * entry[ServiceRequest].request.method = #POST
 * entry[ImagingStudy].fullUrl = "http://example.org/ImagingStudy/ex-ImagingStudy"
 * entry[ImagingStudy].resource = ex-ImagingStudy
-* entry[ImagingStudy].request.url = "ImagingStudy"
+* entry[ImagingStudy].request.url = "IMRImagingStudy"
 * entry[ImagingStudy].request.method = #POST
+
+/*
+* entry[ImagingSelection].fullUrl = "http://example.org/ImagingSelection/ex-ImagingSelection-SingleImage"
+* entry[ImagingSelection].resource = ex-ImagingSelection-SingleImage
+* entry[ImagingSelection].request.url = "IMRImagingSelection"
+* entry[ImagingSelection].request.method = #POST
+*/

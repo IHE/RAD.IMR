@@ -30,7 +30,7 @@ Description:    "IHE Interactive Multimedia Report (IMR) profile on Bundle"
 * entry[ServiceRequest].request.method = #POST
 
 /*
-* entry[ImagingSelection].resource only ImagingSelection
+* entry[ImagingSelection].resource only IMRImagingSelection
 * entry[ImagingSelection] ^short = "the ImagingSelection"
 * entry[ImagingSelection] ^definition = "the ImagingSelection (or observation imaging context) that is captured in this DiagnosticReport."
 * entry[ImagingSelection].resource 1..1
