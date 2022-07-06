@@ -3,9 +3,13 @@
 
 # Use the generic DICOM system works instead of the following link
 ValueSet http://dicom.nema.org/medical/dicom/current/output/chtml/part16/sect_CID_29.html not found by validator
+ValueSet http://dicom.nema.org/medical/dicom/current/output/chtml/part16/sect_CID_33.html not found by validator
 
 # FHIR ImagingStudy is still referring to the following link that is obsolete. Use LOINC code directly instead.
 ValueSet http://www.rsna.org/RadLex_Playbook.aspx not found by validator
 
 # There is an embedded XML markup in the finding text. The text is meant to be preprocessed before presenting.
 The string value contains text that looks like embedded HTML tags. If this content is rendered to HTML without appropriate post-processing, it may be a security risk
+
+# There is only one entry in the slice. So this is not an issue.
+The repeating element has a pattern. The pattern will apply to all the repeats (this has not been clear to all users)
