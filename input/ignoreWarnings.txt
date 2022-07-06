@@ -4,6 +4,7 @@
 # Use the generic DICOM system works instead of the following link
 ValueSet http://dicom.nema.org/medical/dicom/current/output/chtml/part16/sect_CID_29.html not found by validator
 ValueSet http://dicom.nema.org/medical/dicom/current/output/chtml/part16/sect_CID_33.html not found by validator
+ValueSet http://dicom.nema.org/medical/dicom/current/output/chtml/part16/sect_CID_7010.html not found by validator
 
 # FHIR ImagingStudy is still referring to the following link that is obsolete. Use LOINC code directly instead.
 ValueSet http://www.rsna.org/RadLex_Playbook.aspx not found by validator
