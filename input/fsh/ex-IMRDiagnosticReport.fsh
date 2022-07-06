@@ -19,7 +19,7 @@ Usage: #example
 * result[4] = Reference(Observation/ex-IMRObservation-Impression-4)
 * result[5] = Reference(Observation/ex-IMRObservation-Impression-5)
 * imagingStudy = Reference(ImagingStudy/ex-ImagingStudy)
-* extension[associatedStudy].valueReference = Reference(ImagingStudy/ex-ImagingStudy-Comparison)
+* extension[associatedStudy].valueCodeableReference.reference = Reference(ImagingStudy/ex-ImagingStudy-Comparison)
 // * extension[indication].valueString = "History: 24M with stent placement in the left main bronchus presents with right sided chest pain since 9am"
 * presentedForm.data = "VGhpcyBpcyBhIHNhbXBsZQ=="
 * presentedForm.contentType = MIME#text/html "HTML"
