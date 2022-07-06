@@ -8,14 +8,13 @@ Description:    "IHE Interactive Multimedia Report (IMR) profile on ImagingStudy
 * identifier 1..*
 
 * identifier ^slicing.discriminator.type = #pattern
-* identifier ^slicing.discriminator.path = type.coding
+* identifier ^slicing.discriminator.path = system
 * identifier ^slicing.rules = #open
-* identifier ^slicing.description = "Slice based on the identifier.type.coding"
+* identifier ^slicing.description = "Slice based on the identifier.system"
 * identifier ^slicing.ordered = false
 
 * identifier contains studyUID 1..1 MS
-* identifier[studyUID].type 1..1 MS
-* identifier[studyUID].type.coding = DICOMUID#110180
+* identifier[studyUID].system = DICOMUID
 * identifier[studyUID].value 1..1 MS
 
 * modality 1..*
