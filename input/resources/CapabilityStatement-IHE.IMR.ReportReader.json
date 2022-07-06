@@ -58,13 +58,11 @@
             "searchParam": [
               {
                 "name": "_id",
-                "definition": "http://hl7.org/fhir/SearchParameter/Resource-id",
                 "type": "token",
                 "documentation": "Logical id of this artifact"
               },
               {
                 "name": "_lastupdated",
-                "definition": "http://hl7.org/fhir/SearchParameter/Resource-lastUpdated",
                 "type": "date",
                 "documentation": "When the resource version last changed"
               },
