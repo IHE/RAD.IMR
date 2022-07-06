@@ -32,8 +32,6 @@ Description:    "Experimental profile on Observation for Imaging"
 * subject 1..1
 * subject only Reference(Patient)
 
-* effectiveDateTime 1..1 MS
-
 // At least one performer is an Organization
 * performer only Reference(Practitioner or PractitionerRole or Organization)
 
