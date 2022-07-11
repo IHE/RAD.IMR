@@ -136,11 +136,11 @@ Most requirements are documented in RAD TF-2 Transactions. This section document
 
 #### 1:52.1.1.1 Report Creator
 
-A Report Creator encodes diagnostic reports with multimedia content using FHIR DiagnosticReport resources. Each resulting DiagnosticReport resource also includes at least one rendered report in HTML format in the same DiagnosticReport resource, either as base64 encoded binary, or by reference using a URL.
+A Report Creator encodes diagnostic reports with multimedia content using FHIR `DiagnosticReport` resources. Each resulting `DiagnosticReport` resource also includes at least one rendered report in HTML format in the same `DiagnosticReport` resource, either as base64 encoded binary, or by reference using a URL.
 
 A Report Creator may support creating multiple rendered reports of the same multimedia report for different consumers (e.g., consumers that do not render the detailed multimedia contents on its own, or external consumers that do not have access to studies inside the enterprise firewall).
 
-A Report Creator stores the DiagnosticReport resources to Report Repositories, Report Readers, or Rendered Report Readers. 
+A Report Creator stores the `DiagnosticReport` resources to Report Repositories, Report Readers, or Rendered Report Readers. 
 
 > Note: Storing reports directly to the Report Readers or Rendered Report Reader is intended to provide a similar integration path to using HL7 ORU. This enables a transition path from traditional HL7 ORU report integration to IMR with minimal new infrastructure.
 
@@ -150,23 +150,23 @@ A Report Creator stores the DiagnosticReport resources to Report Repositories, R
 
 A Report Repository stores multimedia reports received from Report Creators and makes the reports available for other consumers through query/retrieve.
 
-A Report Repository may modify how the embedded rendered report can be accessed, if necessary. For example, a Report Repository may adjust an internal URL to an externally accessible URL, or it may retrieve the rendered report referenced by a URL and embed it directly, base64 encoded, in the DiagnosticReport resource in a query response. How a Report Repository adjusts the accessibility of the rendered report is out of scope of IMR.
+A Report Repository may modify how the embedded rendered report can be accessed, if necessary. For example, a Report Repository may adjust an internal URL to an externally accessible URL, or it may retrieve the rendered report referenced by a URL and embed it directly, base64 encoded, in the `DiagnosticReport` resource in a query response. How a Report Repository adjusts the accessibility of the rendered report is out of scope of IMR.
 
 #### 1:52.1.1.3 Report Reader
 
-A Report Reader displays reports, including [observation imaging context](#152415-observation-imaging-context-in-report) referenced in the report. Based on the referenced ImagingSelection resources defined in each observation imaging context, the Report Reader generates corresponding hyperlinks when the report is displayed to the user. When users click on the hyperlinks, the Report Reader presents the initial view of the referenced images to the user, such that the user can interact with the images (e.g., windowing, zooming, panning, toggle annotations, etc.).
+A Report Reader displays reports, including [observation imaging context](#152415-observation-imaging-context-in-report) referenced in the report. Based on the referenced `ImagingSelection` resources defined in each observation imaging context, the Report Reader generates corresponding hyperlinks when the report is displayed to the user. When users click on the hyperlinks, the Report Reader presents the initial view of the referenced images to the user, such that the user can interact with the images (e.g., windowing, zooming, panning, toggle annotations, etc.).
 
 ##### 1.52.1.1.3.1 Display Requirements
 
 When a user clicks on the hyperlinks, the Report Reader shall display the initial view of the corresponding observation imaging context to the user.
 
-> Note: The observation imaging context is captured in an ImagingSelection resource. See [RAD-141](RAD-141.html#2414141222-observation-imaging-context-in-an-imr-diagnosticreport-resource)
+> Note: The observation imaging context is captured in an `ImagingSelection` resource. See [RAD-141](RAD-141.html#2414141222-observation-imaging-context-in-an-imr-diagnosticreport-resource)
 
 A Report Reader shall support the display requirements for different object types in the observation imaging context as defined in the following sections. A Report Reader may support additional advanced behavior. This requirement may be satisfied by either implementing the required behaviors, or by grouping with another actor (e.g. Image Display Invoker in IID) that provides the required behaviors. The Report Reader may satisfy the baseline image viewing capabilities either by retrieving DICOM objects and rendering them, or by retrieving rendered DICOM objects using WADO-RS Retrieve [RAD-107], or a combination of both.
 
 > Note: The retrieve rendered images functionality of WADO-RS Retrieve [RAD-107] is defined in CP-RAD-475.
 
-The Report Reader is only required to display objects referenced in the observation imaging context captured in an ImagingSelection resource. The Report Reader may display additional images if it supports the Advanced Image Viewing Option.
+The Report Reader is only required to display objects referenced in the observation imaging context captured in an `ImagingSelection` resource. The Report Reader may display additional images if it supports the Advanced Image Viewing Option.
 
 ###### 1.52.1.1.3.1.1 Image References
 
@@ -196,17 +196,17 @@ The Report Reader shall be capable of displaying Grayscale Softcopy Presentation
 
 > Note: The Report Reader is permitted to ignore referenced images in the GSPS object that are outside the observation imaging context defined in the ImagingSelection resource unless Advanced Image Viewing Option is supported.
 
-The Report Reader shall be capable of display the following non-image references specified in the ImagingSelection resource:
+The Report Reader shall be capable of display the following non-image references specified in the `ImagingSelection` resource:
 - instance.segmentList
 - instance.roiList
 - imageRegion
 
 #### 1:52.1.1.4 Rendered Report Reader
 
-Rather than render the report content, as the Report Reader does, a Rendered Report Reader presents to the user the pre-rendered version of the report that is included in the DiagnosticReport resource. The 
+Rather than render the report content, as the Report Reader does, a Rendered Report Reader presents to the user the pre-rendered version of the report that is included in the `DiagnosticReport` resource. The 
 pre-rendered report includes multimedia content and hyperlinks. When the user clicks on the hyperlinks, the Rendered Report Reader retrieves the linked contents and display them to the user.
 
-A Rendered Report Reader shall retrieve and display the HTML report specified in DiagnosticReport.presentedForm.
+A Rendered Report Reader shall retrieve and display the HTML report specified in `DiagnosticReport.presentedForm`.
 
 > Note: There are no additional image viewing capabilities required for Rendered Report Readers. In other words, the image viewing capabilities presented by the Rendered Report Readers is defined by how the Report Creator created the rendered report. For example, for image references, one Report Creator may render them using WADO-RS links which will show a static rendered image, while another Report Creator may render them using IID Invoke Image Display links which will launch a viewer to show the referenced image with additional interactivity such as scrolling, zooming, etc. The Rendered Report Reader may provide additional image viewing capabilities.
 
@@ -273,15 +273,15 @@ Options that may be selected for each actor in this implementation guide, are li
 
 The PDF Report Option involves rendering and presenting multimedia reports in PDF format.
 
-A Report Creator that supports this option shall be able to generate a rendered multimedia report in PDF format, preserving the image references as either hyperlinks or embedded static images in the rendered PDF file, and associate the rendered report in DiagnosticReport.presentedForm in the Store Multimedia Reports [RAD-141] transaction. See [Rendered Report In PDF](RAD-141.html#24141412232-rendered-report-in-pdf-format) for details.
+A Report Creator that supports this option shall be able to generate a rendered multimedia report in PDF format, preserving the image references as either hyperlinks or embedded static images in the rendered PDF file, and associate the rendered report in `DiagnosticReport.presentedForm` in the Store Multimedia Reports [RAD-141] transaction. See [Rendered Report In PDF](RAD-141.html#24141412232-rendered-report-in-pdf-format) for details.
 
 > Note: How the Report Creator lays out the report into PDF is out of scope of IMR, provided that the rendered report preserves the readability of the report. For example, consider the case that there are multiple measurements in the same paragraph, each having a separate image reference(s). If the image references are rendered as inline static images, then the resulting paragraph may be broken up and become hard to read.
 
 A Rendered Report Reader that supports this option:
 - shall identify the PDF rendered report according to the contentType attribute
-- shall retrieve and display the PDF rendered report specified in either DiagnosticReport.presentedForm.data or DiagnosticReport.presentedForm.url
+- shall retrieve and display the PDF rendered report specified in either `DiagnosticReport.presentedForm.data` or `DiagnosticReport.presentedForm.url`
 - shall be able to launch the hyperlinks included in the PDF report.
-- shall be able to select either the HTML or PDF rendered reports in DiagnosticReport.presentedForm to retrieve and display
+- shall be able to select either the HTML or PDF rendered reports in `DiagnosticReport.presentedForm` to retrieve and display
 
 ### 1:52.2.2 HL7 Text Report Option
 
@@ -303,7 +303,7 @@ A Report Reader that supports the Advanced Image Viewing option:
 - shall support scrolling display requirements as defined Section 4.16.4.2.2.5.5 in the [Basic Image Review (BIR)](https://www.ihe.net/uploadedFiles/Documents/Radiology/IHE_RAD_Suppl_BIR.pdf) supplement.
 - shall be able to construct WADO-RS URLs that confirm to the RetrieveSeries and RetrieveStudy semantics.
 
-> Note: Multiplanar Reconstruction (MPR) is available in many PACS implementations; it is an advanced operation that is computationally intensive. For the interactive image viewing capability in an interactive multimedia report, MPR is not expected to be available. If viewing of the images from different planes is desirable, then the acquired data should be reconstructed to other planes and then be saved as separate set of images. These new set of reconstructed images can then be referenced in the DiagnosticReport resource.
+> Note: Multiplanar Reconstruction (MPR) is available in many PACS implementations; it is an advanced operation that is computationally intensive. For the interactive image viewing capability in an interactive multimedia report, MPR is not expected to be available. If viewing of the images from different planes is desirable, then the acquired data should be reconstructed to other planes and then be saved as separate set of images. These new set of reconstructed images can then be referenced in the `DiagnosticReport` resource.
 
 ### 1:52.2.4 Advanced Measurement Viewing Option
 
@@ -352,7 +352,7 @@ This aspect of structure involves organizing the content of the report into labe
 
 In a radiology report, although there are many variations of what information a report should contain depending on the procedure and specialty, there are general common sections in a report such as Indication, Methods, Findings, Impressions, etc.
 
-The [Results Distribution](https://www.ihe.net/uploadedFiles/Documents/Radiology/IHE_RAD_Suppl_RD.pdf) Profile specifies using multiple OBX segments for different sections. This Interactive Multimedia Report Profile does not explicitly define sections. A Report Creator may include sections in FHIR DiagnosticReport.text elements and DiagnosticReport.presentedForm pre-rendered reports.
+The [Results Distribution](https://www.ihe.net/uploadedFiles/Documents/Radiology/IHE_RAD_Suppl_RD.pdf) Profile specifies using multiple OBX segments for different sections. This Interactive Multimedia Report Profile does not explicitly define sections. A Report Creator may include sections in FHIR `DiagnosticReport.text` elements and `DiagnosticReport.presentedForm` pre-rendered reports.
 
 ##### Report Content Encoding
 
@@ -366,17 +366,17 @@ This has been successfully used in certain disciplines such as cancer screening,
 
 This aspect of structure involves guiding how the report content is presented to readers.
 
-While Report Content Structure and Report Content Encoding Structure focus on imposing structure to data elements, they do not impose any requirements on how these data elements will be presented to the user. The FHIR Composition resource is designed for presentation structure using elements like *section*.
+While Report Content Structure and Report Content Encoding Structure focus on imposing structure to data elements, they do not impose any requirements on how these data elements will be presented to the user. The FHIR `Composition` resource is designed for presentation structure using elements like *section*.
 
-> As of FHIR R4, FHIR DiagnosticReport and Composition are two independent resources with no explicit relationship. Future versions of FHIR may integrate FHIR DiagnosticReport and Composition to enable better presentation structure.
+> As of FHIR R4, FHIR `DiagnosticReport` and `Composition` are two independent resources with no explicit relationship. Future versions of FHIR may integrate FHIR `DiagnosticReport` and `Composition` to enable better presentation structure.
 
 In IMR, Report Presentation is controlled by the Report Creator for rendered reports, or is controlled by the Report Reader otherwise.
 
 ##### Message Structure
 
-In the most basic form, the clinical report is conveyed between the sender and the receiver using some kind of message format. The message format defines a structure for the overall payload, including the metadata and the actual report content. For example, HL7 v2 ORU messages or FHIR DiagnosticReport resources define such a message structure that governs where different content should be placed, such as patient, order, report content, etc.
+In the most basic form, the clinical report is conveyed between the sender and the receiver using some kind of message format. The message format defines a structure for the overall payload, including the metadata and the actual report content. For example, HL7 v2 ORU messages or FHIR `DiagnosticReport` resources define such a message structure that governs where different content should be placed, such as patient, order, report content, etc.
 
-The [Results Distribution](https://www.ihe.net/uploadedFiles/Documents/Radiology/IHE_RAD_Suppl_RD.pdf) Profile specifies using HL7 v2 ORU as the message structure while this Interactive Multimedia Report Profile specifies using FHIR DiagnosticReport resource.
+The [Results Distribution](https://www.ihe.net/uploadedFiles/Documents/Radiology/IHE_RAD_Suppl_RD.pdf) Profile specifies using HL7 v2 ORU as the message structure while this Interactive Multimedia Report Profile specifies using FHIR `DiagnosticReport` resource.
 
 This Interactive Multimedia Report Profile includes specific requirements related to the Message Structure and Report Content Structure aspects described above. The IMR Profile does not include specific requirements related to Report Content Encoding, although coded content is permitted and implementations are encouraged to explore this aspect of structured reporting.
 
@@ -472,7 +472,7 @@ Each non-image reference in a report is in the context of an image reference. Fu
 
 #### 1:52.4.1.6 DiagnosticReport Referenced Resources
 
-Multimedia reports are encoded using a FHIR DiagnosticReport resource as the top level resource. The DiagnosticReport resource references other resources that provide additional report content, imaging procedure context, and organizational context. Some of these referenced resources are created and managed by other enterprise systems (e.g. the patient resource is managed by the EMR). Others are created together with the DiagnosticReport.
+Multimedia reports are encoded using a FHIR `DiagnosticReport` resource as the top level resource. The `DiagnosticReport` resource references other resources that provide additional report content, imaging procedure context, and organizational context. Some of these referenced resources are created and managed by other enterprise systems (e.g. the patient resource is managed by the EMR). Others are created together with the `DiagnosticReport`.
 
 ##### Imaging Procedure Context
 
@@ -480,23 +480,23 @@ Prior to reporting, the EMR creates an order, which provides the procedure conte
 
 During reporting, the radiologist views the study to be reported, and possibly one or more other studies for comparison.
 
-A DiagnosticReport resource may reference a ServiceRequest resource to capture the procedure information. A DiagnosticReport resource also references one or more ImagingStudy resources to capture the reviewed studies.
+A `DiagnosticReport` resource may reference a `ServiceRequest` resource to capture the procedure information. A `DiagnosticReport` resource also references one or more `ImagingStudy` resources to capture the reviewed studies.
 
-Although the procedure and imaging study exist in other systems prior to reporting, the corresponding ServiceRequest or ImagingStudy resources may not. Therefore even though the Report Creator is not the source of truth for the order and imaging studies, the Report Creator may create these dependent resources along with DiagnosticReport during report creation.
+Although the procedure and imaging study exist in other systems prior to reporting, the corresponding `ServiceRequest` or `ImagingStudy` resources may not. Therefore even though the Report Creator is not the source of truth for the order and imaging studies, the Report Creator may create these dependent resources along with `DiagnosticReport` during report creation.
 
 ##### Report Content
 
-At reporting time, the Report Creator captures the findings and measurements reported by the radiologist as narrative text. These narrative text are stored in FHIR DiagnosticReport.text.
+At reporting time, the Report Creator captures the findings and measurements reported by the radiologist as narrative text. These narrative text are stored in FHIR `DiagnosticReport.text`.
 
-The narrative text may include ImagingSelection resources to capture the observation imaging context so that the user can view the corresponding images and measurements at a later time.
+The narrative text may include `ImagingSelection` resources to capture the observation imaging context so that the user can view the corresponding images and measurements at a later time.
 
-Since a DiagnosticReport resource is the top level resource used to capture a multimedia report, every time a multimedia report is created, a DiagnosticReport resource is created.
+Since a `DiagnosticReport` resource is the top level resource used to capture a multimedia report, every time a multimedia report is created, a `DiagnosticReport` resource is created.
 
 ##### Organizational Context
 
 In additional to the imaging procedure context and the report content, a report also captures organizational context such as the patient which is the subject of the report, which organization is responsible for the report, and who is responsible for the report content. Generally the EMR manages the patient records, the organization structure and the pool of practitioners available. 
 
-A DiagnosticReport references organizational level resources such as `Patient`, `Organization`, `Practitioner` and `PractitionerRole`. Since these organization context exist prior to the report being created and are managed by systems other than the reporting system, it is a prerequisite that these organizational resources already exist prior to the creation of DiagnosticReport resource. As a result, a Report Creator will only reference these organizational resources during report creation.
+A `DiagnosticReport` references organizational level resources such as `Patient`, `Organization`, `Practitioner` and `PractitionerRole`. Since these organization context exist prior to the report being created and are managed by systems other than the reporting system, it is a prerequisite that these organizational resources already exist prior to the creation of `DiagnosticReport` resource. As a result, a Report Creator will only reference these organizational resources during report creation.
 
 #### 1:52.4.1.7 Inter-Enterprise Use Cases
 
@@ -506,11 +506,11 @@ To handle inter-enterprise use cases, the currently profile does not address the
 
 #### 1:52.4.1.8 Referenced FHIR Resource vs Contained FHIR Resource
 
-A DiagnosticReport resource incorporates other resources. According to FHIR, those other resources can be incorporated as either referenced FHIR resources or contained FHIR resources. In IMR, when storing a DiagnosticReport resource, all incorporated resources are included as referenced. Contained resources are not permitted in IMR because they cannot be retrieved as independent resources. 
+A `DiagnosticReport` resource incorporates other resources. According to FHIR, those other resources can be incorporated as either referenced FHIR resources or contained FHIR resources. In IMR, when storing a `DiagnosticReport` resource, all incorporated resources are included as referenced. Contained resources are not permitted in IMR because they cannot be retrieved as independent resources. 
 
 Contained resources are not preferred when resources have independent identity from the containing resource. This is because contained resources cannot be reused across multiple resources. If the same content is included multiple times, such duplication can lead to possible integrity problems.
 
-A FHIR server that provides the FHIR [Search](http://hl7.org/fhir/search.html) capability returns query responses with references to other resources, such as Patient, IMR Observation, IMR ImagingStudy, etc. To access the content of referenced resources, the requester will have to retrieve them separately.
+A FHIR server that provides the FHIR [Search](http://hl7.org/fhir/search.html) capability returns query responses with references to other resources, such as `Patient`, `IMR ServiceRequest`, `IMR ImagingStudy`, etc. To access the content of referenced resources, the requester will have to retrieve them separately.
 
 Optionally, a FHIR server may support the [_include](http://hl7.org/fhir/search.html#include) search result parameter. If the requester specifies this parameter in the search request, then the FHIR Server will include the specified referenced resources in the same response. The advantage is that the requester only needs to issue a single query request and the result will contain all the necessary data. The disadvantages are (1) the payload size may increase significantly, (2) the server will need to perform more work and may return the response slower, (3) it is an optional capability of the server so the requester cannot depend on it being available.
 
@@ -616,7 +616,7 @@ Furthermore, for the FHIR-based transactions, this profile strongly recommends t
 Multimedia report instances as defined in this profile contain personal demographic information
 and clinical information. It is appropriate for products implementing the Interactive Multimedia Report Profile to include appropriate PHI controls. Specifying such mechanisms and features is outside the scope of this profile.
 
-The rendered report included in the DiagnosticReport resource may be referenced by a URL. The rendered report itself may also include hyperlinks for image references. It is recommended for any deployment to have network configurations that only allow trusted known clients (e.g., by IP address or subnet) to access the hyperlinks.
+The rendered report included in the `DiagnosticReport` resource may be referenced by a URL. The rendered report itself may also include hyperlinks for image references. It is recommended for any deployment to have network configurations that only allow trusted known clients (e.g., by IP address or subnet) to access the hyperlinks.
 
 The Rendered Report Readers should verify if these URLs are legitimate and from a trusted source, minimizing the chance of phishing attack and executing malicious scripts embedded inside a report.
 

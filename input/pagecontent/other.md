@@ -26,7 +26,7 @@ This section contains modifications to other IHE publications and profiles, and 
 | ---------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
 | Store Multimedia Report \[RAD-141\] | This transaction is used to store multimedia reports. |
 | Display Multimedia Report \[RAD-142\] | This transaction is used to present the report content to someone, such as a radiologist or a clinician, in such a way that permits the user to interact with the embedded multimedia contents. |
-| Find Multimedia Report \[RAD-143\] | This transaction is used to find DiagnosticReport Resources that satisfy a set of parameters. |
+| Find Multimedia Report \[RAD-143\] | This transaction is used to find `DiagnosticReport` Resources that satisfy a set of parameters. |
 | Retrieve Rendered Multimedia Report \[RAD-144\] | This transaction is used by the Requester to retrieve a rendered report from the Responder. |
 | Display Referenced Images in Multimedia Report \[RAD-145\] | This transaction is used to present the images referenced in a multimedia report to someone, such as a radiologist or a clinician, in such a way that permits the user to interact with the images. |
 {:.grid .table-striped}
