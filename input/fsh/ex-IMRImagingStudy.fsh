@@ -1,7 +1,7 @@
 Instance: ex-ImagingStudy
 InstanceOf: IMRImagingStudy
 Title: "IMR ImagingStudy example"
-Description: "Simple IMR ImagingStudy to be used in DiagnosticReport and Observation"
+Description: "Simple IMR ImagingStudy to be used in DiagnosticReport"
 Usage: #example
 * identifier.system = DICOMUID
 * identifier.value = "urn:oid:1.2.3.4.5"
