@@ -196,10 +196,7 @@ The Report Reader shall be capable of displaying Grayscale Softcopy Presentation
 
 > Note: The Report Reader is permitted to ignore referenced images in the GSPS object that are outside the observation imaging context defined in the ImagingSelection resource unless Advanced Image Viewing Option is supported.
 
-The Report Reader shall be capable of display the following non-image references specified in the `ImagingSelection` resource:
-- instance.segmentList
-- instance.roiList
-- imageRegion
+The Report Reader shall be capable of displaying the following non-image references specified in the `ImagingSelection.instance.imageRegion` or `ImagingSelection.imageRegion`.
 
 #### 1:52.1.1.4 Rendered Report Reader
 
