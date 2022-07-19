@@ -1,14 +1,16 @@
 The Interactive Multimedia Report (IMR) Profile specifies how a diagnostic report with interactive multimedia content can be reliably encoded, communicated and presented.
 
-> **IMPORTANT**: IMR is NOT yet recommended for production use.
-> 
-> Profiles released for Trial Implementation by IHE Radiology typically ARE expected to be stable enough for  production use, however this release of IMR is intended for experimental implementation and feedback.  
->
-> IMR uses the FHIR ImagingSelection resource which is at maturity level 1. Maturity 1 resources are likely to be updated in the future with backward incompatible changes.
-> 
-> IMR uses the FHIR DiagnosticReport resource to model specialty agnostic imaging reports with interactive multimedia content. Modelling specialty specific reports such as Cardiac MRI, CT Head, MRI Lumbar Spine, NM Bone Scan, CT Angiography, etc. using IMR may expose issues which also result in backward incompatible changes.
-> 
-> Experimental implementation feedback may also result in other backward incompatible changes to the profile.
+<div markdown="1" class="stu-note">
+**IMPORTANT**: IMR is NOT yet recommended for production use.
+
+Profiles released for Trial Implementation by IHE Radiology typically ARE expected to be stable enough for  production use, however this release of IMR is intended for experimental implementation and feedback.  
+
+IMR uses the FHIR ImagingSelection resource which is at [maturity level 1](https://www.hl7.org/fhir/versions.html). Maturity 1 resources are likely to be updated in the future with backward incompatible changes.
+ 
+IMR uses the FHIR DiagnosticReport resource to model specialty agnostic imaging reports with interactive multimedia content. Further modelling may expose issues which also result in backward incompatible changes.
+ 
+Experimental implementation feedback may also result in other backward incompatible changes to the profile.
+</div>
 
 [Open and Closed Issues](issues.html)
 
