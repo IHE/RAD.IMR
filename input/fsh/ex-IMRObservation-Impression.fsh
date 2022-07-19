@@ -8,7 +8,7 @@ Usage: #example
 * basedOn = Reference(ServiceRequest/ex-ServiceRequest)
 * partOf = Reference(ImagingStudy/ex-ImagingStudy)
 * status = FHIRObservationStatus#final
-* category.coding = FHIRObservation#imaging "Imaging"
+* category[imaging].coding = FHIRObservation#imaging "Imaging"
 * code = LOINC#19005-8 "Radiology Imaging study [Impression] (narrative)"
 * subject = Reference(Patient/ex-Patient)
 * effectiveDateTime = 2020-12-31T23:50:50-05:00
@@ -24,7 +24,7 @@ Usage: #example
 * basedOn = Reference(ServiceRequest/ex-ServiceRequest)
 * partOf = Reference(ImagingStudy/ex-ImagingStudy)
 * status = FHIRObservationStatus#final
-* category.coding = FHIRObservation#imaging "Imaging"
+* category[imaging].coding = FHIRObservation#imaging "Imaging"
 * code = LOINC#19005-8 "Radiology Imaging study [Impression] (narrative)"
 * subject = Reference(Patient/ex-Patient)
 * effectiveDateTime = 2020-12-31T23:50:50-05:00
@@ -40,7 +40,7 @@ Usage: #example
 * basedOn = Reference(ServiceRequest/ex-ServiceRequest)
 * partOf = Reference(ImagingStudy/ex-ImagingStudy)
 * status = FHIRObservationStatus#final
-* category.coding = FHIRObservation#imaging "Imaging"
+* category[imaging].coding = FHIRObservation#imaging "Imaging"
 * code = LOINC#19005-8 "Radiology Imaging study [Impression] (narrative)"
 * subject = Reference(Patient/ex-Patient)
 * effectiveDateTime = 2020-12-31T23:50:50-05:00
@@ -57,7 +57,7 @@ Usage: #example
 * basedOn = Reference(ServiceRequest/ex-ServiceRequest)
 * partOf = Reference(ImagingStudy/ex-ImagingStudy)
 * status = FHIRObservationStatus#final
-* category.coding = FHIRObservation#imaging "Imaging"
+* category[imaging].coding = FHIRObservation#imaging "Imaging"
 * code = LOINC#19005-8 "Radiology Imaging study [Impression] (narrative)"
 * subject = Reference(Patient/ex-Patient)
 * effectiveDateTime = 2020-12-31T23:50:50-05:00
@@ -75,7 +75,7 @@ Usage: #example
 * basedOn = Reference(ServiceRequest/ex-ServiceRequest)
 * partOf = Reference(ImagingStudy/ex-ImagingStudy)
 * status = FHIRObservationStatus#final
-* category.coding = FHIRObservation#imaging "Imaging"
+* category[imaging].coding = FHIRObservation#imaging "Imaging"
 * code = LOINC#19005-8 "Radiology Imaging study [Impression] (narrative)"
 * subject = Reference(Patient/ex-Patient)
 * effectiveDateTime = 2020-12-31T23:50:50-05:00

@@ -3,8 +3,8 @@ InstanceOf: IMRImagingStudy
 Title: "IMR ImagingStudy example"
 Description: "Simple IMR ImagingStudy to be used in DiagnosticReport"
 Usage: #example
-* identifier.system = DICOMUID
-* identifier.value = "urn:oid:1.2.3.4.5"
+* identifier[studyUID].system = DICOMUID
+* identifier[studyUID].value = "urn:oid:1.2.3.4.5"
 * status = FHIRImagingStudyStatus#available
 * modality = DICOM#CT "Computed Tomography"
 * subject = Reference(Patient/ex-Patient)
@@ -22,8 +22,8 @@ InstanceOf: IMRImagingStudy
 Title: "IMR ImagingStudy example"
 Description: "Simple IMR ImagingStudy to be used as a comparison study in DiagnosticReport"
 Usage: #example
-* identifier.system = DICOMUID
-* identifier.value = "urn:oid:5.6.7.8.9"
+* identifier[studyUID].system = DICOMUID
+* identifier[studyUID].value = "urn:oid:5.6.7.8.9"
 * status = FHIRImagingStudyStatus#available
 * modality = DICOM#CT "Computed Tomography"
 * subject = Reference(Patient/ex-Patient)
