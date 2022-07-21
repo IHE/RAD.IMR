@@ -162,7 +162,7 @@ When a user clicks on the hyperlinks, the Report Reader shall display the initia
 
 > Note: The observation imaging context is captured in an `ImagingSelection` resource. See [RAD-141](RAD-141.html#2414141222-observation-imaging-context-in-an-imr-diagnosticreport-resource)
 
-A Report Reader shall support the display requirements for different object types in the observation imaging context as defined in the following sections. A Report Reader may support additional advanced behavior. This requirement may be satisfied by either implementing the required behaviors, or by grouping with another actor (e.g. Image Display Invoker in IID) that provides the required behaviors. The Report Reader may satisfy the baseline image viewing capabilities either by retrieving DICOM objects and rendering them, or by retrieving rendered DICOM objects using WADO-RS Retrieve [RAD-107], or a combination of both.
+A Report Reader shall support the display requirements for different object types in the observation imaging context as defined in the following sections. A Report Reader may support additional advanced behavior. This requirement may be satisfied by either implementing the required behaviors, or by grouping with another actor (e.g., Image Display Invoker in IID) that provides the required behaviors. The Report Reader may satisfy the baseline image viewing capabilities either by retrieving DICOM objects and rendering them, or by retrieving rendered DICOM objects using WADO-RS Retrieve [RAD-107], or a combination of both.
 
 > Note: The retrieve rendered images functionality of WADO-RS Retrieve [RAD-107] is defined in CP-RAD-475.
 
@@ -286,7 +286,7 @@ The HL7 Text Report Option involves rendering and presenting multimedia reports 
 
 A Report Creator that supports this option shall be able to create a text-only rendering of the report, including the textual representation of all measurements, and may include unambiguous textual representation of image references.
 
-> Note: How the Report Creator lays out the report into text-only format is out of scope of IMR, provided that that text-only report preserves the readability of the report.
+> Note: How the Report Creator lays out the report into text-only format is out of scope of IMR, provided that text-only report preserves the readability of the report.
 
 > Note: A textual representation of image references may look like (2,16) which means series 2 instance 16. Specific format for textual representation of image references is out of scope of IMR. As a result, interpretation of such information, if necessary, requires pre-arranged agreement between the Report Creator and non-IMR actors. The Report Creator may support different formats based on configuration.
 
@@ -296,7 +296,7 @@ A Report Creator shall be able to encode the text-only report in an HL7 ORU mess
 
 The Advanced Image Viewing Option involves the user being able to view images with advanced imaging tools.
 
-A Report Reader that supports the Advanced Image Viewing option:
+A Report Reader that supports the Advanced Image Viewing Option:
 - shall support scrolling display requirements as defined Section 4.16.4.2.2.5.5 in the [Basic Image Review (BIR)](https://www.ihe.net/uploadedFiles/Documents/Radiology/IHE_RAD_Suppl_BIR.pdf) supplement.
 - shall be able to construct WADO-RS URLs that confirm to the RetrieveSeries and RetrieveStudy semantics.
 
@@ -337,7 +337,7 @@ considerations and Section 1:52.6 describes some optional groupings in other rel
 
 ### 1:52.4.1 Concepts
 
-**TODO** Reference the HIMSS-SIIM IMR Technical Consideration Whitepaper when it is published
+**TODO** Reference the HIMSS-SIIM IMR Technical Consideration White Paper when it is published
 
 #### 1:52.4.1.1 Structure in Radiology Reporting
 
@@ -345,7 +345,7 @@ In reporting, structure can significantly improve usability, both for machine co
 
 ##### Report Content Organization 
 
-This aspect of structure involves organizing the content of the report into labelled sections and subsections.
+This aspect of structure involves organizing the content of the report into labeled sections and subsections.
 
 In a radiology report, although there are many variations of what information a report should contain depending on the procedure and specialty, there are general common sections in a report such as Indication, Methods, Findings, Impressions, etc.
 
@@ -392,7 +392,7 @@ These content should be available to the report authoring system so that it can 
 
 A key element for an interactive multimedia report is the ability to include relevant images and associated clinical findings such as measurements, region of interest (ROI), etc. with interactive links to the source images.
 
-Traditionally, these annotations, markups, presentation states, and key images could be captured as DICOM objects such as Grayscale Softcopy Presentation State (GSPS), Structured Report (SR), or Key Object Selection Document (KOS). However, these objects are designed to capture evidence for long-term reference instead of real-time communication or composition. Some PACS will create these evidence objects at the end of a session in order to capture all the data points created by the image-centric specialist in one object, rather than create multiple evidence objects resulting in one per data point. As a result, these evidence objects in DICOM are good resources for subsequent interactive access when viewing an IMR, but may not be good candidates as as a mean to communication report contents from the PACS to the reporting system during a reporting session.
+Traditionally, these annotations, markups, presentation states, and key images could be captured as DICOM objects such as Grayscale Softcopy Presentation State (GSPS), Structured Report (SR), or Key Object Selection Document (KOS). However, these objects are designed to capture evidence for long-term reference instead of real-time communication or composition. Some PACS will create these evidence objects at the end of a session in order to capture all the data points created by the image-centric specialist in one object, rather than create multiple evidence objects resulting in one per data point. As a result, these evidence objects in DICOM are good resources for subsequent interactive access when viewing an IMR, but may not be good candidates as a means to communicate report contents from the PACS to the reporting system during a reporting session.
 
 As the image-centric specialist captures measurements, regions of interest, and other data points, ideally the PACS can provide those data points to the reporting system in real-time without introducing any unnecessary interruptions, or adding transitory content to the permanent record. There is currently no widely adopted standard mechanism to support this real-time communication. Some reporting systems provide proprietary API that the PACS can leverage to achieve this.
 
@@ -424,7 +424,7 @@ Report Creators in IMR are required to support placing image references in conte
 
 An observation imaging context in IMR can include image references and non-image references.
 
-> Note: IMR focuses on specifying references to observation imaging context in a report. Other references to external resources (e.g. ACR Lung-RADS website, citations or report reader surveys) are out of scope of IMR.
+> Note: IMR focuses on specifying references to observation imaging context in a report. Other references to external resources (e.g., ACR Lung-RADS website, citations or report reader surveys) are out of scope of IMR.
 
 ##### Image References
 
@@ -432,12 +432,12 @@ An image reference is a reference to an image to which a finding or observation 
 
 Each image reference in a report is in the context of a series. Furthermore, each image reference includes one of the following context detail patterns:
 
-- a single frame in a single-frame object (e.g. object 10)
-- a single frame in a multi-frame object (e.g. object 10 frame 3)
-- a range of frames in a single frame object (e.g. object 3-5)
-- a range of frames in a multi-frame object (e.g. object 10 frame 3-5)
-- a discrete list of frames in a single frame object (e.g. object 10,14,17)
-- a discrete list of frames in a multi-frame object (e.g. object 10 frame 10,14,17)
+- a single frame in a single-frame object (e.g., object 10)
+- a single frame in a multi-frame object (e.g., object 10 frame 3)
+- a range of frames in a single frame object (e.g., object 3-5)
+- a range of frames in a multi-frame object (e.g., object 10 frame 3-5)
+- a discrete list of frames in a single frame object (e.g., object 10,14,17)
+- a discrete list of frames in a multi-frame object (e.g., object 10 frame 10,14,17)
 - all frames in a multi-frame object
 - all objects in a series
 - all frames in a dimension in a multi-frame object (as a discrete list of frames)
@@ -459,17 +459,17 @@ In addition to image references, an observation imaging context may also specify
 
 Each non-image reference in a report is in the context of an image reference. Furthermore, each non-image reference includes one of the following context detail patterns:
 
-- a rough location (e.g. an arrow pointing to a point of interest)
-- a specific location (e.g. a specific coordinates in an image))
-- a specific region (e.g. a contour of lesion boundary)
-- a bounding region (e.g. a box or circle around a feature of interest)
-- a measurement (e.g. a line segment in an image and the length of the line)
+- a rough location (e.g., an arrow pointing to a point of interest)
+- a specific location (e.g., a specific coordinates in an image))
+- a specific region (e.g., a contour of lesion boundary)
+- a bounding region (e.g., a box or circle around a feature of interest)
+- a measurement (e.g., a line segment in an image and the length of the line)
 
 > Note: See [AI Results](https://www.ihe.net/uploadedFiles/Documents/Radiology/IHE_RAD_Suppl_AIR.pdf) Section 6.5.3.4, 6.5.3.5 and 6.5.3.6 for details regarding how locations, regions and parametric maps are captured as DICOM objects.
 
 #### 1:52.4.1.6 DiagnosticReport Referenced Resources
 
-Multimedia reports are encoded using a FHIR `DiagnosticReport` resource as the top level resource. The `DiagnosticReport` resource references other resources that provide additional report content, imaging procedure context, and organizational context. Some of these referenced resources are created and managed by other enterprise systems (e.g. the patient resource is managed by the EMR). Others are created together with the `DiagnosticReport`.
+Multimedia reports are encoded using a FHIR `DiagnosticReport` resource as the top level resource. The `DiagnosticReport` resource references other resources that provide additional report content, imaging procedure context, and organizational context. Some of these referenced resources are created and managed by other enterprise systems (e.g., the patient resource is managed by the EMR). Others are created together with the `DiagnosticReport`.
 
 ##### Imaging Procedure Context
 
@@ -636,27 +636,27 @@ IMR Profile actors.
     <tr>
       <td rowspan="9">Report Creator</td>
       <td><a href="https://www.ihe.net/uploadedFiles/Documents/Radiology/IHE_RAD_Suppl_RD.pdf">RD Report Creator</a></td>
-      <td>To send reports using HL7 ORU if the HL7 Text Report Option is supported</td>
+      <td>To send reports using HL7 ORU if the HL7 Text Report Option is supported.</td>
     </tr>
     <tr>
       <td><a href="https://www.ihe.net/uploadedFiles/Documents/Radiology/IHE_RAD_TF_Vol1.pdf">SWF.b Evidence Creator</a></td>
-      <td>To re-measure the observations in the multimedia report and generate new report (addendum)</td>
+      <td>To re-measure the observations in the multimedia report and generate new report (addendum).</td>
     </tr>
     <tr>
       <td><a href="https://www.ihe.net/uploadedFiles/Documents/Radiology/IHE_RAD_Suppl_MRRT.pdf">MRRT Report Creator</a></td>
-      <td>To use report templates to assist the radiologist in creating the diagnostic report, and capture the final report in the IMR multimedia report format</td>
+      <td>To use report templates to assist the radiologist in creating the diagnostic report, and capture the final report in the IMR multimedia report format.</td>
     </tr>
     <tr>
       <td><a href="https://www.ihe.net/uploadedFiles/Documents/Radiology/IHE_RAD_Suppl_AIR.pdf">AIR Evidence Creator</a></td>
-      <td>To include AI results in the diagnostic reports</td>
+      <td>To include AI results in the diagnostic reports.</td>
     </tr>
     <tr>
       <td><a href="https://profiles.ihe.net/ITI/PIXm/index.html">PIXm Patient Identifier Cross-Reference Consumer</a></td>
-      <td>To obtain the patient resource reference required in the diagnostic report</td>
+      <td>To obtain the patient resource reference required in the diagnostic report.</td>
     </tr>
     <tr>
       <td><a href="https://profiles.ihe.net/ITI/PDQm/index.html">PDQm Patient Demographics Consumer</a></td>
-      <td>To obtain the patient resource reference that is the subject in the diagnostic report</td>
+      <td>To obtain the patient resource reference that is the subject in the diagnostic report.</td>
     </tr>
     <tr>
       <td><a href="https://profiles.ihe.net/ITI/MHD/index.html">MHD Document Source</a></td>
@@ -664,20 +664,20 @@ IMR Profile actors.
     </tr>    
     <tr>
       <td><a href="https://profiles.ihe.net/ITI/mCSD/index.html">mCSD Care Services Selective Consumer</a></td>
-      <td>To obtain the organization, facilities and practitioner resource references that are required for the diagnostic report</td>
+      <td>To obtain the organization, facilities and practitioner resource references that are required for the diagnostic report.</td>
     </tr>
     <tr>
       <td><a href="https://profiles.ihe.net/ITI/IUA/index.html">IUA Authorization Client</a></td>
-      <td>To provide authorization claims when invoking a request with another actor</td>
+      <td>To provide authorization claims when invoking a request with another actor.</td>
     </tr>
     <tr>
       <td rowspan="2">Report Repository</td>
       <td><a href="https://www.ihe.net/uploadedFiles/Documents/Radiology/IHE_RAD_Suppl_RD.pdf">RD Report Manager</a></td>
-      <td>To manage both text reports and multimedia reports. May also support converting reports from one format to another</td>
+      <td>To manage both text reports and multimedia reports. May also support converting reports from one format to another.</td>
     </tr>
     <tr>
       <td><a href="https://profiles.ihe.net/ITI/IUA/index.html">IUA Resource Server</a></td>
-      <td>To enforce only authorized access to the resources stored in the repository</td>
+      <td>To enforce only authorized access to the resources stored in the repository.</td>
     </tr>
     <tr>
       <td rowspan="6">Report Reader</td>
@@ -686,28 +686,28 @@ IMR Profile actors.
     </tr>
     <tr>
       <td><a href="https://www.ihe.net/uploadedFiles/Documents/Radiology/IHE_RAD_TF_Vol1.pdf">SWF.b Image Display</a></td>
-      <td>To support the display requirements for observation imaging context in the multimedia report</td>
+      <td>To support the display requirements for observation imaging context in the multimedia report.</td>
     </tr>
     <tr>
       <td><a href="https://www.ihe.net/uploadedFiles/Documents/Radiology/IHE_RAD_Suppl_IID.pdf">IID Image Display Invoker</a></td>
-      <td>To delegate the display requirements for observation imaging context to an external Image Display (See Note 1)</td>
+      <td>To delegate the display requirements for observation imaging context to an external Image Display. (See Note 1)</td>
     </tr>
     <tr>
       <td><a href="https://www.ihe.net/uploadedFiles/Documents/Radiology/IHE_RAD_Suppl_BIR.pdf">BIR Image Display</a></td>
-      <td>To support the display requirements for observation imaging context in the multimedia report</td>
+      <td>To support the display requirements for observation imaging context in the multimedia report.</td>
     </tr>
     <tr>
       <td><a href="https://www.ihe.net/uploadedFiles/Documents/Radiology/IHE_RAD_Suppl_AIR.pdf">AIR Image Display</a></td>
-      <td>To show analysis results that are captured in AIR results format</td>
+      <td>To show analysis results that are captured in AIR results format.</td>
     </tr>
     <tr>
       <td><a href="https://profiles.ihe.net/ITI/IUA/index.html">IUA Authorization Client</a></td>
-      <td>To provide authorization claims when invoking a request with another actor</td>
+      <td>To provide authorization claims when invoking a request with another actor.</td>
     </tr>
     <tr>
       <td>Rendered Report Reader</td>
       <td><a href="https://profiles.ihe.net/ITI/IUA/index.html">IUA Authorization Client</a></td>
-      <td>To provide authorization claims when invoking a request with another actor</td>
+      <td>To provide authorization claims when invoking a request with another actor.</td>
     </tr>
   </tbody>
 </table>
