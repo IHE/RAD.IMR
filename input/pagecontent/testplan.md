@@ -1,5 +1,5 @@
 
-**Note: During the Public Comment phase, this page contains generic statements.  Detailed test plans will be added during the Trial Implementation phase.
+**Note: Detailed test plans will be added during the Trial Implementation phase.
 
 ### Unit Test Procedure
 
