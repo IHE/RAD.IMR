@@ -7,12 +7,14 @@ Profiles released for Trial Implementation by IHE Radiology typically ARE expect
 
 IMR uses the FHIR ImagingSelection resource which is at [maturity level 1](https://www.hl7.org/fhir/versions.html). Maturity 1 resources are likely to be updated in the future with backward incompatible changes.
  
-IMR uses the FHIR DiagnosticReport resource to model specialty agnostic imaging reports with interactive multimedia content. Further modelling may expose issues which also result in backward incompatible changes.
+IMR uses the FHIR DiagnosticReport resource to model specialty agnostic imaging reports with interactive multimedia content. Further modeling may expose issues which also result in backward incompatible changes.
  
 Experimental implementation feedback may also result in other backward incompatible changes to the profile.
-</div>
 
 [Open and Closed Issues](issues.html)
+
+</div>
+
 
 ### Organization of This Guide
 This guide is organized into five main sections:

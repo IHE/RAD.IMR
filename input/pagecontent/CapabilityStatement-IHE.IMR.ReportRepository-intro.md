@@ -4,4 +4,4 @@ A Report Repository stores multimedia reports received from Report Creators and 
 
 A Report Repository supports query/retrieve of multimedia reports by Report Readers and Rendered Report Readers.
 
-This Actor uses [Store Multimedia Report \[RAD-141\]](RAD-141.html), [Find Multimedia Report \[RAD-143\]](RAD-143.html), and [Retrieve Rendered Multimedia Report \[RAD-144\]](RAD-144.html) transaction.
+This actor uses [Store Multimedia Report \[RAD-141\]](RAD-141.html), [Find Multimedia Report \[RAD-143\]](RAD-143.html), and [Retrieve Rendered Multimedia Report \[RAD-144\]](RAD-144.html) transactions.
