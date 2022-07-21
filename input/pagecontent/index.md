@@ -10,9 +10,11 @@ IMR uses the FHIR ImagingSelection resource which is at [maturity level 1](https
 IMR uses the FHIR DiagnosticReport resource to model specialty agnostic imaging reports with interactive multimedia content. Further modeling may expose issues which also result in backward incompatible changes.
  
 Experimental implementation feedback may also result in other backward incompatible changes to the profile.
-</div>
 
 [Open and Closed Issues](issues.html)
+
+</div>
+
 
 ### Organization of This Guide
 This guide is organized into five main sections:
