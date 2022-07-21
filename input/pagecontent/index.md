@@ -11,7 +11,8 @@ IMR uses the FHIR DiagnosticReport resource to model specialty agnostic imaging 
  
 Experimental implementation feedback may also result in other backward incompatible changes to the profile.
 
-[Open and Closed Issues](issues.html)
+| [Open and Closed Issues](issues.html) |
+{: .grid}
 
 </div>
 
