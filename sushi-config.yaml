@@ -74,9 +74,15 @@ pages:
   testplan.md:
     title: "Test Plan"
     generation: markdown
+    extension: 
+      - url: http://hl7.org/fhir/StructureDefinition/structuredefinition-standards-status
+        valueCode: informative
   issues.md:
     title: Open and Closed issues
     generation: markdown
+    extension: 
+      - url: http://hl7.org/fhir/StructureDefinition/structuredefinition-standards-status
+        valueCode: informative
   other.md:
     title: Changes to Other Documents
     generation: markdown
