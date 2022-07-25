@@ -337,8 +337,6 @@ considerations and Section 1:52.6 describes some optional groupings in other rel
 
 ### 1:52.4.1 Concepts
 
-**TODO** Reference the HIMSS-SIIM IMR Technical Consideration White Paper when it is published
-
 #### 1:52.4.1.1 Structure in Radiology Reporting
 
 In reporting, structure can significantly improve usability, both for machine consumption and human consumption. Structure can refer to several aspects within a report as follows:
