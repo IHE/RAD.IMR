@@ -5,7 +5,7 @@
       "status": "additional",
       "div": "<div xmlns=\"http://www.w3.org/1999/xhtml\">\n\tThis Requirements CapabilityStatement describes the Report Creator.\n\t</div>"
     },
-    "url": "http://profiles.ihe.net/RAD/IMR/CapabilityStatement/IHE.IMR.ReportCreator",
+    "url": "https://profiles.ihe.net/RAD/IMR/CapabilityStatement/IHE.IMR.ReportCreator",
     "name": "IHE_IMR_ReportCreator",
     "title": "Report Creator",
     "status": "active",

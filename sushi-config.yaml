@@ -1,7 +1,7 @@
 # sushi-config.yaml is documented https://fshschool.org/docs/sushi/configuration/
 # ───────────────────────────────────────────────────
 id: ihe.rad.imr
-canonical: http://profiles.ihe.net/RAD/IMR
+canonical: https://profiles.ihe.net/RAD/IMR
 version: 1.0.0
 #releaseLabel: ci-build
 #releaseLabel: ballot

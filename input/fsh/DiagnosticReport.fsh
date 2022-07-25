@@ -77,7 +77,7 @@ Instance: DiagnosticReport-ImagingStudy
 InstanceOf: SearchParameter
 Title: "Search on the imagingStudy attribute in IMR DiagnosticReport"
 Usage: #definition
-* url = "http://profiles.ihe.net/RAD/IMR/SearchParameter/DiagnosticReport-ImagingStudy"
+* url = "https://profiles.ihe.net/RAD/IMR/SearchParameter/DiagnosticReport-ImagingStudy"
 * description = "This SearchParameter enables finding DiagnosticReports by ImagingStudy."
 * name = "ImagingStudy"
 * status = #active
