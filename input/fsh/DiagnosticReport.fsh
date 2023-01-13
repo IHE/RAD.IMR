@@ -63,7 +63,7 @@ Description:    "IHE Interactive Multimedia Report (IMR) profile on DiagnosticRe
 * presentedForm.hash 1..1 MS
 * presentedForm contains html 1..* and pdf 0..*
 * presentedForm[html].contentType = MIME#text/html "HTML"
-* presentedForm[pdf].contentType = MIME#applicatoin/pdf "PDF"
+* presentedForm[pdf].contentType = MIME#application/pdf "PDF"
 
 * extension contains AssociatedStudy named associatedStudy 0..* MS
 
