@@ -12,3 +12,4 @@ www
 /_genonce.bat
 /_updatePublisher.bat
 /_updatePublisher.sh
+.DS_Store
