@@ -178,7 +178,7 @@ The Report Reader shall support display capabilities defined in Table 1.52.1.1.3
 
 | Capability | BIR Reference |
 |------------|-------------|
-| Layout, Tiling, Selection, Rotation and Flipping (Note 1) | Section 4.16.5.2.2.5.2 |
+| Layout, Tiling, Selection, Rotation and Flipping (Note 1) | Section 4.16.4.2.2.5.2 |
 | Windowing and Rendering | Section 4.16.4.2.2.5.4 |
 | Zooming and Panning | Section 4.16.4.2.2.5.6 |
 | Laterality | Section 4.16.4.2.2.5.7 |
