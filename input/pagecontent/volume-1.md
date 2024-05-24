@@ -85,13 +85,13 @@ Table 1:52.1-1 lists the transactions for each actor directly involved in the IM
       <td>WADO-RS Retrieve [RAD-107]</td>
       <td>Initiator</td>
       <td>O</td>
-      <td>RAD TF-2: 4.107 (Note 3)</td>
+      <td>RAD TF-2: 4.107</td>
     </tr>
     <tr>
       <td>Display Analysis Result [RAD-136]</td>
       <td>N/A (Note 2)</td>
       <td>O</td>
-      <td>RAD TF-2: 4.136 (Note 4)</td>
+      <td>RAD TF-2: 4.136 (Note 3)</td>
     </tr>    
     <tr>
       <td rowspan="3"><a href="#152114-rendered-report-reader">Rendered Report Reader</a></td>
@@ -127,9 +127,7 @@ Table 1:52.1-1 lists the transactions for each actor directly involved in the IM
 
 > Note 2: These transactions are not typical IHE transactions between two devices; the primary focus is on the required behavior of the display rather than messaging between two actors. Therefore the notion of Initiator or Responder is not applicable (N/A) for the actor on the transaction.
 
-> Note 3: WADO-RS Retrieve [RAD-107] is defined in the [Web-based Image Access (WIA)](https://www.ihe.net/uploadedFiles/Documents/Radiology/IHE_RAD_Suppl_WIA.pdf) Supplement.
-
-> Note 4: Display Analysis Results [RAD-136] is defined in the [AI Results (AIR)](https://www.ihe.net/uploadedFiles/Documents/Radiology/IHE_RAD_Suppl_AIR.pdf) Supplement.
+> Note 3: Display Analysis Results [RAD-136] is defined in the [AI Results (AIR)](https://www.ihe.net/uploadedFiles/Documents/Radiology/IHE_RAD_Suppl_AIR.pdf) Supplement.
 
 ### 1:52.1.1 Actors Description and Actor Profile Requirements
 Most requirements are documented in RAD TF-2 Transactions. This section documents any additional requirements on this profile's actors.
@@ -163,8 +161,6 @@ When a user clicks on the hyperlinks, the Report Reader shall display the initia
 > Note: The observation imaging context is captured in an `ImagingSelection` resource. See [RAD-141](RAD-141.html#2414141222-observation-imaging-context-in-an-imr-diagnosticreport-resource)
 
 A Report Reader shall support the display requirements for different object types in the observation imaging context as defined in the following sections. A Report Reader may support additional advanced behavior. This requirement may be satisfied by either implementing the required behaviors, or by grouping with another actor (e.g., Image Display Invoker in IID) that provides the required behaviors. The Report Reader may satisfy the baseline image viewing capabilities either by retrieving DICOM objects and rendering them, or by retrieving rendered DICOM objects using WADO-RS Retrieve [RAD-107], or a combination of both.
-
-> Note: The retrieve rendered images functionality of WADO-RS Retrieve [RAD-107] is defined in CP-RAD-475.
 
 The Report Reader is only required to display objects referenced in the observation imaging context captured in an `ImagingSelection` resource. The Report Reader may display additional images if it supports the Advanced Image Viewing Option.
 
