@@ -172,18 +172,18 @@ The Report Reader is only required to display objects referenced in the observat
 
 The Report Reader shall be able to display any referenced DICOM image objects (single frame or multi-frame) for which it claims support in any IHE Content or Workflow profile or DICOM Conformance Statement.
 
-The Report Reader shall support display capabilities defined in Table 1.52.1.1.3.1.1-1 [Basic Image Review (BIR)](https://www.ihe.net/uploadedFiles/Documents/Radiology/IHE_RAD_Suppl_BIR.pdf) Profile.
+The Report Reader shall support display capabilities defined in Table 1.52.1.1.3.1.1-1.
 
 **Table 1.52.1.1.3.1.1-1: Image Viewing Capability Required in IMR**
 
 | Capability | BIR Reference |
 |------------|-------------|
-| Layout, Tiling, Selection, Rotation and Flipping (Note 1) | Section 4.16.4.2.2.5.2 |
-| Windowing and Rendering | Section 4.16.4.2.2.5.4 |
-| Zooming and Panning | Section 4.16.4.2.2.5.6 |
-| Laterality | Section 4.16.4.2.2.5.7 |
-| Annotation | Section 4.16.4.2.2.5.8 |
-| Cine | Section 4.16.4.2.2.5.9 |
+| Layout, Tiling, Selection, Rotation and Flipping (Note 1) | RAD TF-1: Section 4.16.4.2.2.5.2 |
+| Windowing and Rendering | RAD TF-1: Section 4.16.4.2.2.5.4 |
+| Zooming and Panning | RAD TF-1: Section 4.16.4.2.2.5.6 |
+| Laterality | RAD TF-1: Section 4.16.4.2.2.5.7 |
+| Annotation | RAD TF-1: Section 4.16.4.2.2.5.8 |
+| Cine | RAD TF-1: Section 4.16.4.2.2.5.9 |
 {: .grid}
 
 > Note 1: A Report Reader is permitted to only support a single viewport.
@@ -297,7 +297,7 @@ A Report Creator shall be able to encode the text-only report in an HL7 ORU mess
 The Advanced Image Viewing Option involves the user being able to view images with advanced imaging tools.
 
 A Report Reader that supports the Advanced Image Viewing Option:
-- shall support scrolling display requirements as defined Section 4.16.4.2.2.5.5 in the [Basic Image Review (BIR)](https://www.ihe.net/uploadedFiles/Documents/Radiology/IHE_RAD_Suppl_BIR.pdf) supplement.
+- shall support scrolling display requirements as defined RAD TF-1: Section 4.16.4.2.2.5.5 in the Basic Image Review (BIR) supplement.
 - shall be able to construct WADO-RS URLs that confirm to the RetrieveSeries and RetrieveStudy semantics.
 
 > Note: Multiplanar Reconstruction (MPR) is available in many PACS implementations; it is an advanced operation that is computationally intensive. For the interactive image viewing capability in an interactive multimedia report, MPR is not expected to be available. If viewing of the images from different planes is desirable, then the acquired data should be reconstructed to other planes and then be saved as separate set of images. These new set of reconstructed images can then be referenced in the `DiagnosticReport` resource.
