@@ -293,7 +293,7 @@ A Report Creator shall be able to encode the text-only report in an HL7 ORU mess
 The Advanced Image Viewing Option involves the user being able to view images with advanced imaging tools.
 
 A Report Reader that supports the Advanced Image Viewing Option:
-- shall support scrolling display requirements as defined RAD TF-1: Section 4.16.4.2.2.5.5 in the Basic Image Review (BIR) supplement.
+- shall support scrolling display requirements as defined in RAD TF-1: 4.16.4.2.2.5.5 in the Basic Image Review (BIR) Profile.
 - shall be able to construct WADO-RS URLs that confirm to the RetrieveSeries and RetrieveStudy semantics.
 
 > Note: Multiplanar Reconstruction (MPR) is available in many PACS implementations; it is an advanced operation that is computationally intensive. For the interactive image viewing capability in an interactive multimedia report, MPR is not expected to be available. If viewing of the images from different planes is desirable, then the acquired data should be reconstructed to other planes and then be saved as separate set of images. These new set of reconstructed images can then be referenced in the `DiagnosticReport` resource.
