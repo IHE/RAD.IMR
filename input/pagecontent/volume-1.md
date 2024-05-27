@@ -85,13 +85,13 @@ Table 1:52.1-1 lists the transactions for each actor directly involved in the IM
       <td>WADO-RS Retrieve [RAD-107]</td>
       <td>Initiator</td>
       <td>O</td>
-      <td>RAD TF-2: 4.107 (Note 3)</td>
+      <td>RAD TF-2: 4.107</td>
     </tr>
     <tr>
       <td>Display Analysis Result [RAD-136]</td>
       <td>N/A (Note 2)</td>
       <td>O</td>
-      <td>RAD TF-2: 4.136 (Note 4)</td>
+      <td>RAD TF-2: 4.136 (Note 3)</td>
     </tr>    
     <tr>
       <td rowspan="3"><a href="#152114-rendered-report-reader">Rendered Report Reader</a></td>
@@ -127,9 +127,7 @@ Table 1:52.1-1 lists the transactions for each actor directly involved in the IM
 
 > Note 2: These transactions are not typical IHE transactions between two devices; the primary focus is on the required behavior of the display rather than messaging between two actors. Therefore the notion of Initiator or Responder is not applicable (N/A) for the actor on the transaction.
 
-> Note 3: WADO-RS Retrieve [RAD-107] is defined in the [Web-based Image Access (WIA)](https://www.ihe.net/uploadedFiles/Documents/Radiology/IHE_RAD_Suppl_WIA.pdf) Supplement.
-
-> Note 4: Display Analysis Results [RAD-136] is defined in the [AI Results (AIR)](https://www.ihe.net/uploadedFiles/Documents/Radiology/IHE_RAD_Suppl_AIR.pdf) Supplement.
+> Note 3: Display Analysis Results [RAD-136] is defined in the [AI Results (AIR)](https://www.ihe.net/uploadedFiles/Documents/Radiology/IHE_RAD_Suppl_AIR.pdf) Supplement.
 
 ### 1:52.1.1 Actors Description and Actor Profile Requirements
 Most requirements are documented in RAD TF-2 Transactions. This section documents any additional requirements on this profile's actors.
@@ -164,26 +162,24 @@ When a user clicks on the hyperlinks, the Report Reader shall display the initia
 
 A Report Reader shall support the display requirements for different object types in the observation imaging context as defined in the following sections. A Report Reader may support additional advanced behavior. This requirement may be satisfied by either implementing the required behaviors, or by grouping with another actor (e.g., Image Display Invoker in IID) that provides the required behaviors. The Report Reader may satisfy the baseline image viewing capabilities either by retrieving DICOM objects and rendering them, or by retrieving rendered DICOM objects using WADO-RS Retrieve [RAD-107], or a combination of both.
 
-> Note: The retrieve rendered images functionality of WADO-RS Retrieve [RAD-107] is defined in CP-RAD-475.
-
 The Report Reader is only required to display objects referenced in the observation imaging context captured in an `ImagingSelection` resource. The Report Reader may display additional images if it supports the Advanced Image Viewing Option.
 
 ###### 1.52.1.1.3.1.1 Image References
 
 The Report Reader shall be able to display any referenced DICOM image objects (single frame or multi-frame) for which it claims support in any IHE Content or Workflow profile or DICOM Conformance Statement.
 
-The Report Reader shall support display capabilities defined in Table 1.52.1.1.3.1.1-1 [Basic Image Review (BIR)](https://www.ihe.net/uploadedFiles/Documents/Radiology/IHE_RAD_Suppl_BIR.pdf) Profile.
+The Report Reader shall support display capabilities defined in Table 1.52.1.1.3.1.1-1.
 
 **Table 1.52.1.1.3.1.1-1: Image Viewing Capability Required in IMR**
 
 | Capability | BIR Reference |
 |------------|-------------|
-| Layout, Tiling, Selection, Rotation and Flipping (Note 1) | Section 4.16.5.2.2.5.2 |
-| Windowing and Rendering | Section 4.16.4.2.2.5.4 |
-| Zooming and Panning | Section 4.16.4.2.2.5.6 |
-| Laterality | Section 4.16.4.2.2.5.7 |
-| Annotation | Section 4.16.4.2.2.5.8 |
-| Cine | Section 4.16.4.2.2.5.9 |
+| Layout, Tiling, Selection, Rotation and Flipping (Note 1) | RAD TF-1: Section 4.16.4.2.2.5.2 |
+| Windowing and Rendering | RAD TF-1: Section 4.16.4.2.2.5.4 |
+| Zooming and Panning | RAD TF-1: Section 4.16.4.2.2.5.6 |
+| Laterality | RAD TF-1: Section 4.16.4.2.2.5.7 |
+| Annotation | RAD TF-1: Section 4.16.4.2.2.5.8 |
+| Cine | RAD TF-1: Section 4.16.4.2.2.5.9 |
 {: .grid}
 
 > Note 1: A Report Reader is permitted to only support a single viewport.
@@ -297,7 +293,7 @@ A Report Creator shall be able to encode the text-only report in an HL7 ORU mess
 The Advanced Image Viewing Option involves the user being able to view images with advanced imaging tools.
 
 A Report Reader that supports the Advanced Image Viewing Option:
-- shall support scrolling display requirements as defined Section 4.16.4.2.2.5.5 in the [Basic Image Review (BIR)](https://www.ihe.net/uploadedFiles/Documents/Radiology/IHE_RAD_Suppl_BIR.pdf) supplement.
+- shall support scrolling display requirements as defined in RAD TF-1: 4.16.4.2.2.5.5 in the Basic Image Review (BIR) Profile.
 - shall be able to construct WADO-RS URLs that confirm to the RetrieveSeries and RetrieveStudy semantics.
 
 > Note: Multiplanar Reconstruction (MPR) is available in many PACS implementations; it is an advanced operation that is computationally intensive. For the interactive image viewing capability in an interactive multimedia report, MPR is not expected to be available. If viewing of the images from different planes is desirable, then the acquired data should be reconstructed to other planes and then be saved as separate set of images. These new set of reconstructed images can then be referenced in the `DiagnosticReport` resource.

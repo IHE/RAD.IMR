@@ -71,6 +71,7 @@ Extension: AssociatedStudy
 Title: "IMR DiagnosticReport Associated Study"
 Id: associatedStudy
 Description: "Associated studies used in part of diagnostic reporting"
+Context: DiagnosticReport
 * value[x] only Reference(ImagingStudy or DiagnosticReport)
 
 Instance: DiagnosticReport-ImagingStudy
