@@ -5,7 +5,6 @@ Alias: LOINC = http://loinc.org
 Alias: HL7V2 = http://terminology.hl7.org/CodeSystem/v2-0203
 Alias: FHIRObservation = http://terminology.hl7.org/CodeSystem/observation-category
 Alias: FHIREndpoint = http://terminology.hl7.org/CodeSystem/endpoint-connection-type
-Alias: FHIRIntent = http://hl7.org/fhir/request-intent
 Alias: FHIRRequestStatus = http://hl7.org/fhir/request-status
 Alias: FHIRRequestIntent = http://hl7.org/fhir/request-intent
 Alias: FHIRImagingStudyStatus = http://hl7.org/fhir/imagingstudy-status

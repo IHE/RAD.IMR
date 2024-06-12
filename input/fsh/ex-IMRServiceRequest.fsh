@@ -7,6 +7,6 @@ Usage: #example
 * identifier[accession].system = "http://www.acme.com/identifiers/accession"
 * identifier[accession].value = "12345"
 * status = FHIRRequestStatus#completed
-* intent = FHIRRequestIntent#order
+* intent = FHIRRequestIntent#order "Order"
 * category.coding = SCT#363679005 "Imaging"
 * subject = Reference(Patient/ex-Patient)

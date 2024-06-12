@@ -2,15 +2,27 @@
 # instructions for ignoreWarnings.txt https://confluence.hl7.org/pages/viewpage.action?pageId=66938614#ImplementationGuideParameters-ManagingWarningsandHints
 
 # Use the generic DICOM system works instead of the following link
-ValueSet http://dicom.nema.org/medical/dicom/current/output/chtml/part16/sect_CID_29.html not found by validator
+ValueSet 'http://dicom.nema.org/medical/dicom/current/output/chtml/part16/sect_CID_29.html' not found
 ValueSet http://dicom.nema.org/medical/dicom/current/output/chtml/part16/sect_CID_33.html not found by validator
 ValueSet http://dicom.nema.org/medical/dicom/current/output/chtml/part16/sect_CID_7010.html not found by validator
 
 # FHIR ImagingStudy is still referring to the following link that is obsolete. Use LOINC code directly instead.
-ValueSet http://www.rsna.org/RadLex_Playbook.aspx not found by validator
+ValueSet 'http://www.rsna.org/RadLex_Playbook.aspx' not found
 
 # There is an embedded XML markup in the finding text. The text is meant to be preprocessed before presenting.
 The string value contains text that looks like embedded HTML tags. If this content is rendered to HTML without appropriate post-processing, it may be a security risk
 
 # There is only one entry in the slice. So this is not an issue.
 The repeating element has a pattern. The pattern will apply to all the repeats (this has not been clear to all users)
+
+# Observation is experimental. More details will be defined in IHE IDR instead.
+Best Practice Recommendation: In general, all observations should have a performer
+
+# Need reference to IID endpoint
+Reference to draft CodeSystem http://terminology.hl7.org/CodeSystem/endpoint-connection-type|2.1.0
+
+# Same code as in 5.0.0
+Reference to draft CodeSystem http://hl7.org/fhir/request-intent|4.0.1
+
+# From base FHIR
+Reference to draft CodeSystem http://terminology.hl7.org/CodeSystem/observation-category|1.0.0
