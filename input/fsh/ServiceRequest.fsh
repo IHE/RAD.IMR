@@ -31,11 +31,11 @@ while some other departments (e.g. cardiology) may not create an order at all.
 ValueSet: IMRServiceRequestIntentVS
 Id: imr-servicerequest-intent-vs
 Title: "IMR ServiceRequest intent Value Set"
-Description: "Codes representing the applicable intent for a ServiceRequestd."
-* FHIRIntent#order "Order"
-* FHIRIntent#original-order "Original Order"
-* FHIRIntent#reflex-order "Reflex Order"
-* FHIRIntent#filler-order "Filler Order"
-* FHIRIntent#instance-order "Instance Order"
+Description: "Codes representing the applicable intent for an imaging ServiceRequest."
+* FHIRRequestIntent#order "Order"
+* FHIRRequestIntent#original-order "Original Order"
+* FHIRRequestIntent#reflex-order "Reflex Order"
+* FHIRRequestIntent#filler-order "Filler Order"
+* FHIRRequestIntent#instance-order "Instance Order"
 
-
+* ^experimental = false

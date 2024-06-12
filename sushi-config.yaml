@@ -86,6 +86,9 @@ pages:
   other.md:
     title: Changes to Other Documents
     generation: markdown
+  download.md:
+    title: "Download and Analysis"
+    generation: markdown
 
 menu:
   IMR Home: index.html
@@ -105,3 +108,4 @@ menu:
   Test Plan: testplan.html
   Artifacts: artifacts.html
   Other: other.html
+  Download: download.html
