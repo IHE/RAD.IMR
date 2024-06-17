@@ -54,7 +54,7 @@ resources:
 pages:
 # itemize here each narrative page. Include assigned section numbers when appropriate
   index.md:
-    title: 1:52. IMR Home
+    title: 1:52. Interactive Media Report (IMR) Home
     generation: markdown
   volume-1.md:
     title: 1:52 Interactive Multimedia Report (IMR)
@@ -84,7 +84,7 @@ pages:
       - url: http://hl7.org/fhir/StructureDefinition/structuredefinition-standards-status
         valueCode: informative
   other.md:
-    title: Changes to Other Documents
+    title: Changes to Other Specifications
     generation: markdown
   download.md:
     title: "Download and Analysis"
@@ -104,8 +104,9 @@ menu:
     "Store Multimedia Report [RAD-141]": RAD-141.html
     "Display Multimedia Report [RAD-142]": RAD-142.html
     "Find Multimedia Report [RAD-143]": RAD-143.html
-    "Retrieve Rendered Multimedia Report [RAD-144]": RAD-144.html
-  Test Plan: testplan.html
+    "Retrieve Rendered Multimedia Report [RAD-144]": RAD-144.html  
   Artifacts: artifacts.html
-  Other: other.html
-  Download: download.html
+  Other:
+    Changes to Other IHE Specifications: other.html
+    Download and Analysis: download.html
+    Test Plan: testplan.html
