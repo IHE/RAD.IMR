@@ -12,7 +12,8 @@
 
 ## Issues
 
-###Submit An Issue
+### Submit An Issue
+
 IHE welcomes [New Issues](https://github.com/IHE/RAD.IMR/issues/new/choose) from the GitHub community. 
 For those without GitHub access, issues may be submitted to the [Radiology Public Comment form](https://www.ihe.net/Radiology_Public_Comments/).
 
