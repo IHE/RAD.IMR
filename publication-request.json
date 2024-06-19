@@ -1,0 +1,19 @@
+{
+    "package-id" : "ihe.rad.imr",
+    "version" : "1.1.0",
+    "path" : "https://profiles.ihe.net/RAD/IMR/1.1.0",
+    "mode" : "milestone",
+    "status" : "trial-use",
+    "sequence": "Publication",
+    "desc" : "Trial Implementation - Quality improvements.",
+    "descmd" : "Version 1.1.0
+    - Quality improvements
+    - Very small typo in DiagnosticReport specification by @kinsonho in https://github.com/IHE/RAD.IMR/issues/17
+    - Typo in section reference to BIR by @kinsonho in https://github.com/IHE/RAD.IMR/issues/18
+    - Reference to non-existing Note 2 by @kinsonho in https://github.com/IHE/RAD.IMR/issues/19
+    - Request from HL7 FHIR-i: tighten the context for the Associated Study Extension by @kinsonho in https://github.com/IHE/RAD.IMR/issues/20
+    - Remove note about WIA being Trial Implementation by @kinsonho in https://github.com/IHE/RAD.IMR/issues/22
+    - Remove link to the BIR TI Supp by @kinsonho in https://github.com/IHE/RAD.IMR/issues/23
+    - Remove RAD-145 in IMR Appendix B by @kinsonho in https://github.com/IHE/RAD.IMR/issues/24",
+    "changes" : "issues.html"
+   }

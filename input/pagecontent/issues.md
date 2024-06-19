@@ -1,6 +1,26 @@
-### Issues
+## Significant Changes
 
-#### Open Issues
+### Changes From Revision 1.0.0 to Revision 1.0.1
+
+- Issue #24: Remove RAD-145 in IMR Appendix B
+- Issue #23: Remove link to the BIR TI Supp
+- Issue #22: Remove note about WIA being Trial Implementation
+- Issue #20: Request from HL7 FHIR-i - tighten the context for the Associated Study Extension
+- Issue #19: Reference to non-existing Note 2
+- Issue #18: Fix typo in section reference to BIR
+- Issue #17: Fix small typo in DiagnosticReport specification 
+
+## Issues
+
+### Submit An Issue
+
+IHE welcomes [New Issues](https://github.com/IHE/RAD.IMR/issues/new/choose) from the GitHub community. 
+For those without GitHub access, issues may be submitted to the [Radiology Public Comment form](https://www.ihe.net/Radiology_Public_Comments/).
+
+As issues are submitted they will be managed at [IMR GitHub Issues](https://github.com/IHE/RAD.IMR/issues), where discussion and workarounds may be found. These issues, when critical, will be processed using the normal [IHE Change Proposal](https://wiki.ihe.net/index.php/Category:CPs) management and balloting. 
+It is important to note that as soon as a Change Proposal is approved, it carries the same weight as a published Implementation Guide (i.e., it is testable at an [IHE Connectathon](https://www.ihe.net/participate/connectathon/) from the time it is approved, even if it will not be integrated until several months later).
+
+### Open Issues
 
 IHE invites comments on the following issues.
 
@@ -11,8 +31,7 @@ IHE invites comments on the following issues.
 |3|Q: Is using &lt;span&gt; instead of &lt;imr-ref&gt; acceptable? <br><br> DiagnosticReport.text.div attribute is explicitly limited in FHIR to only allow a small subset of HTML4 elements. This means no HTML5 custom elements or data-* HTML5 custom attributes are allowed. The IG Publisher / sushi will fail validation.<br><br> Switching to &lt;span&gt; retains all existing design features, including support for different resource types, as well as not affect any consumer as they will just ignore the tag if there is no given style.
 {: .grid}
 
-
-#### Closed Issues
+### Closed Issues
 
 These issues have been decided and documented in the publication.
 

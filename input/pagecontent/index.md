@@ -3,7 +3,7 @@ The Interactive Multimedia Report (IMR) Profile specifies how a diagnostic repor
 <div markdown="1" class="stu-note">
 **IMPORTANT**: IMR is NOT yet recommended for production use.
 
-Profiles released for Trial Implementation by IHE Radiology typically ARE expected to be stable enough for  production use, however this release of IMR is intended for experimental implementation and feedback.  
+Profiles released for Trial Implementation by IHE Radiology typically ARE expected to be stable enough for production use; however, this release of IMR is intended for experimental implementation and feedback.  
 
 IMR uses the FHIR ImagingSelection resource which is at [maturity level 1](https://www.hl7.org/fhir/versions.html). Maturity 1 resources are likely to be updated in the future with backward incompatible changes.
  
@@ -11,14 +11,14 @@ IMR uses the FHIR DiagnosticReport resource to model specialty agnostic imaging 
  
 Experimental implementation feedback may also result in other backward incompatible changes to the profile.
 
-| [Open and Closed Issues](issues.html) |
+| [Significant Changes; Open and Closed Issues](issues.html) |
 {: .grid}
 
 </div>
 
 
 ### Organization of This Guide
-This guide is organized into five main sections:
+This guide is organized into following sections:
 
 1. Volume 1: Integration Profile 
    1. [Introduction](volume-1.html)
@@ -35,23 +35,11 @@ This guide is organized into five main sections:
    1. [Find Multimedia Report [RAD-143]](RAD-143.html)
    1. [Retrieve Rendered Multimedia Report [RAD-144]](RAD-144.html)
 
-3. Volume 3: Metadata
-   1. N/A for IMR
-
-4. Volume 4: National Extensions
-    1. N/A for IMR
-
-5. Appendix
-   1. [Test Plan](testplan.html)
+3. Other
+   1. [Changes to Other IHE Specifications](other.html)
+   2. [Download and Analysis](download.html)
+   3. [Test Plan](testplan.html)
 
 
-Click on any of the links above, navigate the contents using the [table of contents](toc.html), or
+Click on any of the links above, navigate the contents using the [Table of Contents](toc.html), or
 if you are looking for a specific artifact, check out the [Artifacts Summary](artifacts.html).
-
-You can also download:
-
-* [this entire guide](full-ig.zip),
-* the definition resources in [json](definitions.json.zip), [xml](definitions.xml.zip), [ttl](definitions.ttl.zip), or [csv](csvs.zip) format, or
-* the example resources in [json](examples.json.zip), [xml](examples.xml.zip) or [ttl](examples.ttl.zip) format.
-
-The source code for this Implementation Guide can be found on [https://github.com/IHE/RAD.IMR](https://github.com/IHE/RAD.IMR)
