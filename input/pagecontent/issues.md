@@ -1,14 +1,11 @@
 ## Significant Changes
 
-### Changes From Revision 1.0.0 to Revision 1.0.1
+### Changes From Revision 1.1.0 to Revision 1.1.1
 
-- Issue #24: Remove RAD-145 in IMR Appendix B
-- Issue #23: Remove link to the BIR TI Supp
-- Issue #22: Remove note about WIA being Trial Implementation
-- Issue #20: Request from HL7 FHIR-i - tighten the context for the Associated Study Extension
-- Issue #19: Reference to non-existing Note 2
-- Issue #18: Fix typo in section reference to BIR
-- Issue #17: Fix small typo in DiagnosticReport specification 
+- Issue #31: CP-RAD-510 Incorrect request.url in Bundle example
+- Issue #30: Incorrect Section references
+- Issue #28: Reference to non-existent transaction in figure
+- Issue #27: Incorrect title on the Home page
 
 ## Issues
 
