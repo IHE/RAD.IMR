@@ -36,7 +36,7 @@ end note
 Clinician->>Reader: Click on image references in Report
 Reader->>Display: //View series//\n//(internal communication)//
 Display->>Archive: //Retrieve series//
-Display->Display: Display Images [RAD-145]
+Display->Display: //Display Images//
 
 Clinician->>Display: //Interact with image and/or series//
 end
