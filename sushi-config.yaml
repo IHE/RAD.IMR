@@ -54,7 +54,7 @@ parameters:  # see https://confluence.hl7.org/display/FHIR/Implementation+Guide+
 pages:
 # itemize here each narrative page. Include assigned section numbers when appropriate
   index.md:
-    title: 1:52. Interactive Media Report (IMR) Home
+    title: 1:52 Interactive Multimedia Report (IMR) Home
     generation: markdown
   volume-1.md:
     title: 1:52 Interactive Multimedia Report (IMR)
