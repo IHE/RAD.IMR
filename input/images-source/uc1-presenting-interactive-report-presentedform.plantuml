@@ -35,6 +35,6 @@ Clinician->>EMR: //Click on hyperlinked image reference//
 
 EMR->Archive: WADO-RS Retrieve [RAD-107]\nRetrieve rendered images
 Archive-->EMR: (Rendered images)
-EMR->EMR: Display Images [RAD-145]
+EMR->EMR: //Display Images//
 
 @enduml

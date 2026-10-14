@@ -9,20 +9,20 @@ Usage: #example
 * timestamp = 2022-03-13T23:50:50-05:00
 * entry[DiagnosticReport].fullUrl = "http://example.org/DiagnosticReport/ex-DiagnosticReport"
 * entry[DiagnosticReport].resource = ex-DiagnosticReport
-* entry[DiagnosticReport].request.url = "IMRDiagnosticReport"
+* entry[DiagnosticReport].request.url = "DiagnosticReport"
 * entry[DiagnosticReport].request.method = #POST
 * entry[ServiceRequest].fullUrl = "http://example.org/ServiceRequest/ex-ServiceRequest"
 * entry[ServiceRequest].resource = ex-ServiceRequest
-* entry[ServiceRequest].request.url = "IMRServiceRequest"
+* entry[ServiceRequest].request.url = "ServiceRequest"
 * entry[ServiceRequest].request.method = #POST
 * entry[ImagingStudy].fullUrl = "http://example.org/ImagingStudy/ex-ImagingStudy"
 * entry[ImagingStudy].resource = ex-ImagingStudy
-* entry[ImagingStudy].request.url = "IMRImagingStudy"
+* entry[ImagingStudy].request.url = "ImagingStudy"
 * entry[ImagingStudy].request.method = #POST
 
 /*
 * entry[ImagingSelection].fullUrl = "http://example.org/ImagingSelection/ex-ImagingSelection-SingleImage"
 * entry[ImagingSelection].resource = ex-ImagingSelection-SingleImage
-* entry[ImagingSelection].request.url = "IMRImagingSelection"
+* entry[ImagingSelection].request.url = "ImagingSelection"
 * entry[ImagingSelection].request.method = #POST
 */

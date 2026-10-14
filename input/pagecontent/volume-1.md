@@ -174,12 +174,12 @@ The Report Reader SHALL support display capabilities defined in Table 1:52.1.1.3
 
 | Capability | BIR Reference |
 |------------|-------------|
-| Layout, Tiling, Selection, Rotation and Flipping (Note 1) | RAD TF-1: Section 4.16.4.2.2.5.2 |
-| Windowing and Rendering | RAD TF-1: Section 4.16.4.2.2.5.4 |
-| Zooming and Panning | RAD TF-1: Section 4.16.4.2.2.5.6 |
-| Laterality | RAD TF-1: Section 4.16.4.2.2.5.7 |
-| Annotation | RAD TF-1: Section 4.16.4.2.2.5.8 |
-| Cine | RAD TF-1: Section 4.16.4.2.2.5.9 |
+| Layout, Tiling, Selection, Rotation and Flipping (Note 1) | RAD TF-2: Section 4.16.4.2.2.6.2 |
+| Windowing and Rendering | RAD TF-2: Section 4.16.4.2.2.6.4 |
+| Zooming and Panning | RAD TF-2: Section 4.16.4.2.2.6.6 |
+| Laterality | RAD TF-2: Section 4.16.4.2.2.6.7 |
+| Annotation | RAD TF-2: Section 4.16.4.2.2.6.8 |
+| Cine | RAD TF-2: Section 4.16.4.2.2.6.9 |
 {: .grid}
 
 > Note 1: A Report Reader is permitted to only support a single viewport.

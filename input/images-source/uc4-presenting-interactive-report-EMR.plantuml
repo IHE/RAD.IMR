@@ -30,7 +30,7 @@ end note
 
 loop Retrieve images, presentation states, window levelling
 Display->>Archive: //Retrieve series//
-Display->Display: Display Images [RAD-145]
+Display->Display: //Display Images//
 
 Clinician->>Display: //Interact with images and/or series//
 end loop
